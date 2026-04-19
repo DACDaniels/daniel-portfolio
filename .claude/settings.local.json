@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Bash(node screenshot.mjs http://localhost:3000 baseline)",
+      "Bash(node screenshot.mjs http://localhost:3000 hero-v1)",
+      "Bash(node screenshot.mjs http://localhost:3000 hero-v2)",
+      "Bash(node screenshot.mjs http://localhost:3000 hero-v3)",
+      "Bash(node screenshot.mjs http://localhost:3000 hero-v4)",
+      "Bash(node screenshot.mjs http://localhost:3000 hero-v5)",
+      "Bash(node screenshot.mjs http://localhost:3000 hero-v6)",
+      "Bash(node screenshot.mjs http://localhost:3000 hero-v7-flex-check 1920)",
+      "Bash(node screenshot.mjs http://localhost:3000 hero-final-desktop 1920)",
+      "Bash(node screenshot.mjs http://localhost:3000 hero-final-mobile 375)",
+      "Bash(node screenshot.mjs http://localhost:3000 hero-final-tablet 768)",
+      "Bash(node screenshot.mjs http://localhost:3000 hero-v2-desktop 1920)",
+      "Bash(node screenshot.mjs http://localhost:3000 hero-v2-mobile 375)",
+      "Bash(node screenshot.mjs http://localhost:3000 hero-v2-tablet 768)",
+      "Bash(node screenshot.mjs http://localhost:3000 hero-v3-desktop 1920)",
+      "Bash(node screenshot.mjs http://localhost:3000 hero-v3-mobile 375)",
+      "Bash(node screenshot.mjs http://localhost:3000 hero-v3-tablet 768)",
+      "Bash(curl *)",
+      "Bash(node *)"
+    ]
+  }
+}
