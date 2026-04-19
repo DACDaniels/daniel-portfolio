@@ -1,10 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "motion/react";
 import { AnimatedText } from "@/components/ui/AnimatedText";
+import { CodeTerminal } from "@/components/ui/CodeTerminal";
 import { DotGrid } from "@/components/ui/DotGrid";
-import { FloatingBadge } from "@/components/ui/FloatingBadge";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { NumberTicker } from "@/components/ui/NumberTicker";
 
@@ -13,14 +12,6 @@ const STATS = [
   { value: 3, suffix: "+", label: "Years" },
   { value: 2, suffix: "", label: "Live Products" },
   { value: 100, suffix: "%", label: "Committed" },
-];
-
-const BADGES = [
-  { label: "Python", position: { x: "-14%", y: "6%" }, delay: 0, duration: 6 },
-  { label: "Next.js", position: { x: "88%", y: "2%" }, delay: 0.3, duration: 7 },
-  { label: "OpenCV", position: { x: "-20%", y: "62%" }, delay: 0.6, duration: 8 },
-  { label: "Flask", position: { x: "92%", y: "58%" }, delay: 0.9, duration: 6.5 },
-  { label: "Raspberry Pi", position: { x: "40%", y: "94%" }, delay: 1.2, duration: 7.5 },
 ];
 
 export function Hero() {
@@ -167,47 +158,30 @@ export function Hero() {
             </motion.div>
           </div>
 
-          <div className="relative mx-auto h-[260px] w-[260px] shrink-0 md:mx-0 md:ml-auto md:h-[280px] md:w-[280px] lg:h-[380px] lg:w-[380px]">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: subtitleDelay, ease: [0.2, 0.65, 0.3, 0.95] }}
+            className="relative mx-auto w-full max-w-[420px] shrink-0 md:mx-0 md:ml-auto md:w-[380px] lg:w-[480px]"
+          >
             <div
               aria-hidden
-              className="absolute -inset-12 z-0 rounded-full bg-accent/25 blur-[80px]"
+              className="pointer-events-none absolute -inset-14 z-0 rounded-[32px] bg-accent/20 blur-[90px]"
             />
 
             <div
               aria-hidden
-              className="absolute -inset-[2px] z-10 overflow-hidden rounded-[22px]"
-            >
-              <div
-                className="absolute left-1/2 top-1/2 aspect-square w-[160%] -translate-x-1/2 -translate-y-1/2 animate-[spin_8s_linear_infinite]"
-                style={{
-                  background:
-                    "conic-gradient(from 0deg, transparent 0deg, #00E5C0 60deg, transparent 120deg, transparent 240deg, #00E5C0 300deg, transparent 360deg)",
-                }}
-              />
-            </div>
+              className="pointer-events-none absolute -inset-[1px] z-10 rounded-[17px]"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(0,229,192,0.45) 0%, rgba(0,229,192,0.08) 35%, rgba(255,255,255,0.04) 55%, rgba(0,229,192,0.08) 75%, rgba(0,229,192,0.35) 100%)",
+              }}
+            />
 
-            <div className="absolute inset-[2px] z-20 overflow-hidden rounded-[20px] border border-border bg-bg-surface">
-              <Image
-                src="/images/daniel-hero.webp"
-                alt="Daniel Chadambuka"
-                width={800}
-                height={800}
-                priority
-                sizes="(min-width: 1024px) 380px, (min-width: 768px) 280px, 260px"
-                className="absolute inset-0 h-full w-full object-cover"
-              />
+            <div className="relative z-20 h-[360px] overflow-hidden rounded-[16px] border border-border bg-bg-surface shadow-[0_28px_70px_-16px_rgba(0,229,192,0.25),0_0_0_1px_rgba(255,255,255,0.04)] md:h-[400px] lg:h-[460px]">
+              <CodeTerminal />
             </div>
-
-            {BADGES.map((b) => (
-              <FloatingBadge
-                key={b.label}
-                label={b.label}
-                position={b.position}
-                delay={b.delay}
-                duration={b.duration}
-              />
-            ))}
-          </div>
+          </motion.div>
         </div>
       </div>
 

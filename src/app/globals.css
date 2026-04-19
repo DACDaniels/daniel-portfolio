@@ -38,6 +38,7 @@
 
   --font-heading: var(--font-syne);
   --font-body: var(--font-dm-sans);
+  --font-mono: var(--font-jetbrains-mono);
 
   --radius-card: 16px;
   --radius-pill: 100px;
