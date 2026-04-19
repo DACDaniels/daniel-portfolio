@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Screenshots (large files, local only)
+screenshots/*.png
+screenshots/*.jpg
