@@ -39,7 +39,7 @@
   --color-text-secondary: var(--text-secondary);
   --color-text-tertiary: var(--text-tertiary);
 
-  --font-heading: var(--font-syne);
+  --font-heading: var(--font-geist), "Geist", system-ui, sans-serif;
   --font-body: var(--font-dm-sans);
   --font-mono: var(--font-jetbrains-mono);
   --font-serif: var(--font-instrument-serif), "Instrument Serif", Georgia,
@@ -87,8 +87,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-syne), system-ui, sans-serif;
-  font-weight: 800;
+  font-family: var(--font-geist), "Geist", system-ui, sans-serif;
+  font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.05;
   margin: 0;

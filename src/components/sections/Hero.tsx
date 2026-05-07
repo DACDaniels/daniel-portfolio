@@ -66,7 +66,7 @@ export function Hero() {
               AVAILABLE FOR WORK
             </motion.div>
 
-            <h1 className="font-[family-name:var(--font-syne)] text-[clamp(1.75rem,8vw,2.5rem)] font-extrabold leading-[0.95] tracking-[-0.03em] text-text-primary md:text-[clamp(1.875rem,4.5vw,3.5rem)] lg:text-[clamp(2.5rem,5.25vw,4.5rem)]">
+            <h1 className="font-heading text-[clamp(1.75rem,8vw,2.5rem)] font-semibold leading-[0.95] tracking-[-0.04em] text-text-primary md:text-[clamp(1.875rem,4.5vw,3.5rem)] lg:text-[clamp(2.5rem,5.25vw,4.5rem)]">
               <AnimatedText
                 text="Daniel"
                 as="span"
@@ -197,7 +197,7 @@ export function Hero() {
               key={stat.label}
               className="flex flex-col gap-1 px-4 py-7 md:px-6 md:py-8"
             >
-              <span className="font-[family-name:var(--font-syne)] text-3xl font-extrabold tracking-[-0.03em] text-accent md:text-4xl lg:text-5xl">
+              <span className="font-heading text-3xl font-bold tracking-[-0.03em] text-accent md:text-4xl lg:text-5xl">
                 <NumberTicker
                   value={stat.value}
                   suffix={stat.suffix}

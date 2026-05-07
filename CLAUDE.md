@@ -25,7 +25,7 @@ Every pixel, every animation, every interaction must be intentional.
 - Magic UI — text animations, shimmer, number counters, marquee
 - 21st.dev — buttons, inputs, interactive components
 - GSAP (for complex scroll-driven sequences if needed)
-- Google Fonts: Syne (headings) + DM Sans (body)
+- Google Fonts: Geist (headings) + DM Sans (body)
 - Puppeteer (for automated screenshot workflow)
 - Deployed on Vercel
 
@@ -47,7 +47,7 @@ Colors:
 
 Typography:
 
-- Heading font: Syne (weights 700, 800)
+- Heading font: Geist (weights 500, 600, 700)
 - Body font: DM Sans (weights 400, 500)
 - Tight tracking on headings: -0.03em
 - Body line-height: 1.7
@@ -116,7 +116,7 @@ Separate deep-dive case study pages for each project.
 - Sticky, fixed top
 - Glassmorphism: backdrop-blur-md, bg transparent on load,
   bg rgba(8,8,8,0.8) + border-bottom on scroll
-- Left: "DC." in Syne 700, teal on hover
+- Left: "DC." in Geist 700, teal on hover
 - Right: nav links with magnetic hover effect
 - Far right: teal CTA button "Contact Me" with shimmer on hover
 - Mobile: hamburger with full-screen overlay menu
@@ -259,7 +259,7 @@ Every interaction must feel alive. Basic fade-ins are NOT acceptable.
   Only use our custom design tokens defined above
 - NO flat shadow-md. Use layered color-tinted shadows with low opacity
   Example: 0 8px 24px -4px rgba(0,229,192,0.15)
-- NO same font for headings and body — Syne + DM Sans split
+- NO same font for headings and body — Geist + DM Sans split
 - Apply tight tracking (-0.03em) on large headings
 - Apply generous line-height (1.7) on body text
 - Layer multiple radial gradients for atmosphere, not flat backgrounds

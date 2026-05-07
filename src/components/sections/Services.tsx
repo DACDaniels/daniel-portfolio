@@ -124,7 +124,7 @@ export function Services() {
   return (
     <section
       id="services"
-      className="relative w-full overflow-hidden bg-bg-primary py-32 md:py-40"
+      className="relative w-full overflow-hidden bg-bg-primary py-20 md:py-40"
     >
       <div className="mx-auto w-full max-w-[1100px] px-6 md:px-8">
         <motion.div
@@ -178,7 +178,7 @@ export function Services() {
 
           <motion.p
             variants={itemVariants}
-            className="mt-5 mb-16 max-w-[52ch] text-[15px] text-text-secondary md:mb-24 md:text-[16px]"
+            className="mt-5 mb-12 max-w-prose text-[15px] text-text-secondary md:mb-24 md:max-w-[52ch] md:text-[16px]"
             style={{ lineHeight: 1.7 }}
           >
             Four practical disciplines. Every service backed by something
@@ -188,7 +188,7 @@ export function Services() {
           <div
             ref={gridRef}
             onPointerMove={handleGridPointerMove}
-            className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5"
+            className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-5"
           >
             {SERVICES.map((service) => (
               <motion.div
@@ -232,7 +232,7 @@ function ServiceCard({ service }: ServiceCardProps) {
   return (
     <article
       data-spotlight-card
-      className="group relative h-full overflow-hidden rounded-[16px] bg-bg-surface p-6 md:p-7"
+      className="group relative h-full overflow-hidden rounded-[16px] bg-bg-surface p-5 md:p-7"
       style={{
         border: "1px solid rgba(255, 255, 255, 0.06)",
         transition: "border-color 200ms ease, transform 200ms ease",
@@ -263,7 +263,7 @@ function ServiceCard({ service }: ServiceCardProps) {
 
       <div className="relative">
         <div
-          className="flex h-10 w-10 items-center justify-center"
+          className="mb-3 flex h-10 w-10 items-center justify-center md:mb-4"
           style={{
             borderRadius: "10px",
             background: "rgba(0, 229, 192, 0.1)",
@@ -274,22 +274,16 @@ function ServiceCard({ service }: ServiceCardProps) {
         </div>
 
         <h3
-          className="mt-5 font-heading font-bold text-text-primary text-[18px] md:text-[20px]"
-          style={{
-            letterSpacing: "-0.02em",
-            lineHeight: 1.2,
-            marginBottom: "8px",
-          }}
+          className="mb-2 font-heading text-base font-semibold leading-tight tracking-[-0.015em] text-text-primary md:text-lg"
         >
           {service.title}
         </h3>
 
         <p
-          className="text-text-secondary"
+          className="mb-4 text-text-secondary"
           style={{
             fontSize: "14px",
             lineHeight: 1.6,
-            marginBottom: "16px",
           }}
         >
           {service.description}

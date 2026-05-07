@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import {
-  Syne,
+  Geist,
   DM_Sans,
   JetBrains_Mono,
   Instrument_Serif,
 } from "next/font/google";
 import "./globals.css";
 
-const syne = Syne({
-  variable: "--font-syne",
+const geist = Geist({
+  variable: "--font-geist",
   subsets: ["latin"],
-  weight: ["700", "800"],
+  weight: ["500", "600", "700"],
   display: "swap",
 });
 
@@ -74,7 +74,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${syne.variable} ${dmSans.variable} ${jetbrainsMono.variable} ${instrumentSerif.variable}`}
+      className={`${geist.variable} ${dmSans.variable} ${jetbrainsMono.variable} ${instrumentSerif.variable}`}
       suppressHydrationWarning
     >
       <body>{children}</body>

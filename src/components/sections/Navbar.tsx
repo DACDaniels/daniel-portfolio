@@ -52,7 +52,7 @@ export function Navbar() {
         <nav className="mx-auto flex h-20 max-w-[1400px] items-center justify-between px-6 md:px-10">
           <a
             href="#home"
-            className="group relative font-[family-name:var(--font-syne)] text-2xl font-bold tracking-tight text-text-primary transition-colors duration-300 hover:text-accent"
+            className="group relative font-heading text-2xl font-bold tracking-tight text-text-primary transition-colors duration-300 hover:text-accent"
           >
             DC<span className="text-accent">.</span>
           </a>
@@ -124,7 +124,7 @@ export function Navbar() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.08 * i + 0.1, duration: 0.4 }}
-                className="font-[family-name:var(--font-syne)] text-4xl font-bold tracking-tight text-text-primary transition-colors hover:text-accent"
+                className="font-heading text-4xl font-bold tracking-tight text-text-primary transition-colors hover:text-accent"
               >
                 {link.label}
               </motion.a>
