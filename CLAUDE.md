@@ -4,7 +4,7 @@
 
 ## Always Do First
 
-- Invoke the `frontend-design` skill before writing any frontend code
+- - Invoke the `frontend-design` skill at /mnt/skills/public/frontend-design/SKILL.md before writing any frontend code
 - Read this entire CLAUDE.md at the start of every session
 - Check /public/brand-assets/ for any real assets before designing
 

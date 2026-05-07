@@ -21,7 +21,8 @@
       "Bash(node screenshot.mjs http://localhost:3000 hero-v3-mobile 375)",
       "Bash(node screenshot.mjs http://localhost:3000 hero-v3-tablet 768)",
       "Bash(curl *)",
-      "Bash(node *)"
+      "Bash(node *)",
+      "Bash(npm install *)"
     ]
   }
 }
