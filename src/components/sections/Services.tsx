@@ -141,7 +141,11 @@ export function Services() {
             // services.tsx
           </motion.div>
 
-          <h2
+          <motion.h2
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.08 } },
+            }}
             className="font-heading font-bold text-white"
             style={{
               fontSize: "clamp(2.5rem, 5vw, 4rem)",
@@ -161,22 +165,20 @@ export function Services() {
             <br />
             <motion.span
               variants={wordVariants}
-              className="inline-block"
+              className="inline-block font-normal italic"
               style={{
                 fontFamily: "var(--font-serif)",
-                fontWeight: 500,
-                fontStyle: "italic",
                 color: "rgba(255, 255, 255, 0.55)",
                 letterSpacing: "-0.035em",
               }}
             >
               ship.
             </motion.span>
-          </h2>
+          </motion.h2>
 
           <motion.p
             variants={itemVariants}
-            className="mt-4 mb-16 max-w-[52ch] text-[15px] text-text-secondary md:mb-24 md:text-[16px]"
+            className="mt-5 mb-16 max-w-[52ch] text-[15px] text-text-secondary md:mb-24 md:text-[16px]"
             style={{ lineHeight: 1.7 }}
           >
             Four practical disciplines. Every service backed by something
@@ -209,7 +211,7 @@ export function Services() {
               style={{ fontFamily: "var(--font-dm-sans)", fontSize: "15px" }}
             >
               Have a project in mind?{" "}
-              <span className="font-medium text-accent group-hover:underline">
+              <span className="font-medium text-accent underline-offset-4 group-hover:underline">
                 Start a conversation →
               </span>
             </a>
