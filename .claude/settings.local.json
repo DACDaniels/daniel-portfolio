@@ -22,7 +22,13 @@
       "Bash(node screenshot.mjs http://localhost:3000 hero-v3-tablet 768)",
       "Bash(curl *)",
       "Bash(node *)",
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "Read(//mnt/skills/**)",
+      "Bash(ls /mnt)",
+      "Read(//c/Users/DAC/.claude/**)",
+      "Read(//c/Users/DAC/.claude/plugins/**)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
     ]
   }
 }

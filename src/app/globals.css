@@ -21,6 +21,9 @@
 
   --shadow-accent: 0 8px 24px -4px rgba(0, 229, 192, 0.15);
   --shadow-depth: 0 24px 48px -16px rgba(0, 0, 0, 0.6);
+
+  --font-serif: var(--font-instrument-serif), "Instrument Serif", Georgia,
+    serif;
 }
 
 @theme inline {
@@ -39,6 +42,8 @@
   --font-heading: var(--font-syne);
   --font-body: var(--font-dm-sans);
   --font-mono: var(--font-jetbrains-mono);
+  --font-serif: var(--font-instrument-serif), "Instrument Serif", Georgia,
+    serif;
 
   --radius-card: 16px;
   --radius-pill: 100px;

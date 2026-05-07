@@ -1,9 +1,19 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import {
+  motion,
+  useReducedMotion,
+  type Variants,
+} from "motion/react";
 import { Code2, Cpu, Eye, Sparkles, type LucideIcon } from "lucide-react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type PointerEvent,
+} from "react";
 import { BorderBeam } from "@/components/ui/BorderBeam";
-import { CardSpotlight } from "@/components/ui/CardSpotlight";
 
 type Service = {
   icon: LucideIcon;
@@ -43,8 +53,73 @@ const SERVICES: Service[] = [
   },
 ];
 
+const HEADING_WORDS = ["Things", "I", "actually"] as const;
+
 export function Services() {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useReducedMotion() ?? false;
+  const gridRef = useRef<HTMLDivElement | null>(null);
+  const [isTouch, setIsTouch] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(hover: none), (pointer: coarse)");
+    const update = () => setIsTouch(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  const handleGridPointerMove = useCallback(
+    (event: PointerEvent<HTMLDivElement>) => {
+      if (isTouch) return;
+      const grid = gridRef.current;
+      if (!grid) return;
+      const cards = grid.querySelectorAll<HTMLElement>("[data-spotlight-card]");
+      cards.forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty("--mouse-x", `${event.clientX - rect.left}px`);
+        card.style.setProperty("--mouse-y", `${event.clientY - rect.top}px`);
+      });
+    },
+    [isTouch],
+  );
+
+  const containerVariants: Variants = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.12, delayChildren: 0.15 },
+    },
+  };
+
+  const itemVariants: Variants = reduceMotion
+    ? {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1, transition: { duration: 0.2 } },
+      }
+    : {
+        hidden: { opacity: 0, y: 24, filter: "blur(8px)" },
+        visible: {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          transition: { duration: 0.7, ease: [0.2, 0.8, 0.2, 1] },
+        },
+      };
+
+  const wordVariants: Variants = reduceMotion
+    ? {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1, transition: { duration: 0.2 } },
+      }
+    : {
+        hidden: { opacity: 0, y: 18, filter: "blur(6px)" },
+        visible: {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          transition: { duration: 0.6, ease: [0.2, 0.8, 0.2, 1] },
+        },
+      };
 
   return (
     <section
@@ -53,67 +128,92 @@ export function Services() {
     >
       <div className="mx-auto w-full max-w-[1100px] px-6 md:px-8">
         <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 20, filter: "blur(8px)" }}
-          whileInView={
-            reduceMotion ? undefined : { opacity: 1, y: 0, filter: "blur(0px)" }
-          }
-          viewport={{ once: true, margin: "-15%" }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-16 md:mb-20"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
         >
-          <div
+          <motion.div
+            variants={itemVariants}
             className="mb-6 font-mono text-[11px] uppercase text-accent"
             style={{ letterSpacing: "0.15em" }}
           >
             // services.tsx
-          </div>
+          </motion.div>
+
           <h2
-            className="font-heading font-extrabold text-text-primary"
+            className="font-heading font-bold text-white"
             style={{
-              fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
-              letterSpacing: "-0.03em",
+              fontSize: "clamp(2.5rem, 5vw, 4rem)",
+              letterSpacing: "-0.035em",
               lineHeight: 1.05,
             }}
           >
-            What I build
+            {HEADING_WORDS.map((word, i) => (
+              <motion.span
+                key={`${word}-${i}`}
+                variants={wordVariants}
+                className="mr-[0.25em] inline-block"
+              >
+                {word}
+              </motion.span>
+            ))}
+            <br />
+            <motion.span
+              variants={wordVariants}
+              className="inline-block"
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontWeight: 500,
+                fontStyle: "italic",
+                color: "rgba(255, 255, 255, 0.55)",
+                letterSpacing: "-0.035em",
+              }}
+            >
+              ship.
+            </motion.span>
           </h2>
-          <p
-            className="mt-6 max-w-[52ch] text-text-secondary"
+
+          <motion.p
+            variants={itemVariants}
+            className="mt-4 mb-16 max-w-[52ch] text-[15px] text-text-secondary md:mb-24 md:text-[16px]"
             style={{ lineHeight: 1.7 }}
           >
-            Four practical disciplines. Every service backed by something I&apos;ve
-            actually shipped.
-          </p>
-        </motion.div>
+            Four practical disciplines. Every service backed by something
+            I&apos;ve actually built.
+          </motion.p>
 
-        <CardSpotlight className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
-          {SERVICES.map((service, index) => (
-            <ServiceCard
-              key={service.title}
-              service={service}
-              index={index}
-              reduceMotion={reduceMotion ?? false}
-            />
-          ))}
-        </CardSpotlight>
-
-        <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-          whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-10%" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-          className="mt-12 text-center md:mt-16"
-        >
-          <a
-            href="#contact"
-            className="group inline-flex items-center gap-2 px-4 py-3 text-text-secondary"
-            style={{ fontFamily: "var(--font-dm-sans)", fontSize: "15px" }}
+          <div
+            ref={gridRef}
+            onPointerMove={handleGridPointerMove}
+            className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5"
           >
-            Have a project in mind?{" "}
-            <span className="font-medium text-accent group-hover:underline">
-              Start a conversation →
-            </span>
-          </a>
+            {SERVICES.map((service) => (
+              <motion.div
+                key={service.title}
+                variants={itemVariants}
+                className="h-full"
+              >
+                <ServiceCard service={service} />
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            variants={itemVariants}
+            className="mt-12 text-center md:mt-16"
+          >
+            <a
+              href="#contact"
+              className="group inline-flex items-center gap-2 px-4 py-3 text-text-secondary"
+              style={{ fontFamily: "var(--font-dm-sans)", fontSize: "15px" }}
+            >
+              Have a project in mind?{" "}
+              <span className="font-medium text-accent group-hover:underline">
+                Start a conversation →
+              </span>
+            </a>
+          </motion.div>
         </motion.div>
       </div>
     </section>
@@ -122,33 +222,18 @@ export function Services() {
 
 type ServiceCardProps = {
   service: Service;
-  index: number;
-  reduceMotion: boolean;
 };
 
-function ServiceCard({ service, index, reduceMotion }: ServiceCardProps) {
+function ServiceCard({ service }: ServiceCardProps) {
   const Icon = service.icon;
 
   return (
-    <motion.article
+    <article
       data-spotlight-card
-      initial={
-        reduceMotion ? false : { opacity: 0, y: 24, filter: "blur(8px)" }
-      }
-      whileInView={
-        reduceMotion ? undefined : { opacity: 1, y: 0, filter: "blur(0px)" }
-      }
-      viewport={{ once: true, margin: "-15%" }}
-      transition={{
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
-        delay: index * 0.1,
-      }}
-      className="group relative overflow-hidden rounded-[16px] bg-bg-surface p-6 md:p-7"
+      className="group relative h-full overflow-hidden rounded-[16px] bg-bg-surface p-6 md:p-7"
       style={{
         border: "1px solid rgba(255, 255, 255, 0.06)",
-        transition:
-          "border-color 200ms ease, transform 200ms ease",
+        transition: "border-color 200ms ease, transform 200ms ease",
         ["--mouse-x" as string]: "50%",
         ["--mouse-y" as string]: "50%",
       }}
@@ -187,9 +272,8 @@ function ServiceCard({ service, index, reduceMotion }: ServiceCardProps) {
         </div>
 
         <h3
-          className="mt-5 font-heading font-bold text-text-primary"
+          className="mt-5 font-heading font-bold text-text-primary text-[18px] md:text-[20px]"
           style={{
-            fontSize: "20px",
             letterSpacing: "-0.02em",
             lineHeight: 1.2,
             marginBottom: "8px",
@@ -229,6 +313,6 @@ function ServiceCard({ service, index, reduceMotion }: ServiceCardProps) {
           ))}
         </div>
       </div>
-    </motion.article>
+    </article>
   );
 }
