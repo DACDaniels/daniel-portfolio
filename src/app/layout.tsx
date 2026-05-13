@@ -6,6 +6,7 @@ import {
   Instrument_Serif,
 } from "next/font/google";
 import "./globals.css";
+import ExtensionErrorSuppressor from "@/components/ExtensionErrorSuppressor";
 
 const geist = Geist({
   variable: "--font-geist",
@@ -77,7 +78,10 @@ export default function RootLayout({
       className={`${geist.variable} ${dmSans.variable} ${jetbrainsMono.variable} ${instrumentSerif.variable}`}
       suppressHydrationWarning
     >
-      <body>{children}</body>
+      <body suppressHydrationWarning>
+        <ExtensionErrorSuppressor />
+        {children}
+      </body>
     </html>
   );
 }
