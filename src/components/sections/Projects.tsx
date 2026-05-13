@@ -26,14 +26,14 @@ const PROJECTS: ProjectCardProps[] = [
   },
   {
     number: "02",
-    category: "RESEARCH",
-    title: "FishTech Smart Feed",
-    meta: "Final-year prototype · Nov 2025",
+    category: "EDGE AI",
+    title: "FishTech Precision Feeding System",
+    meta: "Late-stage prototype · Pilot 2026",
     description:
-      "Computer vision pipeline for fish biomass estimation. YOLOv8 detection combined with length-weight regression. Designed for future Raspberry Pi edge deployment.",
-    tags: ["YOLOv8", "OpenCV", "Python", "Edge AI"],
-    status: "research",
-    primaryLink: { label: "Read Case Study", href: "/projects/fishtech" },
+      "Closed-loop AI instrument for African pond aquaculture. An overhead AI Camera and a Raspberry Pi 5 with a Hailo NPU detect fish, measure them against an auto-calibrated reference, estimate whole-pond biomass with honest confidence intervals, and drive an integrated auger feeder to dispense a precision dose. Runs entirely on the device. Being industrialised for pilot deployment in 2026.",
+    tags: ["Computer Vision", "IoT", "Edge AI", "YOLO", "Raspberry Pi"],
+    status: "building",
+    primaryLink: { label: "View Case Study", href: "/projects/fishtech" },
     mockComponent: <FishTechSmartFeedMock />,
   },
   {
@@ -143,8 +143,8 @@ export function Projects() {
             className="mt-5 mb-12 max-w-xl text-[15px] text-white/55 md:mb-20 md:max-w-2xl md:text-[16px]"
             style={{ lineHeight: 1.7 }}
           >
-            Four projects. One live in production, one research prototype, one
-            lead-gen site, and this portfolio itself.
+            Four projects. One live in production, one edge-AI instrument in
+            active build, one lead-gen site, and this portfolio itself.
           </motion.p>
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">

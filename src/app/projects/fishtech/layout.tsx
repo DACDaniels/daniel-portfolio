@@ -2,9 +2,9 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "FishTech Smart Feed System — Daniel Chadambuka",
+  title: "FishTech Precision Feeding System · Daniel Chadambuka",
   description:
-    "Computer vision pipeline for fish biomass estimation using YOLOv8 and length-weight regression. Final-year research prototype, NUST Zimbabwe, November 2025.",
+    "Closed-loop edge-AI instrument for African pond aquaculture. Raspberry Pi 5 with Hailo NPU, custom-trained YOLO vision, stratified biomass estimation, and an automated auger feeder. Late-stage prototype, industrialising for pilot deployment in 2026.",
 };
 
 export const viewport: Viewport = {

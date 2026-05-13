@@ -10,7 +10,7 @@ export type ProjectCardProps = {
   meta: string;
   description: string;
   tags: string[];
-  status: "live" | "research" | "meta";
+  status: "live" | "research" | "meta" | "building";
   primaryLink?: { label: string; href: string; external?: boolean };
   secondaryLink?: { label: string; href: string; external?: boolean };
   mockComponent: ReactNode;
@@ -125,13 +125,22 @@ export function ProjectCard({
 
 function StatusBadge({ status }: { status: ProjectCardProps["status"] }) {
   const label =
-    status === "live" ? "LIVE" : status === "research" ? "RESEARCH" : "META";
+    status === "live"
+      ? "LIVE"
+      : status === "building"
+        ? "BUILDING"
+        : status === "research"
+          ? "RESEARCH"
+          : "META";
 
   const styles: Record<ProjectCardProps["status"], string> = {
     live: "text-accent border border-accent/30",
+    building: "text-[#FFC04D] border border-[#FFC04D]/35",
     research: "text-white/85 border border-white/15",
     meta: "text-white/60 border border-white/10",
   };
+
+  const showDot = status === "live" || status === "building";
 
   return (
     <div
@@ -143,10 +152,12 @@ function StatusBadge({ status }: { status: ProjectCardProps["status"] }) {
         lineHeight: 1,
       }}
     >
-      {status === "live" ? (
+      {showDot ? (
         <span
           aria-hidden
-          className="block h-[5px] w-[5px] rounded-full bg-accent"
+          className={`block h-[5px] w-[5px] rounded-full ${
+            status === "live" ? "bg-accent" : "bg-[#FFC04D]"
+          }`}
           style={{ animation: "live-pulse 2s ease-in-out infinite" }}
         />
       ) : null}

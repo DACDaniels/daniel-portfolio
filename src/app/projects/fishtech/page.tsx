@@ -6,38 +6,94 @@ import type { ReactNode } from "react";
 import { Navbar } from "@/components/sections/Navbar";
 import { FishTechSmartFeedMock } from "@/components/ui/project-mocks/FishTechSmartFeedMock";
 
-const STACK_CARDS = [
+type Innovation = {
+  label: string;
+  title: string;
+  body: string;
+};
+
+const INNOVATIONS: Innovation[] = [
   {
-    label: "Detection",
-    title: "YOLOv8 + custom dataset",
-    description:
-      "Roboflow for annotation. Custom fish dataset trained on real pond and tank footage.",
+    label: "01",
+    title: "Stratified biomass with confidence intervals",
+    body: "The camera sees a sample of the pond, not the whole pond. We estimate average per-fish weight from what we see and multiply by what the farmer records: stocking minus mortality. The result is reported with a 1.96 sigma confidence interval, shown explicitly on the dashboard. Honest scientific methodology in a domain where most systems hide their uncertainty.",
   },
   {
-    label: "Processing",
-    title: "Python · OpenCV · NumPy",
-    description:
-      "Frame extraction, bounding-box measurement, and pixel-domain post-processing.",
+    label: "02",
+    title: "Multi-multiplier precision feeding engine",
+    body: "Feed equals biomass times size-tier rate times temperature multiplier times time-of-day multiplier times prior-response multiplier, divided by feeds per day. Every multiplier is grounded in published aquaculture biology, with hard guards for temperature window, feeding hours, and minimum inter-feed interval. Configurable per pond, per species, in YAML.",
   },
   {
-    label: "Calibration",
-    title: "Camera intrinsics",
-    description:
-      "Pixel-to-real-world length mapping using known reference markers in the camera scene.",
+    label: "03",
+    title: "Hailo-accelerated keypoint vision",
+    body: "Moving from bounding-box detection to YOLO-Pose keypoint detection compiled to Hailo HEF format. Snout, dorsal origin, peduncle, and tail-tip keypoints give true geodesic length measurement that beats the bounding-box approach on angled fish. This is the architectural upgrade that unlocks serious length and biomass accuracy.",
   },
   {
-    label: "Biology",
-    title: "Length–weight regression",
-    description:
-      "Non-linear W = aL^b relationship, parameters tuned to the local target species.",
+    label: "04",
+    title: "Automatic per-frame calibration",
+    body: "A floating ChArUco fiducial plus an ultrasonic depth sensor gives self-correcting pixel-to-centimetre calibration on every frame. The system is plug-and-play across ponds of any depth. No manual recalibration on installation.",
+  },
+  {
+    label: "05",
+    title: "Integrated automated auger feeder",
+    body: "The precision engine emits a dose in grams. A geared DC motor and motor driver rotate a 3D-printed auger to dispense it. The decision flows directly into mechanical actuation. Each feed event is a visible, quantified moment on the OLED, the LED ring, and the pond surface.",
+  },
+  {
+    label: "06",
+    title: "Edge-only, sovereign-by-design",
+    body: "Every farm runs its own Pi at the pond edge. SQLite on the microSD card is the source of truth. The dashboard is served by the Pi's own Wi-Fi hotspot, accessible by QR scan from any phone on the farm. No cloud, no recurring bills, no farmer data leaving Zimbabwe. Aligned with the National AI Strategy's data sovereignty pillar.",
   },
 ];
 
-const HARD_THINGS = [
-  "Detecting fish in turbid water with reflections, motion blur, and overlapping bodies — solved by training YOLOv8 on real, noisy pond footage rather than clean lab video.",
-  "Converting pixel-domain bounding boxes into real-world fish length — solved with a calibration step using known reference markers in the camera frame.",
-  "Applying the non-linear length–weight relationship reliably — validated against manually weighed fish and refined per species.",
-  "Integrating detection, measurement, and feed-recommendation logic into a single pipeline — instead of four disconnected scripts.",
+type StackGroup = {
+  label: string;
+  items: string[];
+};
+
+const STACK_GROUPS: StackGroup[] = [
+  {
+    label: "Vision and Edge Compute",
+    items: [
+      "Python 3.11 · Ultralytics YOLOv8 (custom-trained)",
+      "OpenCV with ArUco / ChArUco modules",
+      "Migration in flight to YOLO-Pose on Hailo-8L (HEF compile)",
+      "Raspberry Pi 5 (8GB) · Raspberry Pi AI Camera (Sony IMX500)",
+      "Raspberry Pi AI Kit (Hailo-8L, 13 TOPS on M.2 HAT+)",
+      "JSN-SR04T ultrasonic · MPU6050 IMU · DS18B20 temperature",
+    ],
+  },
+  {
+    label: "Backend, Persistence, Actuation",
+    items: [
+      "Flask + flask-cors (FastAPI migration on the roadmap)",
+      "SQLite with WAL mode, five-table per-pond schema",
+      "PyYAML config layer (one YAML per deployment)",
+      "N20 12V geared DC motor · L298N motor driver",
+      "3D-printed auger and hopper",
+      "Powder-coated welded steel mast, IP66 ABS enclosure",
+    ],
+  },
+  {
+    label: "Dashboard",
+    items: [
+      "Vite · React 19 · TypeScript 5",
+      "TanStack Router · TanStack Query (offline-first)",
+      "Tailwind CSS v4 · shadcn/ui · Radix",
+      "Motion · Recharts · React Hook Form + Zod",
+      "PWA, served from the Pi's local Wi-Fi hotspot",
+    ],
+  },
+];
+
+const NEXT_BULLETS = [
+  "YOLO-Pose keypoint detection, compiled to Hailo HEF",
+  "Hailo-8L AI Kit integration on the Pi 5",
+  "Automatic per-frame calibration via ChArUco plus ultrasonic",
+  "Auger feeder mechanical assembly and dispense calibration",
+  "Productised mast, IP66 enclosure, faceplate, and branded demo unit",
+  "Pilot pond deployment, target 30-day live farm run",
+  "FastAPI migration and a WebSocket live layer",
+  "SMS bridge in Shona for feature-phone farmers",
 ];
 
 export default function FishTechCaseStudyPage() {
@@ -93,32 +149,51 @@ export default function FishTechCaseStudyPage() {
               className="font-mono text-[11px] uppercase text-accent"
               style={{ letterSpacing: "0.15em" }}
             >
-              // case-study.md
+              // case-study · in active build
             </motion.div>
 
             <motion.div
               variants={itemVariants}
-              className="mt-3 flex flex-wrap gap-2"
+              className="mt-3 flex flex-wrap items-center gap-2"
             >
-              {[
-                "RESEARCH PROTOTYPE",
-                "Submitted Nov 2025",
-                "NUST Zimbabwe",
-              ].map((badge) => (
+              <span
+                className="inline-flex items-center gap-1.5 rounded-full border border-[#FFC04D]/35 bg-[#FFC04D]/[0.06] text-[#FFC04D]"
+                style={{
+                  fontFamily: "var(--font-jetbrains-mono)",
+                  fontSize: "10px",
+                  letterSpacing: "0.05em",
+                  padding: "4px 10px",
+                  lineHeight: 1.4,
+                }}
+              >
                 <span
-                  key={badge}
-                  className="rounded-full border border-white/10 bg-white/5 text-white/70"
+                  aria-hidden
+                  className="block h-[5px] w-[5px] rounded-full bg-[#FFC04D]"
                   style={{
-                    fontFamily: "var(--font-jetbrains-mono)",
-                    fontSize: "10px",
-                    letterSpacing: "0.05em",
-                    padding: "4px 10px",
-                    lineHeight: 1.4,
+                    animation: reduceMotion
+                      ? "none"
+                      : "live-pulse 2s ease-in-out infinite",
                   }}
-                >
-                  {badge}
-                </span>
-              ))}
+                />
+                BUILDING
+              </span>
+              {["Late-stage prototype", "Industrialising for pilot"].map(
+                (badge) => (
+                  <span
+                    key={badge}
+                    className="rounded-full border border-white/10 bg-white/5 text-white/70"
+                    style={{
+                      fontFamily: "var(--font-jetbrains-mono)",
+                      fontSize: "10px",
+                      letterSpacing: "0.05em",
+                      padding: "4px 10px",
+                      lineHeight: 1.4,
+                    }}
+                  >
+                    {badge}
+                  </span>
+                ),
+              )}
             </motion.div>
 
             <motion.h1
@@ -130,7 +205,7 @@ export default function FishTechCaseStudyPage() {
                 lineHeight: 1.02,
               }}
             >
-              FishTech Smart Feed System
+              FishTech Precision Feeding System
             </motion.h1>
 
             <motion.p
@@ -142,8 +217,8 @@ export default function FishTechCaseStudyPage() {
                 lineHeight: 1.55,
               }}
             >
-              A computer vision pipeline for fish biomass estimation, built for
-              small-scale aquaculture in Zimbabwe.
+              Precision feeding for African pond aquaculture. A closed loop
+              that sees fish, decides the dose, and dispenses it.
             </motion.p>
 
             <motion.div
@@ -156,19 +231,20 @@ export default function FishTechCaseStudyPage() {
               }}
             >
               <span>
-                <span className="text-white/30">Role · </span>Solo builder
+                <span className="text-white/30">Role · </span>Founding engineer
               </span>
               <span aria-hidden className="text-white/20">
                 ·
               </span>
               <span>
-                <span className="text-white/30">Timeline · </span>8 months
+                <span className="text-white/30">Timeline · </span>Active build,
+                pilot 2026
               </span>
               <span aria-hidden className="text-white/20">
                 ·
               </span>
               <span>
-                <span className="text-white/30">Status · </span>Research
+                <span className="text-white/30">Status · </span>Late-stage
                 prototype
               </span>
             </motion.div>
@@ -191,91 +267,62 @@ export default function FishTechCaseStudyPage() {
           <CaseSection
             id="problem"
             eyebrow="// section-01"
-            title="The problem"
+            title="Smallholders feed by guess."
             itemVariants={itemVariants}
             containerVariants={containerVariants}
           >
             <p>
-              Most small-scale aquaculture farmers in Zimbabwe feed their fish
-              based on estimation and experience, not measurable biomass. They
-              guess. The guess is sometimes right, often wrong, and the cost of
-              being wrong stacks up quietly over a grow-out cycle.
-            </p>
-            <p>
-              Overfeeding wastes feed and degrades water quality. Underfeeding
-              slows growth. Existing biomass-measurement solutions exist for
-              commercial-scale farms — they require dedicated sensors, vendor
-              support, and budgets that the smallholders this project is
-              designed for simply don&apos;t have.
+              Fish farming runs on a tight margin where feed is 60 to 70
+              percent of operating cost. Zimbabwean smallholders, including
+              the thousands of ponds in the Presidential Community Fisheries
+              Scheme, feed their fish by guess. The result is overfeeding,
+              which wastes feed and degrades water quality, and underfeeding,
+              which slows growth. Norwegian salmon operations have precision
+              feeding systems engineered for industrial cages at a cost
+              African smallholders have no access to. The price tier that
+              fits African pond aquaculture has, until now, had nothing in
+              it.
             </p>
           </CaseSection>
 
           <CaseSection
-            id="approach"
+            id="build"
             eyebrow="// section-02"
-            title="The approach"
+            title="A closed loop, not a monitoring tool."
             itemVariants={itemVariants}
             containerVariants={containerVariants}
           >
             <p>
-              The pipeline is a sequence of well-understood pieces wired
-              together: video footage from a low-cost camera feeds a YOLOv8
-              detection model trained on real pond imagery. Detected bounding
-              boxes are mapped from pixels to real-world length using camera
-              calibration. Each measured length is converted to estimated
-              weight via the standard biological length-weight regression. The
-              per-fish weights aggregate to a biomass figure, and that figure
-              drives a feed recommendation surfaced through a mobile interface.
+              FishTech Precision Feeding System is a closed-loop AI
+              instrument. An overhead AI Camera, a Sony IMX500 with an
+              on-sensor neural accelerator, streams the pond to a Raspberry
+              Pi 5 with a Hailo NPU for accelerated vision inference. A
+              custom-trained YOLO model, currently moving to a keypoint
+              architecture for true geodesic length measurement, detects
+              each fish. A floating ChArUco fiducial plus an ultrasonic
+              depth sensor give per-frame auto-calibration, so the
+              camera&apos;s pixel measurements convert to centimetres
+              correctly at any installed height. A species-specific
+              length-to-weight relationship from FishBase converts size to
+              mass. The biomass estimator stratifies: the farmer owns the
+              population count, the camera owns the average size, and the
+              system reports the whole-pond biomass with an explicit
+              confidence interval. From biomass, a precision feeding engine
+              grounded in published tilapia, catfish, and carp biology
+              returns a feed dose in grams, with hard guards for water
+              temperature, feeding hours, and minimum inter-feed interval.
+              When the engine emits a dose, the Pi drives a geared DC motor
+              and motor driver, which rotates an auger to dispense the dose
+              into the pond. The OLED display shows the number. The status
+              LED ring goes green. The feed lands. The next analysis cycle
+              reads the new state, and the loop closes.
             </p>
-
-            <motion.figure
-              variants={itemVariants}
-              className="border-l-2 border-accent pl-4 italic text-white/70"
-            >
-              <div
-                className="not-italic text-accent"
-                style={{
-                  fontFamily: "var(--font-jetbrains-mono)",
-                  fontSize: "20px",
-                  lineHeight: 1.4,
-                  marginBottom: "8px",
-                }}
-              >
-                W = aL^b
-              </div>
-              <figcaption
-                style={{
-                  fontFamily: "var(--font-dm-sans)",
-                  fontSize: "13px",
-                  lineHeight: 1.5,
-                  fontStyle: "normal",
-                }}
-                className="text-white/55"
-              >
-                Biological length–weight relationship — converts detected fish
-                length to estimated weight. Parameters{" "}
-                <span
-                  style={{ fontFamily: "var(--font-jetbrains-mono)" }}
-                  className="text-white/70"
-                >
-                  a
-                </span>{" "}
-                and{" "}
-                <span
-                  style={{ fontFamily: "var(--font-jetbrains-mono)" }}
-                  className="text-white/70"
-                >
-                  b
-                </span>{" "}
-                are species-specific.
-              </figcaption>
-            </motion.figure>
           </CaseSection>
 
           <CaseSection
-            id="stack"
+            id="innovations"
             eyebrow="// section-03"
-            title="Technical stack"
+            title="The innovations"
             itemVariants={itemVariants}
             containerVariants={containerVariants}
           >
@@ -283,7 +330,7 @@ export default function FishTechCaseStudyPage() {
               variants={itemVariants}
               className="grid grid-cols-1 gap-3 md:grid-cols-2"
             >
-              {STACK_CARDS.map((card) => (
+              {INNOVATIONS.map((card) => (
                 <div
                   key={card.label}
                   className="rounded-xl border border-white/[0.06] bg-bg-surface p-4"
@@ -305,7 +352,8 @@ export default function FishTechCaseStudyPage() {
                     style={{
                       fontSize: "16px",
                       letterSpacing: "-0.015em",
-                      marginBottom: "6px",
+                      marginBottom: "8px",
+                      lineHeight: 1.3,
                     }}
                   >
                     {card.title}
@@ -315,10 +363,10 @@ export default function FishTechCaseStudyPage() {
                     style={{
                       fontFamily: "var(--font-dm-sans)",
                       fontSize: "13px",
-                      lineHeight: 1.55,
+                      lineHeight: 1.6,
                     }}
                   >
-                    {card.description}
+                    {card.body}
                   </p>
                 </div>
               ))}
@@ -326,14 +374,84 @@ export default function FishTechCaseStudyPage() {
           </CaseSection>
 
           <CaseSection
-            id="hard"
+            id="stack"
             eyebrow="// section-04"
-            title="What was hard"
+            title="The stack"
+            itemVariants={itemVariants}
+            containerVariants={containerVariants}
+          >
+            <motion.div
+              variants={itemVariants}
+              className="grid grid-cols-1 gap-4 md:grid-cols-3"
+            >
+              {STACK_GROUPS.map((group) => (
+                <div
+                  key={group.label}
+                  className="rounded-xl border border-white/[0.06] bg-bg-surface p-4"
+                >
+                  <div
+                    className="text-accent"
+                    style={{
+                      fontFamily: "var(--font-jetbrains-mono)",
+                      fontSize: "10px",
+                      letterSpacing: "0.15em",
+                      textTransform: "uppercase",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    {group.label}
+                  </div>
+                  <ul
+                    className="space-y-1.5 text-white/65"
+                    style={{
+                      fontFamily: "var(--font-dm-sans)",
+                      fontSize: "13px",
+                      lineHeight: 1.55,
+                    }}
+                  >
+                    {group.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </motion.div>
+          </CaseSection>
+
+          <CaseSection
+            id="state"
+            eyebrow="// section-05"
+            title="The system sees fish, decides the dose, and is being industrialised."
+            itemVariants={itemVariants}
+            containerVariants={containerVariants}
+          >
+            <p>
+              The end-to-end pipeline runs on a real Raspberry Pi 5 with the
+              AI Camera today. Detection, length extraction, calibrated
+              pixel-to-centimetre conversion, species-specific
+              length-to-weight, stratified biomass with confidence intervals,
+              and the multi-multiplier precision feeding engine are all live.
+              The dashboard is wired to the live backend across Live, Pond,
+              Growth, Mortality, and Settings routes. The persistence layer
+              captures every analysis cycle, every feed event, and every
+              mortality entry. The product engineering is locked: welded
+              steel mast specifications, IP66 enclosure layout, status LED
+              ring and OLED faceplate, branded demo plinth and acrylic tank.
+              The Hailo accelerator, keypoint vision pipeline, automated
+              auger, and field enclosure are in active build for pilot
+              deployment in 2026.
+            </p>
+          </CaseSection>
+
+          <CaseSection
+            id="next"
+            eyebrow="// section-06"
+            title="What's next"
             itemVariants={itemVariants}
             containerVariants={containerVariants}
           >
             <motion.ul variants={itemVariants} className="space-y-3">
-              {HARD_THINGS.map((line) => (
+              {NEXT_BULLETS.map((line) => (
                 <li
                   key={line}
                   className="flex gap-3 text-white/70"
@@ -357,43 +475,6 @@ export default function FishTechCaseStudyPage() {
                 </li>
               ))}
             </motion.ul>
-          </CaseSection>
-
-          <CaseSection
-            id="state"
-            eyebrow="// section-05"
-            title="Where it is now"
-            itemVariants={itemVariants}
-            containerVariants={containerVariants}
-          >
-            <p>
-              The system is an advanced prototype. It has been demonstrated in
-              controlled environments using recorded pond and tank footage. It
-              has not been deployed to real farms. There are no paying
-              customers, no commercial pilots, and no live users.
-            </p>
-            <p>
-              Evaluation is at the model and pipeline level — precision, recall
-              and mAP for detection; predicted-versus-measured weight
-              comparisons for biomass estimation. There are no real-world
-              business-impact metrics yet, because there are no real-world
-              deployments yet. That distinction matters.
-            </p>
-          </CaseSection>
-
-          <CaseSection
-            id="next"
-            eyebrow="// section-06"
-            title="What's next"
-            itemVariants={itemVariants}
-            containerVariants={containerVariants}
-          >
-            <p>
-              Next steps: real-time inference on Raspberry Pi hardware, a field
-              pilot with one or two partner farms for honest validation, and
-              expansion of the training set to additional species beyond the
-              ones already covered.
-            </p>
           </CaseSection>
 
           <motion.section
@@ -465,13 +546,13 @@ export default function FishTechCaseStudyPage() {
                     marginBottom: "6px",
                   }}
                 >
-                  Thesis
+                  Foundation
                 </div>
                 <div
                   className="font-heading font-semibold text-white"
                   style={{ fontSize: "15px", letterSpacing: "-0.015em" }}
                 >
-                  Research thesis · NUST Zimbabwe
+                  FishTech Smart Feed (dissertation)
                 </div>
                 <div
                   className="mt-1 text-white/50"
@@ -480,7 +561,7 @@ export default function FishTechCaseStudyPage() {
                     fontSize: "11px",
                   }}
                 >
-                  November 2025
+                  NUST Zimbabwe · Nov 2025
                 </div>
               </div>
             </motion.div>
