@@ -50,24 +50,34 @@ try {
     hasTouch: isMobile,
   });
   await page.goto(url, { waitUntil: "networkidle0", timeout: 60_000 });
-  await new Promise((r) => setTimeout(r, 1800));
+  await new Promise((r) => setTimeout(r, 1200));
 
-  // Resize the viewport to the full document height so fixed-position
-  // elements render once at the top, then take a normal (non-fullPage)
-  // screenshot. This avoids fullPage's tile/composite quirks with fixed navs.
-  const docHeight = await page.evaluate(
-    () => document.documentElement.scrollHeight,
-  );
-  const shotHeight = Math.min(docHeight, 16000);
-  await page.setViewport({
-    width,
-    height: shotHeight,
-    deviceScaleFactor: 2,
-    isMobile,
-    hasTouch: isMobile,
+  // Scroll to bottom in chunks at the natural viewport so every
+  // IntersectionObserver-driven motion.div (whileInView) fires on the
+  // way down and commits to its visible state (viewport.once = true).
+  // Then return to top before capturing.
+  // We keep the viewport at its natural size — resizing to docHeight
+  // breaks 100vh-based layouts (min-h-screen sections explode).
+  await page.evaluate(async () => {
+    // Smaller steps + longer per-step waits so every IntersectionObserver
+    // threshold is comfortably crossed, and framer-motion's staggered
+    // entries have time to commit before the next step scrolls past.
+    const step = Math.min(500, window.innerHeight * 0.5);
+    const max = document.documentElement.scrollHeight;
+    for (let y = 0; y < max; y += step) {
+      window.scrollTo(0, y);
+      await new Promise((r) => setTimeout(r, 450));
+    }
+    window.scrollTo(0, max);
+    await new Promise((r) => setTimeout(r, 1500));
+    window.scrollTo(0, 0);
   });
-  await new Promise((r) => setTimeout(r, 600));
-  await page.screenshot({ path: outPath });
+  await new Promise((r) => setTimeout(r, 1200));
+
+  // Modern Puppeteer captures fullPage in a single CDP call
+  // (captureBeyondViewport=true by default), so fixed-position
+  // elements appear once at the top — no tiling artifacts.
+  await page.screenshot({ path: outPath, fullPage: true });
   console.log(`Saved ${outPath} @ ${width}x${height}`);
 } finally {
   await browser.close();
