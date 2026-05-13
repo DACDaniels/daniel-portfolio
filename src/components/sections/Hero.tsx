@@ -113,8 +113,8 @@ export function Hero() {
               transition={{ duration: 0.6, delay: bioDelay }}
               className="mt-7 max-w-xl text-base leading-[1.7] text-text-secondary md:text-lg"
             >
-              I build real-world software systems — from computer vision on
-              edge devices to production web platforms — out of Harare,
+              I build real-world software systems, from computer vision on
+              edge devices to production web platforms, out of Harare,
               Zimbabwe.
             </motion.p>
 
