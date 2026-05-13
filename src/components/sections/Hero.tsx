@@ -1,9 +1,10 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
+import Image from "next/image";
 import { AnimatedText } from "@/components/ui/AnimatedText";
-import { CodeTerminal } from "@/components/ui/CodeTerminal";
 import { DotGrid } from "@/components/ui/DotGrid";
+import { FloatingBadge } from "@/components/ui/FloatingBadge";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { NumberTicker } from "@/components/ui/NumberTicker";
 
@@ -15,6 +16,7 @@ const STATS = [
 ];
 
 export function Hero() {
+  const reduceMotion = useReducedMotion() ?? false;
   const nameDuration = 0.8;
   const danielChars = 6;
   const chadambukaChars = 10;
@@ -162,25 +164,91 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: subtitleDelay, ease: [0.2, 0.65, 0.3, 0.95] }}
-            className="relative mx-auto w-full max-w-[420px] shrink-0 md:mx-0 md:ml-auto md:w-[380px] lg:w-[480px]"
+            className="relative mx-auto w-full max-w-[420px] shrink-0 md:mx-0 md:ml-auto md:w-[380px] lg:w-[520px]"
           >
             <div
               aria-hidden
-              className="pointer-events-none absolute -inset-14 z-0 rounded-[32px] bg-accent/20 blur-[90px]"
+              className="pointer-events-none absolute -inset-16 z-0 rounded-[36px] bg-accent/25 blur-[90px]"
             />
 
-            <div
+            <motion.div
               aria-hidden
-              className="pointer-events-none absolute -inset-[1px] z-10 rounded-[17px]"
+              className="pointer-events-none absolute -inset-[2px] z-10 rounded-[26px]"
               style={{
+                padding: "2px",
                 background:
-                  "linear-gradient(135deg, rgba(0,229,192,0.45) 0%, rgba(0,229,192,0.08) 35%, rgba(255,255,255,0.04) 55%, rgba(0,229,192,0.08) 75%, rgba(0,229,192,0.35) 100%)",
+                  "conic-gradient(from 0deg, rgba(0,229,192,0.9) 0deg, rgba(0,229,192,0) 90deg, rgba(0,229,192,0) 240deg, rgba(0,229,192,0.7) 330deg, rgba(0,229,192,0.9) 360deg)",
+                WebkitMask:
+                  "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+                WebkitMaskComposite: "xor",
+                mask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+                maskComposite: "exclude",
               }}
+              animate={reduceMotion ? undefined : { rotate: 360 }}
+              transition={
+                reduceMotion
+                  ? undefined
+                  : { duration: 6, ease: "linear", repeat: Infinity }
+              }
             />
 
-            <div className="relative z-20 h-[360px] overflow-hidden rounded-[16px] border border-border bg-bg-surface shadow-[0_28px_70px_-16px_rgba(0,229,192,0.25),0_0_0_1px_rgba(255,255,255,0.04)] md:h-[400px] lg:h-[460px]">
-              <CodeTerminal />
+            <div className="relative z-20 aspect-[4/5] overflow-hidden rounded-[24px] border border-border bg-bg-surface shadow-[0_28px_70px_-16px_rgba(0,229,192,0.25),0_0_0_1px_rgba(255,255,255,0.04)]">
+              <Image
+                src="/images/daniel-hero.jpg"
+                alt="Daniel Chadambuka"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 520px"
+                className="object-cover object-center"
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  background:
+                    "radial-gradient(ellipse at 50% 110%, rgba(0,229,192,0.22) 0%, rgba(0,229,192,0) 60%)",
+                }}
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(180deg, transparent 55%, rgba(8,8,8,0.45) 100%)",
+                }}
+              />
             </div>
+
+            <FloatingBadge
+              label="Python"
+              position={{ x: "-18%", y: "8%" }}
+              delay={0}
+              duration={6}
+            />
+            <FloatingBadge
+              label="Next.js"
+              position={{ x: "92%", y: "18%" }}
+              delay={0.4}
+              duration={7}
+            />
+            <FloatingBadge
+              label="OpenCV"
+              position={{ x: "-22%", y: "52%" }}
+              delay={0.8}
+              duration={5.5}
+            />
+            <FloatingBadge
+              label="Flask"
+              position={{ x: "90%", y: "62%" }}
+              delay={1.2}
+              duration={6.5}
+            />
+            <FloatingBadge
+              label="Pi"
+              position={{ x: "-12%", y: "86%" }}
+              delay={1.6}
+              duration={7.2}
+            />
           </motion.div>
         </div>
       </div>
