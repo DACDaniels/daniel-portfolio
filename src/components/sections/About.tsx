@@ -5,57 +5,74 @@ import type { CSSProperties } from "react";
 
 const MARQUEE_ROW_1 = [
   "Python",
-  "TypeScript",
-  "Next.js",
-  "React",
-  "Flask",
+  "Computer Vision",
   "OpenCV",
+  "YOLOv8",
+  "PyTorch",
+  "Ultralytics",
+  "AI Engineering",
+  "Edge AI",
 ];
 
 const MARQUEE_ROW_2 = [
-  "TensorFlow",
-  "Raspberry Pi",
-  "SQLite",
-  "PostgreSQL",
-  "Git",
-  "Linux",
+  "TypeScript",
+  "React",
+  "Next.js",
+  "Vue 3",
   "Node.js",
-  "Tailwind",
+  "Flask",
+  "IoT",
+  "Raspberry Pi",
+  "Hailo",
+  "Linux",
 ];
 
 type TimelineEntry = {
   date: string;
   title: string;
-  body: string;
+  body: string | string[];
   active?: boolean;
+  building?: boolean;
 };
 
 const TIMELINE: TimelineEntry[] = [
   {
     date: "2026 · NOW",
     title: "Final year BSc Computer Science, NUST",
-    body: "Building this portfolio, deepening Rust and computer vision optimisation.",
+    body: "Wrapping up the degree. Industrialising FishTech. Open to roles.",
     active: true,
   },
   {
+    date: "2026 · BUILDING",
+    title: "FishTech Precision Feeding System",
+    body: "Closed-loop AI instrument for African pond aquaculture. Raspberry Pi 5 with Hailo NPU, custom-trained YOLO, automated auger feeder, integrated mast and enclosure. Pilot deployment 2026.",
+    building: true,
+  },
+  {
+    date: "2025",
+    title: "Steadyhands Catering Platform",
+    body: "Recently shipped full-stack platform for Bata Club, Harare. Next.js, TypeScript, Node.js, Paynow gateway, WhatsApp Business funnel. Live at steadyhandscatering.com.",
+  },
+  {
+    date: "May 2024 to Jun 2025",
+    title: "ZIMDEF · IT Industrial Attachment",
+    body: [
+      "Thirteen months inside a live enterprise data centre ecosystem. Hands-on with VMware virtualisation, enterprise server management, RedHat Linux at production scale, resource allocation, and routine backup operations.",
+      "Participated in the SOPHOS to Checkpoint firewall migration. Worked on RUCKUS wireless infrastructure, CISCO telephony, RADIUS authentication, VLAN segmentation, IP addressing, and enterprise wireless access management.",
+      "Operated alongside SAP Business One, ManageEngine ServiceDesk Plus, and Microsoft 365 administration in an environment where servers, networking, ERP, authentication, communications, and end-user services were all integrated and interdependent. This gave me a practical understanding of how a real institutional IT ecosystem works at the infrastructure layer.",
+      "Also exposed to system maintenance, infrastructure dependency, downtime sensitivity, user support, and IT governance.",
+      "Exposure that transfers directly into cloud computing, DevOps, cybersecurity, systems engineering, backend infrastructure, network engineering, and enterprise software operations.",
+    ],
+  },
+  {
     date: "Nov 2025",
-    title: "FishTech Smart Feed System",
-    body: "Final-year research prototype — biomass estimation on Raspberry Pi with custom MEI / SAD / TCS / RBP metrics.",
-  },
-  {
-    date: "May 2024 – Jun 2025",
-    title: "ZIMDEF Industrial Attachment",
-    body: "Systems administration and IT operations — SAP B1, ManageEngine ServiceDesk Plus, Microsoft 365 administration.",
-  },
-  {
-    date: "2024",
-    title: "Steadyhands Platform shipped",
-    body: "First end-to-end production system: online ordering, venue booking, Paynow payment integration. Live at Bata Club, Harare.",
+    title: "FishTech Smart Feed (dissertation submission)",
+    body: "Final-year research submission. The foundation work that evolved into the FishTech Precision Feeding System now in active development.",
   },
   {
     date: "2022",
     title: "Started serious coding",
-    body: "First real systems beyond coursework — Python, web fundamentals.",
+    body: "First real systems beyond coursework. Python, web fundamentals, the long road to shipping.",
   },
 ];
 
@@ -171,12 +188,10 @@ export function About() {
               }}
             >
               I&apos;m a final-year Computer Science student at NUST, based
-              in Harare, Zimbabwe — but I&apos;ve been building production
-              systems for the past two-to-three years, well before any class
-              required it. My strongest work isn&apos;t theoretical: it&apos;s
-              the end-to-end platforms I&apos;ve shipped for real users in
-              environments where bandwidth is unreliable, hardware is
-              constrained, and clients expect things to actually work.
+              in Harare, Zimbabwe. For the past two to three years I&apos;ve
+              been building real systems for real users: full-stack
+              platforms, computer vision pipelines, and now an edge-AI IoT
+              product being industrialised for the African market.
             </motion.p>
 
             <motion.p
@@ -188,14 +203,12 @@ export function About() {
                 lineHeight: 1.7,
               }}
             >
-              Steadyhands Catering at Bata Club was my first shipped
-              production system — restaurant management, online ordering,
-              venue booking, payment via Paynow, all running live in Harare.
-              FishTech Smart Feed, my final-year project, is a computer
-              vision system for aquaculture biomass estimation running on
-              $35 Raspberry Pi hardware — a research prototype, not yet
-              deployed commercially, but proof I can take a problem from
-              optical physics to a deployable embedded system.
+              I recently delivered Steadyhands Catering at Bata Club, an
+              end-to-end production platform built on Next.js, TypeScript,
+              and Node.js, with Paynow gateway integration for Ecocash,
+              OneMoney, Visa and Mastercard, and a WhatsApp Business funnel
+              for custom catering inquiries. It&apos;s live, transacting,
+              and deployed on Vercel.
             </motion.p>
 
             <motion.p
@@ -207,13 +220,21 @@ export function About() {
                 lineHeight: 1.7,
               }}
             >
-              I&apos;m not interested in being the developer who can quote a
-              framework but can&apos;t ship. I care about systems that hold up
-              outside of demo conditions. Right now I&apos;m deepening my work
-              in Rust, computer vision optimisation, and production-grade
-              architecture — moving from &ldquo;it works on my machine&rdquo;
-              toward &ldquo;it works in someone else&apos;s, at scale, for
-              years.&rdquo;
+              Right now I&apos;m building FishTech Precision Feeding System
+              for FishTech Consultancy. It&apos;s a closed-loop AI
+              instrument for African pond aquaculture. An overhead AI
+              Camera streams the pond to a Raspberry Pi 5 with a Hailo NPU,
+              which detects fish with a custom-trained vision model,
+              measures each one against an auto-calibrated reference, and
+              estimates whole-pond biomass with an honest confidence
+              interval. A precision feeding engine grounded in tilapia and
+              catfish biology converts that into a feed dose in grams, and
+              an integrated auger feeder dispenses it automatically. The
+              whole loop runs locally on the device. No cloud, no farmer
+              data leaving Zimbabwe, served to any phone on the farm
+              through the Pi&apos;s own Wi-Fi hotspot. I&apos;m the founding
+              engineer, the CV and embedded and full-stack and product
+              designer, and the CEO.
             </motion.p>
 
             <motion.div variants={itemVariants} className="mt-10">
@@ -237,13 +258,15 @@ export function About() {
                 }}
               >
                 <CurrentlyItem>
-                  Wrapping up BSc Computer Science at NUST
+                  Wrapping up BSc Computer Science at NUST (2022 to 2026)
                 </CurrentlyItem>
                 <CurrentlyItem>
-                  Open to remote engineering roles + select client work
+                  Open to remote engineering roles and select Zimbabwean
+                  client work
                 </CurrentlyItem>
                 <CurrentlyItem>
-                  Learning: Rust, CV optimisation, distributed systems
+                  Building FishTech Precision Feeding System, closed-loop
+                  edge-AI for African aquaculture, piloting 2026
                 </CurrentlyItem>
               </ul>
             </motion.div>
@@ -283,7 +306,7 @@ function Marquee({
   direction: "left" | "right";
   reduceMotion: boolean;
 }) {
-  const duration = direction === "left" ? 30 : 35;
+  const duration = direction === "left" ? 32 : 36;
   const animationName =
     direction === "left" ? "about-marquee-left" : "about-marquee-right";
 
@@ -408,6 +431,11 @@ function Timeline({ reduceMotion }: { reduceMotion: boolean }) {
                     className="absolute inset-[1px] rounded-full bg-accent shadow-[0_0_10px_rgba(0,229,192,0.65)]"
                   />
                 </>
+              ) : entry.building ? (
+                <span
+                  aria-hidden
+                  className="block h-full w-full rounded-full border border-accent bg-accent/30 shadow-[0_0_6px_rgba(0,229,192,0.35)]"
+                />
               ) : (
                 <span
                   aria-hidden
@@ -437,16 +465,31 @@ function Timeline({ reduceMotion }: { reduceMotion: boolean }) {
             >
               {entry.title}
             </div>
-            <div
-              className="mt-1 text-text-secondary"
-              style={{
-                fontFamily: "var(--font-dm-sans)",
-                fontSize: "14px",
-                lineHeight: 1.6,
-              }}
-            >
-              {entry.body}
-            </div>
+            {Array.isArray(entry.body) ? (
+              <div
+                className="mt-1 space-y-2 text-text-secondary"
+                style={{
+                  fontFamily: "var(--font-dm-sans)",
+                  fontSize: "14px",
+                  lineHeight: 1.6,
+                }}
+              >
+                {entry.body.map((paragraph, i) => (
+                  <p key={i}>{paragraph}</p>
+                ))}
+              </div>
+            ) : (
+              <div
+                className="mt-1 text-text-secondary"
+                style={{
+                  fontFamily: "var(--font-dm-sans)",
+                  fontSize: "14px",
+                  lineHeight: 1.6,
+                }}
+              >
+                {entry.body}
+              </div>
+            )}
           </motion.li>
         ))}
       </div>
