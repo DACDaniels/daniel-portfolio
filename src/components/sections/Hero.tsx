@@ -11,7 +11,7 @@ import { NumberTicker } from "@/components/ui/NumberTicker";
 const STATS = [
   { value: 5, suffix: "+", label: "Projects" },
   { value: 3, suffix: "+", label: "Years" },
-  { value: 2, suffix: "", label: "Live Products" },
+  { value: 2, suffix: "", label: "Production Systems" },
   { value: 100, suffix: "%", label: "Committed" },
 ];
 

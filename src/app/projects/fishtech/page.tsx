@@ -552,7 +552,7 @@ export default function FishTechCaseStudyPage() {
                   className="font-heading font-semibold text-white"
                   style={{ fontSize: "15px", letterSpacing: "-0.015em" }}
                 >
-                  FishTech Smart Feed (dissertation)
+                  FishTech dissertation submission
                 </div>
                 <div
                   className="mt-1 text-white/50"

@@ -28,7 +28,10 @@
       "Read(//c/Users/DAC/.claude/**)",
       "Read(//c/Users/DAC/.claude/plugins/**)",
       "Bash(git add *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Bash(awk -v RS='<' '{ if \\(match\\($0, /\\(PROJECTS|YEARS|LIVE PRODUCTS|COMMITTED|17\\\\.8292|Daniel Chadambuka|Software Engineer|AVAILABLE FOR WORK|FishTech|Steadyhands|footer|Services|>5\\\\+<|>3\\\\+<|>2<|>100%<\\)/, m\\)\\) print NR, m[1] }' /tmp/page.html)",
+      "PowerShell(Join-Path *)",
+      "PowerShell(Resolve-Path *)"
     ]
   }
 }
