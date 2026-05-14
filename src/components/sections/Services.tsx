@@ -53,7 +53,7 @@ const SERVICES: Service[] = [
   },
 ];
 
-const HEADING_WORDS = ["Things", "I", "actually"] as const;
+const HEADING_WORDS = ["What", "I", "do."] as const;
 
 export function Services() {
   const reduceMotion = useReducedMotion() ?? false;
@@ -138,7 +138,7 @@ export function Services() {
             className="mb-6 font-mono text-[11px] uppercase text-accent"
             style={{ letterSpacing: "0.15em" }}
           >
-            // services.tsx
+            {"// services.tsx"}
           </motion.div>
 
           <motion.h2
@@ -162,18 +162,6 @@ export function Services() {
                 {word}
               </motion.span>
             ))}
-            <br />
-            <motion.span
-              variants={wordVariants}
-              className="inline-block font-normal italic"
-              style={{
-                fontFamily: "var(--font-serif)",
-                color: "rgba(255, 255, 255, 0.55)",
-                letterSpacing: "-0.035em",
-              }}
-            >
-              ship.
-            </motion.span>
           </motion.h2>
 
           <motion.p
@@ -181,8 +169,8 @@ export function Services() {
             className="mt-5 mb-12 max-w-prose text-[15px] text-text-secondary md:mb-24 md:max-w-[52ch] md:text-[16px]"
             style={{ lineHeight: 1.7 }}
           >
-            Four practical disciplines. Every service backed by something
-            I&apos;ve actually built.
+            Four practical disciplines. Every service backed by real shipped
+            work.
           </motion.p>
 
           <div

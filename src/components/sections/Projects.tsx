@@ -112,7 +112,7 @@ export function Projects() {
             className="font-mono text-[11px] uppercase text-accent"
             style={{ letterSpacing: "0.15em", marginBottom: "12px" }}
           >
-            // projects.tsx
+            {"// projects.tsx"}
           </motion.div>
 
           <motion.h2
@@ -124,18 +124,7 @@ export function Projects() {
               lineHeight: 1.02,
             }}
           >
-            Things I&apos;ve{" "}
-            <span
-              className="font-normal italic"
-              style={{
-                fontFamily: "var(--font-serif)",
-                color: "rgba(255, 255, 255, 0.55)",
-                letterSpacing: "-0.035em",
-              }}
-            >
-              actually
-            </span>{" "}
-            built.
+            Selected work.
           </motion.h2>
 
           <motion.p

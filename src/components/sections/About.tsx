@@ -163,18 +163,7 @@ export function About() {
                 lineHeight: 1.08,
               }}
             >
-              Building{" "}
-              <span
-                className="font-normal italic"
-                style={{
-                  fontFamily: "var(--font-serif)",
-                  color: "rgba(255, 255, 255, 0.55)",
-                  letterSpacing: "-0.025em",
-                }}
-              >
-                real
-              </span>{" "}
-              systems, not just learning to code.
+              What I&apos;m working on right now.
             </motion.h2>
 
             <motion.p
