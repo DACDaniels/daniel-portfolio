@@ -141,7 +141,7 @@ Separate deep-dive case study pages for each project.
   with sine wave float animation
 - BOTTOM: Stats bar full width
   → Animated number counters count up when in viewport
-  → "5+ Projects" "3+ Years" "2 Live Products" "100% Committed"
+  → "5+ Projects" "3+ Years" "2 Production Systems" "100% Committed"
 - BACKGROUND:
   → Animated dot grid that responds subtly to mouse
   → Blurred teal gradient orb in corner
@@ -161,15 +161,17 @@ Separate deep-dive case study pages for each project.
 
 ### 4. Projects
 
-- FishTech Smart Feed System (LARGE FLAGSHIP CARD — full width)
+- FishTech Precision Feeding System (LARGE FLAGSHIP CARD — full width)
   → Real project screenshot
   → Tags: COMPUTER VISION · EMBEDDED · FLASK · RASPBERRY PI
   → Title, description
-  → Key metrics: custom MEI/SAD/TCS/RBP metrics
+  → Honest accuracy framing: keypoint-distance length is
+    orientation-invariant, lucky-frame estimator extrapolates
+    with confidence intervals, no per-fish counting claim
   → "View Case Study" → /projects/fishtech
   → Cursor-tracking spotlight effect
 - 3 other projects in alternating left/right layout:
-  → FishTech Website (fishtech.co.zw)
+  → FishTech Consultancy Website (fishtech.co.zw)
   → Steadyhands Platform
   → This Portfolio
 - Each card: image, tags, title, description, GitHub + Live links
@@ -208,20 +210,108 @@ Separate deep-dive case study pages for each project.
 
 ## Projects to Showcase
 
-1. FishTech Smart Feed Management System (FLAGSHIP)
-   - Computer vision biomass estimation
-   - Custom novel metrics: MEI, SAD, TCS, RBP
-   - Raspberry Pi edge deployment (low-cost, offline-capable)
-   - Flask backend, MJPEG streaming, SQLite
-   - Real commercial product with paying customers
-2. FishTech Website — fishtech.co.zw
-3. Steadyhands Platform
+1. FishTech Precision Feeding System (FLAGSHIP)
+   - Edge-AI precision feeding system for African pond aquaculture
+   - Overhead camera, Raspberry Pi 5 with Hailo-8L accelerator,
+     runs end-to-end at the pondside, no cloud dependency
+   - Pipeline: YOLOv8-Pose keypoint detection (4 points per fish),
+     ByteTrack tracking, ChArUco + ultrasonic + Snell-law
+     calibration, FishBase length-weight, lucky-frame biomass
+     estimator with confidence intervals, 7-multiplier precision
+     feeding engine grounded in tilapia and catfish biology,
+     servo-auger feeder
+   - Backend: Python 3.11, FastAPI, OpenCV, SQLite (WAL mode,
+     per-pond DB files), pytest
+   - Front end: Flutter PWA served from the Pi's local Wi-Fi
+     access point via QR code, USSD/SMS bridge in Shona for
+     feature-phone farmers
+   - Hardware: Raspberry Pi 5 (8 GB), Raspberry Pi AI Kit
+     (Hailo-8L, 13 TOPS), Arducam IMX477 (12 MP CSI), JSN-SR04T
+     waterproof ultrasonic sensor, ChArUco fiducial board,
+     servo-auger feeder
+   - Target species: Oreochromis mossambicus, Oreochromis niloticus,
+     Clarias gariepinus
+   - Honest accuracy framing: keypoint-distance length is
+     orientation-invariant, lucky-frame estimator extrapolates
+     with confidence intervals, no per-fish counting claim
+   - Started Jan 2025 as final-year CS dissertation at NUST;
+     being extended toward production through FishTech Consultancy
+   - Working prototype, pilot pond secured, pilot deployment in
+     preparation. No commercial deployment yet, no paying users
+   - Hardware envelope target: USD 200-300 per pond (do NOT put
+     this number in the portfolio's public copy, see "AVOID in
+     copy" section)
+2. Steadyhands Catering Platform (LIVE)
+   - Production e-commerce platform for Bata Club, Harare
+   - Next.js, TypeScript, Node.js, Paynow gateway (Ecocash,
+     OneMoney, Visa, Mastercard), WhatsApp Business funnel
+   - Live and transacting at steadyhandscatering.com
+3. FishTech Consultancy Website at fishtech.co.zw
 4. Daniel Chadambuka Portfolio (this site)
+
+## FishTech Copy Discipline
+
+When writing portfolio copy about FishTech, the canonical
+source is the FishTech Precision Feeding System reference
+document in the Claude project knowledge. The following
+rules apply:
+
+USE:
+- "FishTech Precision Feeding System" (full name)
+- "Precision feeding"
+- "Overhead camera"
+- "Biomass estimation"
+- "Smallholder aquaculture"
+- "Edge", "pondside", "on the Pi"
+- "FCR" (Feed Conversion Ratio)
+- "Tilapia and catfish" (specific species)
+- "Zimbabwe" / "SADC"
+
+AVOID:
+- "FishTech Smart Feed" (old name, retired)
+- "FishTech Precise Feeding System" (legacy spelling)
+- "Smart feeding" / "AI-powered feeding"
+- "Underwater camera" (it isn't)
+- "Fish counting" (it samples, not counts)
+- "Industrial aquaculture" (smallholder is the market)
+- "Cloud platform" / "SaaS" (edge-first)
+- "Various fish species" (be specific)
+- "Africa" (be specific to Zimbabwe / SADC)
+- "AI-powered" (generic, use "computer-vision-based")
+
+NEVER CLAIM:
+- "Counts every fish in the pond"
+- "Reduces feed costs by X percent" (no commercial data yet)
+- "Deployed on N farms" (pilot pending)
+- "Industry-leading accuracy" (not benchmarked)
+- Specific dollar figures (the USD 200-300 hardware target
+  is internal, not public)
+- Test counts, line counts, contributor counts
+
+CURRENT STAGE LANGUAGE:
+- "Working prototype, pilot pond secured, pilot deployment in
+  preparation"
+- "Being industrialised through FishTech Consultancy"
+- "Started as the author's final-year CS dissertation at NUST,
+  submitted November 2025, currently being extended toward a
+  production-ready product"
+
+NO EM-DASHES in portfolio copy. Use commas, periods, or
+rewrite. The em-dash is a stylistic crutch that adds nothing
+but visual noise.
 
 ## Tech Stack Pills (About section marquee)
 
-Python, TypeScript, Next.js, React, Flask, OpenCV, TensorFlow,
-Raspberry Pi, SQLite, PostgreSQL, Git, Linux, Node.js, Tailwind
+Row 1 (AI / CV / Edge):
+  Python · Computer Vision · OpenCV · YOLOv8 · YOLOv8-Pose
+  · PyTorch · Ultralytics · AI Engineering · Edge AI · Hailo
+
+Row 2 (Full-stack / IoT):
+  TypeScript · React · Next.js · Vue 3 · Flutter · Node.js
+  · FastAPI · Flask · IoT · Raspberry Pi · Linux
+
+Drop: TensorFlow, SQLite as standalone, PostgreSQL as standalone,
+      Tailwind as standalone.
 
 ## Animation Standards — AWWWARDS LEVEL
 
