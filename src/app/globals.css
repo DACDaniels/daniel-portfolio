@@ -210,6 +210,60 @@ button {
   }
 }
 
+@keyframes contact-colon-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes contact-whatsapp-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 12px 32px -8px rgba(0, 229, 192, 0.45),
+      0 0 0 0 rgba(0, 229, 192, 0.35);
+  }
+  50% {
+    box-shadow:
+      0 16px 40px -8px rgba(0, 229, 192, 0.6),
+      0 0 0 8px rgba(0, 229, 192, 0);
+  }
+}
+
+@keyframes contact-submit-sweep {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes contact-error-shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-3px);
+  }
+  40% {
+    transform: translateX(3px);
+  }
+  60% {
+    transform: translateX(-2px);
+  }
+  80% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

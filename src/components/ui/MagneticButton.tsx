@@ -11,6 +11,8 @@ type MagneticButtonProps = {
   onClick?: () => void;
   strength?: number;
   ariaLabel?: string;
+  target?: string;
+  rel?: string;
 };
 
 export function MagneticButton({
@@ -20,6 +22,8 @@ export function MagneticButton({
   onClick,
   strength = 20,
   ariaLabel,
+  target,
+  rel,
 }: MagneticButtonProps) {
   const ref = useRef<HTMLElement | null>(null);
   const x = useMotionValue(0);
@@ -73,6 +77,8 @@ export function MagneticButton({
           ref.current = el;
         }}
         href={href}
+        target={target}
+        rel={rel}
         aria-label={ariaLabel}
         onMouseMove={handleMove}
         onMouseLeave={handleLeave}
