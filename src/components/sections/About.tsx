@@ -1,68 +1,145 @@
 "use client";
 
 import { motion, useReducedMotion, type Variants } from "motion/react";
-import { Fragment, type CSSProperties, type ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
+import {
+  ProjectHighlight,
+  type ProjectHighlightProps,
+} from "@/components/ui/ProjectHighlight";
+import { SteadyhandsMock } from "@/components/ui/project-mocks/SteadyhandsMock";
+import { FishTechSmartFeedMock } from "@/components/ui/project-mocks/FishTechSmartFeedMock";
 import { useScrollReveal } from "@/lib/useScrollReveal";
 
-const HIGHLIGHT_TERMS = [
-  "FishTech Precision Feeding System",
-  "FishTech Consultancy",
-  "Steadyhands Catering",
-  "ManageEngine ServiceDesk Plus",
-  "SAP Business One",
-  "Microsoft 365",
-  "Raspberry Pi 5",
-  "Hailo NPU",
-  "Bata Club",
-  "RedHat Linux",
-  "Wi-Fi hotspot",
-  "Checkpoint",
-  "VMware",
-  "SOPHOS",
-  "RUCKUS",
-  "CISCO",
-  "RADIUS",
-  "VLAN",
-  "Paynow",
-  "Ecocash",
-  "OneMoney",
-  "Next.js",
-  "TypeScript",
-  "Node.js",
-  "Vercel",
-  "NUST",
-  "Zimbabwe",
-  "Harare",
+const HIGHLIGHTS: Omit<ProjectHighlightProps, "variants">[] = [
+  {
+    tone: "live",
+    eyebrow: "// recently shipped",
+    title: "Steadyhands Catering",
+    body: "Production e-commerce platform for Bata Club, Harare. Online ordering, real Paynow payments, and a WhatsApp Business funnel for custom catering inquiries. Built end to end on Next.js, TypeScript and Node.js, live and transacting on Vercel.",
+    signals: ["Live", "Paynow", "WhatsApp", "Next.js", "Vercel"],
+    mock: <SteadyhandsMock />,
+    primary: {
+      label: "View live",
+      href: "https://steadyhandscatering.com",
+      external: true,
+    },
+  },
+  {
+    tone: "building",
+    eyebrow: "// right now · building",
+    title: "FishTech Precision Feeding System",
+    body: "Closed-loop AI instrument for African pond aquaculture. Overhead camera on a Raspberry Pi 5 with a Hailo NPU sees fish, measures them against an auto-calibrated reference, estimates whole-pond biomass with honest confidence intervals, and an integrated auger feeder dispenses the dose. Runs entirely on the device. I'm founding engineer, CV and embedded, full-stack, product designer, and CEO.",
+    signals: ["Edge AI", "Hailo NPU", "YOLO-Pose", "Pi 5", "Pilot 2026"],
+    mock: <FishTechSmartFeedMock />,
+    primary: {
+      label: "Read the case study",
+      href: "/projects/fishtech",
+    },
+  },
 ];
 
-const HIGHLIGHT_PATTERN = new RegExp(
-  `(${[...HIGHLIGHT_TERMS]
-    .sort((a, b) => b.length - a.length)
-    .map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
-    .join("|")})`,
-  "g",
-);
+type TimelineEntry =
+  | {
+      kind: "simple";
+      date: string;
+      title: string;
+      body: string;
+      active?: boolean;
+      building?: boolean;
+    }
+  | {
+      kind: "zimdef";
+      date: string;
+      title: string;
+      duration: string;
+    };
 
-const HIGHLIGHT_SET = new Set(HIGHLIGHT_TERMS);
+const TIMELINE: TimelineEntry[] = [
+  {
+    kind: "simple",
+    date: "2026 · NOW",
+    title: "Final year BSc Computer Science, NUST",
+    body: "Wrapping up the degree. Industrialising FishTech. Open to roles.",
+    active: true,
+  },
+  {
+    kind: "simple",
+    date: "2026 · BUILDING",
+    title: "FishTech Precision Feeding System",
+    body: "Closed-loop AI instrument for African pond aquaculture. Raspberry Pi 5 with Hailo NPU, custom-trained YOLO, automated auger feeder, integrated mast and enclosure. Pilot deployment 2026.",
+    building: true,
+  },
+  {
+    kind: "simple",
+    date: "2025",
+    title: "Steadyhands Catering Platform",
+    body: "Recently shipped full-stack platform for Bata Club, Harare. Next.js, TypeScript, Node.js, Paynow gateway, WhatsApp Business funnel. Live at steadyhandscatering.com.",
+  },
+  {
+    kind: "zimdef",
+    date: "May 2024 to Jun 2025",
+    title: "ZIMDEF · IT Industrial Attachment",
+    duration: "12 months",
+  },
+  {
+    // "Smart Feed" is the historical proper-noun name of the Nov 2025
+    // dissertation artefact, kept verbatim for accuracy. Not a violation
+    // of the CLAUDE.md AVOID list, which applies to the current product.
+    kind: "simple",
+    date: "Nov 2025",
+    title: "FishTech Smart Feed (dissertation submission)",
+    body: "Final-year research submission. The foundation work that evolved into the FishTech Precision Feeding System now in active development.",
+  },
+  {
+    kind: "simple",
+    date: "2022",
+    title: "Started serious coding",
+    body: "First real systems beyond coursework. Python, web fundamentals, the long road to shipping.",
+  },
+];
 
-function highlightEntities(text: string): ReactNode {
-  const parts = text.split(HIGHLIGHT_PATTERN);
-  return parts.map((part, i) =>
-    HIGHLIGHT_SET.has(part) ? (
-      <span key={i} className="text-text-primary">
-        {part}
-      </span>
-    ) : (
-      <Fragment key={i}>{part}</Fragment>
-    ),
-  );
-}
+type Cluster = {
+  label: string;
+  items: string[];
+};
 
-const BIO_STEADYHANDS =
-  "I recently delivered Steadyhands Catering at Bata Club, an end-to-end production platform built on Next.js, TypeScript, and Node.js, with Paynow gateway integration for Ecocash, OneMoney, Visa and Mastercard, and a WhatsApp Business funnel for custom catering inquiries. It's live, transacting, and deployed on Vercel.";
+const ZIMDEF_CLUSTERS: Cluster[] = [
+  {
+    label: "Infrastructure",
+    items: [
+      "VMware virtualisation",
+      "RedHat Linux at production scale",
+      "Enterprise server management",
+      "Resource allocation",
+      "Routine backup operations",
+    ],
+  },
+  {
+    label: "Network",
+    items: [
+      "SOPHOS → Checkpoint firewall migration",
+      "RUCKUS wireless infrastructure",
+      "CISCO telephony",
+      "RADIUS authentication",
+      "VLAN segmentation, IP addressing",
+    ],
+  },
+  {
+    label: "Software stack",
+    items: [
+      "SAP Business One",
+      "ManageEngine ServiceDesk Plus",
+      "Microsoft 365 administration",
+      "Integrated, interdependent ERP layer",
+    ],
+  },
+];
 
-const BIO_FISHTECH =
-  "Right now I'm building FishTech Precision Feeding System for FishTech Consultancy. It's a closed-loop AI instrument for African pond aquaculture. An overhead AI Camera streams the pond to a Raspberry Pi 5 with a Hailo NPU, which detects fish with a custom-trained vision model, measures each one against an auto-calibrated reference, and estimates whole-pond biomass with an honest confidence interval. A precision feeding engine grounded in tilapia and catfish biology converts that into a feed dose in grams, and an integrated auger feeder dispenses it automatically. The whole loop runs locally on the device. No cloud, no farmer data leaving Zimbabwe, served to any phone on the farm through the Pi's own Wi-Fi hotspot. I'm the founding engineer, the CV and embedded and full-stack and product designer, and the CEO.";
+const ZIMDEF_INTRO =
+  "Twelve months inside a live enterprise data centre ecosystem. Hands-on across the full stack of an institutional IT operation. Servers, networking, ERP, authentication, communications, and end-user services, all integrated and interdependent.";
+
+const ZIMDEF_CLOSE =
+  "Real exposure to system maintenance, downtime sensitivity, user support, and IT governance. The layer most software work sits on top of without ever seeing. Transfers directly into cloud, DevOps, cybersecurity, systems engineering, and backend infrastructure.";
 
 const MARQUEE_ROW_1 = [
   "Python",
@@ -86,55 +163,6 @@ const MARQUEE_ROW_2 = [
   "Raspberry Pi",
   "Hailo",
   "Linux",
-];
-
-type TimelineEntry = {
-  date: string;
-  title: string;
-  body: string | string[];
-  active?: boolean;
-  building?: boolean;
-};
-
-const TIMELINE: TimelineEntry[] = [
-  {
-    date: "2026 · NOW",
-    title: "Final year BSc Computer Science, NUST",
-    body: "Wrapping up the degree. Industrialising FishTech. Open to roles.",
-    active: true,
-  },
-  {
-    date: "2026 · BUILDING",
-    title: "FishTech Precision Feeding System",
-    body: "Closed-loop AI instrument for African pond aquaculture. Raspberry Pi 5 with Hailo NPU, custom-trained YOLO, automated auger feeder, integrated mast and enclosure. Pilot deployment 2026.",
-    building: true,
-  },
-  {
-    date: "2025",
-    title: "Steadyhands Catering Platform",
-    body: "Recently shipped full-stack platform for Bata Club, Harare. Next.js, TypeScript, Node.js, Paynow gateway, WhatsApp Business funnel. Live at steadyhandscatering.com.",
-  },
-  {
-    date: "May 2024 to Jun 2025",
-    title: "ZIMDEF · IT Industrial Attachment",
-    body: [
-      "Thirteen months inside a live enterprise data centre. Hands-on with VMware virtualisation, RedHat Linux at production scale, server management, and routine backup operations.",
-      "Contributed to the SOPHOS to Checkpoint firewall migration. Worked on RUCKUS wireless, CISCO telephony, RADIUS authentication, and VLAN segmentation. Operated alongside SAP Business One, ManageEngine ServiceDesk Plus, and Microsoft 365 administration in an integrated, interdependent stack.",
-    ],
-  },
-  {
-    // "Smart Feed" is the historical proper-noun name of the Nov 2025
-    // dissertation artefact, kept verbatim for accuracy. Not a violation
-    // of the CLAUDE.md AVOID list, which applies to the current product.
-    date: "Nov 2025",
-    title: "FishTech Smart Feed (dissertation submission)",
-    body: "Final-year research submission. The foundation work that evolved into the FishTech Precision Feeding System now in active development.",
-  },
-  {
-    date: "2022",
-    title: "Started serious coding",
-    body: "First real systems beyond coursework. Python, web fundamentals, the long road to shipping.",
-  },
 ];
 
 export function About() {
@@ -187,102 +215,94 @@ export function About() {
         className="pointer-events-none absolute -top-32 -right-32 h-[420px] w-[420px] rounded-full bg-accent opacity-[0.08] blur-[120px]"
       />
 
-      <div className="relative mx-auto w-full max-w-[1200px] px-6 md:px-8">
+      <div className="relative mx-auto w-full max-w-[1200px] px-5 sm:px-6 md:px-8">
         <motion.div
           ref={revealRef}
           variants={containerVariants}
           initial="hidden"
           animate={revealed ? "visible" : "hidden"}
         >
-          <div className="grid grid-cols-1 gap-14 lg:grid-cols-[3fr_2fr] lg:items-start lg:gap-x-16">
-          <div className="order-1 min-w-0 lg:order-none">
-            <motion.div variants={itemVariants} className="mb-5 flex items-center gap-3">
-              <span
-                className="text-text-tertiary"
-                style={{
-                  fontFamily: "var(--font-jetbrains-mono)",
-                  fontSize: "12px",
-                  letterSpacing: "0.2em",
-                  textTransform: "uppercase",
-                }}
-              >
-                About
-              </span>
-              <motion.span
-                aria-hidden
-                variants={underlineVariants}
-                style={{ originX: 0 }}
-                className="h-px w-10 bg-accent"
-              />
-            </motion.div>
-
-            <motion.h2
-              variants={itemVariants}
-              className="font-heading font-semibold text-text-primary"
+          <motion.div
+            variants={itemVariants}
+            className="mb-5 flex items-center gap-3"
+          >
+            <span
+              className="text-text-tertiary"
               style={{
-                fontSize: "clamp(2.25rem, 4.5vw, 3.5rem)",
+                fontFamily: "var(--font-jetbrains-mono)",
+                fontSize: "12px",
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+              }}
+            >
+              About
+            </span>
+            <motion.span
+              aria-hidden
+              variants={underlineVariants}
+              style={{ originX: 0 }}
+              className="h-px w-10 bg-accent"
+            />
+          </motion.div>
+
+          <motion.h2
+            variants={itemVariants}
+            className="font-heading font-semibold text-text-primary"
+            style={{
+              fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
+              letterSpacing: "-0.025em",
+              lineHeight: 1.08,
+            }}
+          >
+            What I&apos;m working on{" "}
+            <span
+              className="font-normal italic"
+              style={{
+                fontFamily: "var(--font-serif)",
+                color: "#00E5C0",
                 letterSpacing: "-0.025em",
-                lineHeight: 1.08,
               }}
             >
-              What I&apos;m working on{" "}
-              <span
-                className="font-normal italic"
-                style={{
-                  fontFamily: "var(--font-serif)",
-                  color: "#00E5C0",
-                  letterSpacing: "-0.025em",
-                }}
-              >
-                right now
-              </span>
-              .
-            </motion.h2>
+              right now
+            </span>
+            .
+          </motion.h2>
 
-            <motion.p
-              variants={itemVariants}
-              className="mt-8 text-text-primary"
-              style={{
-                fontFamily: "var(--font-dm-sans)",
-                fontSize: "18px",
-                fontWeight: 400,
-                lineHeight: 1.7,
-              }}
-            >
-              I&apos;m a final-year Computer Science student at NUST, based
-              in Harare, Zimbabwe. For the past two to three years I&apos;ve
-              been building real systems for real users: full-stack
-              platforms, computer vision pipelines, and now an edge-AI IoT
-              product being industrialised for the African market.
-            </motion.p>
+          <motion.p
+            variants={itemVariants}
+            className="mt-7 max-w-[52ch] text-text-secondary"
+            style={{
+              fontFamily: "var(--font-dm-sans)",
+              fontSize: "clamp(16px, 1.5vw, 18px)",
+              lineHeight: 1.7,
+            }}
+          >
+            Final-year Computer Science student at NUST, based in Harare. For
+            two to three years I&apos;ve been building real systems for real
+            users. Full-stack platforms, computer vision pipelines, and now an
+            edge-AI IoT product industrialising for the African market.
+          </motion.p>
 
-            <motion.p
-              variants={itemVariants}
-              className="mt-5 text-text-secondary"
-              style={{
-                fontFamily: "var(--font-dm-sans)",
-                fontSize: "16px",
-                lineHeight: 1.7,
-              }}
-            >
-              {highlightEntities(BIO_STEADYHANDS)}
-            </motion.p>
+          <motion.div
+            variants={itemVariants}
+            className="mt-10 grid grid-cols-1 gap-5 md:gap-6 lg:mt-14 lg:grid-cols-2"
+          >
+            {HIGHLIGHTS.map((highlight) => (
+              <ProjectHighlight
+                key={highlight.title}
+                {...highlight}
+                variants={itemVariants}
+              />
+            ))}
+          </motion.div>
 
-            <motion.p
-              variants={itemVariants}
-              className="mt-5 text-text-secondary"
-              style={{
-                fontFamily: "var(--font-dm-sans)",
-                fontSize: "16px",
-                lineHeight: 1.7,
-              }}
-            >
-              {highlightEntities(BIO_FISHTECH)}
-            </motion.p>
-
-            <motion.div variants={itemVariants} className="mt-10">
+          <motion.div
+            variants={itemVariants}
+            className="mt-14 grid grid-cols-1 gap-12 lg:mt-20 lg:grid-cols-[3fr_2fr] lg:items-start lg:gap-x-16"
+          >
+            <div className="min-w-0">
               <div
-                className="mb-4 text-text-tertiary"
+                className="mb-4 flex items-center gap-3 text-text-tertiary"
                 style={{
                   fontFamily: "var(--font-jetbrains-mono)",
                   fontSize: "11px",
@@ -290,14 +310,15 @@ export function About() {
                   textTransform: "uppercase",
                 }}
               >
-                Currently
+                <span>Currently</span>
+                <span aria-hidden className="h-px w-8 bg-accent/40" />
               </div>
               <ul
-                className="space-y-2 text-text-secondary"
+                className="space-y-3 text-text-secondary"
                 style={{
                   fontFamily: "var(--font-dm-sans)",
-                  fontSize: "14px",
-                  lineHeight: 1.6,
+                  fontSize: "15px",
+                  lineHeight: 1.65,
                 }}
               >
                 <CurrentlyItem>
@@ -308,15 +329,14 @@ export function About() {
                   client work
                 </CurrentlyItem>
                 <CurrentlyItem>
-                  Building FishTech Precision Feeding System, closed-loop
-                  edge-AI for African aquaculture, piloting 2026
+                  Industrialising FishTech for pilot deployment, 2026
                 </CurrentlyItem>
                 <CurrentlyItem>
                   <a
                     href="/resume.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-text-secondary underline-offset-4 transition-colors duration-200 hover:text-accent hover:underline"
+                    className="inline-flex min-h-[44px] items-center gap-1.5 text-text-secondary underline-offset-4 transition-colors duration-200 hover:text-accent hover:underline"
                   >
                     Resume / CV
                     <span aria-hidden className="text-text-tertiary">
@@ -335,13 +355,24 @@ export function About() {
                   </a>
                 </CurrentlyItem>
               </ul>
-            </motion.div>
-          </div>
+            </div>
 
-          <motion.div variants={itemVariants} className="order-2 min-w-0 lg:order-none">
-            <Timeline reduceMotion={reduceMotion} />
+            <div className="min-w-0">
+              <div
+                className="mb-4 flex items-center gap-3 text-text-tertiary"
+                style={{
+                  fontFamily: "var(--font-jetbrains-mono)",
+                  fontSize: "11px",
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                }}
+              >
+                <span>Timeline</span>
+                <span aria-hidden className="h-px w-8 bg-accent/40" />
+              </div>
+              <Timeline reduceMotion={reduceMotion} />
+            </div>
           </motion.div>
-          </div>
 
           <motion.div
             variants={itemVariants}
@@ -359,9 +390,17 @@ export function About() {
               <span>Stack</span>
               <span aria-hidden className="h-px w-10 bg-accent/40" />
             </div>
-            <Marquee row={MARQUEE_ROW_1} direction="left" reduceMotion={reduceMotion} />
+            <Marquee
+              row={MARQUEE_ROW_1}
+              direction="left"
+              reduceMotion={reduceMotion}
+            />
             <div className="mt-3">
-              <Marquee row={MARQUEE_ROW_2} direction="right" reduceMotion={reduceMotion} />
+              <Marquee
+                row={MARQUEE_ROW_2}
+                direction="right"
+                reduceMotion={reduceMotion}
+              />
             </div>
           </motion.div>
         </motion.div>
@@ -370,10 +409,13 @@ export function About() {
   );
 }
 
-function CurrentlyItem({ children }: { children: React.ReactNode }) {
+function CurrentlyItem({ children }: { children: ReactNode }) {
   return (
     <li className="flex items-start gap-3">
-      <span aria-hidden className="mt-[0.45em] inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-accent shadow-[0_0_6px_rgba(0,229,192,0.6)]" />
+      <span
+        aria-hidden
+        className="mt-[0.45em] inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-accent shadow-[0_0_6px_rgba(0,229,192,0.6)]"
+      />
       <span>{children}</span>
     </li>
   );
@@ -413,9 +455,9 @@ function Marquee({
       className="group/marquee relative overflow-hidden"
       style={{
         maskImage:
-          "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
+          "linear-gradient(to right, transparent, black 4%, black 96%, transparent)",
         WebkitMaskImage:
-          "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
+          "linear-gradient(to right, transparent, black 4%, black 96%, transparent)",
       }}
     >
       <div
@@ -423,7 +465,11 @@ function Marquee({
         style={style}
       >
         {[...row, ...row].map((label, i) => (
-          <Pill key={`${label}-${i}`} label={label} aria-hidden={i >= row.length} />
+          <Pill
+            key={`${label}-${i}`}
+            label={label}
+            aria-hidden={i >= row.length}
+          />
         ))}
       </div>
     </div>
@@ -489,7 +535,7 @@ function Timeline({ reduceMotion }: { reduceMotion: boolean }) {
         className="pointer-events-none absolute top-1 bottom-1 left-[5px] w-px bg-white/[0.06]"
       />
 
-      <div className="space-y-6 md:space-y-7">
+      <div className="space-y-7 md:space-y-8">
         {TIMELINE.map((entry) => (
           <motion.li
             key={entry.title}
@@ -497,7 +543,7 @@ function Timeline({ reduceMotion }: { reduceMotion: boolean }) {
             className="relative pl-8"
           >
             <span className="absolute left-0 top-[6px] block h-[11px] w-[11px]">
-              {entry.active ? (
+              {entry.kind === "simple" && entry.active ? (
                 <>
                   <span
                     aria-hidden
@@ -514,10 +560,16 @@ function Timeline({ reduceMotion }: { reduceMotion: boolean }) {
                     className="absolute inset-[1px] rounded-full bg-accent shadow-[0_0_10px_rgba(0,229,192,0.65)]"
                   />
                 </>
-              ) : entry.building ? (
+              ) : entry.kind === "simple" && entry.building ? (
                 <span
                   aria-hidden
                   className="block h-full w-full rounded-full border border-accent bg-accent/30 shadow-[0_0_6px_rgba(0,229,192,0.35)]"
+                />
+              ) : entry.kind === "zimdef" ? (
+                <span
+                  aria-hidden
+                  className="block h-full w-full rounded-full border border-[#FFC04D]/70 bg-[#FFC04D]/20"
+                  style={{ boxShadow: "0 0 6px rgba(255,192,77,0.35)" }}
                 />
               ) : (
                 <span
@@ -526,62 +578,178 @@ function Timeline({ reduceMotion }: { reduceMotion: boolean }) {
                 />
               )}
             </span>
-            <div
-              className="text-text-tertiary"
-              style={{
-                fontFamily: "var(--font-jetbrains-mono)",
-                fontSize: "11px",
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-              }}
-            >
-              {entry.date}
-            </div>
-            <div
-              className="mt-2 text-text-primary"
-              style={{
-                fontFamily: "var(--font-geist)",
-                fontSize: "16px",
-                fontWeight: 500,
-                letterSpacing: "-0.01em",
-              }}
-            >
-              {entry.title}
-            </div>
-            {Array.isArray(entry.body) ? (
-              <div
-                className="mt-3 space-y-3 text-text-secondary"
-                style={{
-                  fontFamily: "var(--font-dm-sans)",
-                  fontSize: "14px",
-                  lineHeight: 1.65,
-                }}
-              >
-                {entry.body.map((paragraph, i) => (
-                  <div key={i} className="relative pl-4">
-                    <span
-                      aria-hidden
-                      className="pointer-events-none absolute top-1 bottom-1 left-0 w-px bg-gradient-to-b from-accent/45 via-accent/15 to-transparent"
-                    />
-                    <p>{highlightEntities(paragraph)}</p>
-                  </div>
-                ))}
-              </div>
+
+            {entry.kind === "zimdef" ? (
+              <ZimdefEntry entry={entry} />
             ) : (
-              <div
-                className="mt-1 text-text-secondary"
-                style={{
-                  fontFamily: "var(--font-dm-sans)",
-                  fontSize: "14px",
-                  lineHeight: 1.6,
-                }}
-              >
-                {entry.body}
-              </div>
+              <SimpleEntry entry={entry} />
             )}
           </motion.li>
         ))}
       </div>
     </motion.ol>
+  );
+}
+
+function SimpleEntry({
+  entry,
+}: {
+  entry: Extract<TimelineEntry, { kind: "simple" }>;
+}) {
+  return (
+    <>
+      <div
+        className="text-text-tertiary"
+        style={{
+          fontFamily: "var(--font-jetbrains-mono)",
+          fontSize: "11px",
+          letterSpacing: "0.12em",
+          textTransform: "uppercase",
+        }}
+      >
+        {entry.date}
+      </div>
+      <div
+        className="mt-2 text-text-primary"
+        style={{
+          fontFamily: "var(--font-geist)",
+          fontSize: "16px",
+          fontWeight: 500,
+          letterSpacing: "-0.01em",
+        }}
+      >
+        {entry.title}
+      </div>
+      <div
+        className="mt-1 text-text-secondary"
+        style={{
+          fontFamily: "var(--font-dm-sans)",
+          fontSize: "14px",
+          lineHeight: 1.6,
+        }}
+      >
+        {entry.body}
+      </div>
+    </>
+  );
+}
+
+function ZimdefEntry({
+  entry,
+}: {
+  entry: Extract<TimelineEntry, { kind: "zimdef" }>;
+}) {
+  return (
+    <div
+      className="relative -ml-2 rounded-xl border border-[#FFC04D]/15 bg-[#FFC04D]/[0.025] p-4 md:p-5"
+      style={{
+        boxShadow:
+          "0 18px 40px -28px rgba(255,192,77,0.12), 0 0 0 1px rgba(255,192,77,0.04) inset",
+      }}
+    >
+      <div className="flex flex-wrap items-center gap-2">
+        <span
+          className="text-text-tertiary"
+          style={{
+            fontFamily: "var(--font-jetbrains-mono)",
+            fontSize: "11px",
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+          }}
+        >
+          {entry.date}
+        </span>
+        <span
+          aria-hidden
+          className="h-1 w-1 rounded-full bg-[#FFC04D]/50"
+        />
+        <span
+          className="inline-flex items-center gap-1.5 rounded-full border border-[#FFC04D]/30 px-2 py-0.5 text-[#FFC04D]"
+          style={{
+            fontFamily: "var(--font-jetbrains-mono)",
+            fontSize: "10px",
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            lineHeight: 1.2,
+          }}
+        >
+          {entry.duration}
+        </span>
+      </div>
+
+      <div
+        className="mt-2 text-text-primary"
+        style={{
+          fontFamily: "var(--font-geist)",
+          fontSize: "16px",
+          fontWeight: 500,
+          letterSpacing: "-0.01em",
+        }}
+      >
+        {entry.title}
+      </div>
+
+      <p
+        className="mt-2 text-text-secondary"
+        style={{
+          fontFamily: "var(--font-dm-sans)",
+          fontSize: "14px",
+          lineHeight: 1.65,
+        }}
+      >
+        {ZIMDEF_INTRO}
+      </p>
+
+      <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-2.5">
+        {ZIMDEF_CLUSTERS.map((cluster) => (
+          <div
+            key={cluster.label}
+            className="rounded-lg border border-white/[0.05] bg-bg-elevated/60 px-3 py-3"
+          >
+            <div
+              className="mb-2 text-[#FFC04D]/90"
+              style={{
+                fontFamily: "var(--font-jetbrains-mono)",
+                fontSize: "9.5px",
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+              }}
+            >
+              {cluster.label}
+            </div>
+            <ul
+              className="space-y-1 text-text-secondary"
+              style={{
+                fontFamily: "var(--font-dm-sans)",
+                fontSize: "12.5px",
+                lineHeight: 1.5,
+              }}
+            >
+              {cluster.items.map((item) => (
+                <li key={item} className="flex items-start gap-1.5">
+                  <span
+                    aria-hidden
+                    className="mt-[0.6em] inline-block h-[3px] w-[3px] shrink-0 rounded-full bg-[#FFC04D]/60"
+                  />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <p
+        className="mt-4 text-text-secondary"
+        style={{
+          fontFamily: "var(--font-dm-sans)",
+          fontSize: "13px",
+          lineHeight: 1.65,
+          fontStyle: "italic",
+        }}
+      >
+        {ZIMDEF_CLOSE}
+      </p>
+    </div>
   );
 }

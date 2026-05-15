@@ -129,7 +129,7 @@ export function Navbar() {
                   opacity: eyebrowOpacity,
                   x: eyebrowX,
                 }}
-                className="hidden text-text-tertiary sm:inline-block"
+                className="hidden text-text-tertiary lg:inline-block"
               >
                 <span
                   style={{
