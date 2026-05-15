@@ -211,7 +211,11 @@ export function Footer() {
                         href={link.href}
                         target={isExternal ? "_blank" : undefined}
                         rel={isExternal ? "noopener noreferrer" : undefined}
-                        aria-label={`${link.label} (opens in new tab)`}
+                        aria-label={
+                          isExternal
+                            ? `${link.label} (opens in new tab)`
+                            : link.label
+                        }
                         className="footer-connect-link"
                       >
                         <span>{link.label}</span>
@@ -308,9 +312,6 @@ export function Footer() {
       </div>
 
       <style>{`
-        .footer-signature-word {
-          will-change: transform, filter, opacity;
-        }
         .footer-signature-period {
           display: inline-block;
           width: 0.18em;
