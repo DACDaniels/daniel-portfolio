@@ -123,6 +123,30 @@ button {
   border-radius: 4px;
 }
 
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -120%);
+  z-index: 100;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--bg-primary);
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  box-shadow: 0 12px 32px -8px rgba(0, 229, 192, 0.45);
+  transition: transform 220ms ease;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translate(-50%, 12px);
+  outline: none;
+}
+
 [data-border-beam]::before {
   content: "";
   position: absolute;

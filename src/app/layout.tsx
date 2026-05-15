@@ -7,6 +7,7 @@ import {
 } from "next/font/google";
 import "./globals.css";
 import ExtensionErrorSuppressor from "@/components/ExtensionErrorSuppressor";
+import { CustomCursor } from "@/components/ui/CustomCursor";
 
 const geist = Geist({
   variable: "--font-geist",
@@ -83,6 +84,10 @@ export default function RootLayout({
     >
       <body suppressHydrationWarning>
         <ExtensionErrorSuppressor />
+        <a href="#home" className="skip-link">
+          Skip to main content
+        </a>
+        <CustomCursor />
         {children}
       </body>
     </html>
