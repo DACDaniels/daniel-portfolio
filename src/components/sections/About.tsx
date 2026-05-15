@@ -217,22 +217,18 @@ export function About() {
               lineHeight: 1.75,
             }}
           >
-            <p style={{ marginBottom: "2.25rem" }}>
-              Final-year Computer Science student at NUST, Zimbabwe. For two
-              to three years I&apos;ve been building real systems for real
-              users, with most of my time spent in the seam between
-              full-stack web, computer vision, and edge devices.
-            </p>
-            <p style={{ marginBottom: "2.25rem" }}>
-              I also have experience with servers, networking, infrastructure,
-              and IT governance. Things like server management, handling the
-              networks of an organisation, and an understanding of SAP.
-            </p>
             <p>
-              I care about work that survives contact with the real world.
-              Problems people actually feel. My patriotic side hopes to see
-              Zimbabwean and African problems solved, and elevated to match
-              those of first-world countries.
+              Final-year Computer Science student at NUST with over two years
+              of shipping software that survives contact with the real world.
+              I also know servers, networks, infrastructure, IT governance,
+              SAP and organisational network management.
+            </p>
+            <div aria-hidden className="my-7 h-px w-12 bg-accent/40" />
+            <p>
+              I care about real problems people actually feel. And my
+              patriotic side isn&apos;t subtle about it, I want Zimbabwean and
+              African problems solved, and solved well enough that the gap to
+              first-world countries stops being taken for granted.
             </p>
           </motion.div>
 
