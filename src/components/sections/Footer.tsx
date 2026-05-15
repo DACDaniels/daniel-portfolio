@@ -22,6 +22,7 @@ const CONNECT_LINKS = [
     href: "https://wa.me/263780802880?text=Hi%20Daniel%2C%20I%20saw%20your%20portfolio%20and",
   },
   { label: "Email", href: "mailto:chadambukadaniel@gmail.com" },
+  { label: "Resume · PDF", href: "/resume.pdf" },
 ] as const;
 
 const COLOPHON_LINES = ["Next.js 15", "Vercel", "Geist · DM Sans", "v.2026.05"];
@@ -169,7 +170,8 @@ export function Footer() {
             <FooterColumn label="Connect">
               <ul className="m-0 list-none p-0">
                 {CONNECT_LINKS.map((link) => {
-                  const isExternal = link.href.startsWith("http");
+                  const isExternal =
+                    link.href.startsWith("http") || link.href.endsWith(".pdf");
                   return (
                     <li key={link.label}>
                       <a

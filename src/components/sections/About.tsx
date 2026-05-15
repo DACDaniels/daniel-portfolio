@@ -300,6 +300,29 @@ export function About() {
                   Building FishTech Precision Feeding System, closed-loop
                   edge-AI for African aquaculture, piloting 2026
                 </CurrentlyItem>
+                <CurrentlyItem>
+                  <a
+                    href="/resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-text-secondary underline-offset-4 transition-colors duration-200 hover:text-accent hover:underline"
+                  >
+                    Resume / CV
+                    <span aria-hidden className="text-text-tertiary">
+                      ·
+                    </span>
+                    <span
+                      className="text-text-tertiary"
+                      style={{
+                        fontFamily: "var(--font-jetbrains-mono)",
+                        fontSize: "11px",
+                        letterSpacing: "0.05em",
+                      }}
+                    >
+                      PDF ↗
+                    </span>
+                  </a>
+                </CurrentlyItem>
               </ul>
             </motion.div>
           </div>
