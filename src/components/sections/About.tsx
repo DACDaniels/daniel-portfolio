@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import { Fragment, type CSSProperties, type ReactNode } from "react";
+import { useScrollReveal } from "@/lib/useScrollReveal";
 
 const HIGHLIGHT_TERMS = [
   "FishTech Precision Feeding System",
@@ -141,6 +142,7 @@ const TIMELINE: TimelineEntry[] = [
 
 export function About() {
   const reduceMotion = useReducedMotion() ?? false;
+  const { ref: revealRef, revealed } = useScrollReveal<HTMLDivElement>();
 
   const containerVariants: Variants = {
     hidden: {},
@@ -190,10 +192,10 @@ export function About() {
 
       <div className="relative mx-auto w-full max-w-[1200px] px-6 md:px-8">
         <motion.div
+          ref={revealRef}
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
+          animate={revealed ? "visible" : "hidden"}
           className="grid grid-cols-1 gap-14 lg:grid-cols-[3fr_2fr] lg:gap-x-16 lg:gap-y-14"
         >
           <div className="order-1 min-w-0 lg:order-none lg:row-span-2">
@@ -404,6 +406,7 @@ function Pill({
 }
 
 function Timeline({ reduceMotion }: { reduceMotion: boolean }) {
+  const { ref: revealRef, revealed } = useScrollReveal<HTMLOListElement>();
   const entryVariants: Variants = reduceMotion
     ? {
         hidden: { opacity: 0 },
@@ -428,10 +431,10 @@ function Timeline({ reduceMotion }: { reduceMotion: boolean }) {
 
   return (
     <motion.ol
+      ref={revealRef}
       variants={listVariants}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
+      animate={revealed ? "visible" : "hidden"}
       className="relative"
     >
       <span

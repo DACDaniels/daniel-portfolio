@@ -5,6 +5,7 @@ import { motion, useReducedMotion, type Variants } from "motion/react";
 import type { ReactNode } from "react";
 import { Navbar } from "@/components/sections/Navbar";
 import { FishTechSmartFeedMock } from "@/components/ui/project-mocks/FishTechSmartFeedMock";
+import { useScrollReveal } from "@/lib/useScrollReveal";
 
 type Innovation = {
   label: string;
@@ -477,13 +478,7 @@ export default function FishTechCaseStudyPage() {
             </motion.ul>
           </CaseSection>
 
-          <motion.section
-            initial={reduceMotion ? false : "hidden"}
-            whileInView={reduceMotion ? undefined : "visible"}
-            viewport={{ once: true, amount: 0.2 }}
-            variants={containerVariants}
-            className="pt-8"
-          >
+          <RelatedSection containerVariants={containerVariants}>
             <motion.div
               variants={itemVariants}
               className="text-white/40"
@@ -565,7 +560,7 @@ export default function FishTechCaseStudyPage() {
                 </div>
               </div>
             </motion.div>
-          </motion.section>
+          </RelatedSection>
         </article>
       </main>
     </>
@@ -587,12 +582,13 @@ function CaseSection({
   itemVariants: Variants;
   containerVariants: Variants;
 }) {
+  const { ref, revealed } = useScrollReveal<HTMLElement>();
   return (
     <motion.section
+      ref={ref}
       id={id}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
+      animate={revealed ? "visible" : "hidden"}
       variants={containerVariants}
     >
       <motion.div
@@ -631,6 +627,27 @@ function CaseSection({
       >
         {children}
       </motion.div>
+    </motion.section>
+  );
+}
+
+function RelatedSection({
+  children,
+  containerVariants,
+}: {
+  children: ReactNode;
+  containerVariants: Variants;
+}) {
+  const { ref, revealed } = useScrollReveal<HTMLElement>();
+  return (
+    <motion.section
+      ref={ref}
+      initial="hidden"
+      animate={revealed ? "visible" : "hidden"}
+      variants={containerVariants}
+      className="pt-8"
+    >
+      {children}
     </motion.section>
   );
 }

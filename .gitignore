@@ -44,3 +44,9 @@ next-env.d.ts
 # Screenshots (large files, local only)
 screenshots/*.png
 screenshots/*.jpg
+
+# Local audit screenshots (Playwright captures)
+/*.png
+/*.jpg
+.playwright-mcp/
+.vscode/

@@ -1,20 +1,49 @@
 "use client";
 
 import { motion, useReducedMotion, type Variants } from "motion/react";
-import { ProjectCard, type ProjectCardProps } from "@/components/ui/ProjectCard";
+import {
+  FlagshipProjectCard,
+  type FlagshipProjectProps,
+} from "@/components/ui/FlagshipProjectCard";
+import {
+  AlternatingProjectCard,
+  type AlternatingProjectProps,
+} from "@/components/ui/AlternatingProjectCard";
 import { SteadyhandsMock } from "@/components/ui/project-mocks/SteadyhandsMock";
 import { FishTechSmartFeedMock } from "@/components/ui/project-mocks/FishTechSmartFeedMock";
 import { FishTechWebsiteMock } from "@/components/ui/project-mocks/FishTechWebsiteMock";
 import { PortfolioMock } from "@/components/ui/project-mocks/PortfolioMock";
+import { useScrollReveal } from "@/lib/useScrollReveal";
 
-const PROJECTS: ProjectCardProps[] = [
+const FLAGSHIP: Omit<FlagshipProjectProps, "variants"> = {
+  number: "01",
+  category: "EDGE AI · FLAGSHIP",
+  title: "FishTech Precision Feeding System",
+  meta: "Late-stage prototype · Pilot 2026",
+  description:
+    "Closed-loop AI instrument for African pond aquaculture. An overhead AI Camera and a Raspberry Pi 5 with a Hailo NPU detect fish, measure them against an auto-calibrated reference, estimate whole-pond biomass with honest confidence intervals, and drive an integrated auger feeder to dispense a precision dose. Runs entirely on the device. Being industrialised for pilot deployment in 2026.",
+  tags: [
+    "Computer Vision",
+    "IoT",
+    "Edge AI",
+    "YOLO",
+    "Raspberry Pi",
+    "Hailo NPU",
+    "Flask",
+  ],
+  status: "building",
+  caseStudyHref: "/projects/fishtech",
+  mockComponent: <FishTechSmartFeedMock />,
+};
+
+const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
   {
-    number: "01",
+    number: "02",
     category: "PRODUCTION",
     title: "Steadyhands Catering",
     meta: "steadyhandscatering.com · BATA Club",
     description:
-      "Full-stack catering platform with Paynow payment integration, online ordering, and WhatsApp communication funnel. Processes real transactions.",
+      "Full-stack catering platform with Paynow payment integration, online ordering, and WhatsApp communication funnel. Live, transacting, and deployed on Vercel.",
     tags: ["Next.js", "TypeScript", "Node.js", "Paynow", "Vercel"],
     status: "live",
     primaryLink: {
@@ -23,18 +52,7 @@ const PROJECTS: ProjectCardProps[] = [
       external: true,
     },
     mockComponent: <SteadyhandsMock />,
-  },
-  {
-    number: "02",
-    category: "EDGE AI",
-    title: "FishTech Precision Feeding System",
-    meta: "Late-stage prototype · Pilot 2026",
-    description:
-      "Closed-loop AI instrument for African pond aquaculture. An overhead AI Camera and a Raspberry Pi 5 with a Hailo NPU detect fish, measure them against an auto-calibrated reference, estimate whole-pond biomass with honest confidence intervals, and drive an integrated auger feeder to dispense a precision dose. Runs entirely on the device. Being industrialised for pilot deployment in 2026.",
-    tags: ["Computer Vision", "IoT", "Edge AI", "YOLO", "Raspberry Pi"],
-    status: "building",
-    primaryLink: { label: "View Case Study", href: "/projects/fishtech" },
-    mockComponent: <FishTechSmartFeedMock />,
+    side: "left",
   },
   {
     number: "03",
@@ -51,6 +69,7 @@ const PROJECTS: ProjectCardProps[] = [
       external: true,
     },
     mockComponent: <FishTechWebsiteMock />,
+    side: "right",
   },
   {
     number: "04",
@@ -58,7 +77,7 @@ const PROJECTS: ProjectCardProps[] = [
     title: "This Portfolio",
     meta: "You're looking at it",
     description:
-      "Awwwards-ambition portfolio. Next.js 15, Geist, motion choreography, command palette, screenshot-driven build loop.",
+      "Awwwards-ambition portfolio. Next.js 15, Geist, motion choreography, screenshot-driven build loop.",
     tags: ["Next.js 15", "TypeScript", "Motion"],
     status: "meta",
     primaryLink: {
@@ -67,16 +86,18 @@ const PROJECTS: ProjectCardProps[] = [
       external: true,
     },
     mockComponent: <PortfolioMock />,
+    side: "left",
   },
 ];
 
 export function Projects() {
   const reduceMotion = useReducedMotion() ?? false;
+  const { ref: revealRef, revealed } = useScrollReveal<HTMLDivElement>();
 
   const containerVariants: Variants = {
     hidden: {},
     visible: {
-      transition: { staggerChildren: 0.1, delayChildren: 0.15 },
+      transition: { staggerChildren: 0.12, delayChildren: 0.1 },
     },
   };
 
@@ -102,10 +123,10 @@ export function Projects() {
     >
       <div className="mx-auto w-full max-w-7xl px-6 md:px-8">
         <motion.div
+          ref={revealRef}
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
+          animate={revealed ? "visible" : "hidden"}
         >
           <motion.div
             variants={itemVariants}
@@ -129,16 +150,18 @@ export function Projects() {
 
           <motion.p
             variants={itemVariants}
-            className="mt-5 mb-12 max-w-xl text-[15px] text-white/55 md:mb-20 md:max-w-2xl md:text-[16px]"
+            className="mt-5 mb-12 max-w-xl text-[15px] text-white/55 md:mb-16 md:max-w-2xl md:text-[16px]"
             style={{ lineHeight: 1.7 }}
           >
-            Four projects. One live in production, one edge-AI instrument in
-            active build, one lead-gen site, and this portfolio itself.
+            One flagship edge-AI instrument in active build, one live
+            transacting platform, one lead-gen site, and this portfolio itself.
           </motion.p>
 
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
-            {PROJECTS.map((project) => (
-              <ProjectCard
+          <FlagshipProjectCard {...FLAGSHIP} variants={itemVariants} />
+
+          <div className="mt-16 flex flex-col gap-20 md:mt-24 md:gap-28">
+            {ALTERNATING.map((project) => (
+              <AlternatingProjectCard
                 key={project.title}
                 {...project}
                 variants={itemVariants}
@@ -148,7 +171,7 @@ export function Projects() {
 
           <motion.div
             variants={itemVariants}
-            className="mt-12 text-center md:mt-20"
+            className="mt-20 text-center md:mt-28"
           >
             <p
               className="text-white/60"

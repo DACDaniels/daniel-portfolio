@@ -13,6 +13,7 @@ import {
   MessageCircle,
 } from "lucide-react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { useScrollReveal } from "@/lib/useScrollReveal";
 
 const WHATSAPP_HREF =
   "https://wa.me/263780802880?text=Hi%20Daniel%2C%20I%20saw%20your%20portfolio%20and";
@@ -41,6 +42,7 @@ type SubmitState = "idle" | "submitting" | "success" | "error";
 
 export function Contact() {
   const reduceMotion = useReducedMotion() ?? false;
+  const { ref: revealRef, revealed } = useScrollReveal<HTMLDivElement>();
 
   const containerVariants: Variants = {
     hidden: {},
@@ -90,10 +92,10 @@ export function Contact() {
 
       <div className="relative mx-auto w-full max-w-[1200px] px-6 md:px-8">
         <motion.div
+          ref={revealRef}
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
+          animate={revealed ? "visible" : "hidden"}
           className="grid grid-cols-1 gap-12 lg:grid-cols-[3fr_2fr] lg:gap-x-16"
         >
           <div className="order-1 min-w-0">

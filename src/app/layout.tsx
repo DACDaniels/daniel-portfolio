@@ -58,12 +58,15 @@ export const metadata: Metadata = {
       "Software Engineer building real-world systems. Full-stack, computer vision, embedded, and AI.",
     type: "website",
     locale: "en_US",
+    url: "/",
+    siteName: "Daniel Chadambuka",
   },
   twitter: {
     card: "summary_large_image",
     title: "Daniel Chadambuka — Software Engineer",
     description:
       "Software Engineer building real-world systems. Full-stack, computer vision, embedded, and AI.",
+    creator: "@DACDaniels",
   },
 };
 

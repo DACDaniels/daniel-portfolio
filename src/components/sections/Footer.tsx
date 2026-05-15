@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
+import { useScrollReveal } from "@/lib/useScrollReveal";
 
 const NAV_LINKS = [
   { label: "Home", href: "#home" },
@@ -29,6 +30,7 @@ const NAME_WORDS = ["Daniel", "Chadambuka"] as const;
 
 export function Footer() {
   const reduceMotion = useReducedMotion() ?? false;
+  const { ref: revealRef, revealed } = useScrollReveal<HTMLDivElement>();
 
   const sectionVariants: Variants = {
     hidden: {},
@@ -90,10 +92,10 @@ export function Footer() {
 
       <div className="relative z-[1] mx-auto w-full max-w-7xl px-6 md:px-8">
         <motion.div
+          ref={revealRef}
           variants={sectionVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
+          animate={revealed ? "visible" : "hidden"}
         >
           <motion.div
             variants={itemVariants}

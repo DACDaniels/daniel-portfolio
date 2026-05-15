@@ -14,6 +14,7 @@ import {
   type PointerEvent,
 } from "react";
 import { BorderBeam } from "@/components/ui/BorderBeam";
+import { useScrollReveal } from "@/lib/useScrollReveal";
 
 type Service = {
   icon: LucideIcon;
@@ -59,6 +60,7 @@ export function Services() {
   const reduceMotion = useReducedMotion() ?? false;
   const gridRef = useRef<HTMLDivElement | null>(null);
   const [isTouch, setIsTouch] = useState(false);
+  const { ref: revealRef, revealed } = useScrollReveal<HTMLDivElement>();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -128,10 +130,10 @@ export function Services() {
     >
       <div className="mx-auto w-full max-w-[1100px] px-6 md:px-8">
         <motion.div
+          ref={revealRef}
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
+          animate={revealed ? "visible" : "hidden"}
         >
           <motion.div
             variants={itemVariants}
