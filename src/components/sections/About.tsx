@@ -43,24 +43,9 @@ const TIMELINE: TimelineEntry[] = [
   },
   {
     kind: "zimdef",
-    date: "May 2024 to Jun 2025",
+    date: "Jun 2024 to May 2025",
     title: "ZIMDEF · IT Industrial Attachment",
     duration: "12 months",
-  },
-  {
-    // "Smart Feed" is the historical proper-noun name of the Nov 2025
-    // dissertation artefact, kept verbatim for accuracy. Not a violation
-    // of the CLAUDE.md AVOID list, which applies to the current product.
-    kind: "simple",
-    date: "Nov 2025",
-    title: "FishTech Smart Feed (dissertation submission)",
-    body: "Final-year research submission. The foundation work that evolved into the FishTech Precision Feeding System now in active development.",
-  },
-  {
-    kind: "simple",
-    date: "2022",
-    title: "Started serious coding",
-    body: "First real systems beyond coursework. Python, web fundamentals, the long road to shipping.",
   },
 ];
 
@@ -225,30 +210,29 @@ export function About() {
 
           <motion.div
             variants={itemVariants}
-            className="mt-8 max-w-[58ch] text-text-secondary"
+            className="mt-10 max-w-[58ch] text-text-secondary"
             style={{
               fontFamily: "var(--font-dm-sans)",
               fontSize: "clamp(16px, 1.5vw, 18px)",
               lineHeight: 1.75,
             }}
           >
-            <p>
-              Final-year Computer Science student at NUST, based in Harare,
-              Zimbabwe. For two to three years I&apos;ve been building real
-              systems for real users, with most of my time spent in the seam
-              between full-stack web, computer vision, and edge devices.
+            <p style={{ marginBottom: "2.25rem" }}>
+              Final-year Computer Science student at NUST, Zimbabwe. For two
+              to three years I&apos;ve been building real systems for real
+              users, with most of my time spent in the seam between
+              full-stack web, computer vision, and edge devices.
             </p>
-            <div
-              aria-hidden
-              className="my-7 h-px w-12 bg-accent/40"
-            />
+            <p style={{ marginBottom: "2.25rem" }}>
+              I also have experience with servers, networking, infrastructure,
+              and IT governance. Things like server management, handling the
+              networks of an organisation, and an understanding of SAP.
+            </p>
             <p>
-              What I care about is the work that survives contact with the
-              real world. Software that has to ship. Hardware that has to
-              work. Problems people actually feel. I&apos;d rather own a
-              system end to end than hand it off the moment it starts
-              hurting, and I&apos;d rather see African problems treated as
-              engineering problems than as charity cases.
+              I care about work that survives contact with the real world.
+              Problems people actually feel. My patriotic side hopes to see
+              Zimbabwean and African problems solved, and elevated to match
+              those of first-world countries.
             </p>
           </motion.div>
 
