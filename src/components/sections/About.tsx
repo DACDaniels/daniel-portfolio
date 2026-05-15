@@ -65,6 +65,9 @@ const TIMELINE: TimelineEntry[] = [
     ],
   },
   {
+    // "Smart Feed" is the historical proper-noun name of the Nov 2025
+    // dissertation artefact, kept verbatim for accuracy. Not a violation
+    // of the CLAUDE.md AVOID list, which applies to the current product.
     date: "Nov 2025",
     title: "FishTech Smart Feed (dissertation submission)",
     body: "Final-year research submission. The foundation work that evolved into the FishTech Precision Feeding System now in active development.",
