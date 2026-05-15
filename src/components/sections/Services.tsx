@@ -210,17 +210,36 @@ export function Services() {
           <div
             ref={gridRef}
             onPointerMove={handleGridPointerMove}
-            className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-5"
+            className="flex flex-col gap-3 md:gap-5"
           >
-            {SERVICES.map((service) => (
-              <motion.div
-                key={service.title}
-                variants={itemVariants}
-                className="h-full"
-              >
-                <ServiceCard service={service} />
-              </motion.div>
-            ))}
+            {(() => {
+              const dominant = SERVICES.find((s) => s.dominant);
+              const others = SERVICES.filter((s) => !s.dominant);
+              return (
+                <>
+                  {dominant ? (
+                    <motion.div
+                      key={dominant.title}
+                      variants={itemVariants}
+                      className="h-full"
+                    >
+                      <ServiceCard service={dominant} />
+                    </motion.div>
+                  ) : null}
+                  <div className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-5">
+                    {others.map((service) => (
+                      <motion.div
+                        key={service.title}
+                        variants={itemVariants}
+                        className="h-full"
+                      >
+                        <ServiceCard service={service} />
+                      </motion.div>
+                    ))}
+                  </div>
+                </>
+              );
+            })()}
           </div>
 
           <motion.div
