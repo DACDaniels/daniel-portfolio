@@ -117,9 +117,19 @@ export function Hero() {
               transition={{ duration: 0.6, delay: bioDelay }}
               className="mt-7 max-w-xl text-base leading-[1.7] text-text-secondary md:text-lg"
             >
-              I build real-world software systems, from computer vision on
-              edge devices to production web platforms, out of Harare,
-              Zimbabwe.
+              I build{" "}
+              <span
+                className="font-normal italic text-text-primary"
+                style={{
+                  fontFamily: "var(--font-serif)",
+                  fontSize: "1.08em",
+                  letterSpacing: "-0.005em",
+                }}
+              >
+                real-world
+              </span>{" "}
+              software systems, from computer vision on edge devices to
+              production web platforms, out of Harare, Zimbabwe.
             </motion.p>
 
             <motion.div

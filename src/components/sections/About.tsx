@@ -225,7 +225,18 @@ export function About() {
                 lineHeight: 1.08,
               }}
             >
-              What I&apos;m working on right now.
+              What I&apos;m working on{" "}
+              <span
+                className="font-normal italic"
+                style={{
+                  fontFamily: "var(--font-serif)",
+                  color: "#00E5C0",
+                  letterSpacing: "-0.025em",
+                }}
+              >
+                right now
+              </span>
+              .
             </motion.h2>
 
             <motion.p

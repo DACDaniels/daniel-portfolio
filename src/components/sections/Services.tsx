@@ -193,8 +193,18 @@ export function Services() {
             className="mt-5 mb-12 max-w-prose text-[15px] text-text-secondary md:mb-24 md:max-w-[52ch] md:text-[16px]"
             style={{ lineHeight: 1.7 }}
           >
-            Four practical disciplines. Every service backed by real shipped
-            work.
+            Four practical disciplines. Every service backed by{" "}
+            <span
+              className="font-normal italic text-text-primary"
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontSize: "1.08em",
+                letterSpacing: "-0.005em",
+              }}
+            >
+              real
+            </span>{" "}
+            shipped work.
           </motion.p>
 
           <div
