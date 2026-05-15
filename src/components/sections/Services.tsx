@@ -34,14 +34,14 @@ const SERVICES: Service[] = [
     icon: Cpu,
     title: "Systems Architecture",
     description:
-      "Distributed systems, embedded devices, IoT, edge compute — built to survive the real world.",
+      "Distributed systems, embedded devices, IoT, edge compute. Built to survive the real world.",
     pills: ["Edge", "Raspberry Pi", "IoT", "Python"],
   },
   {
     icon: Eye,
     title: "Computer Vision & ML",
     description:
-      "Object detection, biomass estimation, custom metrics — tuned for low-resource deployment.",
+      "Object detection, biomass estimation, custom metrics, tuned for low-resource deployment.",
     pills: ["YOLOv8", "OpenCV", "Python", "Edge AI"],
   },
   {
