@@ -54,7 +54,7 @@ export function Navbar() {
             href="#home"
             className="group relative font-heading text-2xl font-bold tracking-tight text-text-primary transition-colors duration-300 hover:text-accent"
           >
-            DC<span className="text-accent">.</span>
+            DAC<span className="text-accent">.</span>
           </a>
 
           <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 md:flex">
