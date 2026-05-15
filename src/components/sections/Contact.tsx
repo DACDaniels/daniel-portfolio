@@ -284,13 +284,16 @@ function ChannelCard({
           {label}
         </span>
         <span
-          className="break-all text-text-primary"
+          className="text-text-primary"
           style={{
             fontFamily: "var(--font-dm-sans)",
             fontSize: "13px",
             fontWeight: 500,
             lineHeight: 1.4,
+            wordBreak: "break-word",
+            overflowWrap: "anywhere",
           }}
+          title={handle}
         >
           {handle}
         </span>
@@ -352,7 +355,11 @@ function Clocks({ reduceMotion }: { reduceMotion: boolean }) {
   const visitorZone = state?.visitorZone ?? null;
   const visitorTime = state?.visitorTime ?? null;
   const harareTime = state?.harareTime ?? null;
-  const isHarareVisitor = visitorZone === "Africa/Harare";
+  const sameClockAsHarare =
+    visitorTime !== null &&
+    harareTime !== null &&
+    visitorTime.h === harareTime.h &&
+    visitorTime.m === harareTime.m;
 
   const visitorZoneLabel = useMemo(() => {
     if (!visitorZone) return "";
@@ -375,7 +382,7 @@ function Clocks({ reduceMotion }: { reduceMotion: boolean }) {
 
       {visitorZone === null ? (
         <ClockPlaceholder />
-      ) : isHarareVisitor ? (
+      ) : sameClockAsHarare ? (
         <SingleHarareClock time={harareTime} reduceMotion={reduceMotion} />
       ) : (
         <DualClocks
@@ -449,7 +456,7 @@ function SingleHarareClock({
           lineHeight: 1.6,
         }}
       >
-        Same city as me. Same time. Pick a channel above.
+        We&apos;re on the same clock. Pick a channel above.
       </p>
     </div>
   );
@@ -827,12 +834,20 @@ function SubmitButton({
     return "Send message";
   })();
 
+  const announcement = (() => {
+    if (isSubmitting) return "Sending your message.";
+    if (isSuccess) return "Message sent. Daniel will be in touch.";
+    if (isError) return errorMessage ?? "Could not send. Try again later.";
+    return "";
+  })();
+
   return (
     <button
       type="submit"
       disabled={isSubmitting || isSuccess}
       className="contact-submit"
       data-state={state}
+      aria-live="polite"
     >
       {!reduceMotion && isSubmitting ? (
         <span aria-hidden className="contact-submit-sweep" />
@@ -846,6 +861,25 @@ function SubmitButton({
         {!isSuccess && !isError ? (
           <ArrowUpRight className="h-4 w-4" strokeWidth={2} />
         ) : null}
+      </span>
+
+      <span
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        style={{
+          position: "absolute",
+          width: 1,
+          height: 1,
+          padding: 0,
+          margin: -1,
+          overflow: "hidden",
+          clip: "rect(0,0,0,0)",
+          whiteSpace: "nowrap",
+          border: 0,
+        }}
+      >
+        {announcement}
       </span>
 
       <style jsx>{`
