@@ -118,11 +118,8 @@ const TIMELINE: TimelineEntry[] = [
     date: "May 2024 to Jun 2025",
     title: "ZIMDEF · IT Industrial Attachment",
     body: [
-      "Thirteen months inside a live enterprise data centre ecosystem. Hands-on with VMware virtualisation, enterprise server management, RedHat Linux at production scale, resource allocation, and routine backup operations.",
-      "Participated in the SOPHOS to Checkpoint firewall migration. Worked on RUCKUS wireless infrastructure, CISCO telephony, RADIUS authentication, VLAN segmentation, IP addressing, and enterprise wireless access management.",
-      "Operated alongside SAP Business One, ManageEngine ServiceDesk Plus, and Microsoft 365 administration in an environment where servers, networking, ERP, authentication, communications, and end-user services were all integrated and interdependent. This gave me a practical understanding of how a real institutional IT ecosystem works at the infrastructure layer.",
-      "Also exposed to system maintenance, infrastructure dependency, downtime sensitivity, user support, and IT governance.",
-      "Exposure that transfers directly into cloud computing, DevOps, cybersecurity, systems engineering, backend infrastructure, network engineering, and enterprise software operations.",
+      "Thirteen months inside a live enterprise data centre. Hands-on with VMware virtualisation, RedHat Linux at production scale, server management, and routine backup operations.",
+      "Contributed to the SOPHOS to Checkpoint firewall migration. Worked on RUCKUS wireless, CISCO telephony, RADIUS authentication, and VLAN segmentation. Operated alongside SAP Business One, ManageEngine ServiceDesk Plus, and Microsoft 365 administration in an integrated, interdependent stack.",
     ],
   },
   {
@@ -196,9 +193,9 @@ export function About() {
           variants={containerVariants}
           initial="hidden"
           animate={revealed ? "visible" : "hidden"}
-          className="grid grid-cols-1 gap-14 lg:grid-cols-[3fr_2fr] lg:gap-x-16 lg:gap-y-14"
         >
-          <div className="order-1 min-w-0 lg:order-none lg:row-span-2">
+          <div className="grid grid-cols-1 gap-14 lg:grid-cols-[3fr_2fr] lg:items-start lg:gap-x-16">
+          <div className="order-1 min-w-0 lg:order-none">
             <motion.div variants={itemVariants} className="mb-5 flex items-center gap-3">
               <span
                 className="text-text-tertiary"
@@ -307,15 +304,31 @@ export function About() {
             </motion.div>
           </div>
 
-          <motion.div variants={itemVariants} className="order-3 min-w-0 md:order-2 lg:order-none">
+          <motion.div variants={itemVariants} className="order-2 min-w-0 lg:order-none">
+            <Timeline reduceMotion={reduceMotion} />
+          </motion.div>
+          </div>
+
+          <motion.div
+            variants={itemVariants}
+            className="mt-16 md:mt-20"
+          >
+            <div
+              className="mb-5 flex items-center gap-3 text-text-tertiary"
+              style={{
+                fontFamily: "var(--font-jetbrains-mono)",
+                fontSize: "11px",
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+              }}
+            >
+              <span>Stack</span>
+              <span aria-hidden className="h-px w-10 bg-accent/40" />
+            </div>
             <Marquee row={MARQUEE_ROW_1} direction="left" reduceMotion={reduceMotion} />
             <div className="mt-3">
               <Marquee row={MARQUEE_ROW_2} direction="right" reduceMotion={reduceMotion} />
             </div>
-          </motion.div>
-
-          <motion.div variants={itemVariants} className="order-2 min-w-0 md:order-3 lg:order-none">
-            <Timeline reduceMotion={reduceMotion} />
           </motion.div>
         </motion.div>
       </div>
