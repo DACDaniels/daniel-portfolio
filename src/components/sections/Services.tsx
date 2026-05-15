@@ -16,11 +16,19 @@ import {
 import { BorderBeam } from "@/components/ui/BorderBeam";
 import { useScrollReveal } from "@/lib/useScrollReveal";
 
+type Proof = {
+  label: string;
+  href: string;
+  external?: boolean;
+};
+
 type Service = {
   icon: LucideIcon;
   title: string;
   description: string;
   pills: string[];
+  proof?: Proof;
+  dominant?: boolean;
 };
 
 const SERVICES: Service[] = [
@@ -30,6 +38,12 @@ const SERVICES: Service[] = [
     description:
       "End-to-end web platforms with real payments, auth, and production deployment.",
     pills: ["Next.js", "React", "Node.js", "Flask"],
+    proof: {
+      label: "Shipped in Steadyhands",
+      href: "https://steadyhandscatering.com",
+      external: true,
+    },
+    dominant: true,
   },
   {
     icon: Cpu,
@@ -37,6 +51,10 @@ const SERVICES: Service[] = [
     description:
       "Distributed systems, embedded devices, IoT, edge compute. Built to survive the real world.",
     pills: ["Edge", "Raspberry Pi", "IoT", "Python"],
+    proof: {
+      label: "Shipped in FishTech",
+      href: "/projects/fishtech",
+    },
   },
   {
     icon: Eye,
@@ -44,6 +62,10 @@ const SERVICES: Service[] = [
     description:
       "Object detection, biomass estimation, custom metrics, tuned for low-resource deployment.",
     pills: ["YOLOv8", "OpenCV", "Python", "Edge AI"],
+    proof: {
+      label: "Shipped in FishTech",
+      href: "/projects/fishtech",
+    },
   },
   {
     icon: Sparkles,
@@ -218,23 +240,33 @@ type ServiceCardProps = {
 
 function ServiceCard({ service }: ServiceCardProps) {
   const Icon = service.icon;
+  const dominant = service.dominant === true;
 
   return (
     <article
       data-spotlight-card
-      className="group relative h-full overflow-hidden rounded-[16px] bg-bg-surface p-5 md:p-7"
+      data-cursor-interactive
+      className="group relative flex h-full flex-col overflow-hidden rounded-[16px] p-5 md:p-7"
       style={{
-        border: "1px solid rgba(255, 255, 255, 0.06)",
+        background: dominant ? "rgba(0, 229, 192, 0.025)" : "var(--bg-surface)",
+        border: dominant
+          ? "1px solid rgba(0, 229, 192, 0.22)"
+          : "1px solid rgba(255, 255, 255, 0.06)",
+        boxShadow: dominant
+          ? "0 24px 60px -28px rgba(0, 229, 192, 0.28), 0 0 0 1px rgba(0, 229, 192, 0.06) inset"
+          : undefined,
         transition: "border-color 200ms ease, transform 200ms ease",
         ["--mouse-x" as string]: "50%",
         ["--mouse-y" as string]: "50%",
       }}
       onMouseEnter={(event) => {
-        event.currentTarget.style.borderColor = "rgba(0, 229, 192, 0.3)";
+        event.currentTarget.style.borderColor = "rgba(0, 229, 192, 0.4)";
         event.currentTarget.style.transform = "translateY(-2px)";
       }}
       onMouseLeave={(event) => {
-        event.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.06)";
+        event.currentTarget.style.borderColor = dominant
+          ? "rgba(0, 229, 192, 0.22)"
+          : "rgba(255, 255, 255, 0.06)";
         event.currentTarget.style.transform = "translateY(0)";
       }}
     >
@@ -247,24 +279,60 @@ function ServiceCard({ service }: ServiceCardProps) {
         }}
       />
 
-      <span className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-        <BorderBeam />
-      </span>
-
-      <div className="relative">
-        <div
-          className="mb-3 flex h-10 w-10 items-center justify-center md:mb-4"
-          style={{
-            borderRadius: "10px",
-            background: "rgba(0, 229, 192, 0.1)",
-            border: "1px solid rgba(0, 229, 192, 0.2)",
-          }}
+      {dominant ? (
+        <span
+          className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-100"
+          aria-hidden
         >
-          <Icon size={20} strokeWidth={1.75} className="text-accent" />
+          <BorderBeam />
+        </span>
+      ) : (
+        <span className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <BorderBeam />
+        </span>
+      )}
+
+      <div className="relative flex h-full flex-col">
+        <div className="mb-3 flex items-center justify-between md:mb-4">
+          <div
+            className="flex h-10 w-10 items-center justify-center"
+            style={{
+              borderRadius: "10px",
+              background: dominant
+                ? "rgba(0, 229, 192, 0.18)"
+                : "rgba(0, 229, 192, 0.1)",
+              border: dominant
+                ? "1px solid rgba(0, 229, 192, 0.4)"
+                : "1px solid rgba(0, 229, 192, 0.2)",
+            }}
+          >
+            <Icon size={20} strokeWidth={1.75} className="text-accent" />
+          </div>
+          {dominant ? (
+            <span
+              className="inline-flex items-center gap-1.5 rounded-full border border-accent/40 bg-accent/[0.08] px-2 py-1 text-accent"
+              style={{
+                fontFamily: "var(--font-jetbrains-mono)",
+                fontSize: "9.5px",
+                letterSpacing: "0.18em",
+                lineHeight: 1,
+              }}
+            >
+              <span
+                aria-hidden
+                className="block h-[5px] w-[5px] rounded-full bg-accent"
+                style={{ animation: "live-pulse 2s ease-in-out infinite" }}
+              />
+              FLAGSHIP
+            </span>
+          ) : null}
         </div>
 
         <h3
-          className="mb-2 font-heading text-base font-semibold leading-tight tracking-[-0.015em] text-text-primary md:text-lg"
+          className="mb-2 font-heading font-semibold leading-tight tracking-[-0.015em] text-text-primary"
+          style={{
+            fontSize: dominant ? "20px" : "17px",
+          }}
         >
           {service.title}
         </h3>
@@ -279,24 +347,50 @@ function ServiceCard({ service }: ServiceCardProps) {
           {service.description}
         </p>
 
-        <div className="flex flex-wrap gap-1.5">
-          {service.pills.map((pill) => (
-            <span
-              key={pill}
-              className="font-mono"
+        <div className="mt-auto flex flex-col gap-3">
+          <div className="flex flex-wrap gap-1.5">
+            {service.pills.map((pill) => (
+              <span
+                key={pill}
+                className="font-mono"
+                style={{
+                  fontSize: "11px",
+                  color: "rgba(0, 229, 192, 0.9)",
+                  background: "rgba(0, 229, 192, 0.08)",
+                  border: "1px solid rgba(0, 229, 192, 0.15)",
+                  padding: "4px 10px",
+                  borderRadius: "100px",
+                  lineHeight: 1.4,
+                }}
+              >
+                {pill}
+              </span>
+            ))}
+          </div>
+
+          {service.proof ? (
+            <a
+              href={service.proof.href}
+              {...(service.proof.external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+              className="group/proof inline-flex w-fit items-center gap-1.5 border-t border-white/[0.06] pt-3 text-text-tertiary transition-colors duration-200 hover:text-accent"
               style={{
-                fontSize: "11px",
-                color: "rgba(0, 229, 192, 0.9)",
-                background: "rgba(0, 229, 192, 0.08)",
-                border: "1px solid rgba(0, 229, 192, 0.15)",
-                padding: "4px 10px",
-                borderRadius: "100px",
-                lineHeight: 1.4,
+                fontFamily: "var(--font-jetbrains-mono)",
+                fontSize: "10.5px",
+                letterSpacing: "0.06em",
+                textTransform: "uppercase",
               }}
             >
-              {pill}
-            </span>
-          ))}
+              {service.proof.label}
+              <span
+                aria-hidden
+                className="transition-transform duration-200 group-hover/proof:translate-x-0.5"
+              >
+                →
+              </span>
+            </a>
+          ) : null}
         </div>
       </div>
     </article>
