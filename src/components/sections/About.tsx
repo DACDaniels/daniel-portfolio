@@ -2,41 +2,7 @@
 
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import type { CSSProperties, ReactNode } from "react";
-import {
-  ProjectHighlight,
-  type ProjectHighlightProps,
-} from "@/components/ui/ProjectHighlight";
-import { SteadyhandsMock } from "@/components/ui/project-mocks/SteadyhandsMock";
-import { FishTechSmartFeedMock } from "@/components/ui/project-mocks/FishTechSmartFeedMock";
 import { useScrollReveal } from "@/lib/useScrollReveal";
-
-const HIGHLIGHTS: Omit<ProjectHighlightProps, "variants">[] = [
-  {
-    tone: "live",
-    eyebrow: "// recently shipped",
-    title: "Steadyhands Catering",
-    body: "Production e-commerce platform for Bata Club, Harare. Online ordering, real Paynow payments, and a WhatsApp Business funnel for custom catering inquiries. Built end to end on Next.js, TypeScript and Node.js, live and transacting on Vercel.",
-    signals: ["Live", "Paynow", "WhatsApp", "Next.js", "Vercel"],
-    mock: <SteadyhandsMock />,
-    primary: {
-      label: "View live",
-      href: "https://steadyhandscatering.com",
-      external: true,
-    },
-  },
-  {
-    tone: "building",
-    eyebrow: "// right now · building",
-    title: "FishTech Precision Feeding System",
-    body: "Closed-loop AI instrument for African pond aquaculture. Overhead camera on a Raspberry Pi 5 with a Hailo NPU sees fish, measures them against an auto-calibrated reference, estimates whole-pond biomass with honest confidence intervals, and an integrated auger feeder dispenses the dose. Runs entirely on the device. I'm founding engineer, CV and embedded, full-stack, product designer, and CEO.",
-    signals: ["Edge AI", "Hailo NPU", "YOLO-Pose", "Pi 5", "Pilot 2026"],
-    mock: <FishTechSmartFeedMock />,
-    primary: {
-      label: "Read the case study",
-      href: "/projects/fishtech",
-    },
-  },
-];
 
 type TimelineEntry =
   | {
@@ -254,46 +220,36 @@ export function About() {
               lineHeight: 1.08,
             }}
           >
-            What I&apos;m working on{" "}
-            <span
-              className="font-normal italic"
-              style={{
-                fontFamily: "var(--font-serif)",
-                color: "#00E5C0",
-                letterSpacing: "-0.025em",
-              }}
-            >
-              right now
-            </span>
-            .
+            About me.
           </motion.h2>
-
-          <motion.p
-            variants={itemVariants}
-            className="mt-7 max-w-[52ch] text-text-secondary"
-            style={{
-              fontFamily: "var(--font-dm-sans)",
-              fontSize: "clamp(16px, 1.5vw, 18px)",
-              lineHeight: 1.7,
-            }}
-          >
-            Final-year Computer Science student at NUST, based in Harare. For
-            two to three years I&apos;ve been building real systems for real
-            users. Full-stack platforms, computer vision pipelines, and now an
-            edge-AI IoT product industrialising for the African market.
-          </motion.p>
 
           <motion.div
             variants={itemVariants}
-            className="mt-10 grid grid-cols-1 gap-5 md:gap-6 lg:mt-14 lg:grid-cols-2"
+            className="mt-8 max-w-[58ch] text-text-secondary"
+            style={{
+              fontFamily: "var(--font-dm-sans)",
+              fontSize: "clamp(16px, 1.5vw, 18px)",
+              lineHeight: 1.75,
+            }}
           >
-            {HIGHLIGHTS.map((highlight) => (
-              <ProjectHighlight
-                key={highlight.title}
-                {...highlight}
-                variants={itemVariants}
-              />
-            ))}
+            <p>
+              Final-year Computer Science student at NUST, based in Harare,
+              Zimbabwe. For two to three years I&apos;ve been building real
+              systems for real users, with most of my time spent in the seam
+              between full-stack web, computer vision, and edge devices.
+            </p>
+            <div
+              aria-hidden
+              className="my-7 h-px w-12 bg-accent/40"
+            />
+            <p>
+              What I care about is the work that survives contact with the
+              real world. Software that has to ship. Hardware that has to
+              work. Problems people actually feel. I&apos;d rather own a
+              system end to end than hand it off the moment it starts
+              hurting, and I&apos;d rather see African problems treated as
+              engineering problems than as charity cases.
+            </p>
           </motion.div>
 
           <motion.div
