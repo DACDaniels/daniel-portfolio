@@ -26,6 +26,8 @@ export function Navbar() {
   const bgAlpha = useTransform(scrollY, [0, 80], [0, 0.8]);
   const blurPx = useTransform(scrollY, [0, 80], [0, 14]);
   const borderAlpha = useTransform(scrollY, [0, 80], [0, 0.06]);
+  const eyebrowOpacity = useTransform(scrollY, [220, 320], [0, 1]);
+  const eyebrowX = useTransform(scrollY, [220, 320], [-6, 0]);
 
   const bg = useMotionTemplate`rgba(8, 8, 8, ${bgAlpha})`;
   const backdrop = useMotionTemplate`blur(${blurPx}px) saturate(140%)`;
@@ -113,12 +115,36 @@ export function Navbar() {
         className="fixed inset-x-0 top-0 z-50"
       >
         <nav className="mx-auto flex h-20 max-w-[1400px] items-center justify-between px-6 md:px-10">
-          <a
-            href={onHomePage ? "#home" : "/"}
-            className="group relative font-heading text-2xl font-bold tracking-tight text-text-primary transition-colors duration-300 hover:text-accent"
-          >
-            DAC<span className="text-accent">.</span>
-          </a>
+          <div className="flex items-baseline gap-3">
+            <a
+              href={onHomePage ? "#home" : "/"}
+              className="group relative font-heading text-2xl font-bold tracking-tight text-text-primary transition-colors duration-300 hover:text-accent"
+            >
+              DAC<span className="text-accent">.</span>
+            </a>
+            {onHomePage ? (
+              <motion.span
+                aria-hidden
+                style={{
+                  opacity: eyebrowOpacity,
+                  x: eyebrowX,
+                }}
+                className="hidden text-text-tertiary sm:inline-block"
+              >
+                <span
+                  style={{
+                    fontFamily: "var(--font-jetbrains-mono)",
+                    fontSize: "11px",
+                    letterSpacing: "0.2em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  <span className="text-accent">//</span> section ·{" "}
+                  <span className="text-text-secondary">{activeId}</span>
+                </span>
+              </motion.span>
+            ) : null}
+          </div>
 
           <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 md:flex">
             {linksWithHrefs.map((link) => {
