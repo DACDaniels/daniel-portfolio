@@ -109,7 +109,7 @@ export function Footer() {
             aria-hidden
             className="font-heading font-bold text-text-primary pt-10 pb-16 md:whitespace-nowrap"
             style={{
-              fontSize: "clamp(2.75rem, 10vw, 10.5rem)",
+              fontSize: "clamp(2.5rem, 7.5vw, 7rem)",
               letterSpacing: "-0.05em",
               lineHeight: 0.9,
             }}
