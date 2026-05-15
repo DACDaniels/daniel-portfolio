@@ -8,11 +8,15 @@ import { FloatingBadge } from "@/components/ui/FloatingBadge";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { NumberTicker } from "@/components/ui/NumberTicker";
 
-const STATS = [
-  { value: 5, suffix: "+", label: "Projects" },
-  { value: 3, suffix: "+", label: "Years" },
-  { value: 2, suffix: "", label: "Production Systems" },
-  { value: 100, suffix: "%", label: "Committed" },
+type Stat =
+  | { kind: "number"; value: number; suffix: string; label: string }
+  | { kind: "text"; primary: string; label: string };
+
+const STATS: Stat[] = [
+  { kind: "number", value: 5, suffix: "+", label: "Projects" },
+  { kind: "number", value: 3, suffix: "+", label: "Years" },
+  { kind: "number", value: 2, suffix: "", label: "Production Systems" },
+  { kind: "text", primary: "Final Year", label: "BSc CS, NUST" },
 ];
 
 export function Hero() {
@@ -68,7 +72,7 @@ export function Hero() {
               AVAILABLE FOR WORK
             </motion.div>
 
-            <h1 className="font-heading text-[clamp(1.75rem,8vw,2.5rem)] font-semibold leading-[0.95] tracking-[-0.04em] text-text-primary md:text-[clamp(1.875rem,4.5vw,3.5rem)] lg:text-[clamp(2.5rem,5.25vw,4.5rem)]">
+            <h1 className="font-heading text-[clamp(1.75rem,8vw,2.5rem)] font-semibold leading-[0.95] tracking-[-0.04em] text-text-primary md:text-[clamp(1.875rem,4.5vw,3.5rem)] lg:text-[clamp(2.75rem,6.5vw,5.75rem)]">
               <AnimatedText
                 text="Daniel"
                 as="span"
@@ -221,31 +225,31 @@ export function Hero() {
 
             <FloatingBadge
               label="Python"
-              position={{ x: "-18%", y: "8%" }}
+              position={{ x: "-30%", y: "6%" }}
               delay={0}
               duration={6}
             />
             <FloatingBadge
               label="Next.js"
-              position={{ x: "92%", y: "18%" }}
+              position={{ x: "98%", y: "16%" }}
               delay={0.4}
               duration={7}
             />
             <FloatingBadge
               label="OpenCV"
-              position={{ x: "-22%", y: "52%" }}
+              position={{ x: "-32%", y: "52%" }}
               delay={0.8}
               duration={5.5}
             />
             <FloatingBadge
               label="Flask"
-              position={{ x: "90%", y: "62%" }}
+              position={{ x: "96%", y: "62%" }}
               delay={1.2}
               duration={6.5}
             />
             <FloatingBadge
               label="Pi"
-              position={{ x: "-12%", y: "86%" }}
+              position={{ x: "-26%", y: "88%" }}
               delay={1.6}
               duration={7.2}
             />
@@ -266,11 +270,17 @@ export function Hero() {
               className="flex flex-col gap-1 px-4 py-7 md:px-6 md:py-8"
             >
               <span className="font-heading text-3xl font-bold tracking-[-0.03em] text-accent md:text-4xl lg:text-5xl">
-                <NumberTicker
-                  value={stat.value}
-                  suffix={stat.suffix}
-                  triggerOnMount
-                />
+                {stat.kind === "number" ? (
+                  <NumberTicker
+                    value={stat.value}
+                    suffix={stat.suffix}
+                    triggerOnMount
+                  />
+                ) : (
+                  <span className="block whitespace-nowrap text-[1.5rem] leading-tight md:text-[1.875rem] lg:text-[2rem]">
+                    {stat.primary}
+                  </span>
+                )}
               </span>
               <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-text-tertiary md:text-[11px]">
                 {stat.label}
