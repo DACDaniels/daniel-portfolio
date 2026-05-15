@@ -4,10 +4,21 @@ import Link from "next/link";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import type { ReactNode } from "react";
 import { Navbar } from "@/components/sections/Navbar";
+import { CaseSectionProgress } from "@/components/ui/CaseSectionProgress";
 import { FishTechApparatus } from "@/components/ui/FishTechApparatus";
 import { FishTechArchitecture } from "@/components/ui/FishTechArchitecture";
 import { FishTechSmartFeedMock } from "@/components/ui/project-mocks/FishTechSmartFeedMock";
 import { useScrollReveal } from "@/lib/useScrollReveal";
+
+const PROGRESS_ITEMS = [
+  { id: "problem", label: "Problem" },
+  { id: "build", label: "The build" },
+  { id: "pipeline", label: "Closed loop" },
+  { id: "innovations", label: "Innovations" },
+  { id: "stack", label: "Stack" },
+  { id: "state", label: "Current state" },
+  { id: "next", label: "What's next" },
+];
 
 type Innovation = {
   label: string;
@@ -125,6 +136,7 @@ export default function FishTechCaseStudyPage() {
   return (
     <>
       <Navbar />
+      <CaseSectionProgress items={PROGRESS_ITEMS} />
 
       <main className="relative w-full bg-bg-primary pb-32 pt-28 md:pt-32">
         <div className="mx-auto w-full max-w-3xl px-6 md:px-8">
