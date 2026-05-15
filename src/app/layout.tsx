@@ -8,6 +8,7 @@ import {
 import "./globals.css";
 import ExtensionErrorSuppressor from "@/components/ExtensionErrorSuppressor";
 import { CustomCursor } from "@/components/ui/CustomCursor";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
 
 const geist = Geist({
   variable: "--font-geist",
@@ -87,6 +88,7 @@ export default function RootLayout({
         <a href="#home" className="skip-link">
           Skip to main content
         </a>
+        <ScrollProgress />
         <CustomCursor />
         {children}
       </body>
