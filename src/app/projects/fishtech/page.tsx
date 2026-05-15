@@ -4,6 +4,8 @@ import Link from "next/link";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import type { ReactNode } from "react";
 import { Navbar } from "@/components/sections/Navbar";
+import { FishTechApparatus } from "@/components/ui/FishTechApparatus";
+import { FishTechArchitecture } from "@/components/ui/FishTechArchitecture";
 import { FishTechSmartFeedMock } from "@/components/ui/project-mocks/FishTechSmartFeedMock";
 import { useScrollReveal } from "@/lib/useScrollReveal";
 
@@ -155,14 +157,14 @@ export default function FishTechCaseStudyPage() {
 
             <motion.div
               variants={itemVariants}
-              className="mt-3 flex flex-wrap items-center gap-2"
+              className="mt-3 flex flex-wrap items-center gap-3"
             >
               <span
-                className="inline-flex items-center gap-1.5 rounded-full border border-[#FFC04D]/35 bg-[#FFC04D]/[0.06] text-[#FFC04D]"
+                className="inline-flex items-center gap-1.5 rounded-full border border-[#FFC04D]/40 bg-[#FFC04D]/[0.08] text-[#FFC04D]"
                 style={{
                   fontFamily: "var(--font-jetbrains-mono)",
                   fontSize: "10px",
-                  letterSpacing: "0.05em",
+                  letterSpacing: "0.08em",
                   padding: "4px 10px",
                   lineHeight: 1.4,
                 }}
@@ -178,23 +180,16 @@ export default function FishTechCaseStudyPage() {
                 />
                 BUILDING
               </span>
-              {["Late-stage prototype", "Industrialising for pilot"].map(
-                (badge) => (
-                  <span
-                    key={badge}
-                    className="rounded-full border border-white/10 bg-white/5 text-white/70"
-                    style={{
-                      fontFamily: "var(--font-jetbrains-mono)",
-                      fontSize: "10px",
-                      letterSpacing: "0.05em",
-                      padding: "4px 10px",
-                      lineHeight: 1.4,
-                    }}
-                  >
-                    {badge}
-                  </span>
-                ),
-              )}
+              <span
+                className="text-white/50"
+                style={{
+                  fontFamily: "var(--font-jetbrains-mono)",
+                  fontSize: "11px",
+                  letterSpacing: "0.04em",
+                }}
+              >
+                Late-stage prototype · industrialising for pilot
+              </span>
             </motion.div>
 
             <motion.h1
@@ -260,7 +255,50 @@ export default function FishTechCaseStudyPage() {
             transition={{ duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }}
             className="aspect-video overflow-hidden rounded-2xl border border-white/[0.08]"
           >
-            <FishTechSmartFeedMock />
+            <FishTechApparatus />
+          </motion.div>
+
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-4"
+          >
+            {[
+              { k: "Camera", v: "Sony IMX500" },
+              { k: "Compute", v: "Pi 5 · Hailo-8L" },
+              { k: "Vision", v: "YOLO-Pose" },
+              { k: "Actuation", v: "Auger feeder" },
+            ].map((item) => (
+              <div
+                key={item.k}
+                className="rounded-xl border border-white/[0.06] bg-bg-surface px-4 py-3"
+              >
+                <div
+                  className="text-white/40"
+                  style={{
+                    fontFamily: "var(--font-jetbrains-mono)",
+                    fontSize: "10px",
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {item.k}
+                </div>
+                <div
+                  className="mt-1.5 text-white"
+                  style={{
+                    fontFamily: "var(--font-geist)",
+                    fontSize: "14px",
+                    fontWeight: 500,
+                    letterSpacing: "-0.01em",
+                  }}
+                >
+                  {item.v}
+                </div>
+              </div>
+            ))}
           </motion.div>
         </div>
 
@@ -321,8 +359,63 @@ export default function FishTechCaseStudyPage() {
           </CaseSection>
 
           <CaseSection
-            id="innovations"
+            id="pipeline"
             eyebrow="// section-03"
+            title="The closed loop, end to end."
+            itemVariants={itemVariants}
+            containerVariants={containerVariants}
+          >
+            <motion.p variants={itemVariants}>
+              Eight stages, one device. Detection runs on the Hailo
+              accelerator. Calibration runs every frame against a floating
+              ChArUco fiducial and an ultrasonic depth reading. Biomass and
+              dose are computed in Python on the Pi. The auger fires. The
+              cycle repeats.
+            </motion.p>
+            <motion.div variants={itemVariants} className="pt-4">
+              <FishTechArchitecture />
+            </motion.div>
+            <motion.div
+              variants={itemVariants}
+              className="grid grid-cols-1 gap-3 pt-3 md:grid-cols-2"
+            >
+              <div className="aspect-video overflow-hidden rounded-xl border border-white/[0.06]">
+                <FishTechSmartFeedMock />
+              </div>
+              <div className="flex flex-col justify-center gap-3 rounded-xl border border-white/[0.06] bg-bg-surface px-5 py-5 md:px-6">
+                <div
+                  className="text-accent"
+                  style={{
+                    fontFamily: "var(--font-jetbrains-mono)",
+                    fontSize: "10px",
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  // what the camera sees
+                </div>
+                <p
+                  className="text-white/65"
+                  style={{
+                    fontFamily: "var(--font-dm-sans)",
+                    fontSize: "14px",
+                    lineHeight: 1.65,
+                  }}
+                >
+                  YOLO-Pose returns four keypoints per fish: snout, dorsal
+                  origin, peduncle, tail-tip. Length is the sum of geodesic
+                  segments, not a bounding-box diagonal — orientation-
+                  invariant and far more accurate for fish at an angle.
+                  ChArUco + ultrasonic give the pixel-to-centimetre
+                  conversion per frame, so the camera can sit at any depth.
+                </p>
+              </div>
+            </motion.div>
+          </CaseSection>
+
+          <CaseSection
+            id="innovations"
+            eyebrow="// section-04"
             title="The innovations"
             itemVariants={itemVariants}
             containerVariants={containerVariants}
@@ -376,7 +469,7 @@ export default function FishTechCaseStudyPage() {
 
           <CaseSection
             id="stack"
-            eyebrow="// section-04"
+            eyebrow="// section-05"
             title="The stack"
             itemVariants={itemVariants}
             containerVariants={containerVariants}
@@ -421,7 +514,7 @@ export default function FishTechCaseStudyPage() {
 
           <CaseSection
             id="state"
-            eyebrow="// section-05"
+            eyebrow="// section-06"
             title="The system sees fish, decides the dose, and is being industrialised."
             itemVariants={itemVariants}
             containerVariants={containerVariants}
@@ -446,7 +539,7 @@ export default function FishTechCaseStudyPage() {
 
           <CaseSection
             id="next"
-            eyebrow="// section-06"
+            eyebrow="// section-07"
             title="What's next"
             itemVariants={itemVariants}
             containerVariants={containerVariants}
@@ -477,6 +570,8 @@ export default function FishTechCaseStudyPage() {
               ))}
             </motion.ul>
           </CaseSection>
+
+          <ClosingCTA reduceMotion={reduceMotion} />
 
           <RelatedSection containerVariants={containerVariants}>
             <motion.div
@@ -628,6 +723,85 @@ function CaseSection({
         {children}
       </motion.div>
     </motion.section>
+  );
+}
+
+function ClosingCTA({ reduceMotion }: { reduceMotion: boolean }) {
+  const { ref, revealed } = useScrollReveal<HTMLDivElement>();
+  return (
+    <motion.div
+      ref={ref}
+      initial={reduceMotion ? false : { opacity: 0, y: 24, filter: "blur(8px)" }}
+      animate={
+        reduceMotion
+          ? undefined
+          : revealed
+            ? { opacity: 1, y: 0, filter: "blur(0px)" }
+            : { opacity: 0, y: 24, filter: "blur(8px)" }
+      }
+      transition={{ duration: 0.7, ease: [0.2, 0.8, 0.2, 1] }}
+      className="relative overflow-hidden rounded-2xl border border-accent/25 bg-bg-surface p-7 md:p-10"
+      style={{
+        boxShadow:
+          "0 24px 60px -28px rgba(0, 229, 192, 0.28), 0 0 0 1px rgba(0, 229, 192, 0.05) inset",
+      }}
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-32 -right-24 h-[280px] w-[280px] rounded-full bg-accent opacity-[0.18] blur-[100px]"
+      />
+      <div className="relative flex flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-10">
+        <div>
+          <div
+            className="text-accent"
+            style={{
+              fontFamily: "var(--font-jetbrains-mono)",
+              fontSize: "11px",
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              marginBottom: "10px",
+            }}
+          >
+            // similar problem? let&apos;s talk
+          </div>
+          <h3
+            className="font-heading font-semibold text-white"
+            style={{
+              fontSize: "clamp(1.5rem, 2.5vw, 1.875rem)",
+              letterSpacing: "-0.025em",
+              lineHeight: 1.15,
+            }}
+          >
+            Have a CV-on-edge or IoT product you&apos;re trying to ship?
+          </h3>
+          <p
+            className="mt-3 max-w-[52ch] text-white/60"
+            style={{
+              fontFamily: "var(--font-dm-sans)",
+              fontSize: "15px",
+              lineHeight: 1.65,
+            }}
+          >
+            FishTech is the proof. The same playbook works for fleet
+            telemetry, precision agriculture, retail inventory vision, and
+            any other on-device AI instrument that has to survive without a
+            cloud.
+          </p>
+        </div>
+        <Link
+          href="/#contact"
+          className="group inline-flex items-center gap-2 self-start rounded-full bg-accent px-6 py-3 text-sm font-semibold text-bg-primary shadow-[0_12px_32px_-10px_rgba(0,229,192,0.5)] transition-shadow duration-300 hover:shadow-[0_16px_40px_-10px_rgba(0,229,192,0.75)]"
+        >
+          Start a conversation
+          <span
+            aria-hidden
+            className="transition-transform duration-300 group-hover:translate-x-0.5"
+          >
+            →
+          </span>
+        </Link>
+      </div>
+    </motion.div>
   );
 }
 
