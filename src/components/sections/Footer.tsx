@@ -77,16 +77,12 @@ export function Footer() {
   return (
     <footer
       id="footer"
-      className="relative w-full overflow-hidden bg-bg-primary"
-      style={{ paddingTop: "80px", paddingBottom: "24px" }}
+      className="relative w-full overflow-hidden bg-bg-primary pt-20 pb-6"
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 z-0 -translate-x-1/2"
+        className="pointer-events-none absolute bottom-[200px] left-1/2 z-0 h-[400px] w-[min(800px,90vw)] -translate-x-1/2"
         style={{
-          bottom: "200px",
-          width: "min(800px, 90vw)",
-          height: "400px",
           background:
             "radial-gradient(ellipse at center, rgba(0, 229, 192, 0.08), transparent 70%)",
         }}
@@ -101,55 +97,40 @@ export function Footer() {
         >
           <motion.div
             variants={itemVariants}
-            className="text-accent"
-            style={{
-              fontFamily: "var(--font-jetbrains-mono)",
-              fontSize: "12px",
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-            }}
+            className="font-mono text-[12px] uppercase tracking-[0.1em] text-accent"
           >
             {"// footer.tsx"}
           </motion.div>
 
-          <motion.h2
+          <motion.div
             variants={signatureVariants}
-            className="footer-signature font-heading font-bold text-text-primary"
+            aria-hidden
+            className="font-heading font-bold text-text-primary pt-10 pb-16 md:whitespace-nowrap"
             style={{
               fontSize: "clamp(2.75rem, 10vw, 10.5rem)",
               letterSpacing: "-0.05em",
               lineHeight: 0.9,
-              padding: "40px 0 64px",
             }}
           >
-            <motion.span
-              variants={wordVariants}
-              className="footer-signature-word inline-block"
-            >
+            <motion.span variants={wordVariants} className="inline-block">
               {NAME_WORDS[0]}
             </motion.span>{" "}
-            <motion.span
-              variants={wordVariants}
-              className="footer-signature-word inline-block"
-            >
+            <motion.span variants={wordVariants} className="inline-block">
               {NAME_WORDS[1]}
               <span
-                aria-hidden
-                className="footer-signature-period"
+                className="inline-block w-[0.18em] h-[0.18em] rounded-[0.025em] bg-accent align-baseline ml-[0.04em]"
                 style={{
-                  background: "#00E5C0",
                   filter: "drop-shadow(0 0 24px rgba(0, 229, 192, 0.5))",
                 }}
               />
             </motion.span>
-          </motion.h2>
+          </motion.div>
 
           <motion.div
             variants={itemVariants}
             aria-hidden
+            className="h-[0.5px] w-full"
             style={{
-              height: "0.5px",
-              width: "100%",
               background:
                 "linear-gradient(to right, transparent, rgba(255, 255, 255, 0.12) 20%, rgba(255, 255, 255, 0.12) 80%, transparent)",
             }}
@@ -157,43 +138,25 @@ export function Footer() {
 
           <motion.div
             variants={itemVariants}
-            className="footer-meta-grid"
-            style={{
-              display: "grid",
-              padding: "48px 0",
-            }}
+            className="grid grid-cols-1 gap-8 py-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:gap-12"
           >
             <FooterColumn label="Identity">
-              <div
-                className="font-heading text-text-primary"
-                style={{
-                  fontSize: "22px",
-                  fontWeight: 700,
-                  letterSpacing: "-0.02em",
-                  lineHeight: 1.15,
-                }}
-              >
-                Daniel Chadambuka
+              <div className="font-heading text-[22px] font-bold leading-[1.15] tracking-[-0.02em] text-text-primary">
+                Software Engineer
               </div>
-              <div
-                className="text-text-secondary"
-                style={{
-                  fontFamily: "var(--font-dm-sans)",
-                  fontSize: "14px",
-                  fontWeight: 400,
-                  lineHeight: 1.5,
-                  marginTop: "6px",
-                }}
-              >
-                Software Engineer · Harare, ZW
+              <div className="mt-1.5 font-body text-[14px] font-normal leading-[1.5] text-white/60">
+                Harare, ZW · Available for remote work
               </div>
             </FooterColumn>
 
             <FooterColumn label="Navigate">
-              <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
+              <ul className="m-0 list-none p-0">
                 {NAV_LINKS.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className="footer-nav-link">
+                    <a
+                      href={link.href}
+                      className="block font-body text-[14px] font-normal leading-[2] text-white/70 no-underline transition-colors duration-200 hover:text-accent"
+                    >
                       {link.label}
                     </a>
                   </li>
@@ -202,7 +165,7 @@ export function Footer() {
             </FooterColumn>
 
             <FooterColumn label="Connect">
-              <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
+              <ul className="m-0 list-none p-0">
                 {CONNECT_LINKS.map((link) => {
                   const isExternal = link.href.startsWith("http");
                   return (
@@ -216,12 +179,12 @@ export function Footer() {
                             ? `${link.label} (opens in new tab)`
                             : link.label
                         }
-                        className="footer-connect-link"
+                        className="group inline-flex items-center gap-2 font-body text-[14px] font-normal leading-[2] text-white/70 no-underline transition-colors duration-200 hover:text-accent"
                       >
                         <span>{link.label}</span>
                         <ArrowUpRight
                           aria-hidden
-                          className="footer-connect-arrow"
+                          className="text-white/30 transition-[color,transform] duration-200 group-hover:translate-x-[2px] group-hover:-translate-y-[2px] group-hover:text-accent"
                           size={14}
                           strokeWidth={2}
                         />
@@ -233,17 +196,7 @@ export function Footer() {
             </FooterColumn>
 
             <FooterColumn label="Colophon">
-              <ul
-                style={{
-                  listStyle: "none",
-                  margin: 0,
-                  padding: 0,
-                  fontFamily: "var(--font-jetbrains-mono)",
-                  fontSize: "12px",
-                  color: "rgba(255, 255, 255, 0.5)",
-                  lineHeight: 1.9,
-                }}
-              >
+              <ul className="m-0 list-none p-0 font-mono text-[12px] leading-[1.9] text-white/50">
                 {COLOPHON_LINES.map((line) => (
                   <li key={line}>{line}</li>
                 ))}
@@ -253,142 +206,30 @@ export function Footer() {
 
           <motion.div
             variants={itemVariants}
-            className="footer-bottom-bar"
-            style={{
-              borderTop: "0.5px solid rgba(255, 255, 255, 0.06)",
-              padding: "24px 0",
-            }}
+            className="flex flex-col items-center gap-4 border-t-[0.5px] border-white/[0.06] py-6 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left"
           >
-            <p
-              className="footer-copyright"
-              style={{
-                fontFamily: "var(--font-jetbrains-mono)",
-                fontSize: "11px",
-                letterSpacing: "0.06em",
-                color: "rgba(255, 255, 255, 0.35)",
-                margin: 0,
-                textTransform: "uppercase",
-              }}
-            >
+            <p className="m-0 font-mono text-[11px] uppercase tracking-[0.06em] text-text-tertiary">
               © 2026 Daniel Chadambuka · All rights reserved
             </p>
 
-            <div
-              className="footer-status"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "10px",
-              }}
-            >
+            <div className="inline-flex items-center gap-2.5">
               <span
                 aria-hidden
+                className="inline-block h-1.5 w-1.5 rounded-full bg-accent"
                 style={{
-                  display: "inline-block",
-                  width: "6px",
-                  height: "6px",
-                  borderRadius: "999px",
-                  background: "#00E5C0",
-                  boxShadow: "0 0 8px #00E5C0",
+                  boxShadow: "0 0 8px var(--accent)",
                   animation: reduceMotion
                     ? "none"
                     : "live-pulse 2s ease-in-out infinite",
                 }}
               />
-              <span
-                style={{
-                  fontFamily: "var(--font-jetbrains-mono)",
-                  fontSize: "11px",
-                  letterSpacing: "0.06em",
-                  color: "rgba(255, 255, 255, 0.5)",
-                  textTransform: "uppercase",
-                }}
-              >
+              <span className="font-mono text-[11px] uppercase tracking-[0.06em] text-white/50">
                 Available for work
               </span>
             </div>
           </motion.div>
         </motion.div>
       </div>
-
-      <style>{`
-        .footer-signature-period {
-          display: inline-block;
-          width: 0.18em;
-          height: 0.18em;
-          border-radius: 0.025em;
-          vertical-align: baseline;
-          margin-left: 0.04em;
-        }
-        @media (min-width: 768px) {
-          .footer-signature {
-            white-space: nowrap;
-          }
-        }
-        .footer-meta-grid {
-          grid-template-columns: 1fr;
-          gap: 32px;
-        }
-        @media (min-width: 768px) {
-          .footer-meta-grid {
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
-          }
-        }
-        @media (min-width: 1024px) {
-          .footer-meta-grid {
-            grid-template-columns: 1.4fr 1fr 1fr 1fr;
-            gap: 48px;
-          }
-        }
-        .footer-nav-link,
-        .footer-connect-link {
-          font-family: var(--font-dm-sans);
-          font-size: 14px;
-          font-weight: 400;
-          color: rgba(255, 255, 255, 0.7);
-          line-height: 2;
-          text-decoration: none;
-          transition: color 200ms ease;
-        }
-        .footer-nav-link:hover,
-        .footer-connect-link:hover {
-          color: #00e5c0;
-        }
-        .footer-connect-link {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-        }
-        .footer-connect-arrow {
-          color: rgba(255, 255, 255, 0.3);
-          transition:
-            color 200ms ease,
-            transform 200ms ease;
-        }
-        .footer-connect-link:hover .footer-connect-arrow {
-          color: #00e5c0;
-          transform: translate(2px, -2px);
-        }
-        .footer-bottom-bar {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: space-between;
-          gap: 16px;
-        }
-        @media (max-width: 639px) {
-          .footer-bottom-bar {
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 16px;
-          }
-          .footer-copyright {
-            text-align: center;
-          }
-        }
-      `}</style>
     </footer>
   );
 }
@@ -402,16 +243,7 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <div
-        style={{
-          fontFamily: "var(--font-jetbrains-mono)",
-          fontSize: "11px",
-          letterSpacing: "0.12em",
-          textTransform: "uppercase",
-          color: "rgba(255, 255, 255, 0.35)",
-          marginBottom: "16px",
-        }}
-      >
+      <div className="mb-4 font-mono text-[11px] uppercase tracking-[0.12em] text-text-tertiary">
         {label}
       </div>
       {children}
