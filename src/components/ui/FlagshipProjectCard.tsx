@@ -3,6 +3,7 @@
 import { motion, type Variants } from "motion/react";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { BorderBeam } from "@/components/ui/BorderBeam";
 
 export type FlagshipProjectProps = {
   number: string;
@@ -53,6 +54,7 @@ export function FlagshipProjectCard({
 
   return (
     <motion.article
+      data-cursor-interactive
       variants={variants}
       className="group relative overflow-hidden rounded-[24px] border border-white/[0.06] bg-bg-surface transition-[border-color,transform] duration-300 hover:-translate-y-1 hover:border-accent/30"
       style={{
@@ -60,6 +62,9 @@ export function FlagshipProjectCard({
           "0 28px 70px -28px rgba(0, 229, 192, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.02) inset",
       }}
     >
+      <span className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+        <BorderBeam duration={5} />
+      </span>
       <div className="pointer-events-none absolute -top-px left-1/2 h-px w-[60%] -translate-x-1/2 bg-gradient-to-r from-transparent via-accent/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
       <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr]">

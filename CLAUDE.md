@@ -45,6 +45,19 @@ Colors:
 - text-secondary: rgba(255,255,255,0.6)
 - text-tertiary: rgba(255,255,255,0.35)
 
+Status palette (project + section badges):
+
+- LIVE: #00E5C0 (accent) — production, transacting
+- BUILDING: #FFC04D (amber) — late-stage prototype in active development
+  → e.g. FishTech Precision Feeding System, pre-pilot
+- RESEARCH: rgba(255,255,255,0.85) — earlier-stage exploration
+- META: rgba(255,255,255,0.6) — self-referential / not a product
+
+The amber BUILDING token is the only colour outside the locked teal palette.
+It exists so a research-stage project doesn't read as live (false signal) or
+as inert text (under-sells the work). Use sparingly — only on status badges
+and case-study eyebrows, never on body copy or accent flourishes.
+
 Typography:
 
 - Heading font: Geist (weights 500, 600, 700)

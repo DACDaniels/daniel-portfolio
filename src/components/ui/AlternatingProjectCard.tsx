@@ -2,6 +2,7 @@
 
 import { motion, type Variants } from "motion/react";
 import type { ReactNode } from "react";
+import { BorderBeam } from "@/components/ui/BorderBeam";
 
 export type AlternatingProjectProps = {
   number: string;
@@ -58,6 +59,7 @@ export function AlternatingProjectCard({
       className="group relative grid grid-cols-1 items-center gap-6 md:gap-10 lg:grid-cols-12 lg:gap-12"
     >
       <div
+        data-cursor-interactive
         className={`relative overflow-hidden rounded-2xl border border-white/[0.06] bg-bg-surface transition-[border-color,transform] duration-300 group-hover:-translate-y-1 group-hover:border-accent/30 lg:col-span-7 ${
           side === "right" ? "lg:order-2" : "lg:order-1"
         }`}
@@ -66,6 +68,9 @@ export function AlternatingProjectCard({
             "0 20px 50px -28px rgba(0, 229, 192, 0.14), 0 0 0 1px rgba(255, 255, 255, 0.02) inset",
         }}
       >
+        <span className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <BorderBeam duration={5} />
+        </span>
         <div className="aspect-[16/10] overflow-hidden">
           <div
             className={`absolute right-3 top-3 z-10 inline-flex items-center gap-1.5 rounded-full border bg-black/80 px-2 py-1 backdrop-blur-md ${statusStyles}`}
