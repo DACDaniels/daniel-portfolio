@@ -1,7 +1,67 @@
 "use client";
 
 import { motion, useReducedMotion, type Variants } from "motion/react";
-import type { CSSProperties } from "react";
+import { Fragment, type CSSProperties, type ReactNode } from "react";
+
+const HIGHLIGHT_TERMS = [
+  "FishTech Precision Feeding System",
+  "FishTech Consultancy",
+  "Steadyhands Catering",
+  "ManageEngine ServiceDesk Plus",
+  "SAP Business One",
+  "Microsoft 365",
+  "Raspberry Pi 5",
+  "Hailo NPU",
+  "Bata Club",
+  "RedHat Linux",
+  "Wi-Fi hotspot",
+  "Checkpoint",
+  "VMware",
+  "SOPHOS",
+  "RUCKUS",
+  "CISCO",
+  "RADIUS",
+  "VLAN",
+  "Paynow",
+  "Ecocash",
+  "OneMoney",
+  "Next.js",
+  "TypeScript",
+  "Node.js",
+  "Vercel",
+  "NUST",
+  "Zimbabwe",
+  "Harare",
+];
+
+const HIGHLIGHT_PATTERN = new RegExp(
+  `(${[...HIGHLIGHT_TERMS]
+    .sort((a, b) => b.length - a.length)
+    .map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+    .join("|")})`,
+  "g",
+);
+
+const HIGHLIGHT_SET = new Set(HIGHLIGHT_TERMS);
+
+function highlightEntities(text: string): ReactNode {
+  const parts = text.split(HIGHLIGHT_PATTERN);
+  return parts.map((part, i) =>
+    HIGHLIGHT_SET.has(part) ? (
+      <span key={i} className="text-text-primary">
+        {part}
+      </span>
+    ) : (
+      <Fragment key={i}>{part}</Fragment>
+    ),
+  );
+}
+
+const BIO_STEADYHANDS =
+  "I recently delivered Steadyhands Catering at Bata Club, an end-to-end production platform built on Next.js, TypeScript, and Node.js, with Paynow gateway integration for Ecocash, OneMoney, Visa and Mastercard, and a WhatsApp Business funnel for custom catering inquiries. It's live, transacting, and deployed on Vercel.";
+
+const BIO_FISHTECH =
+  "Right now I'm building FishTech Precision Feeding System for FishTech Consultancy. It's a closed-loop AI instrument for African pond aquaculture. An overhead AI Camera streams the pond to a Raspberry Pi 5 with a Hailo NPU, which detects fish with a custom-trained vision model, measures each one against an auto-calibrated reference, and estimates whole-pond biomass with an honest confidence interval. A precision feeding engine grounded in tilapia and catfish biology converts that into a feed dose in grams, and an integrated auger feeder dispenses it automatically. The whole loop runs locally on the device. No cloud, no farmer data leaving Zimbabwe, served to any phone on the farm through the Pi's own Wi-Fi hotspot. I'm the founding engineer, the CV and embedded and full-stack and product designer, and the CEO.";
 
 const MARQUEE_ROW_1 = [
   "Python",
@@ -195,12 +255,7 @@ export function About() {
                 lineHeight: 1.7,
               }}
             >
-              I recently delivered Steadyhands Catering at Bata Club, an
-              end-to-end production platform built on Next.js, TypeScript,
-              and Node.js, with Paynow gateway integration for Ecocash,
-              OneMoney, Visa and Mastercard, and a WhatsApp Business funnel
-              for custom catering inquiries. It&apos;s live, transacting,
-              and deployed on Vercel.
+              {highlightEntities(BIO_STEADYHANDS)}
             </motion.p>
 
             <motion.p
@@ -212,21 +267,7 @@ export function About() {
                 lineHeight: 1.7,
               }}
             >
-              Right now I&apos;m building FishTech Precision Feeding System
-              for FishTech Consultancy. It&apos;s a closed-loop AI
-              instrument for African pond aquaculture. An overhead AI
-              Camera streams the pond to a Raspberry Pi 5 with a Hailo NPU,
-              which detects fish with a custom-trained vision model,
-              measures each one against an auto-calibrated reference, and
-              estimates whole-pond biomass with an honest confidence
-              interval. A precision feeding engine grounded in tilapia and
-              catfish biology converts that into a feed dose in grams, and
-              an integrated auger feeder dispenses it automatically. The
-              whole loop runs locally on the device. No cloud, no farmer
-              data leaving Zimbabwe, served to any phone on the farm
-              through the Pi&apos;s own Wi-Fi hotspot. I&apos;m the founding
-              engineer, the CV and embedded and full-stack and product
-              designer, and the CEO.
+              {highlightEntities(BIO_FISHTECH)}
             </motion.p>
 
             <motion.div variants={itemVariants} className="mt-10">
@@ -459,15 +500,21 @@ function Timeline({ reduceMotion }: { reduceMotion: boolean }) {
             </div>
             {Array.isArray(entry.body) ? (
               <div
-                className="mt-1 space-y-2 text-text-secondary"
+                className="mt-3 space-y-3 text-text-secondary"
                 style={{
                   fontFamily: "var(--font-dm-sans)",
                   fontSize: "14px",
-                  lineHeight: 1.6,
+                  lineHeight: 1.65,
                 }}
               >
                 {entry.body.map((paragraph, i) => (
-                  <p key={i}>{paragraph}</p>
+                  <div key={i} className="relative pl-4">
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute top-1 bottom-1 left-0 w-px bg-gradient-to-b from-accent/45 via-accent/15 to-transparent"
+                    />
+                    <p>{highlightEntities(paragraph)}</p>
+                  </div>
                 ))}
               </div>
             ) : (
