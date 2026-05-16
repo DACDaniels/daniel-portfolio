@@ -43,7 +43,7 @@ Colors:
 - accent-glow: rgba(0,229,192,0.4)
 - text-primary: #FFFFFF
 - text-secondary: rgba(255,255,255,0.6)
-- text-tertiary: rgba(255,255,255,0.35)
+- text-tertiary: rgba(255,255,255,0.5)
 
 Status palette (project + section badges):
 
