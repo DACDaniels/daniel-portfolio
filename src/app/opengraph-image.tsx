@@ -169,7 +169,7 @@ export default async function OpengraphImage() {
           }}
         >
           <span style={{ display: "flex" }}>Harare · Zimbabwe</span>
-          <span style={{ display: "flex" }}>danielchadambuka.com</span>
+          <span style={{ display: "flex" }}>dev.danielchadambuka.com</span>
         </div>
       </div>
     ),

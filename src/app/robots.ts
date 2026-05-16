@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://danielchadambuka.com/sitemap.xml",
+    sitemap: "https://dev.danielchadambuka.com/sitemap.xml",
   };
 }

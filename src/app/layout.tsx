@@ -39,7 +39,7 @@ const instrumentSerif = Instrument_Serif({
   display: "swap",
 });
 
-const SITE_URL = "https://danielchadambuka.com";
+const SITE_URL = "https://dev.danielchadambuka.com";
 
 export const viewport: Viewport = {
   themeColor: "#080808",
