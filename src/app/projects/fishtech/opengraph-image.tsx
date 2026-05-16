@@ -62,7 +62,7 @@ export default async function OpengraphImage() {
                 color: "#00E5C0",
               }}
             >
-              <span style={{ display: "flex" }}>// case study</span>
+              <span style={{ display: "flex" }}>{"// case study"}</span>
               <span
                 style={{
                   display: "flex",

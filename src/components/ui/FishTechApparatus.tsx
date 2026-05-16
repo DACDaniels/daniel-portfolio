@@ -197,7 +197,7 @@ export function FishTechApparatus() {
             fontSize="13"
             letterSpacing="0.18em"
           >
-            // apparatus · side-view
+            {"// apparatus · side-view"}
           </text>
           <text
             x="60"

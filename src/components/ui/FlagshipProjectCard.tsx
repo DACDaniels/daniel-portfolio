@@ -99,7 +99,8 @@ export function FlagshipProjectCard({
               textTransform: "uppercase",
             }}
           >
-            // flagship · {number}
+            {"// flagship · "}
+            {number}
           </div>
 
           <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.02]">

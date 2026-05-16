@@ -79,7 +79,7 @@ export function FishTechArchitecture() {
             textTransform: "uppercase",
           }}
         >
-          // closed-loop · pipeline
+          {"// closed-loop · pipeline"}
         </div>
         <div
           className="text-white/40"

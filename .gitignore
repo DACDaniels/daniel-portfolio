@@ -48,5 +48,6 @@ screenshots/*.jpg
 # Local audit screenshots (Playwright captures)
 /*.png
 /*.jpg
+/*.jpeg
 .playwright-mcp/
 .vscode/

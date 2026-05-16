@@ -139,7 +139,7 @@ export function Navbar() {
                     textTransform: "uppercase",
                   }}
                 >
-                  <span className="text-accent">//</span> section ·{" "}
+                  <span className="text-accent">{"//"}</span> section ·{" "}
                   <span className="text-text-secondary">{activeId}</span>
                 </span>
               </motion.span>

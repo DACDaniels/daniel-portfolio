@@ -37,7 +37,7 @@ export default function NotFound() {
           className="font-mono text-[11px] uppercase text-text-tertiary"
           style={{ letterSpacing: "0.2em" }}
         >
-          // status 404
+          {"// status 404"}
         </span>
       </header>
 
@@ -46,7 +46,7 @@ export default function NotFound() {
           className="font-mono text-[12px] uppercase text-accent"
           style={{ letterSpacing: "0.22em" }}
         >
-          // not-found.tsx
+          {"// not-found.tsx"}
         </div>
 
         <h1

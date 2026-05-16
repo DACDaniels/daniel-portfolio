@@ -164,7 +164,7 @@ export default function FishTechCaseStudyPage() {
               className="font-mono text-[11px] uppercase text-accent"
               style={{ letterSpacing: "0.15em" }}
             >
-              // case-study · in active build
+              {"// case-study · in active build"}
             </motion.div>
 
             <motion.div
@@ -404,7 +404,7 @@ export default function FishTechCaseStudyPage() {
                     textTransform: "uppercase",
                   }}
                 >
-                  // what the camera sees
+                  {"// what the camera sees"}
                 </div>
                 <p
                   className="text-white/65"
@@ -774,7 +774,7 @@ function ClosingCTA({ reduceMotion }: { reduceMotion: boolean }) {
               marginBottom: "10px",
             }}
           >
-            // similar problem? let&apos;s talk
+            {"// similar problem? let's talk"}
           </div>
           <h3
             className="font-heading font-semibold text-white"

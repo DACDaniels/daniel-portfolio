@@ -110,7 +110,7 @@ export default async function OpengraphImage() {
               display: "flex",
             }}
           >
-            // Software Engineer
+            {"// Software Engineer"}
           </div>
           <div
             style={{
@@ -128,7 +128,7 @@ export default async function OpengraphImage() {
               Chadambuka
               <span
                 style={{
-                  display: "inline-flex",
+                  display: "flex",
                   width: "22px",
                   height: "22px",
                   background: "#00E5C0",
