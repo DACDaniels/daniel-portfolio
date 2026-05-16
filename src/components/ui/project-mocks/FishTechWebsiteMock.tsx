@@ -2,6 +2,7 @@ export function FishTechWebsiteMock() {
   return (
     <div
       aria-hidden
+      inert
       className="relative flex h-full w-full items-center justify-center bg-gradient-to-br from-[#0a1e2c] to-[#0e3447] p-4"
     >
       <div className="w-[88%] overflow-hidden rounded-sm bg-[#0a1623] shadow-[0_8px_24px_rgba(0,0,0,0.45)]">

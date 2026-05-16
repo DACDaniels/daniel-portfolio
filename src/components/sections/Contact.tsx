@@ -223,6 +223,7 @@ function WhatsAppCTA({ reduceMotion }: { reduceMotion: boolean }) {
           fontSize: "16px",
           fontWeight: 500,
           letterSpacing: "0.005em",
+          color: "#080808",
           animation: reduceMotion
             ? "none"
             : "contact-whatsapp-pulse 3s ease-in-out infinite",

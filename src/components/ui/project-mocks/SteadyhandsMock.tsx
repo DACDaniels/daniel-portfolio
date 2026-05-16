@@ -2,6 +2,7 @@ export function SteadyhandsMock() {
   return (
     <div
       aria-hidden
+      inert
       className="relative flex h-full w-full items-center justify-center bg-gradient-to-br from-[#f5f5f0] to-[#e8e4d9] p-4"
     >
       <div className="w-[88%] overflow-hidden rounded-sm bg-white shadow-[0_8px_24px_rgba(0,0,0,0.25)]">

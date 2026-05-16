@@ -2,6 +2,7 @@ export function PortfolioMock() {
   return (
     <div
       aria-hidden
+      inert
       className="relative flex h-full w-full items-center justify-center overflow-hidden bg-black p-4"
     >
       <div

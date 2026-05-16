@@ -190,7 +190,9 @@ export function Navbar() {
               className="group relative overflow-hidden rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-bg-primary shadow-[0_8px_24px_-4px_rgba(0,229,192,0.4)] transition-shadow duration-300 hover:shadow-[0_12px_32px_-4px_rgba(0,229,192,0.6)]"
             >
               <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full" />
-              <span className="relative">Contact Me</span>
+              <span className="relative" style={{ color: "#080808" }}>
+                Contact Me
+              </span>
             </MagneticButton>
           </div>
 

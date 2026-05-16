@@ -803,6 +803,7 @@ function ClosingCTA({ reduceMotion }: { reduceMotion: boolean }) {
         <Link
           href="/#contact"
           className="group inline-flex items-center gap-2 self-start rounded-full bg-accent px-6 py-3 text-sm font-semibold text-bg-primary shadow-[0_12px_32px_-10px_rgba(0,229,192,0.5)] transition-shadow duration-300 hover:shadow-[0_16px_40px_-10px_rgba(0,229,192,0.75)]"
+          style={{ color: "#080808" }}
         >
           Start a conversation
           <span

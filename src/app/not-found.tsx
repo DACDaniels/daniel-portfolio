@@ -85,7 +85,10 @@ export default function NotFound() {
             className="group relative inline-flex min-h-[48px] items-center gap-2 overflow-hidden rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-bg-primary shadow-[0_12px_32px_-8px_rgba(0,229,192,0.5)] transition-shadow duration-300 hover:shadow-[0_16px_40px_-8px_rgba(0,229,192,0.75)]"
           >
             <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/35 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full" />
-            <span className="relative inline-flex items-center gap-2">
+            <span
+              className="relative inline-flex items-center gap-2"
+              style={{ color: "#080808" }}
+            >
               Back to the home page
               <svg
                 width="14"
