@@ -101,7 +101,7 @@ export function FishTechArchitecture() {
             className="relative flex flex-col gap-2 rounded-xl border border-white/[0.06] bg-bg-elevated/80 p-3.5"
           >
             <span
-              className="text-white/30"
+              className="text-white/55"
               style={{
                 fontFamily: "var(--font-jetbrains-mono)",
                 fontSize: "9.5px",
@@ -123,7 +123,7 @@ export function FishTechArchitecture() {
               {stage.label}
             </div>
             <div
-              className="text-white/45"
+              className="text-white/60"
               style={{
                 fontFamily: "var(--font-jetbrains-mono)",
                 fontSize: "10px",
@@ -145,7 +145,7 @@ export function FishTechArchitecture() {
           className="h-px flex-1 bg-gradient-to-r from-transparent via-accent/30 to-transparent"
         />
         <span
-          className="text-white/45"
+          className="text-white/60"
           style={{
             fontFamily: "var(--font-jetbrains-mono)",
             fontSize: "10px",

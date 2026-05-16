@@ -91,7 +91,7 @@ export function FlagshipProjectCard({
           </div>
 
           <div
-            className="absolute left-4 top-4 z-10 text-white/45"
+            className="absolute left-4 top-4 z-10 text-white/60"
             style={{
               fontFamily: "var(--font-jetbrains-mono)",
               fontSize: "10px",
@@ -133,7 +133,7 @@ export function FlagshipProjectCard({
           </h3>
 
           <p
-            className="text-white/45 italic"
+            className="text-white/60 italic"
             style={{
               fontFamily: "var(--font-jetbrains-mono)",
               fontSize: "12px",

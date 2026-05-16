@@ -130,7 +130,7 @@ export function AlternatingProjectCard({
         </h3>
 
         <p
-          className="italic text-white/45"
+          className="italic text-white/60"
           style={{
             fontFamily: "var(--font-jetbrains-mono)",
             fontSize: "12px",

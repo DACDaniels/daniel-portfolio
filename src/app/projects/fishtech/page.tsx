@@ -231,7 +231,7 @@ export default function FishTechCaseStudyPage() {
 
             <motion.div
               variants={itemVariants}
-              className="mt-8 flex flex-wrap gap-x-4 gap-y-2 text-white/40"
+              className="mt-8 flex flex-wrap gap-x-4 gap-y-2 text-white/60"
               style={{
                 fontFamily: "var(--font-jetbrains-mono)",
                 fontSize: "12px",
@@ -239,20 +239,20 @@ export default function FishTechCaseStudyPage() {
               }}
             >
               <span>
-                <span className="text-white/30">Role · </span>Founding engineer
+                <span className="text-white/55">Role · </span>Founding engineer
               </span>
               <span aria-hidden className="text-white/20">
                 ·
               </span>
               <span>
-                <span className="text-white/30">Timeline · </span>Active build,
+                <span className="text-white/55">Timeline · </span>Active build,
                 pilot 2026
               </span>
               <span aria-hidden className="text-white/20">
                 ·
               </span>
               <span>
-                <span className="text-white/30">Status · </span>Late-stage
+                <span className="text-white/55">Status · </span>Late-stage
                 prototype
               </span>
             </motion.div>
@@ -288,7 +288,7 @@ export default function FishTechCaseStudyPage() {
                 className="rounded-xl border border-white/[0.06] bg-bg-surface px-4 py-3"
               >
                 <div
-                  className="text-white/40"
+                  className="text-white/60"
                   style={{
                     fontFamily: "var(--font-jetbrains-mono)",
                     fontSize: "10px",
@@ -588,7 +588,7 @@ export default function FishTechCaseStudyPage() {
           <RelatedSection containerVariants={containerVariants}>
             <motion.div
               variants={itemVariants}
-              className="text-white/40"
+              className="text-white/60"
               style={{
                 fontFamily: "var(--font-jetbrains-mono)",
                 fontSize: "11px",
@@ -639,7 +639,7 @@ export default function FishTechCaseStudyPage() {
               </a>
               <div className="rounded-xl border border-white/[0.06] bg-bg-surface p-4">
                 <div
-                  className="text-white/40"
+                  className="text-white/60"
                   style={{
                     fontFamily: "var(--font-jetbrains-mono)",
                     fontSize: "10px",

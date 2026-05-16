@@ -188,7 +188,7 @@ export function Footer() {
                         <span>{link.label}</span>
                         <ArrowUpRight
                           aria-hidden
-                          className="text-white/30 transition-[color,transform] duration-200 group-hover:translate-x-[2px] group-hover:-translate-y-[2px] group-hover:text-accent"
+                          className="text-white/55 transition-[color,transform] duration-200 group-hover:translate-x-[2px] group-hover:-translate-y-[2px] group-hover:text-accent"
                           size={14}
                           strokeWidth={2}
                         />

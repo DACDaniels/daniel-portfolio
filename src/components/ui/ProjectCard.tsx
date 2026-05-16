@@ -46,7 +46,7 @@ export function ProjectCard({
       </div>
 
       <p
-        className="text-white/35"
+        className="text-white/55"
         style={{
           fontFamily: "var(--font-jetbrains-mono)",
           fontSize: "10px",
@@ -69,7 +69,7 @@ export function ProjectCard({
       </h3>
 
       <p
-        className="italic text-white/40"
+        className="italic text-white/60"
         style={{
           fontFamily: "var(--font-jetbrains-mono)",
           fontSize: "11px",
