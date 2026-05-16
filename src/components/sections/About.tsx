@@ -459,19 +459,18 @@ function Timeline({ reduceMotion }: { reduceMotion: boolean }) {
   };
 
   return (
-    <motion.ol
-      ref={revealRef}
-      variants={listVariants}
-      initial="hidden"
-      animate={revealed ? "visible" : "hidden"}
-      className="relative"
-    >
+    <div className="relative">
       <span
         aria-hidden
         className="pointer-events-none absolute top-1 bottom-1 left-[5px] w-px bg-white/[0.06]"
       />
-
-      <div className="space-y-7 md:space-y-8">
+      <motion.ol
+        ref={revealRef}
+        variants={listVariants}
+        initial="hidden"
+        animate={revealed ? "visible" : "hidden"}
+        className="relative space-y-7 md:space-y-8"
+      >
         {TIMELINE.map((entry) => (
           <motion.li
             key={entry.title}
@@ -522,8 +521,8 @@ function Timeline({ reduceMotion }: { reduceMotion: boolean }) {
             )}
           </motion.li>
         ))}
-      </div>
-    </motion.ol>
+      </motion.ol>
+    </div>
   );
 }
 

@@ -24,7 +24,6 @@ export function AnimatedText({
   return (
     <Wrapper
       className={cn("inline-block", className)}
-      aria-label={text}
       initial="hidden"
       animate="visible"
       variants={{
@@ -37,6 +36,21 @@ export function AnimatedText({
         },
       }}
     >
+      <span
+        style={{
+          position: "absolute",
+          width: 1,
+          height: 1,
+          padding: 0,
+          margin: -1,
+          overflow: "hidden",
+          clip: "rect(0,0,0,0)",
+          whiteSpace: "nowrap",
+          border: 0,
+        }}
+      >
+        {text}
+      </span>
       {chars.map((char, i) => (
         <motion.span
           key={`${char}-${i}`}

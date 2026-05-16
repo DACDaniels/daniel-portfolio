@@ -110,7 +110,7 @@ export function FlagshipProjectCard({
 
         <div className="relative flex flex-col gap-5 p-7 md:p-10">
           <div
-            className="text-white/40"
+            className="text-white/60"
             style={{
               fontFamily: "var(--font-jetbrains-mono)",
               fontSize: "11px",

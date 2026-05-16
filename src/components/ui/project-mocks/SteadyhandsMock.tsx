@@ -1,6 +1,9 @@
 export function SteadyhandsMock() {
   return (
-    <div className="relative flex h-full w-full items-center justify-center bg-gradient-to-br from-[#f5f5f0] to-[#e8e4d9] p-4">
+    <div
+      aria-hidden
+      className="relative flex h-full w-full items-center justify-center bg-gradient-to-br from-[#f5f5f0] to-[#e8e4d9] p-4"
+    >
       <div className="w-[88%] overflow-hidden rounded-sm bg-white shadow-[0_8px_24px_rgba(0,0,0,0.25)]">
         <div className="flex items-center gap-1 bg-[#e6e2d6] px-2 py-1.5">
           <span className="block h-1.5 w-1.5 rounded-full bg-black/20" />

@@ -1,6 +1,9 @@
 export function FishTechWebsiteMock() {
   return (
-    <div className="relative flex h-full w-full items-center justify-center bg-gradient-to-br from-[#0a1e2c] to-[#0e3447] p-4">
+    <div
+      aria-hidden
+      className="relative flex h-full w-full items-center justify-center bg-gradient-to-br from-[#0a1e2c] to-[#0e3447] p-4"
+    >
       <div className="w-[88%] overflow-hidden rounded-sm bg-[#0a1623] shadow-[0_8px_24px_rgba(0,0,0,0.45)]">
         <div className="flex items-center gap-1 border-b border-white/[0.06] bg-[#081420] px-2 py-1.5">
           <span className="block h-1.5 w-1.5 rounded-full bg-white/15" />

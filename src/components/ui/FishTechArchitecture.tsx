@@ -82,7 +82,7 @@ export function FishTechArchitecture() {
           {"// closed-loop · pipeline"}
         </div>
         <div
-          className="text-white/40"
+          className="text-white/60"
           style={{
             fontFamily: "var(--font-jetbrains-mono)",
             fontSize: "11px",

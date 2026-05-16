@@ -138,7 +138,7 @@ export default function FishTechCaseStudyPage() {
       <Navbar />
       <CaseSectionProgress items={PROGRESS_ITEMS} />
 
-      <main className="relative w-full bg-bg-primary pb-32 pt-28 md:pt-32">
+      <main id="main" className="relative w-full bg-bg-primary pb-32 pt-28 md:pt-32">
         <div className="mx-auto w-full max-w-3xl px-6 md:px-8">
           <Link
             href="/#projects"

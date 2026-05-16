@@ -105,7 +105,7 @@ export function AlternatingProjectCard({
         }`}
       >
         <div
-          className="flex items-center gap-2 text-white/40"
+          className="flex items-center gap-2 text-white/60"
           style={{
             fontFamily: "var(--font-jetbrains-mono)",
             fontSize: "10px",

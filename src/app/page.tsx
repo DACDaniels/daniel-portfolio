@@ -10,11 +10,13 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <Hero />
-      <Services />
-      <Projects />
-      <About />
-      <Contact />
+      <main id="main">
+        <Hero />
+        <Services />
+        <Projects />
+        <About />
+        <Contact />
+      </main>
       <Footer />
     </>
   );

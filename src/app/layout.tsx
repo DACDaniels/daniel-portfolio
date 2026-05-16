@@ -202,7 +202,7 @@ export default function RootLayout({
       </head>
       <body suppressHydrationWarning>
         <ExtensionErrorSuppressor />
-        <a href="#home" className="skip-link">
+        <a href="#main" className="skip-link">
           Skip to main content
         </a>
         <ScrollProgress />

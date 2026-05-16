@@ -213,7 +213,7 @@ function WhatsAppCTA({ reduceMotion }: { reduceMotion: boolean }) {
       target="_blank"
       rel="noopener noreferrer"
       strength={18}
-      ariaLabel="Message Daniel on WhatsApp"
+      ariaLabel="Message me on WhatsApp"
       className="group rounded-full"
     >
       <span

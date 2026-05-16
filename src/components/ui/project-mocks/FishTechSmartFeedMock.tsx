@@ -1,6 +1,9 @@
 export function FishTechSmartFeedMock() {
   return (
-    <div className="relative h-full w-full overflow-hidden bg-gradient-to-br from-[#06182a] to-[#143850]">
+    <div
+      aria-hidden
+      className="relative h-full w-full overflow-hidden bg-gradient-to-br from-[#06182a] to-[#143850]"
+    >
       <div
         aria-hidden
         className="absolute inset-0"
