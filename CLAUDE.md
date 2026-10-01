@@ -11,7 +11,8 @@
 ## Project Overview
 
 Personal developer portfolio for Daniel Chadambuka — Software Engineer,
-final-year CS student at NUST Zimbabwe, builder of real-world systems.
+Computer Science graduate (NUST Zimbabwe, 2026), builder of real-world systems.
+Open to full-time software engineering roles (remote or Zimbabwe).
 This site must feel like it belongs on Awwwards, Godly, or Hover.dev.
 Every pixel, every animation, every interaction must be intentional.
 
@@ -76,7 +77,10 @@ Radii:
 - Location: Harare, Zimbabwe
 - GitHub: https://github.com/DACDaniels
 - Email: chadambukadaniel@gmail.com
-- Education: BSc Computer Science, NUST Zimbabwe (Final Year)
+- Education: Bachelor of Science Honours Degree in Computer Science, Upper Second
+  Division, NUST Zimbabwe. Conferred 17 September 2026 (study 2022 to 2026)
+- Job status: actively looking for employment. Do NOT label him CEO / founder of
+  Blue Acre in site copy; FishTech appears as projects, not a title
 - Title: Software Engineer
 - Entrepreneurial identity shows THROUGH projects, never as a label
 
@@ -154,7 +158,8 @@ Separate deep-dive case study pages for each project.
   with sine wave float animation
 - BOTTOM: Stats bar full width
   → Animated number counters count up when in viewport
-  → "5+ Projects" "3+ Years" "2 Production Systems" "100% Committed"
+  → "5+ Projects" "2+ Years" "2 Production Systems" "BSc Hons CS · NUST 2026"
+  → Years counted from the ZIMDEF attachment (July 2024). See DECISIONS.md
 - BACKGROUND:
   → Animated dot grid that responds subtly to mouse
   → Blurred teal gradient orb in corner
@@ -260,7 +265,18 @@ Separate deep-dive case study pages for each project.
      OneMoney, Visa, Mastercard), WhatsApp Business funnel
    - Live and transacting at steadyhandscatering.com
 3. FishTech Consultancy Website at fishtech.co.zw
-4. Daniel Chadambuka Portfolio (this site)
+4. FishTech Feeder (BUILDING)
+   - Standalone welded-steel, solar-powered automatic feeder (ESP32).
+     Auger turns a counted number of revolutions to meter each dose,
+     spinning disc broadcasts it. Ration from fish size and water
+     temperature, no internet. F10 (10 kg) and F25 (25 kg) models.
+     Can take a grams-per-feed instruction from the Precision Feeding
+     System over Wi-Fi, but sells and runs on its own
+   - Exhibited at the Zimbabwe Agricultural Show (ZAS) 2026, Harare
+   - Canonical source: github.com/DACDaniels/fishtech-feeder (private)
+   - NEVER CLAIM validated dose accuracy or field results: the dose and
+     throw tests are not done. No price in public copy (withdrawn)
+5. Daniel Chadambuka Portfolio (this site)
 
 ## FishTech Copy Discipline
 
@@ -302,6 +318,9 @@ NEVER CLAIM:
 - Test counts, line counts, contributor counts
 
 CURRENT STAGE LANGUAGE:
+- Backend is FastAPI (migration from Flask is done). Never tag FishTech "Flask"
+- Do not attach a year to the pilot ("pilot 2026" went stale). Say "pilot
+  deployment in preparation" until a pilot has actually started
 - "Working prototype, pilot pond secured, pilot deployment in
   preparation"
 - "Being industrialised through FishTech Consultancy"
