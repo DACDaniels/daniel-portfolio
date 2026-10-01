@@ -14,9 +14,9 @@ type Stat =
 
 const STATS: Stat[] = [
   { kind: "number", value: 5, suffix: "+", label: "Projects" },
-  { kind: "number", value: 3, suffix: "+", label: "Years" },
+  { kind: "number", value: 2, suffix: "+", label: "Years" },
   { kind: "number", value: 3, suffix: "", label: "Production Systems" },
-  { kind: "text", primary: "Final Year", label: "BSc CS, NUST" },
+  { kind: "text", primary: "BSc Hons", label: "Computer Science, NUST 2026" },
 ];
 
 export function Hero() {

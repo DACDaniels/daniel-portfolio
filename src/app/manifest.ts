@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Daniel Chadambuka — Software Engineer",
+    name: "Daniel Chadambuka · Software Engineer",
     short_name: "Daniel Chadambuka",
     description:
       "Software Engineer building real-world systems. Full-stack, computer vision, embedded, and AI.",

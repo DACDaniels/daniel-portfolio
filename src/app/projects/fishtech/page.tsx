@@ -416,7 +416,7 @@ export default function FishTechCaseStudyPage() {
                 >
                   YOLO-Pose returns four keypoints per fish: snout, dorsal
                   origin, peduncle, tail-tip. Length is the sum of geodesic
-                  segments, not a bounding-box diagonal — orientation-
+                  segments, not a bounding-box diagonal, so it is orientation-
                   invariant and far more accurate for fish at an angle.
                   ChArUco + ultrasonic give the pixel-to-centimetre
                   conversion per frame, so the camera can sit at any depth.

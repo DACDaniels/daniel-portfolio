@@ -50,8 +50,8 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Daniel Chadambuka — Software Engineer",
-    template: "%s — Daniel Chadambuka",
+    default: "Daniel Chadambuka · Software Engineer",
+    template: "%s · Daniel Chadambuka",
   },
   description:
     "Software Engineer building real-world systems. Full-stack, computer vision, embedded, and AI. Based in Harare, Zimbabwe.",
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
     "NUST Zimbabwe",
   ],
   openGraph: {
-    title: "Daniel Chadambuka — Software Engineer",
+    title: "Daniel Chadambuka · Software Engineer",
     description:
       "Software Engineer building real-world systems. Full-stack, computer vision, embedded, and AI.",
     type: "profile",
@@ -90,7 +90,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Daniel Chadambuka — Software Engineer",
+    title: "Daniel Chadambuka · Software Engineer",
     description:
       "Software Engineer building real-world systems. Full-stack, computer vision, embedded, and AI.",
     creator: "@DACDaniels",
@@ -124,7 +124,7 @@ const personSchema = {
   jobTitle:
     "Software Engineer, Edge Systems Engineer & Computer Vision Developer",
   description:
-    "Final-year Computer Science student at NUST with over two years of shipping software. Full-stack web, computer vision, edge devices, and enterprise IT infrastructure.",
+    "Computer Science graduate from NUST with over two years of shipping software. Full-stack web, computer vision, edge devices, and enterprise IT infrastructure.",
   url: SITE_URL,
   image: `${SITE_URL}/images/daniel-hero.jpg`,
   email: "mailto:chadambukadaniel@gmail.com",
