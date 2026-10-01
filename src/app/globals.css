@@ -124,10 +124,14 @@ body {
   color: var(--bg-primary);
 }
 
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-  border-radius: 4px;
+/* Base layer, so a rounded-* class keeps its shape while focused and a
+   component can swap the outline for its own ring. */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
 }
 
 @layer components {
