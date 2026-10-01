@@ -2,6 +2,10 @@
 
 One line per decision, newest first. Date, what, why.
 
+## 2026-10-01: cursor
+
+- **Custom cursor (D8).** The dot follows the pointer 1:1 (set from pointermove in the next frame, no easing); the ring trails on a stiff critically damped spring that catches up in about 85 ms, because the old slow ring made the cursor feel draggy. Only transform and opacity animate; off on touch devices and under reduced motion.
+
 ## 2026-10-01: media
 
 - **Video size rule.** A video may be up to 8 MB if it never downloads before the visitor scrolls to it. public/videos/ may total up to 12 MB. This replaces the earlier 5 MB per-file and 8 MB total caps, which had no recorded reason. Why: quality on the flagship hardware clip matters more than size, and mobile-data visitors only pay for it when they choose to scroll to it.

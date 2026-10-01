@@ -5,6 +5,12 @@ import { useEffect, useRef, useState } from "react";
 const INTERACTIVE_SELECTOR =
   'a, button, [role="button"], [data-spotlight-card], [data-cursor-interactive], input, textarea, select';
 
+const RING_SIZE = 30;
+const RING_HOVER_SCALE = 52 / RING_SIZE;
+// Critically damped spring for the ring: it lands within 1 px of a 400 px
+// jump in about 85 ms, so it trails the dot slightly but never floats.
+const OMEGA = 100;
+
 export function CustomCursor() {
   const dotRef = useRef<HTMLDivElement | null>(null);
   const ringRef = useRef<HTMLDivElement | null>(null);
@@ -33,56 +39,110 @@ export function CustomCursor() {
     const ring = ringRef.current;
     if (!dot || !ring) return;
 
-    let raf = 0;
+    // Pointer target, written by pointermove and read in the frame callback.
     let mx = window.innerWidth / 2;
     let my = window.innerHeight / 2;
+    // Ring spring state: position, scale and their velocities.
     let rx = mx;
     let ry = my;
+    let vx = 0;
+    let vy = 0;
+    let rs = 1;
+    let vs = 0;
+    let targetScale = 1;
     let visible = false;
+    let raf = 0;
+    let last = 0;
 
-    const onMove = (e: MouseEvent) => {
+    const settled = () =>
+      Math.abs(mx - rx) < 0.1 &&
+      Math.abs(my - ry) < 0.1 &&
+      Math.abs(vx) < 0.1 &&
+      Math.abs(vy) < 0.1 &&
+      Math.abs(targetScale - rs) < 0.001 &&
+      Math.abs(vs) < 0.001;
+
+    // Exact step of a critically damped spring towards target. Closed form,
+    // so it stays stable however long a frame takes.
+    const spring = (x: number, v: number, target: number, dt: number) => {
+      const offset = x - target;
+      const decay = Math.exp(-OMEGA * dt);
+      const k = v + OMEGA * offset;
+      return [
+        target + (offset + k * dt) * decay,
+        (v - OMEGA * k * dt) * decay,
+      ] as const;
+    };
+
+    const frame = (now: number) => {
+      // Clamp dt so a backgrounded tab does not make the ring jump.
+      const dt = last ? Math.min((now - last) / 1000, 1 / 30) : 1 / 60;
+      last = now;
+
+      dot.style.transform = `translate3d(${mx}px, ${my}px, 0) translate(-50%, -50%)`;
+
+      [rx, vx] = spring(rx, vx, mx, dt);
+      [ry, vy] = spring(ry, vy, my, dt);
+      [rs, vs] = spring(rs, vs, targetScale, dt);
+      ring.style.transform = `translate3d(${rx}px, ${ry}px, 0) translate(-50%, -50%) scale(${rs})`;
+
+      if (settled()) {
+        rx = mx;
+        ry = my;
+        rs = targetScale;
+        vx = vy = vs = 0;
+        ring.style.transform = `translate3d(${rx}px, ${ry}px, 0) translate(-50%, -50%) scale(${rs})`;
+        raf = 0;
+        last = 0;
+        return;
+      }
+      raf = requestAnimationFrame(frame);
+    };
+
+    const schedule = () => {
+      if (!raf) raf = requestAnimationFrame(frame);
+    };
+
+    const show = (on: boolean) => {
+      visible = on;
+      const value = on ? "1" : "0";
+      dot.style.opacity = value;
+      ring.style.opacity = value;
+    };
+
+    const onMove = (e: PointerEvent) => {
+      if (e.pointerType === "touch") return;
       mx = e.clientX;
       my = e.clientY;
       if (!visible) {
-        visible = true;
-        dot.style.opacity = "1";
-        ring.style.opacity = "1";
+        // Appear at the pointer instead of springing in from the last spot.
+        rx = mx;
+        ry = my;
+        vx = vy = 0;
+        show(true);
       }
+      schedule();
     };
 
-    const onLeave = () => {
-      visible = false;
-      dot.style.opacity = "0";
-      ring.style.opacity = "0";
-    };
+    const onLeave = () => show(false);
 
-    const onOver = (e: Event) => {
+    const onOver = (e: PointerEvent) => {
       const target = e.target as Element | null;
-      if (target?.closest?.(INTERACTIVE_SELECTOR)) {
-        ring.dataset.state = "interactive";
-      } else {
-        ring.dataset.state = "default";
-      }
+      const interactive = Boolean(target?.closest?.(INTERACTIVE_SELECTOR));
+      ring.dataset.state = interactive ? "interactive" : "default";
+      targetScale = interactive ? RING_HOVER_SCALE : 1;
+      schedule();
     };
 
-    const tick = () => {
-      dot.style.transform = `translate3d(${mx}px, ${my}px, 0) translate(-50%, -50%)`;
-      rx += (mx - rx) * 0.18;
-      ry += (my - ry) * 0.18;
-      ring.style.transform = `translate3d(${rx}px, ${ry}px, 0) translate(-50%, -50%)`;
-      raf = requestAnimationFrame(tick);
-    };
-
-    window.addEventListener("mousemove", onMove, { passive: true });
-    document.addEventListener("mouseleave", onLeave);
-    document.addEventListener("mouseover", onOver);
-    raf = requestAnimationFrame(tick);
+    window.addEventListener("pointermove", onMove, { passive: true });
+    document.addEventListener("pointerover", onOver, { passive: true });
+    document.documentElement.addEventListener("mouseleave", onLeave);
 
     return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("mousemove", onMove);
-      document.removeEventListener("mouseleave", onLeave);
-      document.removeEventListener("mouseover", onOver);
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("pointermove", onMove);
+      document.removeEventListener("pointerover", onOver);
+      document.documentElement.removeEventListener("mouseleave", onLeave);
       document.documentElement.classList.remove("custom-cursor-active");
     };
   }, [enabled]);
@@ -120,15 +180,14 @@ export function CustomCursor() {
           position: "fixed",
           left: 0,
           top: 0,
-          width: 30,
-          height: 30,
+          width: RING_SIZE,
+          height: RING_SIZE,
           borderRadius: "999px",
           border: "1px solid rgba(0,229,192,0.45)",
           pointerEvents: "none",
           zIndex: 9998,
           opacity: 0,
-          transition:
-            "opacity 200ms ease, width 220ms ease, height 220ms ease, border-color 200ms ease, background-color 200ms ease",
+          transition: "opacity 200ms ease",
           willChange: "transform",
         }}
       />
@@ -147,9 +206,9 @@ export function CustomCursor() {
         html:has(dialog[open]) [data-custom-cursor] {
           opacity: 0 !important;
         }
-        [data-state="interactive"] {
-          width: 52px !important;
-          height: 52px !important;
+        /* Size changes come from the scale() in the transform; colour
+           switches instantly. */
+        [data-custom-cursor][data-state="interactive"] {
           border-color: rgba(0, 229, 192, 0.9) !important;
           background: rgba(0, 229, 192, 0.08);
         }
