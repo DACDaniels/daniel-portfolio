@@ -51,3 +51,6 @@ screenshots/*.jpg
 /*.jpeg
 .playwright-mcp/
 .vscode/
+# Local tooling
+.claude/settings.local.json
+public/_incoming/
