@@ -66,8 +66,8 @@ const FEEDER_GALLERY: MediaItem[] = [
   },
   {
     kind: "image",
-    src: "/images/feeder/feeder-pond-demo.jpg",
-    alt: "Explaining the FishTech Feeder at the pond",
+    src: "/images/feeder/feeder-pond-sunset.jpg",
+    alt: "The FishTech Feeder beside a fish pond at dusk",
   },
   {
     kind: "image",
