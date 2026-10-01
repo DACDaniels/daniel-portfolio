@@ -94,6 +94,7 @@ export function CustomCursor() {
       <div
         ref={dotRef}
         aria-hidden
+        data-custom-cursor
         style={{
           position: "fixed",
           left: 0,
@@ -113,6 +114,7 @@ export function CustomCursor() {
       <div
         ref={ringRef}
         aria-hidden
+        data-custom-cursor
         data-state="default"
         style={{
           position: "fixed",
@@ -134,6 +136,16 @@ export function CustomCursor() {
         .custom-cursor-active,
         .custom-cursor-active * {
           cursor: none !important;
+        }
+        /* An open <dialog> sits in the top layer, above the custom cursor,
+           so the lightbox gets the normal system cursor instead. Both
+           revert on their own when the dialog closes. */
+        .custom-cursor-active dialog[open],
+        .custom-cursor-active dialog[open] * {
+          cursor: auto !important;
+        }
+        html:has(dialog[open]) [data-custom-cursor] {
+          opacity: 0 !important;
         }
         [data-state="interactive"] {
           width: 52px !important;
