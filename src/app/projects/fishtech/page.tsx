@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 import { Navbar } from "@/components/sections/Navbar";
 import { CaseSectionProgress } from "@/components/ui/CaseSectionProgress";
 import { FishTechApparatus } from "@/components/ui/FishTechApparatus";
+import { MediaGallery, type MediaItem } from "@/components/ui/MediaGallery";
 import { FishTechArchitecture } from "@/components/ui/FishTechArchitecture";
 import { FishTechSmartFeedMock } from "@/components/ui/project-mocks/FishTechSmartFeedMock";
 import { useScrollReveal } from "@/lib/useScrollReveal";
@@ -17,6 +18,7 @@ const PROGRESS_ITEMS = [
   { id: "innovations", label: "Innovations" },
   { id: "stack", label: "Stack" },
   { id: "state", label: "Current state" },
+  { id: "field", label: "In the field" },
   { id: "next", label: "What's next" },
 ];
 
@@ -96,6 +98,29 @@ const STACK_GROUPS: StackGroup[] = [
       "Motion · Recharts · React Hook Form + Zod",
       "PWA, served from the Pi's local Wi-Fi hotspot",
     ],
+  },
+];
+
+const FIELD_MEDIA: MediaItem[] = [
+  {
+    kind: "image",
+    src: "/images/iris/iris-pond-rig.jpg",
+    alt: "Camera mast set up beside a fish pond",
+  },
+  {
+    kind: "image",
+    src: "/images/iris/iris-pond-rig-2.jpg",
+    alt: "Camera mast and boom over the pond",
+  },
+  {
+    kind: "image",
+    src: "/images/iris/iris-indoor-demo.jpg",
+    alt: "Indoor demo: camera over a fish tank, laptop running the system",
+  },
+  {
+    kind: "image",
+    src: "/images/iris/iris-platform-screen.jpg",
+    alt: "The Iris platform on screen at the NUST iHub",
   },
 ];
 
@@ -551,8 +576,42 @@ export default function FishTechCaseStudyPage() {
           </CaseSection>
 
           <CaseSection
-            id="next"
+            id="field"
             eyebrow="// section-07"
+            title="In the field."
+            itemVariants={itemVariants}
+            containerVariants={containerVariants}
+          >
+            <motion.div variants={itemVariants}>
+              <MediaGallery layout="grid" items={FIELD_MEDIA} />
+            </motion.div>
+            <motion.figure variants={itemVariants} className="mt-6">
+              <video
+                controls
+                preload="none"
+                playsInline
+                poster="/videos/iris-presenting-poster.jpg"
+                aria-label="Presenting the Iris dashboard to visitors at NUST"
+                className="aspect-video w-full rounded-2xl border border-border bg-bg-surface object-cover shadow-[0_20px_50px_-28px_rgba(0,229,192,0.18)]"
+              >
+                <source src="/videos/iris-presenting.mp4" type="video/mp4" />
+              </video>
+              <figcaption
+                className="mt-3 text-text-secondary"
+                style={{
+                  fontFamily: "var(--font-dm-sans)",
+                  fontSize: "14px",
+                  lineHeight: 1.6,
+                }}
+              >
+                Presenting the Iris dashboard to visitors at NUST.
+              </figcaption>
+            </motion.figure>
+          </CaseSection>
+
+          <CaseSection
+            id="next"
+            eyebrow="// section-08"
             title="What's next"
             itemVariants={itemVariants}
             containerVariants={containerVariants}
