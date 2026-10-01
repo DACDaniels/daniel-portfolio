@@ -25,7 +25,7 @@ const CONNECT_LINKS = [
   { label: "Resume · PDF", href: "/resume.pdf" },
 ] as const;
 
-const COLOPHON_LINES = ["Next.js 15", "Vercel", "Geist · DM Sans", "v.2026.05"];
+const COLOPHON_LINES = ["Next.js 15", "Vercel", "Geist · DM Sans", "v.2026.10"];
 
 const NAME_WORDS = ["Daniel", "Chadambuka"] as const;
 
