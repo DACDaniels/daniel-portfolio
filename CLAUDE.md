@@ -336,14 +336,21 @@ but visual noise.
 
 - public/images/iris/: FishTech Precision Feeding System (iris-hero.jpg is the
   flagship photo; pond rig, indoor demo and platform screen go in the case study)
-- public/images/feeder/: FishTech Feeder (card strip: mechanism, pond demo, visitors)
+- public/images/feeder/: FishTech Feeder (card strip: mechanism, pond sunset,
+  visitors; feeder-pond-demo.jpg stays in the repo but is not used)
 - public/images/zas/: Zimbabwe Agricultural Show 2026 (About timeline strip)
-- public/images/graduation/: graduation (grad-studio.jpg is the main portrait;
-  grad-seated.jpg stays in the repo but is not used)
-- public/videos/: feeder-dispensing.mp4 (card clip) and iris-presenting.mp4
-  (case study, controls, no autoplay), each with a poster jpg
+- public/images/graduation/: graduation (grad-studio.jpg is the main portrait
+  and the first lightbox photo, then corridor, outdoor, ceremony; grad-seated.jpg
+  stays in the repo but is not used)
+- public/videos/: feeder-dispensing.mp4 (card clip: full 9 s, 720x1280, 30 fps,
+  H.264 crf 25, preset slow, no audio, 7.25 MB) and iris-presenting.mp4 (case
+  study, controls, no autoplay), each with a poster jpg
 - public/_incoming/ is a local drop folder, gitignored, never committed
-- Videos are short, silent, looping clips with a poster and never full-length originals
+- Clips that play automatically are short, silent and looping. The case study may
+  carry one talking clip with controls, which never plays on its own. Never
+  full-length originals
+- Video size: up to 8 MB per video if it never downloads before the visitor
+  scrolls to it; public/videos/ up to 12 MB in total
 - Certificate images never go on the site
 - Galleries use src/components/ui/MediaGallery.tsx (strip or grid, dialog lightbox)
 
