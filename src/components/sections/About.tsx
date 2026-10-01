@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion, type Variants } from "motion/react";
+import Image from "next/image";
 import type { CSSProperties, ReactNode } from "react";
 import { useScrollReveal } from "@/lib/useScrollReveal";
 
@@ -12,6 +13,7 @@ type TimelineEntry =
       body: string;
       active?: boolean;
       building?: boolean;
+      photos?: { src: string; alt: string }[];
     }
   | {
       kind: "zimdef";
@@ -27,6 +29,32 @@ const TIMELINE: TimelineEntry[] = [
     title: "Graduated, BSc Honours Computer Science, NUST",
     body: "Upper Second Division. Now looking for a full-time engineering role.",
     active: true,
+  },
+  {
+    kind: "simple",
+    date: "Aug 2026",
+    title: "Zimbabwe Agricultural Show, Harare",
+    body: "Exhibited the FishTech Feeder. Met farmers, buyers and Ministry of Skills stakeholders at the stand.",
+    photos: [
+      {
+        src: "/images/zas/zas-01.jpg",
+        alt: "The FishTech Feeder on display at the NUST stand at the Zimbabwe Agricultural Show, with visitors in the background",
+      },
+      {
+        src: "/images/zas/zas-02.jpg",
+        alt: "Visitors in field vests looking at the FishTech Feeder at the NUST stand",
+      },
+      {
+        src: "/images/zas/zas-03.jpg",
+        alt: "The FishTech Feeder mounted over a blue demonstration tank at the NUST stand",
+      },
+    ],
+  },
+  {
+    kind: "simple",
+    date: "2026",
+    title: "Presidential Innovation Awards",
+    body: "Presented FishTech to the national innovation panel.",
   },
   {
     kind: "simple",
@@ -567,6 +595,29 @@ function SimpleEntry({
       >
         {entry.body}
       </div>
+      {entry.photos ? (
+        <ul className="mt-4 grid max-w-md grid-cols-3 gap-2">
+          {entry.photos.map((photo) => (
+            <li
+              key={photo.src}
+              className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-border bg-bg-surface"
+            >
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                fill
+                loading="lazy"
+                sizes="(max-width: 480px) 30vw, 150px"
+                className="object-cover"
+              />
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 to-transparent mix-blend-multiply"
+              />
+            </li>
+          ))}
+        </ul>
+      ) : null}
     </>
   );
 }
