@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion, type Variants } from "motion/react";
+import Image from "next/image";
 import {
   FlagshipProjectCard,
   type FlagshipProjectProps,
@@ -36,9 +37,39 @@ const FLAGSHIP: Omit<FlagshipProjectProps, "variants"> = {
   mockComponent: <FishTechSmartFeedMock />,
 };
 
+function FishTechFeederPhoto() {
+  return (
+    <div className="relative h-full w-full">
+      <Image
+        src="/images/feeder/feeder-pond-sunset.jpg"
+        alt="The FishTech Feeder, a welded steel hopper and dispenser on a tripod stand, beside a fish pond at dusk"
+        fill
+        sizes="(max-width: 1024px) 100vw, 680px"
+        className="object-cover object-[50%_45%]"
+      />
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent mix-blend-multiply"
+      />
+    </div>
+  );
+}
+
 const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
   {
     number: "02",
+    category: "EMBEDDED · SOLAR",
+    title: "FishTech Feeder",
+    meta: "Working prototype · Exhibited at ZAS 2026",
+    description:
+      "Solar-powered automatic fish feeder in welded steel. An auger turns a counted number of revolutions to measure each dose, and a spinning disc spreads it over the pond. It works out the daily ration from fish size and water temperature with no internet, and can take a feed instruction from the Precision Feeding System over Wi-Fi. Two sizes, 10 kg and 25 kg, matched to standard feed bags.",
+    tags: ["ESP32", "Embedded", "Solar", "IoT", "Firmware"],
+    status: "building",
+    mockComponent: <FishTechFeederPhoto />,
+    side: "left",
+  },
+  {
+    number: "03",
     category: "PRODUCTION",
     title: "Steadyhands Catering",
     meta: "steadyhandscatering.com · BATA Club",
@@ -52,10 +83,10 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
       external: true,
     },
     mockComponent: <SteadyhandsMock />,
-    side: "left",
+    side: "right",
   },
   {
-    number: "03",
+    number: "04",
     category: "CLIENT WORK",
     title: "FishTech Consultancy",
     meta: "fishtech.co.zw · Lead-gen platform",
@@ -69,10 +100,10 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
       external: true,
     },
     mockComponent: <FishTechWebsiteMock />,
-    side: "right",
+    side: "left",
   },
   {
-    number: "04",
+    number: "05",
     category: "META",
     title: "This Portfolio",
     meta: "You're looking at it",
@@ -86,7 +117,7 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
       external: true,
     },
     mockComponent: <PortfolioMock />,
-    side: "left",
+    side: "right",
   },
 ];
 
@@ -153,8 +184,8 @@ export function Projects() {
             className="mt-5 mb-12 max-w-xl text-[15px] text-white/55 md:mb-16 md:max-w-2xl md:text-[16px]"
             style={{ lineHeight: 1.7 }}
           >
-            One flagship edge-AI instrument in active build, one live
-            transacting platform, one lead-gen site, and this portfolio itself.
+            Two edge instruments in active build, one live transacting
+            platform, one lead-gen site, and this portfolio itself.
           </motion.p>
 
           <FlagshipProjectCard {...FLAGSHIP} variants={itemVariants} />
