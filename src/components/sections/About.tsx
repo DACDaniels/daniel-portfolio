@@ -23,9 +23,9 @@ type TimelineEntry =
 const TIMELINE: TimelineEntry[] = [
   {
     kind: "simple",
-    date: "2026 · NOW",
-    title: "Final year BSc Computer Science, NUST",
-    body: "Wrapping up the degree. Industrialising FishTech. Open to roles.",
+    date: "Sep 2026",
+    title: "Graduated, BSc Honours Computer Science, NUST",
+    body: "Upper Second Division. Now looking for a full-time engineering role.",
     active: true,
   },
   {
@@ -43,7 +43,7 @@ const TIMELINE: TimelineEntry[] = [
   },
   {
     kind: "zimdef",
-    date: "Jun 2024 to May 2025",
+    date: "Jul 2024 to Jun 2025",
     title: "ZIMDEF · IT Industrial Attachment",
     duration: "12 months",
   },
@@ -218,8 +218,8 @@ export function About() {
             }}
           >
             <p>
-              Final-year Computer Science student at NUST with over two years
-              of shipping software that survives contact with the real world.
+              Computer Science graduate from NUST with over two years of
+              shipping software that survives contact with the real world.
               I also know servers, networks, infrastructure, IT governance,
               SAP and organisational network management.
             </p>
@@ -258,14 +258,16 @@ export function About() {
                 }}
               >
                 <CurrentlyItem>
-                  Wrapping up BSc Computer Science at NUST (2022 to 2026)
+                  BSc Honours in Computer Science, NUST, Upper Second
+                  Division (2026)
                 </CurrentlyItem>
                 <CurrentlyItem>
-                  Open to remote engineering roles and select Zimbabwean
-                  client work
+                  Looking for a full-time software engineering role, remote
+                  or in Zimbabwe
                 </CurrentlyItem>
                 <CurrentlyItem>
-                  Industrialising FishTech for pilot deployment, 2026
+                  Building the FishTech Precision Feeding System and FishTech
+                  Feeder
                 </CurrentlyItem>
                 <CurrentlyItem>
                   <a
