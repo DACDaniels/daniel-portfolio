@@ -180,7 +180,7 @@ Separate deep-dive case study pages for each project.
 ### 4. Projects
 
 - FishTech Precision Feeding System (LARGE FLAGSHIP CARD — full width)
-  → Real project screenshot
+  → Real photo: public/images/iris/iris-hero.jpg
   → Tags: COMPUTER VISION · EMBEDDED · FLASK · RASPBERRY PI
   → Title, description
   → Honest accuracy framing: keypoint-distance length is
@@ -331,6 +331,21 @@ CURRENT STAGE LANGUAGE:
 NO EM-DASHES in portfolio copy. Use commas, periods, or
 rewrite. The em-dash is a stylistic crutch that adds nothing
 but visual noise.
+
+## Media
+
+- public/images/iris/: FishTech Precision Feeding System (iris-hero.jpg is the
+  flagship photo; pond rig, indoor demo and platform screen go in the case study)
+- public/images/feeder/: FishTech Feeder (card strip: mechanism, pond demo, visitors)
+- public/images/zas/: Zimbabwe Agricultural Show 2026 (About timeline strip)
+- public/images/graduation/: graduation (grad-studio.jpg is the main portrait;
+  grad-seated.jpg stays in the repo but is not used)
+- public/videos/: feeder-dispensing.mp4 (card clip) and iris-presenting.mp4
+  (case study, controls, no autoplay), each with a poster jpg
+- public/_incoming/ is a local drop folder, gitignored, never committed
+- Videos are short, silent, looping clips with a poster and never full-length originals
+- Certificate images never go on the site
+- Galleries use src/components/ui/MediaGallery.tsx (strip or grid, dialog lightbox)
 
 ## Tech Stack Pills (About section marquee)
 
