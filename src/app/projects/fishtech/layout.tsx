@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 export const metadata: Metadata = {
   title: "FishTech Precision Feeding System · Daniel Chadambuka",
   description:
-    "Closed-loop edge-AI instrument for African pond aquaculture. Raspberry Pi 5 with Hailo NPU, custom-trained YOLO vision, stratified biomass estimation, and an automated auger feeder. Late-stage prototype, industrialising for pilot deployment in 2026.",
+    "Closed-loop edge-AI instrument for African pond aquaculture. Raspberry Pi 5 with Hailo NPU, custom-trained YOLO vision, stratified biomass estimation, and an automated auger feeder. Late-stage prototype, pilot deployment in preparation.",
 };
 
 export const viewport: Viewport = {

@@ -132,7 +132,7 @@ export default async function OpengraphImage() {
             <span style={{ display: "flex" }}>
               Daniel Chadambuka · Software Engineer
             </span>
-            <span style={{ display: "flex" }}>Pilot 2026</span>
+            <span style={{ display: "flex" }}>Pilot deployment in preparation</span>
           </div>
         </div>
 
