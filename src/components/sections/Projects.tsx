@@ -11,9 +11,10 @@ import {
   type AlternatingProjectProps,
 } from "@/components/ui/AlternatingProjectCard";
 import { SteadyhandsMock } from "@/components/ui/project-mocks/SteadyhandsMock";
-import { FishTechSmartFeedMock } from "@/components/ui/project-mocks/FishTechSmartFeedMock";
 import { FishTechWebsiteMock } from "@/components/ui/project-mocks/FishTechWebsiteMock";
 import { PortfolioMock } from "@/components/ui/project-mocks/PortfolioMock";
+import { LoopingClip } from "@/components/ui/LoopingClip";
+import { MediaGallery, type MediaItem } from "@/components/ui/MediaGallery";
 import { useScrollReveal } from "@/lib/useScrollReveal";
 
 const FLAGSHIP: Omit<FlagshipProjectProps, "variants"> = {
@@ -34,26 +35,46 @@ const FLAGSHIP: Omit<FlagshipProjectProps, "variants"> = {
   ],
   status: "building",
   caseStudyHref: "/projects/fishtech",
-  mockComponent: <FishTechSmartFeedMock />,
+  mockComponent: <FishTechFlagshipPhoto />,
 };
 
-function FishTechFeederPhoto() {
+function FishTechFlagshipPhoto() {
   return (
     <div className="relative h-full w-full">
       <Image
-        src="/images/feeder/feeder-pond-sunset.jpg"
-        alt="The FishTech Feeder, a welded steel hopper and dispenser on a tripod stand, beside a fish pond at dusk"
+        src="/images/iris/iris-hero.jpg"
+        alt="FishTech Precision Feeding System at a pond at sunset, overhead camera on the boom and a calibration board on the water"
         fill
-        sizes="(max-width: 1024px) 100vw, 680px"
-        className="object-cover object-[50%_45%]"
+        priority
+        sizes="(max-width: 1024px) 100vw, 640px"
+        className="object-cover object-[50%_40%]"
       />
+      {/* Darkens the top edge so the flagship label and status badge stay readable. */}
       <span
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent mix-blend-multiply"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/20 mix-blend-multiply"
       />
     </div>
   );
 }
+
+const FEEDER_GALLERY: MediaItem[] = [
+  {
+    kind: "image",
+    src: "/images/feeder/feeder-mechanism.jpg",
+    alt: "FishTech Feeder with the door open, showing the auger and electronics",
+  },
+  {
+    kind: "image",
+    src: "/images/feeder/feeder-pond-demo.jpg",
+    alt: "Explaining the FishTech Feeder at the pond",
+  },
+  {
+    kind: "image",
+    src: "/images/feeder/feeder-pond-visitors.jpg",
+    alt: "Visitors at the FishTech Feeder beside the pond",
+  },
+];
 
 const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
   {
@@ -62,10 +83,18 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
     title: "FishTech Feeder",
     meta: "Working prototype · Exhibited at ZAS 2026",
     description:
-      "Solar-powered automatic fish feeder in welded steel. An auger turns a counted number of revolutions to measure each dose, and a spinning disc spreads it over the pond. It works out the daily ration from fish size and water temperature with no internet, and can take a feed instruction from the Precision Feeding System over Wi-Fi. Two sizes, 10 kg and 25 kg, matched to standard feed bags.",
+      "Solar-powered automatic fish feeder in welded steel. The first unit is built and dispensing feed. An auger turns a counted number of revolutions to measure each dose, and a spinning disc spreads it over the pond. It works out the daily ration from fish size and water temperature with no internet, and can take a feed instruction from the Precision Feeding System over Wi-Fi. Two sizes, 10 kg and 25 kg, matched to standard feed bags.",
     tags: ["ESP32", "Embedded", "Solar", "IoT", "Firmware"],
     status: "building",
-    mockComponent: <FishTechFeederPhoto />,
+    mockComponent: (
+      <LoopingClip
+        src="/videos/feeder-dispensing.mp4"
+        poster="/videos/feeder-dispensing-poster.jpg"
+        label="FishTech Feeder spreading feed over a pond"
+        objectPosition="50% 50%"
+      />
+    ),
+    gallery: <MediaGallery layout="strip" items={FEEDER_GALLERY} />,
     side: "left",
   },
   {
