@@ -11,6 +11,7 @@ One line per decision, newest first. Date, what, why.
 - **NUST team group photo left out**, by Daniel's choice.
 - **Videos:** short, silent, looping clips with a poster image. Full-length originals never go in the repo.
 - **Media files live in public/images/{iris,feeder,zas,graduation}/ and public/videos/**, resized to 2000 px on the long edge.
+- Main graduation photo is grad-studio.jpg (Daniel's pick); strip uses corridor, outdoor, ceremony.
 
 ## 2026-10-01: graduation and job-search update
 
