@@ -2,6 +2,16 @@
 
 One line per decision, newest first. Date, what, why.
 
+## 2026-10-01: media
+
+- **Iris main image is a real photo** (images/iris/iris-hero.jpg). No "render" label needed.
+- **The FishTech Feeder works and dispenses feed.** Status becomes "Working prototype · Exhibited at ZAS 2026". Still no claim of measured dose accuracy until the dose test is written up.
+- **Certificate photo stays off the site.** It shows the certificate and serial numbers. The degree is stated in words.
+- **Hero photo unchanged.** Graduation photos go in About next to the graduation timeline entry.
+- **NUST team group photo left out**, by Daniel's choice.
+- **Videos:** short, silent, looping clips with a poster image. Full-length originals never go in the repo.
+- **Media files live in public/images/{iris,feeder,zas,graduation}/ and public/videos/**, resized to 2000 px on the long edge.
+
 ## 2026-10-01: graduation and job-search update
 
 - **Education wording.** "Bachelor of Science Honours Degree in Computer Science, Upper Second Division, NUST", conferred 17 September 2026. Matches the degree certificate. Shown because a 2.1 helps a job application.

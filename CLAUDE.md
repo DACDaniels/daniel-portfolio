@@ -265,7 +265,7 @@ Separate deep-dive case study pages for each project.
      OneMoney, Visa, Mastercard), WhatsApp Business funnel
    - Live and transacting at steadyhandscatering.com
 3. FishTech Consultancy Website at fishtech.co.zw
-4. FishTech Feeder (BUILDING)
+4. FishTech Feeder (BUILDING, working prototype: first unit built and dispensing feed)
    - Standalone welded-steel, solar-powered automatic feeder (ESP32).
      Auger turns a counted number of revolutions to meter each dose,
      spinning disc broadcasts it. Ration from fish size and water
@@ -274,8 +274,8 @@ Separate deep-dive case study pages for each project.
      System over Wi-Fi, but sells and runs on its own
    - Exhibited at the Zimbabwe Agricultural Show (ZAS) 2026, Harare
    - Canonical source: github.com/DACDaniels/fishtech-feeder (private)
-   - NEVER CLAIM validated dose accuracy or field results: the dose and
-     throw tests are not done. No price in public copy (withdrawn)
+   - Real photos in public/images/feeder/. NEVER CLAIM validated dose
+     accuracy or field results: the dose test is not written up. No price in public copy (withdrawn)
 5. Daniel Chadambuka Portfolio (this site)
 
 ## FishTech Copy Discipline
