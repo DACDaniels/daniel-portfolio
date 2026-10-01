@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, useReducedMotion, type Variants } from "motion/react";
-import Image from "next/image";
 import type { CSSProperties, ReactNode } from "react";
 import { MediaGallery, type MediaItem } from "@/components/ui/MediaGallery";
 import { useScrollReveal } from "@/lib/useScrollReveal";
@@ -14,8 +13,9 @@ type TimelineEntry =
       body: string;
       active?: boolean;
       building?: boolean;
-      portrait?: { src: string; alt: string };
       media?: MediaItem[];
+      /** Show media[0] as a larger photo beside the entry text. */
+      leadMedia?: boolean;
     }
   | {
       kind: "zimdef";
@@ -31,11 +31,13 @@ const TIMELINE: TimelineEntry[] = [
     title: "Graduated, BSc Honours Computer Science, NUST",
     body: "Upper Second Division. Now looking for a full-time engineering role.",
     active: true,
-    portrait: {
-      src: "/images/graduation/grad-studio.jpg",
-      alt: "Daniel Chadambuka in his graduation gown",
-    },
+    leadMedia: true,
     media: [
+      {
+        kind: "image",
+        src: "/images/graduation/grad-studio.jpg",
+        alt: "Daniel Chadambuka in his graduation gown",
+      },
       {
         kind: "image",
         src: "/images/graduation/grad-corridor.jpg",
@@ -624,24 +626,28 @@ function SimpleEntry({
     </div>
   );
 
+  if (entry.media && entry.leadMedia) {
+    return (
+      <MediaGallery
+        layout="strip"
+        items={entry.media}
+        className="mt-4 max-w-md"
+        lead={{
+          rowClassName:
+            "flex max-w-md flex-col gap-4 sm:flex-row-reverse sm:items-start sm:gap-5",
+          thumbClassName: "w-40 sm:w-32 lg:w-36",
+          sizes: "(max-width: 640px) 160px, 144px",
+          imageClassName: "object-top",
+        }}
+      >
+        {text}
+      </MediaGallery>
+    );
+  }
+
   return (
     <>
-      {entry.portrait ? (
-        <div className="flex max-w-md flex-col gap-4 sm:flex-row-reverse sm:items-start sm:gap-5">
-          <div className="relative aspect-[4/5] w-40 shrink-0 overflow-hidden rounded-2xl border border-border bg-bg-surface shadow-[0_12px_32px_-16px_rgba(0,229,192,0.2)] sm:w-32 lg:w-36">
-            <Image
-              src={entry.portrait.src}
-              alt={entry.portrait.alt}
-              fill
-              sizes="(max-width: 640px) 160px, 144px"
-              className="object-cover object-top"
-            />
-          </div>
-          {text}
-        </div>
-      ) : (
-        text
-      )}
+      {text}
       {entry.media ? (
         <MediaGallery layout="strip" items={entry.media} className="mt-4 max-w-md" />
       ) : null}
