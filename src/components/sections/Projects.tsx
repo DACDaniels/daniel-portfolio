@@ -22,7 +22,7 @@ const FLAGSHIP: Omit<FlagshipProjectProps, "variants"> = {
   title: "FishTech Precision Feeding System",
   meta: "Working prototype · Pilot in preparation",
   description:
-    "Closed-loop AI instrument for African pond aquaculture. An overhead AI Camera and a Raspberry Pi 5 with a Hailo NPU detect fish, measure them against an auto-calibrated reference, estimate whole-pond biomass with honest confidence intervals, and drive an integrated auger feeder to dispense a precision dose. Runs entirely on the device. Being industrialised through FishTech Consultancy, pilot deployment in preparation.",
+    "Closed-loop computer-vision instrument for smallholder pond aquaculture in Zimbabwe. An overhead camera and a Raspberry Pi 5 with a Hailo NPU detect fish, measure them against an auto-calibrated reference, estimate whole-pond biomass with honest confidence intervals, and drive an integrated auger feeder to dispense a precision dose. Runs entirely on the device. Being industrialised through FishTech Consultancy, pilot deployment in preparation.",
   tags: [
     "Computer Vision",
     "IoT",
