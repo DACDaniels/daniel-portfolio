@@ -60,7 +60,7 @@ const TIMELINE: TimelineEntry[] = [
     kind: "simple",
     date: "2025 · BUILDING",
     title: "FishTech Precision Feeding System",
-    body: "Closed-loop AI instrument for African pond aquaculture. Raspberry Pi 5 with Hailo NPU, custom-trained YOLO, automated auger feeder, integrated mast and enclosure. Pilot deployment in preparation.",
+    body: "Closed-loop computer-vision instrument for smallholder pond aquaculture in Zimbabwe. Raspberry Pi 5 with Hailo NPU, custom-trained YOLO, automated auger feeder, integrated mast and enclosure. Pilot deployment in preparation.",
     building: true,
   },
   {

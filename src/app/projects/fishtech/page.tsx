@@ -200,7 +200,7 @@ export default function FishTechCaseStudyPage() {
                   letterSpacing: "0.04em",
                 }}
               >
-                Late-stage prototype · industrialising for pilot
+                Working prototype · pilot in preparation
               </span>
             </motion.div>
 
@@ -225,7 +225,7 @@ export default function FishTechCaseStudyPage() {
                 lineHeight: 1.55,
               }}
             >
-              Precision feeding for African pond aquaculture. A closed loop
+              Precision feeding for smallholder pond aquaculture in Zimbabwe. A closed loop
               that sees fish, decides the dose, and dispenses it.
             </motion.p>
 
@@ -252,7 +252,7 @@ export default function FishTechCaseStudyPage() {
                 ·
               </span>
               <span>
-                <span className="text-white/55">Status · </span>Late-stage
+                <span className="text-white/55">Status · </span>Working
                 prototype
               </span>
             </motion.div>
@@ -330,8 +330,8 @@ export default function FishTechCaseStudyPage() {
               which wastes feed and degrades water quality, and underfeeding,
               which slows growth. Norwegian salmon operations have precision
               feeding systems engineered for industrial cages at a cost
-              African smallholders have no access to. The price tier that
-              fits African pond aquaculture has, until now, had nothing in
+              Zimbabwean smallholders have no access to. The price tier that
+              fits smallholder pond aquaculture has, until now, had nothing in
               it.
             </p>
           </CaseSection>
@@ -344,8 +344,8 @@ export default function FishTechCaseStudyPage() {
             containerVariants={containerVariants}
           >
             <p>
-              FishTech Precision Feeding System is a closed-loop AI
-              instrument. An overhead AI Camera, a Sony IMX500 with an
+              FishTech Precision Feeding System is a closed-loop
+              computer-vision instrument. An overhead camera, a Sony IMX500 with an
               on-sensor neural accelerator, streams the pond to a Raspberry
               Pi 5 with a Hailo NPU for accelerated vision inference. A
               custom-trained YOLO model, currently moving to a keypoint
@@ -417,7 +417,8 @@ export default function FishTechCaseStudyPage() {
                   YOLO-Pose returns four keypoints per fish: snout, dorsal
                   origin, peduncle, tail-tip. Length is the sum of geodesic
                   segments, not a bounding-box diagonal, so it is orientation-
-                  invariant and far more accurate for fish at an angle.
+                  invariant: the length does not depend on which way the fish
+                  is facing.
                   ChArUco + ultrasonic give the pixel-to-centimetre
                   conversion per frame, so the camera can sit at any depth.
                 </p>
@@ -533,7 +534,7 @@ export default function FishTechCaseStudyPage() {
           >
             <p>
               The end-to-end pipeline runs on a real Raspberry Pi 5 with the
-              AI Camera today. Detection, length extraction, calibrated
+              overhead camera today. Detection, length extraction, calibrated
               pixel-to-centimetre conversion, species-specific
               length-to-weight, stratified biomass with confidence intervals,
               and the multi-multiplier precision feeding engine are all live.

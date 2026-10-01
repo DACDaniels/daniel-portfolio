@@ -113,7 +113,7 @@ export default async function OpengraphImage() {
                 display: "flex",
               }}
             >
-              Closed-loop edge-AI instrument for African pond aquaculture.
+              Closed-loop edge computer-vision instrument for smallholder pond aquaculture in Zimbabwe.
               Raspberry Pi 5 + Hailo NPU, custom YOLO vision, automated auger feeder.
             </div>
           </div>
