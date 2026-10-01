@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type LoopingClipProps = {
   src: string;
@@ -11,8 +11,9 @@ type LoopingClipProps = {
 };
 
 /**
- * Short, silent, looping clip. Plays only while on screen, never under
- * prefers-reduced-motion (the poster stays as a still instead).
+ * Short, silent, looping clip. Nothing (video or poster) downloads until the
+ * clip is close to the viewport. It plays only while on screen, and never
+ * under prefers-reduced-motion (the poster stays as a still instead).
  */
 export function LoopingClip({
   src,
@@ -21,10 +22,28 @@ export function LoopingClip({
   objectPosition = "50% 50%",
 }: LoopingClipProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [near, setNear] = useState(false);
 
+  // Attach the sources shortly before the clip scrolls into view.
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          setNear(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px 0px" },
+    );
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !near) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (reduce.matches) return;
 
@@ -41,18 +60,18 @@ export function LoopingClip({
     );
     observer.observe(video);
     return () => observer.disconnect();
-  }, []);
+  }, [near]);
 
   return (
     <div className="relative h-full w-full">
       <video
         ref={videoRef}
-        src={src}
-        poster={poster}
+        src={near ? src : undefined}
+        poster={near ? poster : undefined}
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="none"
         aria-label={label}
         className="absolute inset-0 h-full w-full object-cover"
         style={{ objectPosition }}
