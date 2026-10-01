@@ -15,6 +15,8 @@ export type AlternatingProjectProps = {
   primaryLink?: { label: string; href: string; external?: boolean };
   secondaryLink?: { label: string; href: string; external?: boolean };
   mockComponent: ReactNode;
+  /** Optional media strip shown under the description. */
+  gallery?: ReactNode;
   side: "left" | "right";
   variants?: Variants;
 };
@@ -30,6 +32,7 @@ export function AlternatingProjectCard({
   primaryLink,
   secondaryLink,
   mockComponent,
+  gallery,
   side,
   variants,
 }: AlternatingProjectProps) {
@@ -151,6 +154,8 @@ export function AlternatingProjectCard({
         >
           {description}
         </p>
+
+        {gallery ? <div className="max-w-md pt-1">{gallery}</div> : null}
 
         <div className="flex flex-wrap gap-1.5">
           {tags.map((tag) => (
