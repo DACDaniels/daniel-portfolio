@@ -3,6 +3,7 @@
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import Image from "next/image";
 import type { CSSProperties, ReactNode } from "react";
+import { MediaGallery, type MediaItem } from "@/components/ui/MediaGallery";
 import { useScrollReveal } from "@/lib/useScrollReveal";
 
 type TimelineEntry =
@@ -13,7 +14,8 @@ type TimelineEntry =
       body: string;
       active?: boolean;
       building?: boolean;
-      photos?: { src: string; alt: string }[];
+      portrait?: { src: string; alt: string };
+      media?: MediaItem[];
     }
   | {
       kind: "zimdef";
@@ -29,24 +31,48 @@ const TIMELINE: TimelineEntry[] = [
     title: "Graduated, BSc Honours Computer Science, NUST",
     body: "Upper Second Division. Now looking for a full-time engineering role.",
     active: true,
+    portrait: {
+      src: "/images/graduation/grad-studio.jpg",
+      alt: "Daniel Chadambuka in his graduation gown",
+    },
+    media: [
+      {
+        kind: "image",
+        src: "/images/graduation/grad-corridor.jpg",
+        alt: "Graduation portrait, NUST",
+      },
+      {
+        kind: "image",
+        src: "/images/graduation/grad-outdoor.jpg",
+        alt: "Graduation day, NUST",
+      },
+      {
+        kind: "image",
+        src: "/images/graduation/grad-ceremony.jpg",
+        alt: "At the NUST graduation ceremony, September 2026",
+      },
+    ],
   },
   {
     kind: "simple",
     date: "Aug 2026",
     title: "Zimbabwe Agricultural Show, Harare",
     body: "Exhibited the FishTech Feeder. Met farmers, buyers and Ministry of Skills stakeholders at the stand.",
-    photos: [
+    media: [
       {
+        kind: "image",
         src: "/images/zas/zas-01.jpg",
-        alt: "The FishTech Feeder on display at the NUST stand at the Zimbabwe Agricultural Show, with visitors in the background",
+        alt: "FishTech Feeder on the NUST stand at the Zimbabwe Agricultural Show 2026",
       },
       {
+        kind: "image",
         src: "/images/zas/zas-02.jpg",
-        alt: "Visitors in field vests looking at the FishTech Feeder at the NUST stand",
+        alt: "Visitors at the FishTech Feeder, ZAS 2026",
       },
       {
+        kind: "image",
         src: "/images/zas/zas-03.jpg",
-        alt: "The FishTech Feeder mounted over a blue demonstration tank at the NUST stand",
+        alt: "FishTech Feeder with a demo tank on the stand, ZAS 2026",
       },
     ],
   },
@@ -561,8 +587,8 @@ function SimpleEntry({
 }: {
   entry: Extract<TimelineEntry, { kind: "simple" }>;
 }) {
-  return (
-    <>
+  const text = (
+    <div className="min-w-0 flex-1">
       <div
         className="text-text-tertiary"
         style={{
@@ -595,28 +621,29 @@ function SimpleEntry({
       >
         {entry.body}
       </div>
-      {entry.photos ? (
-        <ul className="mt-4 grid max-w-md grid-cols-3 gap-2">
-          {entry.photos.map((photo) => (
-            <li
-              key={photo.src}
-              className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-border bg-bg-surface"
-            >
-              <Image
-                src={photo.src}
-                alt={photo.alt}
-                fill
-                loading="lazy"
-                sizes="(max-width: 480px) 30vw, 150px"
-                className="object-cover"
-              />
-              <span
-                aria-hidden
-                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 to-transparent mix-blend-multiply"
-              />
-            </li>
-          ))}
-        </ul>
+    </div>
+  );
+
+  return (
+    <>
+      {entry.portrait ? (
+        <div className="flex max-w-md flex-col gap-4 sm:flex-row-reverse sm:items-start sm:gap-5">
+          <div className="relative aspect-[4/5] w-40 shrink-0 overflow-hidden rounded-2xl border border-border bg-bg-surface shadow-[0_12px_32px_-16px_rgba(0,229,192,0.2)] sm:w-32 lg:w-36">
+            <Image
+              src={entry.portrait.src}
+              alt={entry.portrait.alt}
+              fill
+              sizes="(max-width: 640px) 160px, 144px"
+              className="object-cover object-top"
+            />
+          </div>
+          {text}
+        </div>
+      ) : (
+        text
+      )}
+      {entry.media ? (
+        <MediaGallery layout="strip" items={entry.media} className="mt-4 max-w-md" />
       ) : null}
     </>
   );
