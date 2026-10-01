@@ -103,13 +103,16 @@ a {
   text-decoration: none;
 }
 
-button {
-  font-family: inherit;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  color: inherit;
+/* In the base layer so Tailwind utilities on a button can override it. */
+@layer base {
+  button {
+    font-family: inherit;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: inherit;
+  }
 }
 
 ::selection {

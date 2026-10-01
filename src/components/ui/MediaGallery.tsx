@@ -36,12 +36,9 @@ type MediaGalleryProps = {
   children?: ReactNode;
 };
 
-// globals.css resets button background, border and color outside any layer,
-// which beats Tailwind utilities, so the button colours here are marked important.
-
 // Lightbox controls: colour changes are instant, only the scale is animated.
 const CONTROL =
-  "z-10 flex h-11 w-11 items-center justify-center rounded-full border! border-white/30! bg-bg-elevated! text-text-primary! shadow-[0_8px_24px_-8px_rgba(0,0,0,0.7),0_0_0_1px_rgba(0,229,192,0.08)] transition-transform duration-200 ease-out hover:scale-105 hover:border-accent! hover:bg-accent-dim! hover:text-accent! active:scale-95 motion-reduce:transition-none motion-reduce:hover:scale-100";
+  "z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-bg-elevated text-text-primary shadow-[0_8px_24px_-8px_rgba(0,0,0,0.7),0_0_0_1px_rgba(0,229,192,0.08)] transition-transform duration-200 ease-out hover:scale-105 hover:border-accent hover:bg-accent-dim hover:text-accent active:scale-95 motion-reduce:transition-none motion-reduce:hover:scale-100";
 
 const FOCUS_RING =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary";
@@ -151,7 +148,7 @@ export function MediaGallery({
         type="button"
         onClick={() => open(index)}
         aria-label={`Open ${item.kind === "video" ? "video" : "photo"}: ${item.alt}`}
-        className={`group/thumb relative block aspect-[4/5] min-h-11 min-w-11 shrink-0 cursor-pointer overflow-hidden rounded-2xl border! border-border! bg-bg-surface! shadow-[0_8px_24px_-14px_rgba(0,229,192,0.18),0_0_0_1px_rgba(255,255,255,0.02)_inset] hover:border-accent/30! active:border-accent/50! ${sizeClassName} ${FOCUS_RING}`}
+        className={`group/thumb relative block aspect-[4/5] min-h-11 min-w-11 shrink-0 cursor-pointer overflow-hidden rounded-2xl border border-border bg-bg-surface shadow-[0_8px_24px_-14px_rgba(0,229,192,0.18),0_0_0_1px_rgba(255,255,255,0.02)_inset] hover:border-accent/30 active:border-accent/50 ${sizeClassName} ${FOCUS_RING}`}
       >
         <Image
           src={item.kind === "video" ? (item.poster ?? item.src) : item.src}
