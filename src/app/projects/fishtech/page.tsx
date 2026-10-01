@@ -79,7 +79,7 @@ const STACK_GROUPS: StackGroup[] = [
   {
     label: "Backend, Persistence, Actuation",
     items: [
-      "Flask + flask-cors (FastAPI migration on the roadmap)",
+      "FastAPI",
       "SQLite with WAL mode, five-table per-pond schema",
       "PyYAML config layer (one YAML per deployment)",
       "N20 12V geared DC motor · L298N motor driver",
@@ -106,7 +106,7 @@ const NEXT_BULLETS = [
   "Auger feeder mechanical assembly and dispense calibration",
   "Productised mast, IP66 enclosure, faceplate, and branded demo unit",
   "Pilot pond deployment, target 30-day live farm run",
-  "FastAPI migration and a WebSocket live layer",
+  "WebSocket live layer",
   "SMS bridge in Shona for feature-phone farmers",
 ];
 
@@ -246,7 +246,7 @@ export default function FishTechCaseStudyPage() {
               </span>
               <span>
                 <span className="text-white/55">Timeline · </span>Active build,
-                pilot 2026
+                pilot deployment in preparation
               </span>
               <span aria-hidden className="text-white/20">
                 ·
@@ -544,8 +544,8 @@ export default function FishTechCaseStudyPage() {
               steel mast specifications, IP66 enclosure layout, status LED
               ring and OLED faceplate, branded demo plinth and acrylic tank.
               The Hailo accelerator, keypoint vision pipeline, automated
-              auger, and field enclosure are in active build for pilot
-              deployment in 2026.
+              auger, and field enclosure are in active build, with
+              pilot deployment in preparation.
             </p>
           </CaseSection>
 

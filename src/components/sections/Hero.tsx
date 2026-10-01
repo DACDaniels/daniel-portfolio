@@ -255,7 +255,7 @@ export function Hero() {
               duration={5.5}
             />
             <FloatingBadge
-              label="Flask"
+              label="FastAPI"
               position={{ x: "96%", y: "62%" }}
               delay={1.2}
               duration={6.5}
