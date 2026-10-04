@@ -346,6 +346,9 @@ but visual noise.
   H.264 crf 25, preset slow, no audio, 7.25 MB) and iris-presenting.mp4 (case
   study, controls, no autoplay), each with a poster jpg
 - public/_incoming/ is a local drop folder, gitignored, never committed
+- public/previews/<client>/index.html: static client design previews, served at
+  /previews/<client> (one rewrite per preview in next.config.ts), noindex via
+  X-Robots-Tag. Not linked from the site. First: endoscopy-suite
 - Clips that play automatically are short, silent and looping. The case study may
   carry one talking clip with controls, which never plays on its own. Never
   full-length originals
