@@ -2,6 +2,10 @@
 
 One line per decision, newest first. Date, what, why.
 
+## 2026-10-04: client previews
+
+- **Client design previews are hosted as static files under /previews/<client>/ on the portfolio domain, marked noindex. First: The Endoscopy Suite & Surgical Clinic (Dr E.G. Muguti).** Why: own domain looks professional and keeps previews off third-party hosts.
+
 ## 2026-10-01: cursor
 
 - **Custom cursor (D8).** The dot follows the pointer 1:1 (set from pointermove in the next frame, no easing); the ring trails on a stiff critically damped spring that catches up in about 85 ms, because the old slow ring made the cursor feel draggy. Only transform and opacity animate; off on touch devices and under reduced motion.
