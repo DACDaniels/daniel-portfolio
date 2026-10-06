@@ -348,7 +348,9 @@ but visual noise.
 - public/_incoming/ is a local drop folder, gitignored, never committed
 - public/previews/<client>/index.html: static client design previews, served at
   /previews/<client> (one rewrite per preview in next.config.ts), noindex via
-  X-Robots-Tag. Not linked from the site. First: endoscopy-suite
+  X-Robots-Tag. Not linked from the site. First: endoscopy-suite (v4, final
+  build; previews CSP allows Google Maps frames, geolocation allowed on
+  previews only)
 - Clips that play automatically are short, silent and looping. The case study may
   carry one talking clip with controls, which never plays on its own. Never
   full-length originals
