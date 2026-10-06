@@ -94,13 +94,31 @@ const nextConfig: NextConfig = {
       // Previews stay out of search results. They load Google Fonts
       // directly, so this CSP (which overrides the site-wide one for
       // /previews only) also allows fonts.googleapis.com for styles and
-      // fonts.gstatic.com for font files.
+      // fonts.gstatic.com for font files, and Google Maps frames for the
+      // embedded map. The Permissions-Policy override allows geolocation
+      // on previews only, for "Add my location" on the Endoscopy Suite
+      // Emergencies page.
       {
         source: "/previews/:path*",
         headers: [
           {
             key: "X-Robots-Tag",
             value: "noindex, nofollow",
+          },
+          {
+            key: "Permissions-Policy",
+            value: [
+              "accelerometer=()",
+              "autoplay=()",
+              "camera=()",
+              "fullscreen=(self)",
+              "geolocation=(self)",
+              "gyroscope=()",
+              "magnetometer=()",
+              "microphone=()",
+              "payment=()",
+              "usb=()",
+            ].join(", "),
           },
           {
             key: "Content-Security-Policy",
@@ -110,6 +128,7 @@ const nextConfig: NextConfig = {
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "img-src 'self' data: blob: https:",
               "font-src 'self' data: https://fonts.gstatic.com",
+              "frame-src https://www.google.com https://maps.google.com",
               "connect-src 'self'",
               "frame-ancestors 'none'",
               "form-action 'self'",

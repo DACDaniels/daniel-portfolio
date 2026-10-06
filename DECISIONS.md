@@ -2,6 +2,10 @@
 
 One line per decision, newest first. Date, what, why.
 
+## 2026-10-07: Endoscopy Suite preview v4
+
+- **Endoscopy Suite preview updated to v4 (final build: single Belvedere location, new surgeries, emergencies page, booking with slots, Suite Desk staff preview). Previews CSP now allows Google Maps frames; geolocation allowed on previews only.**
+
 ## 2026-10-04: client previews
 
 - **Client design previews are hosted as static files under /previews/<client>/ on the portfolio domain, marked noindex. First: The Endoscopy Suite & Surgical Clinic (Dr E.G. Muguti).** Why: own domain looks professional and keeps previews off third-party hosts.
