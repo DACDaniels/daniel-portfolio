@@ -616,7 +616,8 @@ If no — make it better. Every time.
 ## Search (Google) — keep these working
 
 - Google Search Console: ownership by a DNS TXT record on danielchadambuka.com
-  in Cloudflare. Never remove that record.
+  in Namecheap (Advanced DNS). Never remove that record. The dev subdomain
+  is a CNAME to Vercel in the same Namecheap DNS; leave it alone.
 - Every page sets its own title (name added once by the root layout template),
   description, canonical link (alternates.canonical) and Open Graph title/url.
   A page that sets none inherits the home page's canonical and is treated as a
