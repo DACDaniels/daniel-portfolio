@@ -276,7 +276,7 @@ export function Projects() {
             style={{ lineHeight: 1.7 }}
           >
             Two edge instruments in active build, one live transacting
-            platform, two live websites, and this portfolio itself.
+            platform, two websites, and this portfolio itself.
           </motion.p>
 
           <FlagshipProjectCard {...FLAGSHIP} variants={itemVariants} />
