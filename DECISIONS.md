@@ -2,6 +2,15 @@
 
 One line per decision, newest first. Date, what, why.
 
+## 2026-10-09: Achievements redesign, card details and title follow-ups
+
+- **The FishTech case-study share image now uses the full title** (Software Engineer | IT Solutions Specialist | Technology Innovator), so every shared link matches.
+- **Both events are kept in the About timeline and in Achievements on purpose:** a short dated mention in the story, full detail in the card.
+- **"Software Engineer" alone is kept in the search keyword list, the JSON-LD website description and the web app manifest,** because that is the term recruiters search for.
+- **The Presidential Innovation Awards card states 21 July 2026, the category Best Innovation in Agriculture and Agro-Processing, and the FishTech Precision Feeding System Iris.** No outcome is stated, at Daniel's request.
+- **The Show location is "NUST stand, Harare Showground".**
+- **The Achievements cards were redesigned:** date block instead of the big year, one plain sentence per card, quiet detail row, small photos kept, no placeholder images. Both cards share one structure (title on its own row, sentence left, detail right), so the PIA card, which has no photos, is compact rather than an empty box.
+
 ## 2026-10-09: Google search and identity facts
 
 Goal: a search for Daniel's name finds this site, and Google (including its AI answers) reads one consistent set of facts.
