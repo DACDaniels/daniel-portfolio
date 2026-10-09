@@ -2,6 +2,12 @@
 
 One line per decision, newest first. Date, what, why.
 
+## 2026-10-09: Achievements card balance and FishTech share image wording
+
+- **The Show photos sit under the sentence in the left column,** so both cards share one shape (sentence left, one detail right) and the empty space under the sentence is gone. The photos stay small, same size as before. On mobile the order is unchanged: sentence, Location, photos.
+- **"Pilot deployment in preparation" stays on the FishTech share image** (Daniel confirmed).
+- **The detection box on the FishTech share image ("fish · 0.94", "L ≈ 24cm") stays as an illustration** (Daniel's decision).
+
 ## 2026-10-09: Achievements redesign, card details and title follow-ups
 
 - **The FishTech case-study share image now uses the full title** (Software Engineer | IT Solutions Specialist | Technology Innovator), so every shared link matches.
