@@ -157,12 +157,15 @@ function AchievementCard({ achievement }: { achievement: Achievement }) {
         {achievement.title}
       </h3>
 
-      <div className="mt-5 grid gap-6 md:mt-6 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] md:gap-10">
-        <p className="max-w-[46ch] text-[15px] leading-[1.7] text-text-secondary md:text-[17px]">
+      {/* One column on mobile in DOM order: sentence, detail, photos. From md
+          the photos move under the sentence, so the left column is not left
+          short beside the detail. */}
+      <div className="mt-5 grid gap-6 md:mt-6 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] md:gap-x-10">
+        <p className="max-w-[46ch] text-[15px] leading-[1.7] text-text-secondary md:col-start-1 md:row-start-1 md:text-[17px]">
           {achievement.summary}
         </p>
 
-        <div className="flex flex-col gap-5 border-t border-border pt-5 md:border-t-0 md:border-l md:pt-0 md:pl-8">
+        <div className="border-t border-border pt-5 md:col-start-2 md:row-span-2 md:row-start-1 md:border-t-0 md:border-l md:pt-0 md:pl-8">
           <dl className="flex flex-col gap-1.5">
             <dt className="font-mono text-[11px] tracking-[0.06em] text-text-tertiary">
               {achievement.detail.term}
@@ -171,15 +174,17 @@ function AchievementCard({ achievement }: { achievement: Achievement }) {
               {keepHyphenatedWordsWhole(achievement.detail.value)}
             </dd>
           </dl>
+        </div>
 
-          {achievement.media ? (
+        {achievement.media ? (
+          <div className="-mt-1 md:col-start-1 md:row-start-2 md:mt-0">
             <MediaGallery
               layout="strip"
               items={achievement.media}
               className="max-w-[300px]"
             />
-          ) : null}
-        </div>
+          </div>
+        ) : null}
       </div>
     </article>
   );
