@@ -81,10 +81,16 @@ Radii:
   Division, NUST Zimbabwe. Conferred 17 September 2026 (study 2022 to 2026)
 - Job status: actively looking for employment. Do NOT label him CEO / founder of
   Blue Acre in site copy; FishTech appears as projects, not a title
+- Full name: Daniel Anesu Chadambuka (shown once in About and as alternateName
+  in the structured data; "Daniel Chadambuka" everywhere else)
 - Title: Software Engineer | IT Solutions Specialist | Technology Innovator
   → Used in the hero and all search engine data (page title, Open Graph,
     Twitter, JSON-LD jobTitle). Pipes match the LinkedIn headline
+  → In JSON-LD the jobTitle is the same three parts as a list
   → Footer identity column heading stays "Software Engineer" (narrow column)
+- Profiles ("same person" links in structured data): GitHub, LinkedIn
+  (daniel-chadambuka-792b74277), Instagram (instagram.com/dac.daniels).
+  No X/Twitter account
 - Entrepreneurial identity shows THROUGH projects, never as a label
 
 ## Target Audience (in priority order)
@@ -384,11 +390,11 @@ but visual noise.
   H.264 crf 25, preset slow, no audio, 7.25 MB) and iris-presenting.mp4 (case
   study, controls, no autoplay), each with a poster jpg
 - public/_incoming/ is a local drop folder, gitignored, never committed
-- public/previews/<client>/index.html: static client design previews, served at
-  /previews/<client> (one rewrite per preview in next.config.ts), noindex via
-  X-Robots-Tag. Not linked from the site. First: endoscopy-suite (v4, final
-  build; previews CSP allows Google Maps frames, geolocation allowed on
-  previews only)
+- public/previews/<client>/index.html: private client design previews. None at
+  present (endoscopy-suite deleted 2026-10-09). A new one needs a rewrite in
+  next.config.ts, a noindex meta tag in the file (the X-Robots-Tag header for
+  /previews/ is already in next.config.ts), stays out of the sitemap, and is
+  never blocked in robots.txt
 - Clips that play automatically are short, silent and looping. The case study may
   carry one talking clip with controls, which never plays on its own. Never
   full-length originals
@@ -606,3 +612,17 @@ screenshot.mjs
 Before marking any component or section complete, ask:
 "Would this get attention on Awwwards?"
 If no — make it better. Every time.
+
+## Search (Google) — keep these working
+
+- Google Search Console: ownership by a DNS TXT record on danielchadambuka.com
+  in Cloudflare. Never remove that record.
+- Every page sets its own title (name added once by the root layout template),
+  description, canonical link (alternates.canonical) and Open Graph title/url.
+  A page that sets none inherits the home page's canonical and is treated as a
+  copy of it.
+- Structured data: Person and WebSite in src/app/layout.tsx, ProfilePage in
+  src/app/page.tsx. Only confirmed facts; no phone, street address or awards.
+- robots.txt (src/app/robots.ts) allows everything; sitemap (src/app/sitemap.ts)
+  lists public pages only. New public page = add it to the sitemap.
+- npm run preflight runs scripts/check-seo.mjs after the build; it must pass.
