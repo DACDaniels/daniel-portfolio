@@ -11,7 +11,7 @@ import {
   type AlternatingProjectProps,
 } from "@/components/ui/AlternatingProjectCard";
 import { SteadyhandsMock } from "@/components/ui/project-mocks/SteadyhandsMock";
-import { FishTechWebsiteMock } from "@/components/ui/project-mocks/FishTechWebsiteMock";
+import { FishTechConsultancyShowcase } from "@/components/ui/project-mocks/FishTechConsultancyShowcase";
 import { EndoscopySuiteShowcase } from "@/components/ui/project-mocks/EndoscopySuiteShowcase";
 import { PortfolioMock } from "@/components/ui/project-mocks/PortfolioMock";
 import { LoopingClip } from "@/components/ui/LoopingClip";
@@ -123,15 +123,15 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
     title: "FishTech Consultancy",
     meta: "fishtech.co.zw · Lead-gen platform",
     description:
-      "Marketing site for aquaculture consultancy. Optimized for Zimbabwean bandwidth. WhatsApp-first conversion funnel.",
+      "Company site for FishTech Consultancy. It covers pond digging and lining, bird and predator nets, tilapia fingerlings and feed, anywhere in Zimbabwe. Prices come from the published price list, and a pond calculator shows the cost straight away, ready to send on WhatsApp for a written quotation. Optimised for Zimbabwean bandwidth.",
     tags: ["React", "TypeScript", "Vite", "Framer Motion"],
     status: "live",
     primaryLink: {
       label: "View Live",
-      href: "https://fishtech.co.zw",
+      href: "https://www.fishtech.co.zw",
       external: true,
     },
-    mockComponent: <FishTechWebsiteMock />,
+    mockComponent: <FishTechConsultancyShowcase />,
     side: "right",
   },
   {
