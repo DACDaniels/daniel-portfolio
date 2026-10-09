@@ -2,6 +2,14 @@
 
 One line per decision, newest first. Date, what, why.
 
+## 2026-10-09: FishTech Consultancy card position and redesign
+
+- **FishTech Consultancy now sits third (03), after The Endoscopy Suite and above FishTech Feeder (04) and Steadyhands Catering (05).** This Portfolio stays last (06). Daniel's decision; he has his reasons. Sides re-alternate from Endoscopy (left): Consultancy right, Feeder left, Steadyhands right, Portfolio left.
+- **The card was rebuilt in the same style as The Endoscopy Suite card, using real screenshots of the live www.fishtech.co.zw** (public/images/fishtech-consultancy/, desktop home 2000 x 1250 from a 1440 px capture, phone home 600 x 1298 from a 390 px capture, progressive JPEG, about 200 KB in total), in a browser frame with the phone view over it, on the site's own deep navy. FishTechWebsiteMock.tsx is deleted. No gallery strip, because only the home page was captured.
+- **The wording keeps the existing facts (WhatsApp-first, optimised for Zimbabwean bandwidth) plus only what the live site shows:** pond digging and lining, bird and predator nets, tilapia fingerlings and feed anywhere in Zimbabwe, prices from the published price list, a pond calculator, written quotations on WhatsApp. No prices or figures in the copy. It calls it the company site, with no CEO or founder titles.
+- **The link now goes to https://www.fishtech.co.zw.** The label stays "View Live" to match every other card.
+- **The FishTech Feeder card's content is unchanged and only moved** (number 03 to 04, side right to left for the alternation).
+
 ## 2026-10-09: Achievements card balance and FishTech share image wording
 
 - **The Show photos sit under the sentence in the left column,** so both cards share one shape (sentence left, one detail right) and the empty space under the sentence is gone. The photos stay small, same size as before. On mobile the order is unchanged: sentence, Location, photos.

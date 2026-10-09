@@ -205,10 +205,11 @@ Separate deep-dive case study pages for each project.
   → Cursor-tracking spotlight effect
 - 5 other projects in alternating left/right layout, in this order:
   → 02 The Endoscopy Suite (endoscopysuite.co.zw, client work)
-  → 03 FishTech Feeder
-  → 04 Steadyhands Platform
-  → 05 FishTech Consultancy Website (fishtech.co.zw)
+  → 03 FishTech Consultancy Website (fishtech.co.zw)
+  → 04 FishTech Feeder
+  → 05 Steadyhands Platform
   → 06 This Portfolio
+  → Order is Daniel's decision (see DECISIONS.md, 2026-10-09)
 - Each card: image, tags, title, description, GitHub + Live links
 - Staggered slide-in from alternating sides on scroll
 
@@ -305,7 +306,16 @@ Separate deep-dive case study pages for each project.
    - Next.js, TypeScript, Node.js, Paynow gateway (Ecocash,
      OneMoney, Visa, Mastercard), WhatsApp Business funnel
    - Live and transacting at steadyhandscatering.com
-3. FishTech Consultancy Website at fishtech.co.zw
+3. FishTech Consultancy Website at https://www.fishtech.co.zw (LIVE)
+   - The company site: pond digging and lining, bird and predator nets,
+     tilapia fingerlings and feed anywhere in Zimbabwe, prices from the
+     published price list, pond calculator, written quotations on WhatsApp
+   - Card visual: real screenshots in public/images/fishtech-consultancy/
+     (ft-home-desktop in a browser frame plus ft-home-phone), same layout
+     as The Endoscopy Suite card. No gallery strip
+   - Card sits at position 03, after The Endoscopy Suite. Call it the
+     company site; never CEO, founder or owner on the card. No prices,
+     client counts or traffic figures in the copy
 4. FishTech Feeder (BUILDING, working prototype: first unit built and dispensing feed)
    - Standalone welded-steel, solar-powered automatic feeder (ESP32).
      Auger turns a counted number of revolutions to meter each dose,
@@ -395,6 +405,9 @@ but visual noise.
 - public/images/feeder/: FishTech Feeder (card strip: mechanism, pond sunset,
   visitors; feeder-pond-demo.jpg stays in the repo but is not used)
 - public/images/zas/: Zimbabwe Agricultural Show 2026 (About timeline strip)
+- public/images/fishtech-consultancy/: screenshots of www.fishtech.co.zw taken
+  2026-10-09 (ft-home-desktop 2000 px wide from a 1440 px capture, ft-home-phone
+  600 px wide from a 390 px capture). Retake them if the site changes a lot
 - public/images/endoscopy-suite/: screenshots of endoscopysuite.co.zw taken
   2026-10-09 (es-home-desktop 2000 px wide, es-home-phone, and three phone
   pages for the card strip). Retake them if the client site changes a lot
