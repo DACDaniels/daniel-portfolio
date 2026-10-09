@@ -4,7 +4,7 @@
 
 ## Always Do First
 
-- - Invoke the `frontend-design` skill at /mnt/skills/public/frontend-design/SKILL.md before writing any frontend code
+- Load the frontend-design skill with the Skill tool before writing any frontend code
 - Read this entire CLAUDE.md at the start of every session
 - Check /public/brand-assets/ for any real assets before designing
 
@@ -306,16 +306,22 @@ Separate deep-dive case study pages for each project.
    - Next.js, TypeScript, Node.js, Paynow gateway (Ecocash,
      OneMoney, Visa, Mastercard), WhatsApp Business funnel
    - Live and transacting at steadyhandscatering.com
-3. FishTech Consultancy Website at https://www.fishtech.co.zw (LIVE)
-   - The company site: pond digging and lining, bird and predator nets,
-     tilapia fingerlings and feed anywhere in Zimbabwe, prices from the
-     published price list, pond calculator, written quotations on WhatsApp
+3. FishTech Consultancy Website at https://www.fishtech.co.zw (BUILDING:
+   reachable, not officially launched)
+   - Daniel's own company site, not client work. Card label "COMPANY SITE"
+   - Single price list feeding every price, pond calculator with an instant
+     cost that sends to WhatsApp for a written quote
+   - Stack (verified 2026-10-09 against github.com/DACDaniels/fishtech-consultancy
+     and the live build): Astro, TypeScript, GSAP, hosted on Vercel. Not
+     React, Vite or Framer Motion
    - Card visual: real screenshots in public/images/fishtech-consultancy/
      (ft-home-desktop in a browser frame plus ft-home-phone), same layout
-     as The Endoscopy Suite card. No gallery strip
+     as The Endoscopy Suite card, plus a strip of three phone shots: price
+     panel, pond calculator, calculator total with the WhatsApp button
    - Card sits at position 03, after The Endoscopy Suite. Call it the
      company site; never CEO, founder or owner on the card. No prices,
-     client counts or traffic figures in the copy
+     client counts or traffic figures in the copy. Switch the badge to
+     LIVE only when Daniel says the site has launched
 4. FishTech Feeder (BUILDING, working prototype: first unit built and dispensing feed)
    - Standalone welded-steel, solar-powered automatic feeder (ESP32).
      Auger turns a counted number of revolutions to meter each dose,
@@ -407,7 +413,9 @@ but visual noise.
 - public/images/zas/: Zimbabwe Agricultural Show 2026 (About timeline strip)
 - public/images/fishtech-consultancy/: screenshots of www.fishtech.co.zw taken
   2026-10-09 (ft-home-desktop 2000 px wide from a 1440 px capture, ft-home-phone
-  600 px wide from a 390 px capture). Retake them if the site changes a lot
+  600 px wide from a 390 px capture; card strip ft-prices-phone,
+  ft-calculator-phone, ft-quote-phone, 780 x 1688 from 390 px captures).
+  Retake them if the site changes a lot
 - public/images/endoscopy-suite/: screenshots of endoscopysuite.co.zw taken
   2026-10-09 (es-home-desktop 2000 px wide, es-home-phone, and three phone
   pages for the card strip). Retake them if the client site changes a lot
@@ -626,6 +634,12 @@ public/
 screenshots/
 screenshot.mjs
 ```
+
+## Known issues
+
+- In dev with prefers-reduced-motion on, React logs a hydration mismatch on
+  every motion section (server renders the full-motion variant, client the
+  reduced one). Not yet fixed; a separate task
 
 ## Commands
 
