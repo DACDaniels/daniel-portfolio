@@ -2,6 +2,15 @@
 
 One line per decision, newest first. Date, what, why.
 
+## 2026-10-09: Endoscopy Suite card, real screenshots and own domain
+
+- **The card links to https://www.endoscopysuite.co.zw**, the practice's own domain, instead of endoscopy-suite.pages.dev.
+- **The drawn mock is replaced by real screenshots of the live site** (public/images/endoscopy-suite/, 600 KB in total): the desktop home page in a browser frame, with the phone view rising from the bottom-right corner, on the site's own navy. Why: the mock was a light-coloured guess that did not look like the real site, and a real screenshot is stronger proof of delivery.
+- **Gallery strip of three phone screenshots** (Services, Book, Emergencies), like the Feeder card. Phone shots because the strip thumbnails are portrait and the site is built phone-first. The Dr Muguti page is left out because it shows his photo.
+- **MediaGallery items take an optional `focus: "top"`** so tall screenshots are cropped from the top and keep their headline. Default unchanged for every other gallery.
+- **Stack tags corrected to Next.js, React, TypeScript, Tailwind CSS, Cloudflare Pages.** Read from the site's own repo (DACDaniels/endoscopy-suite: Next.js 16 static export). The earlier "plain HTML, CSS and JavaScript" described the old single-file preview, not the live site.
+- **Meta shortened to "endoscopysuite.co.zw · Dr Muguti"** so it fits on one line at 375 px.
+
 ## 2026-10-09: Endoscopy Suite project card
 
 - **The Endoscopy Suite (Dr E.G. Muguti's practice site) is a project card at position 02, directly under the FishTech Precision Feeding System flagship.** The card links to the live site at https://endoscopy-suite.pages.dev, not to the /previews/endoscopy-suite copy. Why under the flagship and not above it: the flagship is the strongest technical signal for the job search, so it stays first.

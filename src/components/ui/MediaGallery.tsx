@@ -11,6 +11,8 @@ export type MediaItem = {
   kind: "image" | "video";
   /** Required for video items: the still shown as the thumbnail. */
   poster?: string;
+  /** Crop the thumbnail from the top instead of the centre (tall screenshots). */
+  focus?: "top";
 };
 
 /**
@@ -156,7 +158,7 @@ export function MediaGallery({
           fill
           loading="lazy"
           sizes={sizes}
-          className={`object-cover transition-transform duration-500 ease-out group-hover/thumb:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover/thumb:scale-100 ${imageClassName}`}
+          className={`object-cover transition-transform duration-500 ease-out group-hover/thumb:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover/thumb:scale-100 ${item.focus === "top" ? "object-top" : ""} ${imageClassName}`}
         />
         <span
           aria-hidden

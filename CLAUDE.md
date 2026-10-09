@@ -189,7 +189,7 @@ Separate deep-dive case study pages for each project.
   → "View Case Study" → /projects/fishtech
   → Cursor-tracking spotlight effect
 - 5 other projects in alternating left/right layout, in this order:
-  → 02 The Endoscopy Suite (endoscopy-suite.pages.dev, client work)
+  → 02 The Endoscopy Suite (endoscopysuite.co.zw, client work)
   → 03 FishTech Feeder
   → 04 Steadyhands Platform
   → 05 FishTech Consultancy Website (fishtech.co.zw)
@@ -279,11 +279,18 @@ Separate deep-dive case study pages for each project.
    - Real photos in public/images/feeder/. NEVER CLAIM validated dose
      accuracy or field results: the dose test is not written up. No price in public copy (withdrawn)
 5. Daniel Chadambuka Portfolio (this site)
-6. The Endoscopy Suite (LIVE, client work) at https://endoscopy-suite.pages.dev
+6. The Endoscopy Suite (LIVE, client work) at https://www.endoscopysuite.co.zw
    - Website for Dr E.G. Muguti's endoscopy and surgery practice in
-     Belvedere, Harare. Plain HTML, CSS and JavaScript on Cloudflare Pages.
-     Pages for procedures, preparation timetables, emergencies, appointment
-     requests confirmed on WhatsApp, a referral form
+     Belvedere, Harare. Next.js 16 static export, React 19, TypeScript,
+     Tailwind CSS, Vitest; published to Cloudflare Pages by GitHub Actions.
+     Canonical source: github.com/DACDaniels/endoscopy-suite (private)
+   - Pages: Services (42 services in 8 groups), Dr Muguti, Patients
+     (guides and preparation), Visit, Emergencies, Book (requests
+     confirmed on WhatsApp)
+   - Card visual: real screenshots in public/images/endoscopy-suite/
+     (desktop home in a browser frame plus the phone view; strip of phone
+     shots of Services, Book, Emergencies, cropped from the top). The Dr
+     Muguti page is left out because it shows his photo
    - Card sits at position 02 in the Projects section (see DECISIONS.md,
      2026-10-09). Never claim a booking back end, patient numbers or
      clinical results
@@ -349,6 +356,9 @@ but visual noise.
 - public/images/feeder/: FishTech Feeder (card strip: mechanism, pond sunset,
   visitors; feeder-pond-demo.jpg stays in the repo but is not used)
 - public/images/zas/: Zimbabwe Agricultural Show 2026 (About timeline strip)
+- public/images/endoscopy-suite/: screenshots of endoscopysuite.co.zw taken
+  2026-10-09 (es-home-desktop 2000 px wide, es-home-phone, and three phone
+  pages for the card strip). Retake them if the client site changes a lot
 - public/images/graduation/: graduation (grad-studio.jpg is the main portrait
   and the first lightbox photo, then corridor, outdoor, ceremony; grad-seated.jpg
   stays in the repo but is not used)
