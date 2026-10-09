@@ -1,7 +1,8 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "nodejs";
-export const alt = "Daniel Chadambuka · Software Engineer";
+export const alt =
+  "Daniel Chadambuka · Software Engineer | IT Solutions Specialist | Technology Innovator";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -103,14 +104,14 @@ export default async function OpengraphImage() {
               fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
               fontSize: "16px",
               fontWeight: 500,
-              letterSpacing: "0.22em",
+              letterSpacing: "0.12em",
               color: "#00E5C0",
               textTransform: "uppercase",
               marginBottom: "26px",
               display: "flex",
             }}
           >
-            {"// Software Engineer"}
+            {"// Software Engineer | IT Solutions Specialist | Technology Innovator"}
           </div>
           <div
             style={{
