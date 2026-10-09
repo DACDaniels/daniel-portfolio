@@ -85,9 +85,12 @@ Radii:
   in the structured data; "Daniel Chadambuka" everywhere else)
 - Title: Software Engineer | IT Solutions Specialist | Technology Innovator
   → Used in the hero and all search engine data (page title, Open Graph,
-    Twitter, JSON-LD jobTitle). Pipes match the LinkedIn headline
+    Twitter, JSON-LD jobTitle, root and FishTech case-study share images).
+    Pipes match the LinkedIn headline
   → In JSON-LD the jobTitle is the same three parts as a list
   → Footer identity column heading stays "Software Engineer" (narrow column)
+  → "Software Engineer" alone stays in the layout.tsx keyword list, the
+    JSON-LD WebSite description and manifest.ts (the term recruiters search)
 - Profiles ("same person" links in structured data): GitHub, LinkedIn
   (daniel-chadambuka-792b74277), Instagram (instagram.com/dac.daniels).
   No X/Twitter account
@@ -212,11 +215,21 @@ Separate deep-dive case study pages for each project.
 ### 5. Achievements (LIVE)
 
 - Sits after Projects, before About. In the navbar as "Achievements"
-- Full-width stacked cards: title, year, definition list of documented facts
-- Presidential Innovation Awards 2026: presented FishTech to the national
-  innovation panel. Month, category and outcome are not documented
-- Zimbabwe Agricultural Show 2026: August 2026, NUST stand, Harare, FishTech
-  Feeder exhibited, three photos from public/images/zas/
+- Full-width stacked cards, one structure for both: mono date block
+  (teal, the only teal in the card), Geist title on its own row, then one
+  plain sentence on the left and a quiet detail (mono key + value) on the
+  right, with the Show photos under the detail. No big year, no label grid,
+  no placeholder images
+- Presidential Innovation Awards: 21 July 2026. Presented the FishTech
+  Precision Feeding System Iris, a research prototype, to the national
+  innovation panel. Category: Best Innovation in Agriculture and
+  Agro-Processing. No outcome is stated, at Daniel's request
+- Zimbabwe Agricultural Show: August 2026, NUST stand, Harare Showground.
+  Exhibited the FishTech Feeder, a working prototype, and met farmers, buyers
+  and Ministry of Skills stakeholders. Three small photos from
+  public/images/zas/ (MediaGallery strip, max 300 px wide)
+- Both events also stay in the About timeline on purpose: short dated mention
+  there, full detail here
 - Only facts already written in this repo. No placings, prizes, judges or
   outcomes until Daniel supplies them. FishTech is a research prototype,
   never commercially deployed
