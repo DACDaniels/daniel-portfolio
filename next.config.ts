@@ -72,18 +72,6 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 60 * 60 * 24 * 30,
   },
 
-  // Client design previews are static files in public/previews/<client>/.
-  // Next.js does not serve a folder's index.html for the bare folder URL,
-  // so each preview needs a rewrite. The trailing-slash URL needs no rule:
-  // Next.js 308-redirects it to the bare URL before rewrites run.
-  async rewrites() {
-    return [
-      {
-        source: "/previews/endoscopy-suite",
-        destination: "/previews/endoscopy-suite/index.html",
-      },
-    ];
-  },
 
   async headers() {
     return [
@@ -91,51 +79,15 @@ const nextConfig: NextConfig = {
         source: "/(.*)",
         headers: securityHeaders,
       },
-      // Previews stay out of search results. They load Google Fonts
-      // directly, so this CSP (which overrides the site-wide one for
-      // /previews only) also allows fonts.googleapis.com for styles and
-      // fonts.gstatic.com for font files, and Google Maps frames for the
-      // embedded map. The Permissions-Policy override allows geolocation
-      // on previews only, for "Add my location" on the Endoscopy Suite
-      // Emergencies page.
+      // Safeguard: anything ever placed under /previews/ (private client
+      // drafts) stays out of search results. Do not also block /previews/
+      // in robots.txt: Google must be able to read a page to see noindex.
       {
         source: "/previews/:path*",
         headers: [
           {
             key: "X-Robots-Tag",
             value: "noindex, nofollow",
-          },
-          {
-            key: "Permissions-Policy",
-            value: [
-              "accelerometer=()",
-              "autoplay=()",
-              "camera=()",
-              "fullscreen=(self)",
-              "geolocation=(self)",
-              "gyroscope=()",
-              "magnetometer=()",
-              "microphone=()",
-              "payment=()",
-              "usb=()",
-            ].join(", "),
-          },
-          {
-            key: "Content-Security-Policy",
-            value: [
-              "default-src 'self'",
-              "script-src 'self' 'unsafe-inline'",
-              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-              "img-src 'self' data: blob: https:",
-              "font-src 'self' data: https://fonts.gstatic.com",
-              "frame-src https://www.google.com https://maps.google.com",
-              "connect-src 'self'",
-              "frame-ancestors 'none'",
-              "form-action 'self'",
-              "base-uri 'self'",
-              "object-src 'none'",
-              "upgrade-insecure-requests",
-            ].join("; "),
           },
         ],
       },

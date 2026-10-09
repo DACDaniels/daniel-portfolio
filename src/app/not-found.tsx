@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "404 · Lost in the pond · Daniel Chadambuka",
+  title: "404 · Lost in the pond",
   robots: { index: false, follow: false },
 };
 

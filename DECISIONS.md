@@ -2,6 +2,22 @@
 
 One line per decision, newest first. Date, what, why.
 
+## 2026-10-09: Google search and identity facts
+
+Goal: a search for Daniel's name finds this site, and Google (including its AI answers) reads one consistent set of facts.
+
+- **Google Search Console ownership is verified by a DNS TXT record on danielchadambuka.com in Cloudflare (a "Domain property"), not a meta tag.** Why: one record covers dev. and the future danielchadambuka.com site, needs no code, and cannot be lost in a code change. **That TXT record must never be removed**, or Google drops ownership and the Search Console history.
+- **The FishTech case study gets its own canonical link, Open Graph title and address** (src/app/projects/fishtech/layout.tsx). Bug: it inherited the home page's canonical link, which told Google it was a copy of the home page.
+- **Page titles carry the name once.** The root layout adds " · Daniel Chadambuka", so page titles no longer add it by hand (FishTech page and 404 page both read "... · Daniel Chadambuka · Daniel Chadambuka").
+- **Structured data:** Person gains the full name "Daniel Anesu Chadambuka" (alternateName), job titles Software Engineer, IT Solutions Specialist, Technology Innovator, and Instagram (instagram.com/dac.daniels, tracking parameters dropped) in sameAs, alongside GitHub and LinkedIn. The home page adds a ProfilePage block pointing at that Person. Email, Harare (city only), NUST and the hero photo stay as they were. No phone, no street address, no awards.
+- **Twitter/X handle removed.** Daniel has no X account; "@DACDaniels" there was wrong.
+- **CEO of FishTech Consultancy stays off the site for now**, in line with the 2026-10-01 job-search decision.
+- **Full name appears once in About** ("I'm Daniel Anesu Chadambuka, ..."), so the structured data matches visible text.
+- **Job title in structured data is a list of the three parts** (Software Engineer, IT Solutions Specialist, Technology Innovator) rather than one piped string, so each reads as its own title. The visible title and page titles are set by the "Professional title" entry below.
+- **/previews/endoscopy-suite deleted**, with its rewrite and its Google Maps / geolocation exceptions. The client's real site is live at endoscopysuite.co.zw, and a deleted copy cannot leak. Closes the open question from the card entry below.
+- **Rule for any future preview:** noindex (meta tag in the file plus the X-Robots-Tag header kept in next.config.ts for /previews/), never in the sitemap, and **never blocked in robots.txt**, because Google must be able to read a page to see its noindex.
+- **New build check, scripts/check-seo.mjs, runs in npm run preflight.** It fails the build if a page loses its title, description, canonical link, Open Graph image or Person data, if the name repeats in a title, if structured data stops being valid JSON, if the sitemap lists /previews/, or if a preview lacks noindex.
+
 ## 2026-10-09: Professional title and Achievements section
 
 - **The title "Software Engineer | IT Solutions Specialist | Technology Innovator" is used in the hero and all search engine data** (page title, meta description, Open Graph, Twitter, JSON-LD jobTitle, root Open Graph image).

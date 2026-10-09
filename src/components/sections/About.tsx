@@ -274,8 +274,8 @@ export function About() {
             }}
           >
             <p>
-              Computer Science graduate from NUST with over two years of
-              shipping software that survives contact with the real world.
+              I&apos;m Daniel Anesu Chadambuka, a Computer Science graduate
+              from NUST with over two years of shipping software that survives contact with the real world.
               I also know servers, networks, infrastructure, IT governance,
               SAP and organisational network management.
             </p>

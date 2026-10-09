@@ -92,7 +92,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `Daniel Chadambuka · ${JOB_TITLE}`,
     description: `${JOB_TITLE}. Building real-world systems: full-stack, computer vision, embedded, and AI.`,
-    creator: "@DACDaniels",
   },
   robots: {
     index: true,
@@ -118,11 +117,19 @@ const personSchema = {
   "@type": "Person",
   "@id": `${SITE_URL}/#person`,
   name: "Daniel Chadambuka",
+  alternateName: "Daniel Anesu Chadambuka",
   givenName: "Daniel",
+  additionalName: "Anesu",
   familyName: "Chadambuka",
-  jobTitle: JOB_TITLE,
+  // The same three parts as JOB_TITLE, as a list so search engines read
+  // each title on its own.
+  jobTitle: [
+    "Software Engineer",
+    "IT Solutions Specialist",
+    "Technology Innovator",
+  ],
   description:
-    "Computer Science graduate from NUST with over two years of shipping software. Full-stack web, computer vision, edge devices, and enterprise IT infrastructure.",
+    "Software Engineer and IT Solutions Specialist based in Harare, Zimbabwe. Computer Science graduate from NUST with over two years of shipping software: full-stack web, computer vision, edge devices, and enterprise IT infrastructure.",
   url: SITE_URL,
   image: `${SITE_URL}/images/daniel-hero.jpg`,
   email: "mailto:chadambukadaniel@gmail.com",
@@ -136,7 +143,7 @@ const personSchema = {
     addressCountry: "Zimbabwe",
   },
   alumniOf: {
-    "@type": "EducationalOrganization",
+    "@type": "CollegeOrUniversity",
     name: "National University of Science and Technology, Zimbabwe",
     sameAs: "https://www.nust.ac.zw/",
   },
@@ -158,6 +165,7 @@ const personSchema = {
   sameAs: [
     "https://github.com/DACDaniels",
     "https://www.linkedin.com/in/daniel-chadambuka-792b74277/",
+    "https://www.instagram.com/dac.daniels/",
   ],
 };
 
