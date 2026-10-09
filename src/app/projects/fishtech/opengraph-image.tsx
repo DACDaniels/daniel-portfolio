@@ -121,18 +121,35 @@ export default async function OpengraphImage() {
           <div
             style={{
               display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
+              flexDirection: "column",
+              gap: "10px",
               fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
               fontSize: "15px",
               color: "rgba(255,255,255,0.5)",
               letterSpacing: "0.06em",
             }}
           >
-            <span style={{ display: "flex" }}>
-              Daniel Chadambuka · Software Engineer
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <span style={{ display: "flex" }}>Daniel Chadambuka</span>
+              <span style={{ display: "flex" }}>Pilot deployment in preparation</span>
+            </div>
+            <span
+              style={{
+                display: "flex",
+                fontSize: "13px",
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                color: "#00E5C0",
+              }}
+            >
+              Software Engineer | IT Solutions Specialist | Technology Innovator
             </span>
-            <span style={{ display: "flex" }}>Pilot deployment in preparation</span>
           </div>
         </div>
 
