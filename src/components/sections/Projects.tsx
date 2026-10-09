@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/AlternatingProjectCard";
 import { SteadyhandsMock } from "@/components/ui/project-mocks/SteadyhandsMock";
 import { FishTechWebsiteMock } from "@/components/ui/project-mocks/FishTechWebsiteMock";
+import { EndoscopySuiteMock } from "@/components/ui/project-mocks/EndoscopySuiteMock";
 import { PortfolioMock } from "@/components/ui/project-mocks/PortfolioMock";
 import { LoopingClip } from "@/components/ui/LoopingClip";
 import { MediaGallery, type MediaItem } from "@/components/ui/MediaGallery";
@@ -79,6 +80,23 @@ const FEEDER_GALLERY: MediaItem[] = [
 const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
   {
     number: "02",
+    category: "CLIENT WORK",
+    title: "The Endoscopy Suite",
+    meta: "endoscopy-suite.pages.dev · Specialist surgery practice, Harare",
+    description:
+      "Website for a specialist surgeon's endoscopy suite in Belvedere, Harare. Plain-language pages for each scope and operation, preparation timetables, emergency guidance, appointment requests confirmed on WhatsApp, and a referral form for other doctors. Plain HTML, CSS and JavaScript on Cloudflare Pages.",
+    tags: ["HTML", "CSS", "JavaScript", "WhatsApp", "Cloudflare Pages"],
+    status: "live",
+    primaryLink: {
+      label: "View Live",
+      href: "https://endoscopy-suite.pages.dev",
+      external: true,
+    },
+    mockComponent: <EndoscopySuiteMock />,
+    side: "left",
+  },
+  {
+    number: "03",
     category: "EMBEDDED · SOLAR",
     title: "FishTech Feeder",
     meta: "Working prototype · Exhibited at ZAS 2026",
@@ -95,10 +113,10 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
       />
     ),
     gallery: <MediaGallery layout="strip" items={FEEDER_GALLERY} />,
-    side: "left",
+    side: "right",
   },
   {
-    number: "03",
+    number: "04",
     category: "PRODUCTION",
     title: "Steadyhands Catering",
     meta: "steadyhandscatering.com · BATA Club",
@@ -112,10 +130,10 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
       external: true,
     },
     mockComponent: <SteadyhandsMock />,
-    side: "right",
+    side: "left",
   },
   {
-    number: "04",
+    number: "05",
     category: "CLIENT WORK",
     title: "FishTech Consultancy",
     meta: "fishtech.co.zw · Lead-gen platform",
@@ -129,10 +147,10 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
       external: true,
     },
     mockComponent: <FishTechWebsiteMock />,
-    side: "left",
+    side: "right",
   },
   {
-    number: "05",
+    number: "06",
     category: "META",
     title: "This Portfolio",
     meta: "You're looking at it",
@@ -146,7 +164,7 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
       external: true,
     },
     mockComponent: <PortfolioMock />,
-    side: "right",
+    side: "left",
   },
 ];
 
@@ -214,7 +232,7 @@ export function Projects() {
             style={{ lineHeight: 1.7 }}
           >
             Two edge instruments in active build, one live transacting
-            platform, one lead-gen site, and this portfolio itself.
+            platform, two live websites, and this portfolio itself.
           </motion.p>
 
           <FlagshipProjectCard {...FLAGSHIP} variants={itemVariants} />

@@ -2,6 +2,15 @@
 
 One line per decision, newest first. Date, what, why.
 
+## 2026-10-09: Endoscopy Suite project card
+
+- **The Endoscopy Suite (Dr E.G. Muguti's practice site) is a project card at position 02, directly under the FishTech Precision Feeding System flagship.** The card links to the live site at https://endoscopy-suite.pages.dev, not to the /previews/endoscopy-suite copy. Why under the flagship and not above it: the flagship is the strongest technical signal for the job search, so it stays first.
+- **Cards below it renumbered 03 to 06, sides flipped to keep the left/right alternation.** Feeder 03, Steadyhands 04, FishTech Consultancy 05, Portfolio 06.
+- **Card copy states only what the site contains:** procedure pages, preparation timetables, emergency guidance, appointment requests confirmed on WhatsApp, a referral form. It does not claim a booking back end, patient numbers or clinical results. Stack tags are HTML, CSS, JavaScript, WhatsApp, Cloudflare Pages (the site uses no framework).
+- **Card image is a hand-built mock** (EndoscopySuiteMock.tsx) in the site's own colours, like the other client cards. No real screenshot yet because no browser was available in the build session.
+- **Projects intro line now reads "two live websites"** (FishTech Consultancy and the Endoscopy Suite) instead of "one lead-gen site".
+- **/previews/endoscopy-suite is unchanged and still unlinked and noindex.** Whether to remove it now that the real site is live is open.
+
 ## 2026-10-07: Endoscopy Suite preview v4
 
 - **Endoscopy Suite preview updated to v4 (final build: single Belvedere location, new surgeries, emergencies page, booking with slots, Suite Desk staff preview). Previews CSP now allows Google Maps frames; geolocation allowed on previews only.**

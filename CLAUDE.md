@@ -188,10 +188,12 @@ Separate deep-dive case study pages for each project.
     with confidence intervals, no per-fish counting claim
   → "View Case Study" → /projects/fishtech
   → Cursor-tracking spotlight effect
-- 3 other projects in alternating left/right layout:
-  → FishTech Consultancy Website (fishtech.co.zw)
-  → Steadyhands Platform
-  → This Portfolio
+- 5 other projects in alternating left/right layout, in this order:
+  → 02 The Endoscopy Suite (endoscopy-suite.pages.dev, client work)
+  → 03 FishTech Feeder
+  → 04 Steadyhands Platform
+  → 05 FishTech Consultancy Website (fishtech.co.zw)
+  → 06 This Portfolio
 - Each card: image, tags, title, description, GitHub + Live links
 - Staggered slide-in from alternating sides on scroll
 
@@ -277,6 +279,14 @@ Separate deep-dive case study pages for each project.
    - Real photos in public/images/feeder/. NEVER CLAIM validated dose
      accuracy or field results: the dose test is not written up. No price in public copy (withdrawn)
 5. Daniel Chadambuka Portfolio (this site)
+6. The Endoscopy Suite (LIVE, client work) at https://endoscopy-suite.pages.dev
+   - Website for Dr E.G. Muguti's endoscopy and surgery practice in
+     Belvedere, Harare. Plain HTML, CSS and JavaScript on Cloudflare Pages.
+     Pages for procedures, preparation timetables, emergencies, appointment
+     requests confirmed on WhatsApp, a referral form
+   - Card sits at position 02 in the Projects section (see DECISIONS.md,
+     2026-10-09). Never claim a booking back end, patient numbers or
+     clinical results
 
 ## FishTech Copy Discipline
 
