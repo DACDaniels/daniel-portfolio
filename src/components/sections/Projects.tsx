@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/AlternatingProjectCard";
 import { SteadyhandsMock } from "@/components/ui/project-mocks/SteadyhandsMock";
 import { FishTechWebsiteMock } from "@/components/ui/project-mocks/FishTechWebsiteMock";
-import { EndoscopySuiteMock } from "@/components/ui/project-mocks/EndoscopySuiteMock";
+import { EndoscopySuiteShowcase } from "@/components/ui/project-mocks/EndoscopySuiteShowcase";
 import { PortfolioMock } from "@/components/ui/project-mocks/PortfolioMock";
 import { LoopingClip } from "@/components/ui/LoopingClip";
 import { MediaGallery, type MediaItem } from "@/components/ui/MediaGallery";
@@ -77,22 +77,44 @@ const FEEDER_GALLERY: MediaItem[] = [
   },
 ];
 
+const ENDOSCOPY_GALLERY: MediaItem[] = [
+  {
+    kind: "image",
+    src: "/images/endoscopy-suite/es-services-phone.jpg",
+    focus: "top",
+    alt: "The Endoscopy Suite services page on a phone: every scope and operation, in plain words",
+  },
+  {
+    kind: "image",
+    src: "/images/endoscopy-suite/es-book-phone.jpg",
+    focus: "top",
+    alt: "The Endoscopy Suite booking page on a phone, choosing what to book",
+  },
+  {
+    kind: "image",
+    src: "/images/endoscopy-suite/es-emergencies-phone.jpg",
+    focus: "top",
+    alt: "The Endoscopy Suite emergencies page on a phone, with the call button first",
+  },
+];
+
 const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
   {
     number: "02",
     category: "CLIENT WORK",
     title: "The Endoscopy Suite",
-    meta: "endoscopy-suite.pages.dev · Specialist surgery practice, Harare",
+    meta: "endoscopysuite.co.zw · Dr Muguti",
     description:
-      "Website for a specialist surgeon's endoscopy suite in Belvedere, Harare. Plain-language pages for each scope and operation, preparation timetables, emergency guidance, appointment requests confirmed on WhatsApp, and a referral form for other doctors. Plain HTML, CSS and JavaScript on Cloudflare Pages.",
-    tags: ["HTML", "CSS", "JavaScript", "WhatsApp", "Cloudflare Pages"],
+      "Website for a specialist surgeon's endoscopy and surgery practice in Belvedere, Harare. All 42 services explained in plain words, preparation guides, an emergencies page that puts the phone number first, and appointment requests confirmed on WhatsApp. Built phone-first, because that is how most patients will find it.",
+    tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Cloudflare Pages"],
     status: "live",
     primaryLink: {
       label: "View Live",
-      href: "https://endoscopy-suite.pages.dev",
+      href: "https://www.endoscopysuite.co.zw",
       external: true,
     },
-    mockComponent: <EndoscopySuiteMock />,
+    mockComponent: <EndoscopySuiteShowcase />,
+    gallery: <MediaGallery layout="strip" items={ENDOSCOPY_GALLERY} />,
     side: "left",
   },
   {
