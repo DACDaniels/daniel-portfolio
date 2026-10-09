@@ -123,7 +123,7 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
     title: "FishTech Consultancy",
     meta: "fishtech.co.zw · Lead-gen platform",
     description:
-      "Company site for FishTech Consultancy. It covers pond digging and lining, bird and predator nets, tilapia fingerlings and feed, anywhere in Zimbabwe. Prices come from the published price list, and a pond calculator shows the cost straight away, ready to send on WhatsApp for a written quotation. Optimised for Zimbabwean bandwidth.",
+      "Company site for FishTech Consultancy, which digs and lines fish ponds, fits bird and predator nets, and supplies tilapia fingerlings and feed anywhere in Zimbabwe. Prices come from the published price list, and a pond calculator shows the cost straight away, ready to send on WhatsApp for a written quotation. Optimised for Zimbabwean bandwidth.",
     tags: ["React", "TypeScript", "Vite", "Framer Motion"],
     status: "live",
     primaryLink: {
