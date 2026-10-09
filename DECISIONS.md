@@ -2,6 +2,13 @@
 
 One line per decision, newest first. Date, what, why.
 
+## 2026-10-09: Professional title and Achievements section
+
+- **The title "Software Engineer | IT Solutions Specialist | Technology Innovator" is used in the hero and all search engine data** (page title, meta description, Open Graph, Twitter, JSON-LD jobTitle, root Open Graph image).
+- **The footer heading stays "Software Engineer"** because the column is narrow.
+- **Pipes are used to match the LinkedIn headline.** On mobile the three parts stack and the pipes are hidden. The one-line version starts at xl (1280 px), because below that the floating hero badges leave too little room beside the photo.
+- **"Technology Innovator" is kept because the Presidential Innovation Awards and Zimbabwe Agricultural Show 2026 back it, so Achievements moved from deferred to live.** The section sits after Projects and is in the navbar. It states only facts already in this repo; PIA month, category and outcome are not documented yet.
+
 ## 2026-10-09: Endoscopy Suite card, real screenshots and own domain
 
 - **The card links to https://www.endoscopysuite.co.zw**, the practice's own domain, instead of endoscopy-suite.pages.dev.

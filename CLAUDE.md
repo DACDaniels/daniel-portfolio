@@ -81,7 +81,10 @@ Radii:
   Division, NUST Zimbabwe. Conferred 17 September 2026 (study 2022 to 2026)
 - Job status: actively looking for employment. Do NOT label him CEO / founder of
   Blue Acre in site copy; FishTech appears as projects, not a title
-- Title: Software Engineer
+- Title: Software Engineer | IT Solutions Specialist | Technology Innovator
+  → Used in the hero and all search engine data (page title, Open Graph,
+    Twitter, JSON-LD jobTitle). Pipes match the LinkedIn headline
+  → Footer identity column heading stays "Software Engineer" (narrow column)
 - Entrepreneurial identity shows THROUGH projects, never as a label
 
 ## Target Audience (in priority order)
@@ -121,10 +124,11 @@ Separate deep-dive case study pages for each project.
 2. Hero
 3. Services
 4. Projects
-5. About
-6. Testimonials
-7. Contact
-8. Footer
+5. Achievements (live since 2026-10-09, no longer deferred)
+6. About
+7. Testimonials
+8. Contact
+9. Footer
 
 ## Section Specifications
 
@@ -145,7 +149,9 @@ Separate deep-dive case study pages for each project.
   - Small tag: "AVAILABLE FOR WORK" with teal pulsing dot
   - Name: "Daniel" line 1, "Chadambuka" line 2
     → Each letter animates in individually (blur + translateY + stagger)
-  - Title: "Software Engineer" with animated underline
+  - Title: "Software Engineer | IT Solutions Specialist | Technology Innovator"
+    with animated underline. One line with pipes from xl (1280px); below
+    that the three parts stack and the pipes are hidden
   - Bio: 1 sentence, fades in after name
   - Two CTAs: "View My Work" (teal filled, magnetic) + "Let's Talk" (outlined, magnetic)
     → "View My Work" → scrolls to Projects section
@@ -197,7 +203,19 @@ Separate deep-dive case study pages for each project.
 - Each card: image, tags, title, description, GitHub + Live links
 - Staggered slide-in from alternating sides on scroll
 
-### 5. About
+### 5. Achievements (LIVE)
+
+- Sits after Projects, before About. In the navbar as "Achievements"
+- Full-width stacked cards: title, year, definition list of documented facts
+- Presidential Innovation Awards 2026: presented FishTech to the national
+  innovation panel. Month, category and outcome are not documented
+- Zimbabwe Agricultural Show 2026: August 2026, NUST stand, Harare, FishTech
+  Feeder exhibited, three photos from public/images/zas/
+- Only facts already written in this repo. No placings, prizes, judges or
+  outcomes until Daniel supplies them. FishTech is a research prototype,
+  never commercially deployed
+
+### 6. About
 
 - Two column layout
 - LEFT: Heading "About Me", paragraphs
@@ -209,13 +227,13 @@ Separate deep-dive case study pages for each project.
   → Small timeline of milestones
 - Subtle background texture
 
-### 6. Testimonials
+### 7. Testimonials
 
 - Horizontal scroll or card carousel
 - Each card: quote, name, role, company
 - Skip if no real testimonials available
 
-### 7. Contact
+### 8. Contact
 
 - Large headline: "Let's Build Something"
 - Left: contact form (name, email, message, animated send button)
@@ -223,7 +241,7 @@ Separate deep-dive case study pages for each project.
 - Magnetic "Send Message" button
 - Subtle animated gradient background
 
-### 8. Footer
+### 9. Footer
 
 - Minimal: name, nav links, social icons, copyright
 - Teal hover states
