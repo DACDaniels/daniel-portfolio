@@ -218,7 +218,9 @@ Separate deep-dive case study pages for each project.
 - Full-width stacked cards, one structure for both: mono date block
   (teal, the only teal in the card), Geist title on its own row, then one
   plain sentence on the left and a quiet detail (mono key + value) on the
-  right, with the Show photos under the detail. No big year, no label grid,
+  right. From md the Show photos sit under the sentence in the left column,
+  so the right column holds only the one detail and both cards share one
+  shape; on mobile they come last, after the detail. No big year, no label grid,
   no placeholder images
 - Presidential Innovation Awards: 21 July 2026. Presented the FishTech
   Precision Feeding System Iris, a research prototype, to the national
