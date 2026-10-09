@@ -1,5 +1,6 @@
 "use client";
 
+import { Fragment } from "react";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import { MediaGallery, type MediaItem } from "@/components/ui/MediaGallery";
 import { useScrollReveal } from "@/lib/useScrollReveal";
@@ -8,37 +9,39 @@ type Detail = { term: string; value: string };
 
 type Achievement = {
   title: string;
-  year: string;
-  details: Detail[];
+  /** Shown in the card's date block, e.g. "21 Jul 2026". */
+  date: string;
+  /** Machine-readable date for the time element. */
+  dateTime: string;
+  /** One plain sentence: what happened. */
+  summary: string;
+  detail: Detail;
   media?: MediaItem[];
 };
 
-// Facts come only from the repo (About timeline, DECISIONS.md 2026-10-01,
-// CLAUDE.md). Never add a placing, prize, judge or outcome that is not
-// written down there first.
+// Facts come only from the repo (About timeline, DECISIONS.md, CLAUDE.md).
+// Never add a placing, prize, judge or outcome that is not written down
+// there first. The Presidential Innovation Awards card states no outcome,
+// at Daniel's request.
 const ACHIEVEMENTS: Achievement[] = [
   {
-    // TODO: ACHIEVEMENT DETAIL NEEDED FROM DANIEL. Month, category, which
-    // FishTech system was presented, and any outcome are not documented.
     title: "Presidential Innovation Awards",
-    year: "2026",
-    details: [
-      { term: "Presented", value: "FishTech, a research prototype" },
-      { term: "To", value: "The national innovation panel" },
-    ],
+    date: "21 Jul 2026",
+    dateTime: "2026-07-21",
+    summary:
+      "Presented the FishTech Precision Feeding System Iris, a research prototype, to the national innovation panel.",
+    detail: {
+      term: "Category",
+      value: "Best Innovation in Agriculture and Agro-Processing",
+    },
   },
   {
     title: "Zimbabwe Agricultural Show",
-    year: "2026",
-    details: [
-      { term: "When", value: "August 2026" },
-      { term: "Where", value: "NUST stand, Harare" },
-      { term: "Exhibited", value: "FishTech Feeder, working prototype" },
-      {
-        term: "Met",
-        value: "Farmers, buyers and Ministry of Skills stakeholders",
-      },
-    ],
+    date: "Aug 2026",
+    dateTime: "2026-08",
+    summary:
+      "Exhibited the FishTech Feeder, a working prototype, and met farmers, buyers and Ministry of Skills stakeholders.",
+    detail: { term: "Location", value: "NUST stand, Harare Showground" },
     media: [
       {
         kind: "image",
@@ -126,7 +129,10 @@ export function Achievements() {
 
           <ol className="flex flex-col gap-5 md:gap-6">
             {ACHIEVEMENTS.map((achievement) => (
-              <motion.li key={achievement.title} variants={itemVariants}>
+              <motion.li
+                key={achievement.title}
+                variants={itemVariants}
+              >
                 <AchievementCard achievement={achievement} />
               </motion.li>
             ))}
@@ -138,45 +144,58 @@ export function Achievements() {
 }
 
 function AchievementCard({ achievement }: { achievement: Achievement }) {
-  const hasMedia = achievement.media !== undefined;
-
   return (
-    <article
-      className={`relative grid gap-8 overflow-hidden rounded-[16px] border border-border bg-bg-surface p-6 shadow-[0_24px_60px_-32px_rgba(0,229,192,0.18),0_0_0_1px_rgba(255,255,255,0.02)_inset] md:p-8 ${
-        hasMedia ? "md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] md:gap-10" : ""
-      }`}
-    >
-      <div className="flex min-w-0 flex-col">
-        <div className="flex items-baseline justify-between gap-4">
-          <h3 className="font-heading text-[clamp(1.375rem,2.4vw,1.75rem)] font-semibold leading-[1.15] tracking-[-0.025em] text-text-primary">
-            {achievement.title}
-          </h3>
-          <span className="shrink-0 font-heading text-[clamp(1.375rem,2.4vw,1.75rem)] font-semibold leading-[1.15] tracking-[-0.025em] text-accent">
-            {achievement.year}
-          </span>
+    <article className="rounded-[16px] border border-border bg-bg-surface p-6 shadow-[0_24px_60px_-32px_rgba(0,229,192,0.18),0_0_0_1px_rgba(255,255,255,0.02)_inset] md:p-8">
+      <time
+        dateTime={achievement.dateTime}
+        className="font-mono text-[12px] uppercase tracking-[0.14em] text-accent"
+      >
+        {achievement.date}
+      </time>
+
+      <h3 className="mt-3 text-balance font-heading text-[clamp(1.375rem,2.4vw,1.875rem)] font-semibold leading-[1.15] tracking-[-0.025em] text-text-primary">
+        {achievement.title}
+      </h3>
+
+      <div className="mt-5 grid gap-6 md:mt-6 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] md:gap-10">
+        <p className="max-w-[46ch] text-[15px] leading-[1.7] text-text-secondary md:text-[17px]">
+          {achievement.summary}
+        </p>
+
+        <div className="flex flex-col gap-5 border-t border-border pt-5 md:border-t-0 md:border-l md:pt-0 md:pl-8">
+          <dl className="flex flex-col gap-1.5">
+            <dt className="font-mono text-[11px] tracking-[0.06em] text-text-tertiary">
+              {achievement.detail.term}
+            </dt>
+            <dd className="text-balance text-[14px] leading-[1.6] text-white/85">
+              {keepHyphenatedWordsWhole(achievement.detail.value)}
+            </dd>
+          </dl>
+
+          {achievement.media ? (
+            <MediaGallery
+              layout="strip"
+              items={achievement.media}
+              className="max-w-[300px]"
+            />
+          ) : null}
         </div>
-
-        <dl className="mt-6 grid gap-x-8 gap-y-4 border-t border-border pt-6 sm:grid-cols-2">
-          {achievement.details.map((detail) => (
-            <div key={detail.term} className="min-w-0">
-              <dt className="font-mono text-[10.5px] uppercase tracking-[0.12em] text-text-tertiary">
-                {detail.term}
-              </dt>
-              <dd className="mt-1 text-[15px] leading-[1.6] text-text-primary">
-                {detail.value}
-              </dd>
-            </div>
-          ))}
-        </dl>
       </div>
-
-      {achievement.media ? (
-        <MediaGallery
-          layout="strip"
-          items={achievement.media}
-          className="self-start"
-        />
-      ) : null}
     </article>
   );
+}
+
+// Browsers may break a line after a hyphen ("Agro-" / "Processing").
+// Wrapping each hyphenated word in a no-wrap span keeps it on one line.
+function keepHyphenatedWordsWhole(text: string) {
+  return text.split(" ").map((word, i) => (
+    <Fragment key={i}>
+      {i > 0 ? " " : null}
+      {word.includes("-") ? (
+        <span className="whitespace-nowrap">{word}</span>
+      ) : (
+        word
+      )}
+    </Fragment>
+  ));
 }
