@@ -19,6 +19,12 @@ const STATS: Stat[] = [
   { kind: "text", primary: "BSc Hons", label: "Computer Science, NUST 2026" },
 ];
 
+const TITLE_PARTS = [
+  "Software Engineer",
+  "IT Solutions Specialist",
+  "Technology Innovator",
+] as const;
+
 export function Hero() {
   const reduceMotion = useReducedMotion() ?? false;
   const nameDuration = 0.8;
@@ -95,8 +101,21 @@ export function Hero() {
               transition={{ duration: 0.5, delay: subtitleDelay }}
               className="mt-6 flex w-fit flex-col"
             >
-              <span className="font-[family-name:var(--font-dm-sans)] text-xl font-medium text-text-primary md:text-2xl">
-                Software Engineer
+              {/* Stacked below xl, where the left badges leave too little room; one line with pipes from xl. */}
+              <span className="flex flex-col gap-1 font-[family-name:var(--font-dm-sans)] text-xl font-medium text-text-primary md:text-2xl xl:flex-row xl:items-baseline xl:gap-0 xl:whitespace-nowrap xl:text-[clamp(1rem,1.3vw,1.1875rem)]">
+                {TITLE_PARTS.map((part, i) => (
+                  <span key={part} className="flex items-baseline">
+                    {i > 0 && (
+                      <span
+                        aria-hidden="true"
+                        className="hidden px-[0.6em] font-normal text-text-tertiary xl:inline"
+                      >
+                        |
+                      </span>
+                    )}
+                    {part}
+                  </span>
+                ))}
               </span>
               <motion.span
                 initial={{ scaleX: 0 }}

@@ -40,6 +40,8 @@ const instrumentSerif = Instrument_Serif({
 });
 
 const SITE_URL = "https://dev.danielchadambuka.com";
+const JOB_TITLE =
+  "Software Engineer | IT Solutions Specialist | Technology Innovator";
 
 export const viewport: Viewport = {
   themeColor: "#080808",
@@ -50,11 +52,10 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Daniel Chadambuka · Software Engineer",
+    default: `Daniel Chadambuka · ${JOB_TITLE}`,
     template: "%s · Daniel Chadambuka",
   },
-  description:
-    "Software Engineer building real-world systems. Full-stack, computer vision, embedded, and AI. Based in Harare, Zimbabwe.",
+  description: `${JOB_TITLE}. Building real-world systems: full-stack, computer vision, embedded, and AI. Based in Harare, Zimbabwe.`,
   metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: "/",
@@ -80,9 +81,8 @@ export const metadata: Metadata = {
     "NUST Zimbabwe",
   ],
   openGraph: {
-    title: "Daniel Chadambuka · Software Engineer",
-    description:
-      "Software Engineer building real-world systems. Full-stack, computer vision, embedded, and AI.",
+    title: `Daniel Chadambuka · ${JOB_TITLE}`,
+    description: `${JOB_TITLE}. Building real-world systems: full-stack, computer vision, embedded, and AI.`,
     type: "profile",
     locale: "en_US",
     url: SITE_URL,
@@ -90,9 +90,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Daniel Chadambuka · Software Engineer",
-    description:
-      "Software Engineer building real-world systems. Full-stack, computer vision, embedded, and AI.",
+    title: `Daniel Chadambuka · ${JOB_TITLE}`,
+    description: `${JOB_TITLE}. Building real-world systems: full-stack, computer vision, embedded, and AI.`,
     creator: "@DACDaniels",
   },
   robots: {
@@ -121,8 +120,7 @@ const personSchema = {
   name: "Daniel Chadambuka",
   givenName: "Daniel",
   familyName: "Chadambuka",
-  jobTitle:
-    "Software Engineer, Edge Systems Engineer & Computer Vision Developer",
+  jobTitle: JOB_TITLE,
   description:
     "Computer Science graduate from NUST with over two years of shipping software. Full-stack web, computer vision, edge devices, and enterprise IT infrastructure.",
   url: SITE_URL,
