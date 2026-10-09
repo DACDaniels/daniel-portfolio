@@ -119,6 +119,23 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
   },
   {
     number: "03",
+    category: "CLIENT WORK",
+    title: "FishTech Consultancy",
+    meta: "fishtech.co.zw · Lead-gen platform",
+    description:
+      "Marketing site for aquaculture consultancy. Optimized for Zimbabwean bandwidth. WhatsApp-first conversion funnel.",
+    tags: ["React", "TypeScript", "Vite", "Framer Motion"],
+    status: "live",
+    primaryLink: {
+      label: "View Live",
+      href: "https://fishtech.co.zw",
+      external: true,
+    },
+    mockComponent: <FishTechWebsiteMock />,
+    side: "right",
+  },
+  {
+    number: "04",
     category: "EMBEDDED · SOLAR",
     title: "FishTech Feeder",
     meta: "Working prototype · Exhibited at ZAS 2026",
@@ -135,10 +152,10 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
       />
     ),
     gallery: <MediaGallery layout="strip" items={FEEDER_GALLERY} />,
-    side: "right",
+    side: "left",
   },
   {
-    number: "04",
+    number: "05",
     category: "PRODUCTION",
     title: "Steadyhands Catering",
     meta: "steadyhandscatering.com · BATA Club",
@@ -152,23 +169,6 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
       external: true,
     },
     mockComponent: <SteadyhandsMock />,
-    side: "left",
-  },
-  {
-    number: "05",
-    category: "CLIENT WORK",
-    title: "FishTech Consultancy",
-    meta: "fishtech.co.zw · Lead-gen platform",
-    description:
-      "Marketing site for aquaculture consultancy. Optimized for Zimbabwean bandwidth. WhatsApp-first conversion funnel.",
-    tags: ["React", "TypeScript", "Vite", "Framer Motion"],
-    status: "live",
-    primaryLink: {
-      label: "View Live",
-      href: "https://fishtech.co.zw",
-      external: true,
-    },
-    mockComponent: <FishTechWebsiteMock />,
     side: "right",
   },
   {
