@@ -2,6 +2,16 @@
 
 One line per decision, newest first. Date, what, why.
 
+## 2026-10-09: FishTech Consultancy card refinements
+
+- **Category is "COMPANY SITE"**, because fishtech.co.zw is Daniel's own company site, not client work.
+- **Badge is "BUILDING"**, because the site is reachable but not officially launched yet. The Projects intro line now says "two websites" instead of "two live websites" to match.
+- **Description tightened to lead with what was built:** a single price list, a pond calculator with an instant cost, and a WhatsApp quote.
+- **Tags verified against the source (github.com/DACDaniels/fishtech-consultancy, read only) and the live site.** The repo's package.json lists Astro and GSAP, tsconfig extends astro/tsconfigs/strict with .ts files in src/, and the live site serves /_astro/ bundles (including Calculator.astro) from Vercel. Result: React, Vite and Framer Motion removed (not in the project; Vite is only Astro's internal bundler), TypeScript confirmed, Astro, GSAP and Vercel added.
+- **A photo strip was added to match The Endoscopy Suite card:** three phone shots of the live site (price panel, pond calculator, calculator total with the WhatsApp button), 780 x 1688 progressive JPEG, same as the Endoscopy strip. Ordered as the description reads. The calculator's total sits too far below the drawing to share one phone screen, so it is its own frame. Nothing was typed into the site's forms.
+- **Future Claude Code prompts load the frontend-design skill with the Skill tool**, because the /mnt/skills path does not exist on this Windows machine.
+- **The hydration warning seen in dev with reduced motion is a separate task for later** (noted under Known issues in CLAUDE.md).
+
 ## 2026-10-09: FishTech Consultancy card position and redesign
 
 - **FishTech Consultancy now sits third (03), after The Endoscopy Suite and above FishTech Feeder (04) and Steadyhands Catering (05).** This Portfolio stays last (06). Daniel's decision; he has his reasons. Sides re-alternate from Endoscopy (left): Consultancy right, Feeder left, Steadyhands right, Portfolio left.
