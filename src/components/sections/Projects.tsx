@@ -98,6 +98,27 @@ const ENDOSCOPY_GALLERY: MediaItem[] = [
   },
 ];
 
+const FISHTECH_CONSULTANCY_GALLERY: MediaItem[] = [
+  {
+    kind: "image",
+    src: "/images/fishtech-consultancy/ft-prices-phone.jpg",
+    focus: "top",
+    alt: "FishTech live price panel on a phone, prices read from the published price list",
+  },
+  {
+    kind: "image",
+    src: "/images/fishtech-consultancy/ft-calculator-phone.jpg",
+    focus: "top",
+    alt: "FishTech pond calculator on a phone, with the pond drawn to scale",
+  },
+  {
+    kind: "image",
+    src: "/images/fishtech-consultancy/ft-quote-phone.jpg",
+    focus: "top",
+    alt: "FishTech pond calculator total on a phone, with the button to send it on WhatsApp",
+  },
+];
+
 const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
   {
     number: "02",
@@ -119,19 +140,20 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
   },
   {
     number: "03",
-    category: "CLIENT WORK",
+    category: "COMPANY SITE",
     title: "FishTech Consultancy",
     meta: "fishtech.co.zw · Lead-gen platform",
     description:
-      "Company site for FishTech Consultancy, which digs and lines fish ponds, fits bird and predator nets, and supplies tilapia fingerlings and feed anywhere in Zimbabwe. Prices come from the published price list, and a pond calculator shows the cost straight away, ready to send on WhatsApp for a written quotation. Optimised for Zimbabwean bandwidth.",
-    tags: ["React", "TypeScript", "Vite", "Framer Motion"],
-    status: "live",
+      "Company site for a Zimbabwean fish-farming services business. Prices load from a single price list, and a pond calculator gives an instant cost that sends straight to WhatsApp for a written quote.",
+    tags: ["Astro", "TypeScript", "GSAP", "Vercel"],
+    status: "building",
     primaryLink: {
       label: "View Live",
       href: "https://www.fishtech.co.zw",
       external: true,
     },
     mockComponent: <FishTechConsultancyShowcase />,
+    gallery: <MediaGallery layout="strip" items={FISHTECH_CONSULTANCY_GALLERY} />,
     side: "right",
   },
   {
