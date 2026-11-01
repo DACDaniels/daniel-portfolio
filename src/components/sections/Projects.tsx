@@ -185,6 +185,7 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
     mockComponent: <HealthLongevityShowcase />,
     gallery: <MediaGallery layout="strip" items={HEALTH_LONGEVITY_GALLERY} />,
     side: "left",
+    statusKey: "healthAndLongevity",
   },
   {
     number: "03",
@@ -203,6 +204,7 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
     mockComponent: <EndoscopySuiteShowcase />,
     gallery: <MediaGallery layout="strip" items={ENDOSCOPY_GALLERY} />,
     side: "right",
+    statusKey: "endoscopy",
   },
   {
     number: "04",
@@ -220,6 +222,7 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
     mockComponent: <SalesAgentShowcase />,
     gallery: <MediaGallery layout="strip" items={SALES_AGENT_GALLERY} />,
     side: "left",
+    statusKey: "ops",
   },
   {
     number: "05",
@@ -238,6 +241,7 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
     mockComponent: <FishTechConsultancyShowcase />,
     gallery: <MediaGallery layout="strip" items={FISHTECH_CONSULTANCY_GALLERY} />,
     side: "right",
+    statusKey: "fishtech",
   },
   {
     number: "06",
@@ -275,6 +279,7 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
     },
     mockComponent: <SteadyhandsMock />,
     side: "right",
+    statusKey: "steadyhands",
   },
   {
     number: "08",

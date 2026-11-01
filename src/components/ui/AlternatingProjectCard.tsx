@@ -3,6 +3,8 @@
 import { motion, type Variants } from "motion/react";
 import type { ReactNode } from "react";
 import { BorderBeam } from "@/components/ui/BorderBeam";
+import { LiveCheck } from "@/components/ui/LiveCheck";
+import type { StatusKey } from "@/lib/siteStatus";
 
 export type AlternatingProjectProps = {
   number: string;
@@ -18,6 +20,8 @@ export type AlternatingProjectProps = {
   /** Optional media strip shown under the description. */
   gallery?: ReactNode;
   side: "left" | "right";
+  /** Which /api/status check backs this card's live line, if any. */
+  statusKey?: StatusKey;
   variants?: Variants;
 };
 
@@ -34,6 +38,7 @@ export function AlternatingProjectCard({
   mockComponent,
   gallery,
   side,
+  statusKey,
   variants,
 }: AlternatingProjectProps) {
   const statusLabel =
@@ -54,7 +59,9 @@ export function AlternatingProjectCard({
           ? "text-white/85 border-white/15"
           : "text-white/60 border-white/10";
 
-  const showDot = status === "live" || status === "building";
+  // The teal dot means a fresh, passing check, so it lives on LiveCheck,
+  // not on the LIVE badge. BUILDING keeps its amber dot.
+  const showDot = status === "building";
 
   return (
     <motion.article
@@ -75,8 +82,12 @@ export function AlternatingProjectCard({
           <BorderBeam duration={5} />
         </span>
         <div className="aspect-[16/10] overflow-hidden">
+          <div className="absolute right-3 top-3 z-10 flex items-center gap-1.5">
+          {status === "live" && statusKey ? (
+            <LiveCheck statusKey={statusKey} />
+          ) : null}
           <div
-            className={`absolute right-3 top-3 z-10 inline-flex items-center gap-1.5 rounded-full border bg-black/80 px-2 py-1 backdrop-blur-md ${statusStyles}`}
+            className={`inline-flex items-center gap-1.5 rounded-full border bg-black/80 px-2 py-1 backdrop-blur-md ${statusStyles}`}
             style={{
               fontFamily: "var(--font-jetbrains-mono)",
               fontSize: "10px",
@@ -87,13 +98,12 @@ export function AlternatingProjectCard({
             {showDot ? (
               <span
                 aria-hidden
-                className={`block h-[5px] w-[5px] rounded-full ${
-                  status === "live" ? "bg-accent" : "bg-[#FFC04D]"
-                }`}
+                className="block h-[5px] w-[5px] rounded-full bg-[#FFC04D]"
                 style={{ animation: "live-pulse 2s ease-in-out infinite" }}
               />
             ) : null}
             {statusLabel}
+          </div>
           </div>
 
           <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.03]">

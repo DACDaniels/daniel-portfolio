@@ -331,3 +331,14 @@ body {
     );
   }
 }
+
+/* Live status dot on project cards: pulses only when motion is allowed. */
+.live-check-dot {
+  animation: live-pulse 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-check-dot {
+    animation: none;
+  }
+}
