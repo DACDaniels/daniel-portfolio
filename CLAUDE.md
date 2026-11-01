@@ -125,7 +125,8 @@ Radii:
 ## Site Structure
 
 Single long-scroll page with smooth section transitions.
-Separate deep-dive case study pages for each project.
+Separate deep-dive case study pages for each project, plus /hire
+("Hiring? Start here", since 2026-11-01).
 
 ### Section order (exact):
 
@@ -149,9 +150,13 @@ Separate deep-dive case study pages for each project.
   bg rgba(8,8,8,0.8) + border-bottom on scroll
 - Left: "DC." in Geist 700, teal on hover
 - Right: nav links with magnetic hover effect (Home, Work, Achievements,
-  How I build, About, Contact; links tighten at md and lg, the "// section"
-  eyebrow shows from xl so all six fit)
-- Far right: teal CTA button "Contact Me" with shimmer on hover
+  How I build, About, Contact, "Hiring? Start here" → /hire; links tighten
+  at md and lg, the "// section" eyebrow shows from xl). The hire link reads
+  "Hiring?" below 2xl; the Contact text link shows from xl only (below that
+  the Contact Me button covers it). Recheck 768 to 1536 px for overlap when
+  adding a link
+- Far right: "Ctrl K" (⌘ K on Mac) palette hint button from lg, then the
+  teal CTA button "Contact Me" with shimmer on hover
 - Mobile: hamburger with full-screen overlay menu
 
 ### 2. Hero — THE MOST IMPORTANT SECTION
@@ -272,9 +277,22 @@ Separate deep-dive case study pages for each project.
   tests (2026-10-30) from the FishTech business repository. Read the logs
   read only; never name Blue Acre; no prices, counts or client private data
 - Each point links to the matching case-study section. Card radius 16 px
+- Under the four points: "Shipping, every week", the GitHub contribution
+  graph (src/components/sections/ShippingGraph.tsx, src/lib/githubActivity.ts).
+  Server-side GraphQL, viewer contributionCalendar, last 12 months,
+  revalidate 86400, env GITHUB_CONTRIBUTIONS_TOKEN (name in .env.example,
+  value only in .env.local and Vercel; never print or commit it). Missing
+  token, failed call or empty data = section not rendered. Teal token shades.
+  NO total or count anywhere, not even in the browser payload: date and level
+  word only (none, light, steady, heavy), never repository names. Includes
+  private repository work
 
 ### 7. About
 
+- Top: "Recently shipped" strip from src/data/shipped.ts (date, one line,
+  optional link; newest first, five shown)
+  → RULE: every portfolio PR that ships something visible adds one line to
+    shipped.ts, with a date checked against its source
 - Two column layout
 - LEFT: Heading "About Me", paragraphs
   → NUST CS student → builder → real products
@@ -302,7 +320,35 @@ Separate deep-dive case study pages for each project.
 ### 10. Footer
 
 - Minimal: name, nav links, social icons, copyright
+- Navigate column in the navbar's order: Home, Work, Achievements, How I
+  build, About, Contact, "Hiring? Start here" (root-relative links)
 - Teal hover states
+- Contact links come from src/lib/contactLinks.ts (shared with /hire and the
+  palette)
+
+### /hire ("Hiring? Start here")
+
+- Own page with title, description, canonical, Open Graph image (case-study
+  style) and sitemap entry; check-seo covers it
+- Linked from a secondary hero button, the navbar, the footer and the palette
+- Reads in 60 seconds: one line with the full title; Roles I fit (Full-stack
+  engineer, Systems and edge engineer, AI and automation engineer, each with
+  one proof line linking to a case study); Live systems (the five, with
+  status lights from /api/status); How I work (the four points, one line each,
+  linking to #how-i-build); Availability (full-time software engineering,
+  remote or in Zimbabwe; Harare, UTC+2); Education as in Owner Details;
+  actions (Download résumé, Email, WhatsApp, LinkedIn, GitHub)
+- No response-time promises, no salary
+
+### Command palette
+
+- Ctrl+K (Windows, Linux), Cmd+K (Mac), plus the navbar hint button
+- Lists every section, every project and case study, /hire, Download
+  résumé, Copy email, WhatsApp, GitHub, LinkedIn
+- Fuzzy search, arrow keys, Enter, Esc; aria-modal dialog, focus trapped and
+  returned; opacity only under reduced motion
+- Lazy-loaded: CommandPaletteLauncher (layout) only listens for the keys;
+  CommandPalette.tsx loads on first open
 
 ## Projects to Showcase
 
