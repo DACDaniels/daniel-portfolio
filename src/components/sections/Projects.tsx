@@ -14,6 +14,8 @@ import { SteadyhandsMock } from "@/components/ui/project-mocks/SteadyhandsMock";
 import { FishTechConsultancyShowcase } from "@/components/ui/project-mocks/FishTechConsultancyShowcase";
 import { EndoscopySuiteShowcase } from "@/components/ui/project-mocks/EndoscopySuiteShowcase";
 import { PortfolioMock } from "@/components/ui/project-mocks/PortfolioMock";
+import { HealthLongevityShowcase } from "@/components/ui/project-mocks/HealthLongevityShowcase";
+import { SalesAgentShowcase } from "@/components/ui/project-mocks/SalesAgentShowcase";
 import { LoopingClip } from "@/components/ui/LoopingClip";
 import { MediaGallery, type MediaItem } from "@/components/ui/MediaGallery";
 import { useScrollReveal } from "@/lib/useScrollReveal";
@@ -119,9 +121,73 @@ const FISHTECH_CONSULTANCY_GALLERY: MediaItem[] = [
   },
 ];
 
+const HEALTH_LONGEVITY_GALLERY: MediaItem[] = [
+  {
+    kind: "image",
+    src: "/images/health-longevity/hl-consult-phone.jpg",
+    focus: "top",
+    alt: "Health & Longevity video consult booking on a phone, with a day and a time picked (sample data)",
+  },
+  {
+    kind: "image",
+    src: "/images/health-longevity/hl-aide-match-phone.jpg",
+    focus: "top",
+    alt: "Health & Longevity nurse-aide match screen on a phone: three sample aides, nearest first",
+  },
+  {
+    kind: "image",
+    src: "/images/health-longevity/hl-admin-today-phone.jpg",
+    focus: "top",
+    alt: "Health & Longevity admin Today screen on a phone, with the next video consult (sample data)",
+  },
+];
+
+const SALES_AGENT_GALLERY: MediaItem[] = [
+  {
+    kind: "image",
+    src: "/images/fishtech-sales-agent/ops-inbox-phone.jpg",
+    focus: "top",
+    alt: "FishTech Ops inbox on a phone: a sample chat in English and Shona with the agent's replies",
+  },
+  {
+    kind: "image",
+    src: "/images/fishtech-sales-agent/ops-quotations-phone.jpg",
+    focus: "top",
+    alt: "FishTech Ops quotations on a phone, one waiting for approval (sample data, amounts hidden)",
+  },
+  {
+    kind: "image",
+    src: "/images/fishtech-sales-agent/quote-pdf.jpg",
+    focus: "top",
+    alt: "A FishTech quotation PDF made by the agent's code for an invented customer, prices hidden",
+  },
+];
+
 const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
   {
     number: "02",
+    category: "CLIENT SYSTEM",
+    title: "Health & Longevity",
+    meta: "healthandlongevity.co.zw · Dr Misheck Ruwende",
+    description:
+      "Health platform for a Harare doctor and health educator. Members pay through Paynow, book video consultations and clinic visits, read paid articles and video lessons, and request nurse aides for care at home. Personal details are encrypted, it installs like an app and works offline, and the practice publishes everything from an admin area built for a phone.",
+    tags: ["Astro", "React", "TypeScript", "Cloudflare Workers", "D1", "Paynow", "Playwright"],
+    status: "live",
+    primaryLink: {
+      label: "View Live",
+      href: "https://www.healthandlongevity.co.zw",
+      external: true,
+    },
+    secondaryLink: {
+      label: "View Case Study",
+      href: "/projects/health-and-longevity",
+    },
+    mockComponent: <HealthLongevityShowcase />,
+    gallery: <MediaGallery layout="strip" items={HEALTH_LONGEVITY_GALLERY} />,
+    side: "left",
+  },
+  {
+    number: "03",
     category: "CLIENT WORK",
     title: "The Endoscopy Suite",
     meta: "endoscopysuite.co.zw · Dr Muguti",
@@ -136,17 +202,34 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
     },
     mockComponent: <EndoscopySuiteShowcase />,
     gallery: <MediaGallery layout="strip" items={ENDOSCOPY_GALLERY} />,
+    side: "right",
+  },
+  {
+    number: "04",
+    category: "AUTOMATION",
+    title: "FishTech Sales Agent & Ops",
+    meta: "WhatsApp agent · ops.fishtech.co.zw",
+    description:
+      "AI sales agent on FishTech's WhatsApp line, live with real customers. It answers fish-farming questions in English or Shona, prices ponds, nets, fingerlings and delivery from one price list, and sends quotations as a PDF. Code checks every reply before it goes out, and large quotations wait for approval. Behind it, an operations console holds every chat, client and quotation.",
+    tags: ["Python", "FastAPI", "LLM tool use", "WhatsApp Cloud API", "Render"],
+    status: "live",
+    primaryLink: {
+      label: "View Case Study",
+      href: "/projects/fishtech-sales-agent",
+    },
+    mockComponent: <SalesAgentShowcase />,
+    gallery: <MediaGallery layout="strip" items={SALES_AGENT_GALLERY} />,
     side: "left",
   },
   {
-    number: "03",
+    number: "05",
     category: "COMPANY SITE",
     title: "FishTech Consultancy",
     meta: "fishtech.co.zw · Lead-gen platform",
     description:
       "Company site for a Zimbabwean fish-farming services business. Prices load from a single price list, and a pond calculator gives an instant cost that sends straight to WhatsApp for a written quote.",
     tags: ["Astro", "TypeScript", "GSAP", "Vercel"],
-    status: "building",
+    status: "live",
     primaryLink: {
       label: "View Live",
       href: "https://www.fishtech.co.zw",
@@ -157,7 +240,7 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
     side: "right",
   },
   {
-    number: "04",
+    number: "06",
     category: "EMBEDDED · SOLAR",
     title: "FishTech Feeder",
     meta: "Working prototype · Exhibited at ZAS 2026",
@@ -177,7 +260,7 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
     side: "left",
   },
   {
-    number: "05",
+    number: "07",
     category: "PRODUCTION",
     title: "Steadyhands Catering",
     meta: "steadyhandscatering.com · BATA Club",
@@ -194,7 +277,7 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
     side: "right",
   },
   {
-    number: "06",
+    number: "08",
     category: "META",
     title: "This Portfolio",
     meta: "You're looking at it",
@@ -275,8 +358,8 @@ export function Projects() {
             className="mt-5 mb-12 max-w-xl text-[15px] text-white/55 md:mb-16 md:max-w-2xl md:text-[16px]"
             style={{ lineHeight: 1.7 }}
           >
-            Two edge instruments in active build, one live transacting
-            platform, two websites, and this portfolio itself.
+            Five live systems running for clients and for FishTech, two
+            edge devices in active build, and this portfolio itself.
           </motion.p>
 
           <FlagshipProjectCard {...FLAGSHIP} variants={itemVariants} />
