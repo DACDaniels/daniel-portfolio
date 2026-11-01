@@ -169,11 +169,13 @@ Separate deep-dive case study pages for each project.
 - RIGHT: Professional photo
   → Circular/rounded frame with animated rotating teal border
   → Subtle teal glow behind photo
-  → Floating tech badges (Python, Next.js, OpenCV, Flask, Pi)
+  → Floating tech badges (Python, Next.js, OpenCV, FastAPI, Pi)
   with sine wave float animation
 - BOTTOM: Stats bar full width
   → Animated number counters count up when in viewport
-  → "5+ Projects" "2+ Years" "2 Production Systems" "BSc Hons CS · NUST 2026"
+  → "8 Projects" "2+ Years" "5 Live Systems" "BSc Hons CS · NUST 2026"
+  → The five live systems: Steadyhands, The Endoscopy Suite, fishtech.co.zw,
+    Health & Longevity, FishTech Sales Agent & Ops (DECISIONS.md, 2026-10-31)
   → Years counted from the ZIMDEF attachment (July 2024). See DECISIONS.md
 - BACKGROUND:
   → Animated dot grid that responds subtly to mouse
@@ -187,29 +189,34 @@ Separate deep-dive case study pages for each project.
 - Cards: dark surface, teal icon, animated border beam on hover
 - Cursor spotlight across section
 - Services:
-  1. Full-Stack Development — Next.js, React, Node.js, Flask, Python
+  1. Full-Stack Development — Next.js, React, Node.js, FastAPI, Python
+     → proof: "Shipped in Health & Longevity" → /projects/health-and-longevity
   2. Systems Architecture — Distributed systems, embedded, IoT, edge
   3. Computer Vision & ML — OpenCV, edge CV, custom metrics engineering
   4. AI & Intelligent Systems — AI integration, intelligent automation
+     → proof: "Shipped in FishTech Sales Agent" → /projects/fishtech-sales-agent
+     → pills name no model vendor
 
 ### 4. Projects
 
 - FishTech Precision Feeding System (LARGE FLAGSHIP CARD — full width)
   → Real photo: public/images/iris/iris-hero.jpg
-  → Tags: COMPUTER VISION · EMBEDDED · FLASK · RASPBERRY PI
+  → Tags: COMPUTER VISION · EMBEDDED · FASTAPI · RASPBERRY PI
   → Title, description
   → Honest accuracy framing: keypoint-distance length is
     orientation-invariant, lucky-frame estimator extrapolates
     with confidence intervals, no per-fish counting claim
   → "View Case Study" → /projects/fishtech
   → Cursor-tracking spotlight effect
-- 5 other projects in alternating left/right layout, in this order:
-  → 02 The Endoscopy Suite (endoscopysuite.co.zw, client work)
-  → 03 FishTech Consultancy Website (fishtech.co.zw)
-  → 04 FishTech Feeder
-  → 05 Steadyhands Platform
-  → 06 This Portfolio
-  → Order is Daniel's decision (see DECISIONS.md, 2026-10-09)
+- 7 other projects in alternating left/right layout (02 left), in this order:
+  → 02 Health & Longevity (healthandlongevity.co.zw, client system)
+  → 03 The Endoscopy Suite (endoscopysuite.co.zw, client work)
+  → 04 FishTech Sales Agent & Ops (WhatsApp agent, ops console)
+  → 05 FishTech Consultancy Website (fishtech.co.zw)
+  → 06 FishTech Feeder
+  → 07 Steadyhands Catering
+  → 08 This Portfolio
+  → Order is Daniel's decision (see DECISIONS.md, 2026-10-31)
 - Each card: image, tags, title, description, GitHub + Live links
 - Staggered slide-in from alternating sides on scroll
 
@@ -306,8 +313,8 @@ Separate deep-dive case study pages for each project.
    - Next.js, TypeScript, Node.js, Paynow gateway (Ecocash,
      OneMoney, Visa, Mastercard), WhatsApp Business funnel
    - Live and transacting at steadyhandscatering.com
-3. FishTech Consultancy Website at https://www.fishtech.co.zw (BUILDING:
-   reachable, not officially launched)
+3. FishTech Consultancy Website at https://www.fishtech.co.zw (LIVE since
+   2026-10-09, per blueacre-ops/CLAUDE.md; badge switched 2026-10-31)
    - Daniel's own company site, not client work. Card label "COMPANY SITE"
    - Single price list feeding every price, pond calculator with an instant
      cost that sends to WhatsApp for a written quote
@@ -318,10 +325,9 @@ Separate deep-dive case study pages for each project.
      (ft-home-desktop in a browser frame plus ft-home-phone), same layout
      as The Endoscopy Suite card, plus a strip of three phone shots: price
      panel, pond calculator, calculator total with the WhatsApp button
-   - Card sits at position 03, after The Endoscopy Suite. Call it the
-     company site; never CEO, founder or owner on the card. No prices,
-     client counts or traffic figures in the copy. Switch the badge to
-     LIVE only when Daniel says the site has launched
+   - Card sits at position 05. Call it the company site; never CEO,
+     founder or owner on the card. No prices, client counts or traffic
+     figures in the copy
 4. FishTech Feeder (BUILDING, working prototype: first unit built and dispensing feed)
    - Standalone welded-steel, solar-powered automatic feeder (ESP32).
      Auger turns a counted number of revolutions to meter each dose,
@@ -346,9 +352,52 @@ Separate deep-dive case study pages for each project.
      (desktop home in a browser frame plus the phone view; strip of phone
      shots of Services, Book, Emergencies, cropped from the top). The Dr
      Muguti page is left out because it shows his photo
-   - Card sits at position 02 in the Projects section (see DECISIONS.md,
-     2026-10-09). Never claim a booking back end, patient numbers or
+   - Card sits at position 03 in the Projects section (see DECISIONS.md,
+     2026-10-31). Never claim a booking back end, patient numbers or
      clinical results
+7. Health & Longevity (LIVE, client system) at https://www.healthandlongevity.co.zw
+   - Health platform for Dr Misheck Ruwende, Harare. Paynow membership
+     (on up to two phones, "Saved in My space. Nothing to write down."),
+     video consults with join links, visits at the Centre, paid articles
+     and video lessons, nurse aides who apply, are approved and matched,
+     community, offline and installable, phone-first admin area with a
+     written manual
+   - Stack: Astro, React, TypeScript, Tailwind CSS v4, Cloudflare Workers
+     and Pages, D1 with Drizzle, R2, Paynow (with a pretend mode for
+     testing), Vitest, Playwright, axe, Lighthouse CI, GitHub Actions
+   - Canonical source: github.com/DACDaniels/ruwende-platform (private).
+     BIBLE.md there wins over its other docs
+   - Card at position 02 (CLIENT SYSTEM). Case study /projects/health-and-longevity
+   - Screenshots come only from its local preview (npm run preview: sample
+     content, pretend Paynow). Never the real site's admin or real people.
+     Leave out frames whose main subject is Dr Ruwende's portrait
+   - NEVER CLAIM: patient records (not built), licences or regulators,
+     user, member, payment or revenue figures, test counts. Paid text never
+     appears in public files, so never quote it
+8. FishTech Sales Agent & Ops (LIVE, automation for FishTech)
+   - Large language model agent with tool use on FishTech's WhatsApp line:
+     answers fish-farming questions in English, Shona or a mix, prices
+     ponds, nets, fingerlings, feed and delivery from one price list
+     (shared live with fishtech.co.zw), sends quotations as a message plus
+     a PDF. Code checks every reply; large or non-standard quotations wait
+     for approval; silent for 24 hours after TELL; alerts on WhatsApp and
+     Telegram; every failed real chat became a test; one fixed true
+     sentence if the model fails. Ops console at ops.fishtech.co.zw:
+     Overview, Inbox, Clients, Quotations, Price list, Knowledge, Settings.
+     Chats and quotations live on a separate state branch
+   - Stack: Python 3.12, FastAPI, Uvicorn, fpdf2, WhatsApp Cloud API,
+     Telegram, GitHub as state store, Render
+   - Canonical source: github.com/DACDaniels/blueacre-ops, whatsapp-bot/
+     (private). Read it from a fresh clone; never commit to it
+   - Card at position 04 (AUTOMATION). Link: case study only
+     (/projects/fishtech-sales-agent). Ops is password-protected and the
+     bot number is never linked
+   - Screenshots: the real ops.html rendered with invented data, amounts
+     masked, "Sample data" label on every image. Chat component
+     SalesAgentChat.tsx is an invented conversation, "Sample conversation"
+   - NEVER CLAIM: the model vendor (say "large language model agent with
+     tool use"), the approval threshold or any dollar figure, message,
+     customer or quotation counts, an ERP. Never name Blue Acre
 
 ## FishTech Copy Discipline
 
@@ -387,7 +436,8 @@ NEVER CLAIM:
 - "Industry-leading accuracy" (not benchmarked)
 - Specific dollar figures (the USD 200-300 hardware target
   is internal, not public)
-- Test counts, line counts, contributor counts
+- Test counts, line counts, contributor counts. Say what is tested, never
+  how many (real counts go stale; DECISIONS.md, 2026-10-31)
 
 CURRENT STAGE LANGUAGE:
 - Backend is FastAPI (migration from Flask is done). Never tag FishTech "Flask"
@@ -416,6 +466,14 @@ but visual noise.
   600 px wide from a 390 px capture; card strip ft-prices-phone,
   ft-calculator-phone, ft-quote-phone, 780 x 1688 from 390 px captures).
   Retake them if the site changes a lot
+- public/images/health-longevity/: Health & Longevity from its local preview
+  with sample content, 2026-11-01 (hl-*-desktop 2000 x 1250 from 1440 px,
+  hl-*-phone 780 x 1688 from 390 px). Home is scrolled past the hero so the
+  portrait is not the subject; hl-aide-match-phone is the platform's own
+  step 6g.2 sample capture. No clip: no flow.webm exists
+- public/images/fishtech-sales-agent/: FishTech Ops (real ops.html, invented
+  data, amounts masked) and quote-pdf.jpg (pdf_quote.py, invented customer,
+  prices and business number masked), each with a "Sample data" label
 - public/images/endoscopy-suite/: screenshots of endoscopysuite.co.zw taken
   2026-10-09 (es-home-desktop 2000 px wide, es-home-phone, and three phone
   pages for the card strip). Retake them if the client site changes a lot
@@ -447,7 +505,7 @@ Row 1 (AI / CV / Edge):
 
 Row 2 (Full-stack / IoT):
   TypeScript · React · Next.js · Vue 3 · Flutter · Node.js
-  · FastAPI · Flask · IoT · Raspberry Pi · Linux
+  · FastAPI · IoT · Raspberry Pi · Linux
 
 Drop: TensorFlow, SQLite as standalone, PostgreSQL as standalone,
       Tailwind as standalone.
