@@ -393,7 +393,7 @@ function FilterChips({
       <div
         role="group"
         aria-label="Filter projects"
-        className="-mx-6 flex snap-x gap-2 overflow-x-auto px-6 py-1 [scrollbar-width:none] md:mx-0 md:flex-wrap md:overflow-visible md:px-0 [&::-webkit-scrollbar]:hidden"
+        className="-mx-6 flex snap-x scroll-px-6 gap-2 overflow-x-auto px-6 py-1 [scrollbar-width:none] md:mx-0 md:flex-wrap md:overflow-visible md:px-0 [&::-webkit-scrollbar]:hidden"
       >
         {PROJECT_FILTERS.map((f) => {
           const pressed = active === f.id;
