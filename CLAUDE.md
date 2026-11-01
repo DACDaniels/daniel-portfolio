@@ -43,7 +43,8 @@ Colors:
 - accent-dim: rgba(0,229,192,0.15)
 - accent-glow: rgba(0,229,192,0.4)
 - text-primary: #FFFFFF
-- text-secondary: rgba(255,255,255,0.6)
+- text-secondary: rgba(255,255,255,0.75) (was 0.6 until 2026-11-01; raised for
+  phone readability, about 11:1 on #080808. See DECISIONS.md)
 - text-tertiary: rgba(255,255,255,0.5)
 
 Status palette (project + section badges):
@@ -125,8 +126,14 @@ Radii:
 ## Site Structure
 
 Single long-scroll page with smooth section transitions.
-Separate deep-dive case study pages for each project, plus /hire
-("Hiring? Start here", since 2026-11-01).
+One page per project (since 2026-11-01), plus /hire ("Hiring? Start here"):
+/projects/fishtech, /projects/health-and-longevity, /projects/endoscopy-suite,
+/projects/fishtech-sales-agent, /projects/fishtech-consultancy,
+/projects/fishtech-feeder, /projects/steadyhands, /projects/this-portfolio.
+The five newer ones use src/components/ui/ProjectPage.tsx (What it is, What it
+does, How it's built only where the source supports a sketch, Stack, Screens,
+links). Each page: own title, description, canonical, share image, sitemap
+entry, projectSchema.ts entry and check-seo coverage.
 
 ### Section order (exact):
 
@@ -158,6 +165,9 @@ Separate deep-dive case study pages for each project, plus /hire
 - Far right: "Ctrl K" (⌘ K on Mac) palette hint button from lg, then the
   teal CTA button "Contact Me" with shimmer on hover
 - Mobile: hamburger with full-screen overlay menu
+- Below 1024 px: a search icon button (44 px) opens the command palette.
+  Between 768 and 1023 px Home leaves the bar (the logo goes home) to make
+  room for it
 
 ### 2. Hero — THE MOST IMPORTANT SECTION
 
@@ -207,15 +217,21 @@ Separate deep-dive case study pages for each project, plus /hire
 
 ### 4. Projects
 
-- FishTech Precision Feeding System (LARGE FLAGSHIP CARD — full width)
+- Every card, the flagship included, shows only: image, title and status,
+  one sentence of at most 20 words, at most 3 tags, and the links
+  → "View Live" only where a public site exists: Health & Longevity, The
+    Endoscopy Suite, FishTech Consultancy, Steadyhands. This Portfolio gets
+    "View on GitHub". Iris, the Feeder and the Sales Agent get none
+  → "Read the case study" is a stretched link (its ::after covers the card),
+    so clicking anywhere on the card opens the project's page. View Live
+    sits above it and opens a new tab. No nested anchors; one tab stop for
+    the card plus one for View Live (src/components/ui/ProjectCardParts.tsx)
+  → No galleries or long descriptions on cards: they live on the project pages
+  → Number and category ("02 CLIENT SYSTEM") only from 768 px
+- FishTech Precision Feeding System (LARGE FLAGSHIP CARD, full width)
   → Real photo: public/images/iris/iris-hero.jpg
-  → Tags: COMPUTER VISION · EMBEDDED · FASTAPI · RASPBERRY PI
-  → Title, description
-  → Honest accuracy framing: keypoint-distance length is
-    orientation-invariant, lucky-frame estimator extrapolates
-    with confidence intervals, no per-fish counting claim
-  → "View Case Study" → /projects/fishtech
-  → Cursor-tracking spotlight effect
+  → Tags: Computer Vision, Raspberry Pi, FastAPI
+  → "Read the case study" → /projects/fishtech
 - 7 other projects in alternating left/right layout (02 left), in this order:
   → 02 Health & Longevity (healthandlongevity.co.zw, client system)
   → 03 The Endoscopy Suite (endoscopysuite.co.zw, client work)
@@ -225,8 +241,9 @@ Separate deep-dive case study pages for each project, plus /hire
   → 07 Steadyhands Catering
   → 08 This Portfolio
   → Order is Daniel's decision (see DECISIONS.md, 2026-10-31)
-- Each card: image, tags, title, description, GitHub + Live links
-- Staggered slide-in from alternating sides on scroll
+- Desktop keeps the large main image and the left/right alternation
+- Each card's presence wrapper owns its reveal; cards carry no variants
+  (a re-entering card otherwise stayed at opacity 0, fixed 2026-11-01)
 - Filter chips above the cards: All, Client systems (Health & Longevity,
   Endoscopy Suite, Steadyhands), Products and hardware (Iris, Feeder),
   Automation and AI (Sales Agent & Ops, Iris), Websites (FishTech
@@ -234,6 +251,15 @@ Separate deep-dive case study pages for each project, plus /hire
   choice in the URL hash (#work-<filter>), transform-only layout animation.
   Default All, flagship first whenever shown. Card numbers never change;
   sides re-alternate over the visible cards (src/lib/projectFilters.ts)
+  → One horizontally scrolling row with a fade on the right below 768 px,
+    sticky under the navbar (top 80 px) while Projects is on screen (the
+    section uses overflow-x-clip, never overflow-hidden, so it can stick).
+    Active chip solid #00E5C0 with dark text; inactive border at least
+    rgba(255,255,255,0.28); 44 px tall
+  → scripts/check-filters.mjs (in npm run preflight) clicks every chip pair
+    and All > X > Y > All, full and reduced motion, and checks cards,
+    opacity above 0.9 and aria-pressed. Update its expected lists with any
+    change to the groups
 - Status lights: /api/status (cached 5 min) checks the five live systems
   (GET, 4 s timeout, 2xx is up) and returns only up/down plus the check
   time. Cards fetch only /api/status. A passing check under 15 min old shows
@@ -259,8 +285,8 @@ Separate deep-dive case study pages for each project, plus /hire
   Exhibited the FishTech Feeder, a working prototype, and met farmers, buyers
   and Ministry of Skills stakeholders. Three small photos from
   public/images/zas/ (MediaGallery strip, max 300 px wide)
-- Both events also stay in the About timeline on purpose: short dated mention
-  there, full detail here
+- These two events are NOT repeated in the About timeline (removed
+  2026-11-01: on a phone the repeat costs more than it adds)
 - Only facts already written in this repo. No placings, prizes, judges or
   outcomes until Daniel supplies them. FishTech is a research prototype,
   never commercially deployed
@@ -268,16 +294,21 @@ Separate deep-dive case study pages for each project, plus /hire
 ### 6. How I build
 
 - After Achievements, before About. In the navbar as "How I build"
-- Title "How I build." and four points, no numbers: decisions in writing,
-  claimed versus true, tested before it ships, always a way back
-- Each point quotes one real dated decision as a mono decision card
-  (project, ID if any, date, source file, one or two plain sentences):
-  Health & Longevity D-043 and D-093 (ruwende-platform/DECISIONS.md), the
-  FishTech reality-check rule (2026-08-06) and the sales agent's real-chat
-  tests (2026-10-30) from the FishTech business repository. Read the logs
-  read only; never name Blue Acre; no prices, counts or client private data
-- Each point links to the matching case-study section. Card radius 16 px
-- Under the four points: "Shipping, every week", the GitHub contribution
+- Title "How I build." and four principles, no intro, no cards, no numbers:
+  → Private by default. "Personal and medical details are encrypted. Paid
+    content never sits in a public file." Proof: Health & Longevity
+  → AI with guardrails. "The model talks to customers. Code sets every
+    price and checks every reply before it is sent." Proof: FishTech Sales
+    Agent
+  → Built for real conditions. "Works offline, on weak signal, and on a
+    small computer at the pond." Proof: Health & Longevity · Iris
+  → Tested and reversible. "Every change is tested. Every release can be
+    rolled back." Proof: Health & Longevity · this site
+- Each principle: one bold Geist line, one short body line, a small teal
+  mono proof label linking to the project page(s). Thin dividers
+- Every line was checked against its source (DECISIONS.md, 2026-11-01);
+  re-check before changing a word. /hire's How I work uses the same four
+- Under the four principles: "Shipping, every week", the GitHub contribution
   graph (src/components/sections/ShippingGraph.tsx, src/lib/githubActivity.ts).
   Server-side GraphQL, viewer contributionCalendar, last 12 months,
   revalidate 86400, env GITHUB_CONTRIBUTIONS_TOKEN (name in .env.example,
@@ -290,7 +321,7 @@ Separate deep-dive case study pages for each project, plus /hire
 ### 7. About
 
 - Top: "Recently shipped" strip from src/data/shipped.ts (date, one line,
-  optional link; newest first, five shown)
+  optional link; newest first, three shown on phones, five from 768 px)
   → RULE: every portfolio PR that ships something visible adds one line to
     shipped.ts, with a date checked against its source
 - Two column layout
@@ -300,7 +331,8 @@ Separate deep-dive case study pages for each project, plus /hire
   → Honest, human, not corporate
 - RIGHT:
   → Tech stack pills in animated marquee (two rows, opposite directions)
-  → Small timeline of milestones
+  → Small timeline of milestones (no Presidential Innovation Awards or
+    Zimbabwe Agricultural Show entries: those live in Achievements only)
 - Subtle background texture
 
 ### 8. Testimonials
@@ -334,7 +366,7 @@ Separate deep-dive case study pages for each project, plus /hire
 - Reads in 60 seconds: one line with the full title; Roles I fit (Full-stack
   engineer, Systems and edge engineer, AI and automation engineer, each with
   one proof line linking to a case study); Live systems (the five, with
-  status lights from /api/status); How I work (the four points, one line each,
+  status lights from /api/status); How I work (the four How I build principles, one line each,
   linking to #how-i-build); Availability (full-time software engineering,
   remote or in Zimbabwe; Harare, UTC+2); Education as in Owner Details;
   actions (Download résumé, Email, WhatsApp, LinkedIn, GitHub)
@@ -384,7 +416,8 @@ Separate deep-dive case study pages for each project, plus /hire
      this number in the portfolio's public copy, see "AVOID in
      copy" section)
 2. Steadyhands Catering Platform (LIVE)
-   - Production e-commerce platform for Bata Club, Harare
+   - Production e-commerce platform for Bata Club, Gweru (the live site
+     says Gweru, along Bulawayo Road; checked 2026-11-01)
    - Next.js, TypeScript, Node.js, Paynow gateway (Ecocash,
      OneMoney, Visa, Mastercard), WhatsApp Business funnel
    - Live and transacting at steadyhandscatering.com
@@ -679,6 +712,10 @@ This site must be exceptional on mobile. Most visitors will be on phones.
 - Animations still work but reduced intensity on mobile for performance
 - Images use next/image with responsive sizing
 - No horizontal scroll at any viewport
+- Body text uses text-secondary (0.75) or brighter on the dark background
+- Below 768 px, hide decorative code-style labels ("// projects.tsx",
+  card number and category, case-study eyebrows); keep them from 768 px
+- Tap targets at least 44 px on phones, including footer and proof links
 - Test screenshots at 375px, 768px, 1920px — all 3 must be clean
 
 ### Screenshot workflow update:
