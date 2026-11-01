@@ -167,7 +167,7 @@ export default function FishTechCaseStudyPage() {
         <div className="mx-auto w-full max-w-3xl px-6 md:px-8">
           <Link
             href="/#projects"
-            className="inline-flex items-center gap-1 text-white/60 transition-colors duration-200 hover:text-accent"
+            className="inline-flex items-center gap-1 text-text-secondary transition-colors duration-200 hover:text-accent"
             style={{
               fontFamily: "var(--font-jetbrains-mono)",
               fontSize: "12px",
@@ -186,7 +186,7 @@ export default function FishTechCaseStudyPage() {
           >
             <motion.div
               variants={itemVariants}
-              className="font-mono text-[11px] uppercase text-accent"
+              className="hidden font-mono text-[11px] uppercase text-accent md:block"
               style={{ letterSpacing: "0.15em" }}
             >
               {"// case-study · in active build"}
@@ -243,7 +243,7 @@ export default function FishTechCaseStudyPage() {
 
             <motion.p
               variants={itemVariants}
-              className="mt-4 max-w-3xl text-white/60"
+              className="mt-4 max-w-3xl text-text-secondary"
               style={{
                 fontFamily: "var(--font-dm-sans)",
                 fontSize: "18px",
@@ -256,7 +256,7 @@ export default function FishTechCaseStudyPage() {
 
             <motion.div
               variants={itemVariants}
-              className="mt-8 flex flex-wrap gap-x-4 gap-y-2 text-white/60"
+              className="mt-8 flex flex-wrap gap-x-4 gap-y-2 text-text-secondary"
               style={{
                 fontFamily: "var(--font-jetbrains-mono)",
                 fontSize: "12px",
@@ -313,7 +313,7 @@ export default function FishTechCaseStudyPage() {
                 className="rounded-xl border border-white/[0.06] bg-bg-surface px-4 py-3"
               >
                 <div
-                  className="text-white/60"
+                  className="text-text-secondary"
                   style={{
                     fontFamily: "var(--font-jetbrains-mono)",
                     fontSize: "10px",
@@ -432,7 +432,7 @@ export default function FishTechCaseStudyPage() {
                   {"// what the camera sees"}
                 </div>
                 <p
-                  className="text-white/65"
+                  className="text-text-secondary"
                   style={{
                     fontFamily: "var(--font-dm-sans)",
                     fontSize: "14px",
@@ -534,7 +534,7 @@ export default function FishTechCaseStudyPage() {
                     {group.label}
                   </div>
                   <ul
-                    className="space-y-1.5 text-white/65"
+                    className="space-y-1.5 text-text-secondary"
                     style={{
                       fontFamily: "var(--font-dm-sans)",
                       fontSize: "13px",
@@ -648,7 +648,7 @@ export default function FishTechCaseStudyPage() {
           <RelatedSection containerVariants={containerVariants}>
             <motion.div
               variants={itemVariants}
-              className="text-white/60"
+              className="text-text-secondary"
               style={{
                 fontFamily: "var(--font-jetbrains-mono)",
                 fontSize: "11px",
@@ -699,7 +699,7 @@ export default function FishTechCaseStudyPage() {
               </a>
               <div className="rounded-xl border border-white/[0.06] bg-bg-surface p-4">
                 <div
-                  className="text-white/60"
+                  className="text-text-secondary"
                   style={{
                     fontFamily: "var(--font-jetbrains-mono)",
                     fontSize: "10px",
@@ -847,7 +847,7 @@ function ClosingCTA({ reduceMotion }: { reduceMotion: boolean }) {
             Have a CV-on-edge or IoT product you&apos;re trying to ship?
           </h3>
           <p
-            className="mt-3 max-w-[52ch] text-white/60"
+            className="mt-3 max-w-[52ch] text-text-secondary"
             style={{
               fontFamily: "var(--font-dm-sans)",
               fontSize: "15px",

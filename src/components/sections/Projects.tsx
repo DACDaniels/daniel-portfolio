@@ -194,6 +194,16 @@ export function Projects() {
     }
   }, []);
 
+  // Choosing a chip while scrolled deep into the list brings the top of
+  // the section back, so the first matching card is in view.
+  const choose = (id: ProjectFilterId) => {
+    setActive(id);
+    const section = document.getElementById("projects");
+    if (section && section.getBoundingClientRect().top < 0) {
+      section.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+    }
+  };
+
   const showFlagship = active === "all" || FLAGSHIP_GROUPS.includes(active);
   const visible = ALTERNATING.filter(
     (p) => active === "all" || p.groups.includes(active),
@@ -249,7 +259,9 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="relative w-full overflow-hidden bg-bg-primary py-20 md:py-32"
+      // overflow-x-clip, not overflow-hidden: hidden would make the section a
+      // scroll container and stop the chip row from sticking.
+      className="relative w-full overflow-x-clip bg-bg-primary py-20 md:py-32"
     >
       <div className="mx-auto w-full max-w-7xl px-6 md:px-8">
         <motion.div
@@ -260,7 +272,8 @@ export function Projects() {
         >
           <motion.div
             variants={itemVariants}
-            className="font-mono text-[11px] uppercase text-accent"
+            aria-hidden
+            className="hidden font-mono text-[11px] uppercase text-accent md:block"
             style={{ letterSpacing: "0.15em", marginBottom: "12px" }}
           >
             {"// projects.tsx"}
@@ -280,15 +293,19 @@ export function Projects() {
 
           <motion.p
             variants={itemVariants}
-            className="mt-5 max-w-xl text-[15px] text-white/55 md:max-w-2xl md:text-[16px]"
+            className="mt-5 max-w-xl text-[15px] text-text-secondary md:max-w-2xl md:text-[16px]"
             style={{ lineHeight: 1.7 }}
           >
             Five live systems running for clients and for FishTech, two
             edge devices in active build, and this portfolio itself.
           </motion.p>
 
-          <motion.div variants={itemVariants} className="mt-8 mb-10 md:mb-14">
-            <FilterChips active={active} onChange={setActive} />
+          {/* Sticks under the navbar (80 px) while the section is on screen. */}
+          <motion.div
+            variants={itemVariants}
+            className="sticky top-20 z-20 -mx-6 mt-8 mb-8 bg-bg-primary/90 px-6 py-2 backdrop-blur-md md:-mx-8 md:mb-14 md:px-8"
+          >
+            <FilterChips active={active} onChange={choose} />
             <p className="sr-only" aria-live="polite">
               {active === "all"
                 ? "Showing all projects"
@@ -340,7 +357,7 @@ export function Projects() {
               className="mt-20 text-center md:mt-28"
             >
               <p
-                className="text-white/60"
+                className="text-text-secondary"
                 style={{
                   fontFamily: "var(--font-dm-sans)",
                   fontSize: "15px",
@@ -351,7 +368,7 @@ export function Projects() {
                   href="https://github.com/DACDaniels"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-accent underline-offset-4 hover:underline"
+                  className="inline-flex min-h-11 items-center text-accent underline-offset-4 hover:underline focus-visible:underline focus-visible:outline-none"
                 >
                   GitHub →
                 </a>
@@ -372,31 +389,44 @@ function FilterChips({
   onChange: (id: ProjectFilterId) => void;
 }) {
   return (
-    <div
-      role="group"
-      aria-label="Filter projects"
-      className="flex flex-wrap gap-2"
-    >
-      {PROJECT_FILTERS.map((f) => {
-        const pressed = active === f.id;
-        return (
-          <button
-            key={f.id}
-            type="button"
-            aria-pressed={pressed}
-            onClick={() => onChange(f.id)}
-            data-cursor-interactive
-            className={`inline-flex min-h-[44px] items-center rounded-full border px-4 text-[13px] font-medium transition-[color,background-color,border-color,box-shadow,transform] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary active:scale-[0.97] ${
-              pressed
-                ? "border-accent/40 bg-accent/[0.12] text-accent shadow-[0_8px_24px_-12px_rgba(0,229,192,0.45)]"
-                : "border-white/[0.08] bg-bg-surface text-white/65 hover:border-accent/30 hover:text-white"
-            }`}
-            style={{ fontFamily: "var(--font-dm-sans)" }}
-          >
-            {f.label}
-          </button>
-        );
-      })}
+    <div className="relative">
+      <div
+        role="group"
+        aria-label="Filter projects"
+        className="-mx-6 flex snap-x gap-2 overflow-x-auto px-6 py-1 [scrollbar-width:none] md:mx-0 md:flex-wrap md:overflow-visible md:px-0 [&::-webkit-scrollbar]:hidden"
+      >
+        {PROJECT_FILTERS.map((f) => {
+          const pressed = active === f.id;
+          return (
+            <button
+              key={f.id}
+              type="button"
+              aria-pressed={pressed}
+              onClick={(e) => {
+                onChange(f.id);
+                e.currentTarget.scrollIntoView({ block: "nearest", inline: "nearest" });
+              }}
+              data-cursor-interactive
+              className={`inline-flex min-h-[44px] shrink-0 snap-start items-center whitespace-nowrap rounded-full border px-4 text-[14px] font-medium transition-[color,background-color,border-color,box-shadow,transform] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary active:scale-[0.97] motion-reduce:active:scale-100 ${
+                pressed
+                  ? "border-accent bg-accent shadow-[0_8px_24px_-12px_rgba(0,229,192,0.55)]"
+                  : "border-white/[0.28] bg-bg-surface text-white/85 hover:border-accent/60 hover:text-white"
+              }`}
+              style={{
+                fontFamily: "var(--font-dm-sans)",
+                ...(pressed ? { color: "#080808" } : {}),
+              }}
+            >
+              {f.label}
+            </button>
+          );
+        })}
+      </div>
+      {/* Fade on the right edge: there is more to scroll. Phones only. */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-y-0 -right-6 w-12 bg-gradient-to-l from-bg-primary to-transparent md:hidden"
+      />
     </div>
   );
 }

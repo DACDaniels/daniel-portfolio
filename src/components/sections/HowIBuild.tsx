@@ -134,7 +134,7 @@ export function HowIBuild({ graph }: { graph?: ReactNode }) {
                         ) : null}
                         <Link
                           href={link.href}
-                          className="inline-flex min-h-11 items-center rounded-sm text-accent underline-offset-4 transition-colors duration-200 hover:text-white hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary active:text-white"
+                          className="inline-flex min-h-11 min-w-11 items-center rounded-sm text-accent underline-offset-4 transition-colors duration-200 hover:text-white hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary active:text-white"
                         >
                           {link.label}
                         </Link>

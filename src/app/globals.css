@@ -13,7 +13,8 @@
   --accent-glow: rgba(0, 229, 192, 0.4);
 
   --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.6);
+  /* 0.6 until 2026-11-01; 0.75 for phone readability (DECISIONS.md). */
+  --text-secondary: rgba(255, 255, 255, 0.75);
   --text-tertiary: rgba(255, 255, 255, 0.5);
 
   --radius-card: 16px;

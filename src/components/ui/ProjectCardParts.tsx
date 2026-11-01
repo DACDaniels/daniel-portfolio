@@ -140,7 +140,7 @@ export function CardEyebrow({ number, category }: { number: string; category: st
   return (
     <div
       aria-hidden
-      className="hidden items-center gap-2 text-white/60 md:flex"
+      className="hidden items-center gap-2 text-text-secondary md:flex"
       style={{ fontFamily: MONO, fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase" }}
     >
       <span>{number}</span>

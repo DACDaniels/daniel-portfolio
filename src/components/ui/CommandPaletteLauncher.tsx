@@ -90,3 +90,23 @@ export function CommandPaletteHint({ className = "" }: { className?: string }) {
     </button>
   );
 }
+
+/** Search icon in the navbar below 1024 px, where the hint button is hidden. */
+export function CommandPaletteIconButton({ className = "" }: { className?: string }) {
+  return (
+    <button
+      type="button"
+      onClick={openCommandPalette}
+      aria-label="Search the site"
+      className={cn(
+        "inline-flex h-11 w-11 items-center justify-center rounded-full border border-border text-text-primary transition-[border-color,color] duration-300 hover:border-accent/50 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary active:opacity-80",
+        className,
+      )}
+    >
+      <svg aria-hidden width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <circle cx="7" cy="7" r="5" stroke="currentColor" strokeWidth="1.6" />
+        <path d="M11 11l3.5 3.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+      </svg>
+    </button>
+  );
+}

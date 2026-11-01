@@ -107,7 +107,8 @@ export function Achievements() {
         >
           <motion.div
             variants={itemVariants}
-            className="mb-3 font-mono text-[11px] uppercase tracking-[0.15em] text-accent"
+            aria-hidden
+            className="mb-3 hidden font-mono text-[11px] uppercase tracking-[0.15em] text-accent md:block"
           >
             {"// achievements.tsx"}
           </motion.div>

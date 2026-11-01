@@ -82,7 +82,7 @@ export function FishTechArchitecture() {
           {"// closed-loop · pipeline"}
         </div>
         <div
-          className="text-white/60"
+          className="text-text-secondary"
           style={{
             fontFamily: "var(--font-jetbrains-mono)",
             fontSize: "11px",
@@ -123,7 +123,7 @@ export function FishTechArchitecture() {
               {stage.label}
             </div>
             <div
-              className="text-white/60"
+              className="text-text-secondary"
               style={{
                 fontFamily: "var(--font-jetbrains-mono)",
                 fontSize: "10px",
@@ -145,7 +145,7 @@ export function FishTechArchitecture() {
           className="h-px flex-1 bg-gradient-to-r from-transparent via-accent/30 to-transparent"
         />
         <span
-          className="text-white/60"
+          className="text-text-secondary"
           style={{
             fontFamily: "var(--font-jetbrains-mono)",
             fontSize: "10px",
