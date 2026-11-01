@@ -13,6 +13,8 @@ export type MediaItem = {
   poster?: string;
   /** Crop the thumbnail from the top instead of the centre (tall screenshots). */
   focus?: "top";
+  /** Laptop screenshot: a 16:10 thumbnail spanning two grid columns. */
+  wide?: boolean;
 };
 
 /**
@@ -150,7 +152,7 @@ export function MediaGallery({
         type="button"
         onClick={() => open(index)}
         aria-label={`Open ${item.kind === "video" ? "video" : "photo"}: ${item.alt}`}
-        className={`group/thumb relative block aspect-[4/5] min-h-11 min-w-11 shrink-0 cursor-pointer overflow-hidden rounded-2xl border border-border bg-bg-surface shadow-[0_8px_24px_-14px_rgba(0,229,192,0.18),0_0_0_1px_rgba(255,255,255,0.02)_inset] hover:border-accent/30 active:border-accent/50 ${sizeClassName} ${FOCUS_RING}`}
+        className={`group/thumb relative block ${item.wide ? "aspect-[16/10] md:aspect-auto md:h-full" : "aspect-[4/5]"} min-h-11 min-w-11 shrink-0 cursor-pointer overflow-hidden rounded-2xl border border-border bg-bg-surface shadow-[0_8px_24px_-14px_rgba(0,229,192,0.18),0_0_0_1px_rgba(255,255,255,0.02)_inset] hover:border-accent/30 active:border-accent/50 ${sizeClassName} ${FOCUS_RING}`}
       >
         <Image
           src={item.kind === "video" ? (item.poster ?? item.src) : item.src}
@@ -190,9 +192,11 @@ export function MediaGallery({
       ) : null}
 
       {listed.length > 0 ? (
-        <ul className={`grid gap-2 md:gap-3 ${columns} ${className}`}>
+        <ul
+          className={`grid gap-2 md:gap-3 ${columns} ${listed.some((item) => item.wide) ? "grid-flow-row-dense" : ""} ${className}`}
+        >
           {listed.map((item, i) => (
-            <li key={item.src}>
+            <li key={item.src} className={item.wide ? "col-span-2" : undefined}>
               {renderThumb(i + firstListed, "w-full", thumbSizes)}
             </li>
           ))}
