@@ -37,11 +37,10 @@ const SERVICES: Service[] = [
     title: "Full-Stack Development",
     description:
       "End-to-end web platforms with real payments, auth, and production deployment.",
-    pills: ["Next.js", "React", "Node.js", "Flask"],
+    pills: ["Next.js", "React", "Node.js", "FastAPI"],
     proof: {
-      label: "Shipped in Steadyhands",
-      href: "https://steadyhandscatering.com",
-      external: true,
+      label: "Shipped in Health & Longevity",
+      href: "/projects/health-and-longevity",
     },
     dominant: true,
   },
@@ -72,7 +71,11 @@ const SERVICES: Service[] = [
     title: "AI & Intelligent Systems",
     description:
       "LLM integration, intelligent automation, decision-support tools that actually ship.",
-    pills: ["OpenAI", "Claude API", "Automation", "Decision Support"],
+    pills: ["LLM Agents", "Tool Use", "Automation", "Decision Support"],
+    proof: {
+      label: "Shipped in FishTech Sales Agent",
+      href: "/projects/fishtech-sales-agent",
+    },
   },
 ];
 

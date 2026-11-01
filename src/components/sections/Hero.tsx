@@ -13,9 +13,9 @@ type Stat =
   | { kind: "text"; primary: string; label: string };
 
 const STATS: Stat[] = [
-  { kind: "number", value: 5, suffix: "+", label: "Projects" },
+  { kind: "number", value: 8, suffix: "", label: "Projects" },
   { kind: "number", value: 2, suffix: "+", label: "Years" },
-  { kind: "number", value: 3, suffix: "", label: "Production Systems" },
+  { kind: "number", value: 5, suffix: "", label: "Live Systems" },
   { kind: "text", primary: "BSc Hons", label: "Computer Science, NUST 2026" },
 ];
 

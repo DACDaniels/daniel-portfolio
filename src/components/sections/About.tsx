@@ -165,7 +165,7 @@ const MARQUEE_ROW_2 = [
   "Next.js",
   "Vue 3",
   "Node.js",
-  "Flask",
+  "FastAPI",
   "IoT",
   "Raspberry Pi",
   "Hailo",
