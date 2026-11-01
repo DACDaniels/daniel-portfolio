@@ -180,12 +180,14 @@ export function CaseSection({
       ref={ref}
       id={id}
       className="scroll-mt-28"
+      data-case-reveal
       initial="hidden"
       animate={revealed ? "visible" : "hidden"}
       variants={containerVariants}
     >
       <motion.div
         variants={itemVariants}
+        data-case-reveal
         aria-hidden
         className="hidden text-accent md:block"
         style={{ fontFamily: MONO, fontSize: "11px", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "12px" }}
@@ -194,6 +196,7 @@ export function CaseSection({
       </motion.div>
       <motion.h2
         variants={itemVariants}
+        data-case-reveal
         className="font-heading font-semibold text-white"
         style={{ fontSize: "clamp(1.75rem, 3vw, 2.25rem)", letterSpacing: "-0.025em", lineHeight: 1.1, marginBottom: "16px" }}
       >
@@ -201,6 +204,7 @@ export function CaseSection({
       </motion.h2>
       <motion.div
         variants={itemVariants}
+        data-case-reveal
         className="space-y-4 text-white/70"
         style={{ fontFamily: BODY, fontSize: "16px", lineHeight: 1.75 }}
       >

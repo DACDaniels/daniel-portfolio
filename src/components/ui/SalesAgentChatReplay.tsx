@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { useReducedMotion } from "motion/react";
 import { CONVERSATION, SalesAgentChat } from "@/components/ui/SalesAgentChat";
 
@@ -9,6 +9,10 @@ import { CONVERSATION, SalesAgentChat } from "@/components/ui/SalesAgentChat";
  * the quotation PDF arriving. Starts when scrolled into view; Pause and
  * Replay sit under the phone. Under reduced motion the whole conversation
  * shows at once and there is nothing to play. Same text as SalesAgentChat.
+ *
+ * The server and the first client render show the full conversation, so it
+ * reads complete with JavaScript off and hydration matches. The replay (and
+ * the controls) begin only after mount, once the phone scrolls into view.
  */
 
 const TOTAL = CONVERSATION.length;
@@ -22,21 +26,35 @@ function typingMs(i: number): number {
 }
 const GAP_MS = 650;
 
+/** False on the server and during hydration, true after mount. */
+const noop = () => () => {};
+function useMounted(): boolean {
+  return useSyncExternalStore(noop, () => true, () => false);
+}
+
 export function SalesAgentChatReplay({ className = "" }: { className?: string }) {
-  const reduceMotion = useReducedMotion() ?? false;
+  const prefersReduced = useReducedMotion() ?? false;
   const ref = useRef<HTMLDivElement>(null);
+  const mounted = useMounted();
   const [started, setStarted] = useState(false);
   const [playing, setPlaying] = useState(true);
-  const [shown, setShown] = useState(0);
+  const [shown, setShown] = useState(TOTAL);
   const [typing, setTyping] = useState(false);
 
-  // Start once, the first time the phone is well into view.
+  // Before mount, render as reduced: full conversation, no controls. That is
+  // what the server sends, whatever the visitor's motion setting.
+  const reduceMotion = !mounted || prefersReduced;
+
+  // Start once, the first time the phone is well into view: clear the
+  // conversation and play it from the top.
   useEffect(() => {
     const el = ref.current;
-    if (!el || started) return;
+    if (!el || reduceMotion || started) return;
     const io = new IntersectionObserver(
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
+          setShown(0);
+          setTyping(false);
           setStarted(true);
           io.disconnect();
         }
@@ -45,7 +63,7 @@ export function SalesAgentChatReplay({ className = "" }: { className?: string })
     );
     io.observe(el);
     return () => io.disconnect();
-  }, [started]);
+  }, [reduceMotion, started]);
 
   // One timer at a time: a gap, then the dots, then the message.
   useEffect(() => {
@@ -64,7 +82,7 @@ export function SalesAgentChatReplay({ className = "" }: { className?: string })
     return () => window.clearTimeout(id);
   }, [reduceMotion, started, playing, shown, typing]);
 
-  const done = shown >= TOTAL;
+  const done = !started || shown >= TOTAL;
   const next = CONVERSATION[shown];
   const typingSide = typing && next ? (next.from === "customer" ? "customer" : "agent") : null;
 
@@ -79,7 +97,11 @@ export function SalesAgentChatReplay({ className = "" }: { className?: string })
     "inline-flex min-h-11 items-center justify-center rounded-full border px-5 text-[14px] font-medium transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
   return (
-    <div ref={ref} className={className} data-chat-replay={done ? "done" : "playing"}>
+    <div
+      ref={ref}
+      className={className}
+      data-chat-replay={!started ? "static" : shown >= TOTAL ? "done" : "playing"}
+    >
       {/* Screen readers get the whole conversation once, not a replay. */}
       <ol className="sr-only">
         {CONVERSATION.map((t, i) => (
@@ -93,7 +115,7 @@ export function SalesAgentChatReplay({ className = "" }: { className?: string })
           className="aspect-[9/17] w-full"
           shown={reduceMotion ? undefined : shown}
           typing={reduceMotion ? null : typingSide}
-          animateLast={!reduceMotion}
+          animateLast={!reduceMotion && started}
         />
       </div>
       {!reduceMotion && (
