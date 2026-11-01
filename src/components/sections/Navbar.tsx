@@ -18,6 +18,7 @@ const LINKS: NavLink[] = [
   { label: "Home", id: "home" },
   { label: "Work", id: "projects" },
   { label: "Achievements", id: "achievements" },
+  { label: "How I build", id: "how-i-build" },
   { label: "About", id: "about" },
   { label: "Contact", id: "contact" },
 ];
@@ -130,7 +131,7 @@ export function Navbar() {
                   opacity: eyebrowOpacity,
                   x: eyebrowX,
                 }}
-                className="hidden text-text-tertiary lg:inline-block"
+                className="hidden text-text-tertiary xl:inline-block"
               >
                 <span
                   style={{
@@ -147,7 +148,7 @@ export function Navbar() {
             ) : null}
           </div>
 
-          <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 md:flex">
+          <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-0.5 md:flex lg:gap-1">
             {linksWithHrefs.map((link) => {
               const isActive = onHomePage && activeId === link.id;
               return (
@@ -156,7 +157,7 @@ export function Navbar() {
                     href={link.href}
                     strength={10}
                     className={cn(
-                      "group relative rounded-full px-4 py-2 text-sm font-medium transition-colors duration-300",
+                      "group relative whitespace-nowrap rounded-full px-2 py-2 text-[13px] font-medium transition-colors duration-300 lg:px-3 lg:text-sm xl:px-4",
                       isActive
                         ? "text-text-primary"
                         : "text-text-secondary hover:text-text-primary",
