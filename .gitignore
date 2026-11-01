@@ -42,8 +42,7 @@ yarn-error.log*
 next-env.d.ts
 
 # Screenshots (large files, local only)
-screenshots/*.png
-screenshots/*.jpg
+screenshots/**
 
 # Local audit screenshots (Playwright captures)
 /*.png
