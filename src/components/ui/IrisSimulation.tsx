@@ -259,7 +259,7 @@ export function IrisSimulation() {
             step={0.5}
             value={temp}
             onChange={setTemp}
-            display={noSensor ? "No reading" : `${fixed(temp, 1)} °C`}
+            display={noSensor ? "No reading" : `${fixed(temp, 1)} °C`}
             disabled={noSensor}
           />
           <Check label="No temperature reading (Iris then assumes the water is fine)" checked={noSensor} onChange={setNoSensor} />
@@ -308,7 +308,7 @@ export function IrisSimulation() {
                 <>
                   <p className="text-[13px] text-text-secondary">Feed now</p>
                   <p className="mt-1 font-heading text-[clamp(2rem,6vw,2.75rem)] font-semibold leading-none tracking-[-0.03em] text-white">
-                    <output>{grams(feed.recommendedFeedG)}</output>
+                    <output>{feed.recommendedFeedG.toLocaleString("en-GB", { minimumFractionDigits: 1, maximumFractionDigits: 1 })} g</output>
                   </p>
                   <p className="mt-2 text-[14px] text-text-secondary">
                     per feed, {profile.feedsPerDay} feeds a day for {species.common}
@@ -335,7 +335,7 @@ export function IrisSimulation() {
               <Multiplier
                 name="temp_multiplier"
                 value={fixed(feed.tempMultiplier, 2)}
-                meaning={`Appetite at this water temperature. Full from ${profile.tempOptimalLow} to ${profile.tempOptimalHigh} °C, none below ${profile.tempMinFeeding} or above ${profile.tempMaxFeeding}.`}
+                meaning={`Appetite at this water temperature. Full from ${profile.tempOptimalLow} to ${profile.tempOptimalHigh} °C, none below ${profile.tempMinFeeding} or above ${profile.tempMaxFeeding}.`}
               />
               <Multiplier
                 name="time_multiplier"
@@ -369,7 +369,7 @@ function holdText(guard: string, p: (typeof SPECIES)[SpeciesId]["feeding"]): str
     case "interval":
       return `The last feed was under ${p.minHoursBetweenFeeds} hours ago.`;
     case "temperature":
-      return `Water is outside the feeding range, ${p.tempMinFeeding} to ${p.tempMaxFeeding} °C.`;
+      return `Water is outside the feeding range, ${p.tempMinFeeding} to ${p.tempMaxFeeding} °C.`;
     case "hours":
       return `Outside feeding hours, ${hourLabel(p.feedingHourStart)} to ${hourLabel(p.feedingHourEnd)}.`;
     default:
