@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Daniel Chadambuka, Software Engineer</title>
+<!-- Source for public/resume.pdf. Build with: npm run resume
+     Neutral navy and grey (DECISIONS.md, 2026-10-01). Same copy rules as the
+     site: no em-dashes, no test, user, revenue or dollar figures, no CEO,
+     founder or owner labels, no ERP, no AI model vendor. Iris is a research
+     prototype. FastAPI, not Flask. Contact block copied from the previous PDF. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=block" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 14mm 15mm 13mm; }
+  :root {
+    --navy: #1f3a5f;
+    --ink: #1d232b;
+    --grey: #59626e;
+    --rule: #d5dae1;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #fff; }
+  body {
+    font-family: "Source Sans 3", "Segoe UI", Calibri, Arial, sans-serif;
+    font-size: 10pt;
+    line-height: 1.42;
+    color: var(--ink);
+  }
+  header { border-bottom: 2px solid var(--navy); padding-bottom: 8pt; margin-bottom: 10pt; }
+  h1 { margin: 0; font-size: 22pt; line-height: 1.1; color: var(--navy); font-weight: 700; letter-spacing: -0.01em; }
+  .title { margin: 2pt 0 5pt; font-size: 11.5pt; color: var(--grey); font-weight: 600; }
+  .contact { margin: 0; font-size: 9.5pt; color: var(--grey); }
+  .contact a { color: inherit; text-decoration: none; }
+  h2 {
+    margin: 12pt 0 5pt; padding-bottom: 2pt;
+    font-size: 10pt; font-weight: 700; color: var(--navy);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    border-bottom: 1px solid var(--rule);
+    break-after: avoid;
+  }
+  p { margin: 0 0 4pt; }
+  .entry { margin: 0 0 7pt; break-inside: avoid; }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12pt; }
+  .what { font-weight: 700; color: var(--ink); }
+  .when { color: var(--grey); white-space: nowrap; font-size: 9.5pt; }
+  .sub { color: var(--grey); margin: 0 0 2pt; }
+  .stack { color: var(--grey); font-size: 9.2pt; margin: 0 0 2pt; }
+  .status { color: var(--navy); font-weight: 600; white-space: nowrap; font-size: 9.5pt; }
+  ul { margin: 2pt 0 0; padding-left: 13pt; }
+  li { margin: 0 0 1.5pt; }
+  li::marker { color: var(--navy); }
+  table.skills { border-collapse: collapse; width: 100%; }
+  table.skills th { text-align: left; vertical-align: top; width: 33mm; white-space: nowrap; padding: 0 8pt 2.5pt 0; color: var(--navy); font-weight: 600; }
+  table.skills td { padding: 0 0 2.5pt; vertical-align: top; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Daniel Chadambuka</h1>
+  <p class="title">Software Engineer</p>
+  <p class="contact">Harare, Zimbabwe | +263 780 802 880 | <a href="mailto:chadambukadaniel@gmail.com">chadambukadaniel@gmail.com</a></p>
+  <p class="contact"><a href="https://dev.danielchadambuka.com">dev.danielchadambuka.com</a> | <a href="https://github.com/DACDaniels">github.com/DACDaniels</a> | <a href="https://www.linkedin.com/in/daniel-chadambuka-792b74277">linkedin.com/in/daniel-chadambuka-792b74277</a></p>
+</header>
+
+<h2>Profile</h2>
+<p>Computer Science graduate (Bachelor of Science Honours, Upper Second Division, NUST) who builds working systems end to end: live client platforms with Paynow payments, a WhatsApp sales agent whose every figure comes from code, and computer vision running on edge hardware. Twelve months of enterprise IT operations at ZIMDEF covering servers, networks, business systems and user support. Looking for a full-time software engineering role, remote or in Zimbabwe.</p>
+
+<h2>Education</h2>
+<div class="entry">
+  <div class="row"><span class="what">Bachelor of Science Honours Degree in Computer Science, Upper Second Division</span><span class="when">2022 to 2026</span></div>
+  <p class="sub">National University of Science and Technology (NUST), Bulawayo. Degree conferred 17 September 2026.</p>
+  <ul><li>Dissertation: edge computer-vision precision feeding for pond aquaculture (now the FishTech Precision Feeding System), submitted November 2025.</li></ul>
+</div>
+
+<h2>Experience</h2>
+<div class="entry">
+  <div class="row"><span class="what">Freelance Full-Stack Developer</span><span class="when">2025 to present</span></div>
+  <p class="sub">Client systems for practices and businesses in Harare.</p>
+  <ul>
+    <li>Built and run Health &amp; Longevity, a live health platform for Dr Misheck Ruwende, and The Endoscopy Suite, the website of Dr E.G. Muguti's practice.</li>
+    <li>Built and shipped Steadyhands Catering, live and taking orders with Paynow payments.</li>
+    <li>Every decision is dated with its reason; each change lands on its own branch with a rollback point before deploy; clients get written runbooks and manuals.</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="row"><span class="what">Lead Engineer, FishTech Consultancy</span><span class="when">2025 to present</span></div>
+  <ul>
+    <li>Design and build FishTech's two products: the FishTech Precision Feeding System, a research prototype, and the standalone FishTech Feeder.</li>
+    <li>Built and run fishtech.co.zw and the WhatsApp sales agent with its operations console.</li>
+    <li>Exhibited the FishTech Feeder at the Zimbabwe Agricultural Show 2026 in Harare and presented FishTech at the Presidential Innovation Awards 2026.</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="row"><span class="what">IT Industrial Attachment, ZIMDEF</span><span class="when">1 Jul 2024 to 30 Jun 2025</span></div>
+  <p class="sub">Zimbabwe Manpower Development Fund, Harare. Twelve months in a live enterprise data centre.</p>
+  <ul>
+    <li>Infrastructure: VMware virtualisation, Red Hat Linux servers, resource allocation, routine backups.</li>
+    <li>Networking: supported the Sophos to Check Point firewall migration, Ruckus wireless, Cisco telephony, RADIUS authentication, VLAN segmentation and IP addressing.</li>
+    <li>Business systems: SAP Business One, ManageEngine ServiceDesk Plus, Microsoft 365, user support.</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="row"><span class="what">Director, Ticket Kulture Zimbabwe</span><span class="when">2024 to present</span></div>
+  <p class="sub">Online event ticketing platform with local mobile money and card payments.</p>
+</div>
+
+<h2>Selected projects</h2>
+<div class="entry">
+  <div class="row"><span class="what">Health &amp; Longevity &middot; healthandlongevity.co.zw</span><span class="status">Live client system</span></div>
+  <p class="stack">Astro, React, TypeScript, Tailwind CSS, Cloudflare Workers, D1, R2, Paynow, Vitest, Playwright, GitHub Actions</p>
+  <ul>
+    <li>Health platform for a Harare doctor: Paynow membership, video and in-person consult booking, paid articles and video lessons, nurse-aide requests, community, offline support and a phone-first admin area with a written manual.</li>
+    <li>Paid article text never sits in a public file; personal details are encrypted; end-to-end and accessibility checks guard payments, private data and sign-in.</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="row"><span class="what">FishTech Sales Agent &amp; Ops</span><span class="status">Live</span></div>
+  <p class="stack">Python, FastAPI, Uvicorn, fpdf2, WhatsApp Cloud API, Telegram, Render</p>
+  <ul>
+    <li>Large language model agent with tool use on FishTech's WhatsApp line. Answers fish-farming questions in English and Shona, prices from one price list shared with fishtech.co.zw, and sends quotations as a message and a PDF.</li>
+    <li>Code checks every reply before it goes out, large or non-standard quotations wait for approval, and every real chat that went wrong became a test. An operations console holds every chat, client and quotation.</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="row"><span class="what">FishTech Precision Feeding System (Iris)</span><span class="status">Research prototype</span></div>
+  <p class="stack">Python, FastAPI, OpenCV, YOLOv8-Pose, ByteTrack, Raspberry Pi 5, Hailo-8L, SQLite, pytest</p>
+  <ul>
+    <li>Overhead camera and computer vision on the Pi that measure tilapia and catfish against a calibrated reference, estimate pond biomass with confidence intervals and set a precision feed dose. Runs at the pondside with no cloud. Pilot deployment in preparation.</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="row"><span class="what">The Endoscopy Suite &middot; endoscopysuite.co.zw</span><span class="status">Live client site</span></div>
+  <p class="stack">Next.js, React, TypeScript, Tailwind CSS, Vitest, Cloudflare Pages, GitHub Actions</p>
+  <ul>
+    <li>Website for a specialist endoscopy and surgery practice in Harare: services in plain words, preparation guides, an emergencies page with the phone number first, and appointment requests confirmed on WhatsApp.</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="row"><span class="what">FishTech Consultancy &middot; fishtech.co.zw</span><span class="status">Live company site</span></div>
+  <p class="stack">Astro, TypeScript, GSAP, Vercel</p>
+  <ul>
+    <li>Site for a Zimbabwean fish-farming services business. One price list feeds every price, and a pond calculator gives an instant cost that sends to WhatsApp for a written quote.</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="row"><span class="what">FishTech Feeder</span><span class="status">Working prototype</span></div>
+  <p class="stack">ESP32, embedded firmware, welded steel, solar power</p>
+  <ul>
+    <li>Solar-powered automatic feeder: an auger turns a counted number of revolutions to measure each dose and a spinning disc spreads it. Sets the daily ration from fish size and water temperature with no internet, and can take an instruction from the precision feeding system over Wi-Fi.</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="row"><span class="what">Steadyhands Catering &middot; steadyhandscatering.com</span><span class="status">Live</span></div>
+  <p class="stack">Next.js, TypeScript, Node.js, Paynow, Vercel</p>
+  <ul>
+    <li>Catering platform at BATA Club, Harare: online ordering, Paynow payments (EcoCash, OneMoney, Visa, Mastercard) and a WhatsApp Business ordering funnel.</li>
+  </ul>
+</div>
+
+<h2>Skills</h2>
+<table class="skills">
+  <tr><th>Languages</th><td>Python, TypeScript, JavaScript, SQL</td></tr>
+  <tr><th>Web</th><td>Next.js, React, Astro, Node.js, FastAPI, Vue 3, Tailwind CSS</td></tr>
+  <tr><th>Cloud and data</th><td>Cloudflare Workers, D1, R2, Vercel, Render, SQLite</td></tr>
+  <tr><th>Testing</th><td>Vitest, Playwright, axe accessibility checks, pytest, GitHub Actions</td></tr>
+  <tr><th>AI and vision</th><td>Computer vision, OpenCV, YOLOv8, PyTorch, Ultralytics, edge AI on Hailo, LLM agents with tool use</td></tr>
+  <tr><th>Embedded</th><td>Raspberry Pi, ESP32, sensors and actuators, IoT</td></tr>
+  <tr><th>Infrastructure</th><td>Linux, VMware, networking, firewalls, Git and GitHub</td></tr>
+  <tr><th>Business systems</th><td>SAP Business One, Microsoft 365, ManageEngine ServiceDesk Plus</td></tr>
+  <tr><th>Spoken languages</th><td>English, Shona, Ndebele. References available on request.</td></tr>
+</table>
+
+</body>
+</html>

@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "preflight": "bash scripts/preflight.sh"
+    "preflight": "bash scripts/preflight.sh",
+    "resume": "node scripts/resume/build.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
