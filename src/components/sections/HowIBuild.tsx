@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { useScrollReveal } from "@/lib/useScrollReveal";
 
 type Decision = {
@@ -94,7 +95,7 @@ const POINTS: Point[] = [
   },
 ];
 
-export function HowIBuild() {
+export function HowIBuild({ graph }: { graph?: ReactNode }) {
   const reduceMotion = useReducedMotion() ?? false;
   const { ref: revealRef, revealed } = useScrollReveal<HTMLDivElement>();
 
@@ -198,6 +199,9 @@ export function HowIBuild() {
             ))}
           </ul>
         </motion.div>
+
+        {/* Server-rendered graph; renders nothing if GitHub is unavailable. */}
+        {graph}
       </div>
     </section>
   );
