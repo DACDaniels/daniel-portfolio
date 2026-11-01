@@ -1,6 +1,14 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "motion/react";
+import {
+  AnimatePresence,
+  LayoutGroup,
+  motion,
+  useReducedMotion,
+  type Transition,
+  type Variants,
+} from "motion/react";
+import { useEffect } from "react";
 import Image from "next/image";
 import {
   FlagshipProjectCard,
@@ -19,6 +27,13 @@ import { SalesAgentShowcase } from "@/components/ui/project-mocks/SalesAgentShow
 import { LoopingClip } from "@/components/ui/LoopingClip";
 import { MediaGallery, type MediaItem } from "@/components/ui/MediaGallery";
 import { useScrollReveal } from "@/lib/useScrollReveal";
+import {
+  isFilterHash,
+  PROJECT_FILTERS,
+  useProjectFilter,
+  type ProjectFilterId,
+  type ProjectGroup,
+} from "@/lib/projectFilters";
 
 const FLAGSHIP: Omit<FlagshipProjectProps, "variants"> = {
   number: "01",
@@ -40,6 +55,9 @@ const FLAGSHIP: Omit<FlagshipProjectProps, "variants"> = {
   caseStudyHref: "/projects/fishtech",
   mockComponent: <FishTechFlagshipPhoto />,
 };
+
+// The Precision Feeding System (Iris) is both hardware and computer vision.
+const FLAGSHIP_GROUPS: ProjectGroup[] = ["products-hardware", "automation-ai"];
 
 function FishTechFlagshipPhoto() {
   return (
@@ -163,7 +181,13 @@ const SALES_AGENT_GALLERY: MediaItem[] = [
   },
 ];
 
-const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
+type AlternatingProject = Omit<AlternatingProjectProps, "variants" | "side"> & {
+  groups: ProjectGroup[];
+};
+
+// Sides are not stored: they alternate over whatever is shown, starting
+// left, so a filtered list still reads left, right, left.
+const ALTERNATING: AlternatingProject[] = [
   {
     number: "02",
     category: "CLIENT SYSTEM",
@@ -184,7 +208,7 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
     },
     mockComponent: <HealthLongevityShowcase />,
     gallery: <MediaGallery layout="strip" items={HEALTH_LONGEVITY_GALLERY} />,
-    side: "left",
+    groups: ["client-systems"],
     statusKey: "healthAndLongevity",
   },
   {
@@ -203,7 +227,7 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
     },
     mockComponent: <EndoscopySuiteShowcase />,
     gallery: <MediaGallery layout="strip" items={ENDOSCOPY_GALLERY} />,
-    side: "right",
+    groups: ["client-systems", "websites"],
     statusKey: "endoscopy",
   },
   {
@@ -221,7 +245,7 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
     },
     mockComponent: <SalesAgentShowcase />,
     gallery: <MediaGallery layout="strip" items={SALES_AGENT_GALLERY} />,
-    side: "left",
+    groups: ["automation-ai"],
     statusKey: "ops",
   },
   {
@@ -240,7 +264,7 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
     },
     mockComponent: <FishTechConsultancyShowcase />,
     gallery: <MediaGallery layout="strip" items={FISHTECH_CONSULTANCY_GALLERY} />,
-    side: "right",
+    groups: ["websites"],
     statusKey: "fishtech",
   },
   {
@@ -261,7 +285,7 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
       />
     ),
     gallery: <MediaGallery layout="strip" items={FEEDER_GALLERY} />,
-    side: "left",
+    groups: ["products-hardware"],
   },
   {
     number: "07",
@@ -278,7 +302,7 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
       external: true,
     },
     mockComponent: <SteadyhandsMock />,
-    side: "right",
+    groups: ["client-systems"],
     statusKey: "steadyhands",
   },
   {
@@ -296,13 +320,27 @@ const ALTERNATING: Omit<AlternatingProjectProps, "variants">[] = [
       external: true,
     },
     mockComponent: <PortfolioMock />,
-    side: "left",
+    groups: ["websites"],
   },
 ];
 
 export function Projects() {
   const reduceMotion = useReducedMotion() ?? false;
   const { ref: revealRef, revealed } = useScrollReveal<HTMLDivElement>();
+  const { active, setActive } = useProjectFilter();
+
+  // A shared link like /#work-websites lands on this section.
+  useEffect(() => {
+    if (isFilterHash(window.location.hash)) {
+      document.getElementById("projects")?.scrollIntoView();
+    }
+  }, []);
+
+  const showFlagship = active === "all" || FLAGSHIP_GROUPS.includes(active);
+  const visible = ALTERNATING.filter(
+    (p) => active === "all" || p.groups.includes(active),
+  );
+  const shownCount = visible.length + (showFlagship ? 1 : 0);
 
   const containerVariants: Variants = {
     hidden: {},
@@ -325,6 +363,17 @@ export function Projects() {
           transition: { duration: 0.7, ease: [0.2, 0.8, 0.2, 1] },
         },
       };
+
+  // Filtering: cards that stay glide to their new place (transform only),
+  // cards that leave fade out of the flow at once, so nothing jumps.
+  const layoutTransition: Transition = reduceMotion
+    ? { duration: 0 }
+    : { type: "spring", stiffness: 260, damping: 32, mass: 0.9 };
+  const presence = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: reduceMotion ? 0 : 0.35 } },
+    exit: { opacity: 0, transition: { duration: reduceMotion ? 0 : 0.2 } },
+  };
 
   return (
     <section
@@ -360,49 +409,124 @@ export function Projects() {
 
           <motion.p
             variants={itemVariants}
-            className="mt-5 mb-12 max-w-xl text-[15px] text-white/55 md:mb-16 md:max-w-2xl md:text-[16px]"
+            className="mt-5 max-w-xl text-[15px] text-white/55 md:max-w-2xl md:text-[16px]"
             style={{ lineHeight: 1.7 }}
           >
             Five live systems running for clients and for FishTech, two
             edge devices in active build, and this portfolio itself.
           </motion.p>
 
-          <FlagshipProjectCard {...FLAGSHIP} variants={itemVariants} />
-
-          <div className="mt-16 flex flex-col gap-20 md:mt-24 md:gap-28">
-            {ALTERNATING.map((project) => (
-              <AlternatingProjectCard
-                key={project.title}
-                {...project}
-                variants={itemVariants}
-              />
-            ))}
-          </div>
-
-          <motion.div
-            variants={itemVariants}
-            className="mt-20 text-center md:mt-28"
-          >
-            <p
-              className="text-white/60"
-              style={{
-                fontFamily: "var(--font-dm-sans)",
-                fontSize: "15px",
-              }}
-            >
-              More on{" "}
-              <a
-                href="https://github.com/DACDaniels"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-accent underline-offset-4 hover:underline"
-              >
-                GitHub →
-              </a>
+          <motion.div variants={itemVariants} className="mt-8 mb-10 md:mb-14">
+            <FilterChips active={active} onChange={setActive} />
+            <p className="sr-only" aria-live="polite">
+              {active === "all"
+                ? "Showing all projects"
+                : `Showing ${shownCount} ${shownCount === 1 ? "project" : "projects"}`}
             </p>
           </motion.div>
+
+          <LayoutGroup>
+            <AnimatePresence mode="popLayout" initial={false}>
+              {showFlagship ? (
+                <motion.div
+                  key="flagship"
+                  layout={!reduceMotion}
+                  transition={layoutTransition}
+                  {...presence}
+                >
+                  <FlagshipProjectCard {...FLAGSHIP} variants={itemVariants} />
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
+
+            <motion.div
+              layout={!reduceMotion}
+              transition={layoutTransition}
+              className={`flex flex-col gap-20 md:gap-28 ${
+                showFlagship ? "mt-16 md:mt-24" : ""
+              }`}
+            >
+              <AnimatePresence mode="popLayout" initial={false}>
+                {visible.map((project, i) => (
+                  <motion.div
+                    key={project.title}
+                    layout={!reduceMotion}
+                    transition={layoutTransition}
+                    {...presence}
+                  >
+                    <AlternatingProjectCard
+                      {...project}
+                      side={i % 2 === 0 ? "left" : "right"}
+                      variants={itemVariants}
+                    />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
+
+            <motion.div
+              layout={!reduceMotion}
+              transition={layoutTransition}
+              className="mt-20 text-center md:mt-28"
+            >
+              <p
+                className="text-white/60"
+                style={{
+                  fontFamily: "var(--font-dm-sans)",
+                  fontSize: "15px",
+                }}
+              >
+                More on{" "}
+                <a
+                  href="https://github.com/DACDaniels"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent underline-offset-4 hover:underline"
+                >
+                  GitHub →
+                </a>
+              </p>
+            </motion.div>
+          </LayoutGroup>
         </motion.div>
       </div>
     </section>
+  );
+}
+
+function FilterChips({
+  active,
+  onChange,
+}: {
+  active: ProjectFilterId;
+  onChange: (id: ProjectFilterId) => void;
+}) {
+  return (
+    <div
+      role="group"
+      aria-label="Filter projects"
+      className="flex flex-wrap gap-2"
+    >
+      {PROJECT_FILTERS.map((f) => {
+        const pressed = active === f.id;
+        return (
+          <button
+            key={f.id}
+            type="button"
+            aria-pressed={pressed}
+            onClick={() => onChange(f.id)}
+            data-cursor-interactive
+            className={`inline-flex min-h-[44px] items-center rounded-full border px-4 text-[13px] font-medium transition-[color,background-color,border-color,box-shadow,transform] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary active:scale-[0.97] ${
+              pressed
+                ? "border-accent/40 bg-accent/[0.12] text-accent shadow-[0_8px_24px_-12px_rgba(0,229,192,0.45)]"
+                : "border-white/[0.08] bg-bg-surface text-white/65 hover:border-accent/30 hover:text-white"
+            }`}
+            style={{ fontFamily: "var(--font-dm-sans)" }}
+          >
+            {f.label}
+          </button>
+        );
+      })}
+    </div>
   );
 }
