@@ -134,10 +134,11 @@ Separate deep-dive case study pages for each project.
 3. Services
 4. Projects
 5. Achievements (live since 2026-10-09, no longer deferred)
-6. About
-7. Testimonials
-8. Contact
-9. Footer
+6. How I build (since 2026-11-01)
+7. About
+8. Testimonials
+9. Contact
+10. Footer
 
 ## Section Specifications
 
@@ -147,7 +148,9 @@ Separate deep-dive case study pages for each project.
 - Glassmorphism: backdrop-blur-md, bg transparent on load,
   bg rgba(8,8,8,0.8) + border-bottom on scroll
 - Left: "DC." in Geist 700, teal on hover
-- Right: nav links with magnetic hover effect
+- Right: nav links with magnetic hover effect (Home, Work, Achievements,
+  How I build, About, Contact; links tighten at md and lg, the "// section"
+  eyebrow shows from xl so all six fit)
 - Far right: teal CTA button "Contact Me" with shimmer on hover
 - Mobile: hamburger with full-screen overlay menu
 
@@ -219,10 +222,23 @@ Separate deep-dive case study pages for each project.
   → Order is Daniel's decision (see DECISIONS.md, 2026-10-31)
 - Each card: image, tags, title, description, GitHub + Live links
 - Staggered slide-in from alternating sides on scroll
+- Filter chips above the cards: All, Client systems (Health & Longevity,
+  Endoscopy Suite, Steadyhands), Products and hardware (Iris, Feeder),
+  Automation and AI (Sales Agent & Ops, Iris), Websites (FishTech
+  Consultancy, Endoscopy Suite, This Portfolio). aria-pressed buttons, the
+  choice in the URL hash (#work-<filter>), transform-only layout animation.
+  Default All, flagship first whenever shown. Card numbers never change;
+  sides re-alternate over the visible cards (src/lib/projectFilters.ts)
+- Status lights: /api/status (cached 5 min) checks the five live systems
+  (GET, 4 s timeout, 2xx is up) and returns only up/down plus the check
+  time. Cards fetch only /api/status. A passing check under 15 min old shows
+  a teal dot and "Live · checked N min ago" beside the LIVE badge; any
+  failure, error or stale check hides both. Never red, never "live" without a
+  fresh check, no pulse under reduced motion. The LIVE badge has no dot
 
 ### 5. Achievements (LIVE)
 
-- Sits after Projects, before About. In the navbar as "Achievements"
+- Sits after Projects, before How I build. In the navbar as "Achievements"
 - Full-width stacked cards, one structure for both: mono date block
   (teal, the only teal in the card), Geist title on its own row, then one
   plain sentence on the left and a quiet detail (mono key + value) on the
@@ -244,7 +260,20 @@ Separate deep-dive case study pages for each project.
   outcomes until Daniel supplies them. FishTech is a research prototype,
   never commercially deployed
 
-### 6. About
+### 6. How I build
+
+- After Achievements, before About. In the navbar as "How I build"
+- Title "How I build." and four points, no numbers: decisions in writing,
+  claimed versus true, tested before it ships, always a way back
+- Each point quotes one real dated decision as a mono decision card
+  (project, ID if any, date, source file, one or two plain sentences):
+  Health & Longevity D-043 and D-093 (ruwende-platform/DECISIONS.md), the
+  FishTech reality-check rule (2026-08-06) and the sales agent's real-chat
+  tests (2026-10-30) from the FishTech business repository. Read the logs
+  read only; never name Blue Acre; no prices, counts or client private data
+- Each point links to the matching case-study section. Card radius 16 px
+
+### 7. About
 
 - Two column layout
 - LEFT: Heading "About Me", paragraphs
@@ -256,13 +285,13 @@ Separate deep-dive case study pages for each project.
   → Small timeline of milestones
 - Subtle background texture
 
-### 7. Testimonials
+### 8. Testimonials
 
 - Horizontal scroll or card carousel
 - Each card: quote, name, role, company
 - Skip if no real testimonials available
 
-### 8. Contact
+### 9. Contact
 
 - Large headline: "Let's Build Something"
 - Left: contact form (name, email, message, animated send button)
@@ -270,7 +299,7 @@ Separate deep-dive case study pages for each project.
 - Magnetic "Send Message" button
 - Subtle animated gradient background
 
-### 9. Footer
+### 10. Footer
 
 - Minimal: name, nav links, social icons, copyright
 - Teal hover states
@@ -684,6 +713,8 @@ src/
       Hero.tsx
       Services.tsx
       Projects.tsx
+      Achievements.tsx
+      HowIBuild.tsx
       About.tsx
       Testimonials.tsx
       Contact.tsx
@@ -724,6 +755,19 @@ screenshot.mjs
 - Lint: npm run lint
 - Type check: npx tsc --noEmit
 - Screenshot: node screenshot.mjs http://localhost:3000 [label]
+- Résumé: npm run resume (builds public/resume.pdf from
+  scripts/resume/resume.html with Puppeteer; set PUPPETEER_EXECUTABLE_PATH
+  to Chrome if Puppeteer's own browser is missing)
+
+## Résumé
+
+- Source: scripts/resume/resume.html. Never edit public/resume.pdf by hand;
+  change the HTML and run npm run resume. One or two A4 pages, navy and grey
+- Contact block stays exactly as it is (name, Software Engineer, Harare,
+  phone, email, site, GitHub, LinkedIn). Education wording as in Owner Details
+- Same copy rules as the site: no em-dashes, no test, user, revenue or
+  dollar figures, no CEO, founder or owner labels, no ERP, no model vendor,
+  Iris is a research prototype, FastAPI not Flask
 
 ## Final Standard
 
@@ -742,6 +786,12 @@ If no — make it better. Every time.
   copy of it.
 - Structured data: Person and WebSite in src/app/layout.tsx, ProfilePage in
   src/app/page.tsx. Only confirmed facts; no phone, street address or awards.
+- Project data: src/lib/projectSchema.ts. The home page has an ItemList of
+  the eight projects (name, url, description, author = Person @id); each
+  case study has its own entry as main entity. check-seo fails the build if
+  a case study loses its entry or the data has a phone, address, award,
+  price, rating, em-dash, dollar figure or Blue Acre. A new project or case
+  study = add it there and to the pages list in scripts/check-seo.mjs.
 - robots.txt (src/app/robots.ts) allows everything; sitemap (src/app/sitemap.ts)
   lists public pages only. New public page = add it to the sitemap.
 - npm run preflight runs scripts/check-seo.mjs after the build; it must pass.
