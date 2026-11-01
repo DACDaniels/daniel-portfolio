@@ -18,7 +18,7 @@ Every pixel, every animation, every interaction must be intentional.
 
 ## Tech Stack
 
-- Next.js 15 (App Router, Turbopack)
+- Next.js 16 (App Router, Turbopack; package.json has 16.2.4)
 - TypeScript (strict mode, always)
 - Tailwind CSS v4
 - Framer Motion / Motion (motion/react)
@@ -144,7 +144,8 @@ entry, projectSchema.ts entry and check-seo coverage.
 5. Achievements (live since 2026-10-09, no longer deferred)
 6. How I build (since 2026-11-01)
 7. About
-8. Testimonials
+8. Testimonials (built, renders only when a quote has written permission;
+   until then nothing shows and it is in neither navbar nor footer)
 9. Contact
 10. Footer
 
@@ -424,6 +425,22 @@ entry, projectSchema.ts entry and check-seo coverage.
    - Hardware envelope target: USD 200-300 per pond (do NOT put
      this number in the portfolio's public copy, see "AVOID in
      copy" section)
+   - "See how Iris thinks" (since 2026-11-01): simulation on
+     /projects/fishtech (#simulate), src/components/ui/IrisSimulation.tsx.
+     Five stages: Species, Measure, Weigh, Pond biomass, Feed. Maths in
+     src/lib/iris-sim/model.ts, ported from fishtech-precision-feeding-
+     system (read only) at commit e624125; each constant names its file
+     and line there. fixtures.json = outputs of the real Python for 14
+     inputs; scripts/check-iris-sim.mjs (in npm run preflight, after the
+     filter check) fails on more than 0.5 percent drift. If the Iris code
+     changes, regenerate the fixtures from that repo and update the port.
+     Label stays: "Simulation using the same formulas as the Iris
+     software. Not field measurements." Simulate only what main
+     computes: today that is bounding-box length times a fixed cm per
+     pixel, the stratified estimator and the feeding engine (four
+     multipliers). Keypoints, ChArUco calibration and lucky-frame are
+     specs, not code, and stay out until they ship. Tilapia (niloticus)
+     and catfish only; mossambicus has no profile in the code
 2. Steadyhands Catering Platform (LIVE)
    - Production e-commerce platform for Bata Club, Gweru (the live site
      says Gweru, along Bulawayo Road; checked 2026-11-01)
@@ -509,6 +526,10 @@ entry, projectSchema.ts entry and check-seo coverage.
      Chats and quotations live on a separate state branch
    - Stack: Python 3.12, FastAPI, Uvicorn, fpdf2, WhatsApp Cloud API,
      Telegram, GitHub as state store, Render
+   - The case study's sample chat replays itself (SalesAgentChatReplay.tsx,
+     since 2026-11-01): typing dots, each message, then the PDF; starts in
+     view; Pause and Replay; all at once under reduced motion. Same text
+     as SalesAgentChat.tsx, which the card still shows static
    - Canonical source: github.com/DACDaniels/blueacre-ops, whatsapp-bot/
      (private). Read it from a fresh clone; never commit to it
    - Card at position 04 (AUTOMATION). Link: case study only
