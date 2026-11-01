@@ -9,12 +9,14 @@ import { FishTechApparatus } from "@/components/ui/FishTechApparatus";
 import { MediaGallery, type MediaItem } from "@/components/ui/MediaGallery";
 import { FishTechArchitecture } from "@/components/ui/FishTechArchitecture";
 import { FishTechSmartFeedMock } from "@/components/ui/project-mocks/FishTechSmartFeedMock";
+import { IrisSimulation } from "@/components/ui/IrisSimulation";
 import { useScrollReveal } from "@/lib/useScrollReveal";
 
 const PROGRESS_ITEMS = [
   { id: "problem", label: "Problem" },
   { id: "build", label: "The build" },
   { id: "pipeline", label: "Closed loop" },
+  { id: "simulate", label: "How Iris thinks" },
   { id: "innovations", label: "Innovations" },
   { id: "stack", label: "Stack" },
   { id: "state", label: "Current state" },
@@ -452,8 +454,25 @@ export default function FishTechCaseStudyPage() {
           </CaseSection>
 
           <CaseSection
-            id="innovations"
+            id="simulate"
             eyebrow="// section-04"
+            title="See how Iris thinks"
+            itemVariants={itemVariants}
+            containerVariants={containerVariants}
+          >
+            <motion.p variants={itemVariants}>
+              Each step below runs the formulas from the Iris code, from the
+              species settings to the dose. Move a slider and every later step
+              updates.
+            </motion.p>
+            <motion.div variants={itemVariants} className="pt-2 lg:-mx-24 xl:-mx-40">
+              <IrisSimulation />
+            </motion.div>
+          </CaseSection>
+
+          <CaseSection
+            id="innovations"
+            eyebrow="// section-05"
             title="The innovations"
             itemVariants={itemVariants}
             containerVariants={containerVariants}
@@ -507,7 +526,7 @@ export default function FishTechCaseStudyPage() {
 
           <CaseSection
             id="stack"
-            eyebrow="// section-05"
+            eyebrow="// section-06"
             title="The stack"
             itemVariants={itemVariants}
             containerVariants={containerVariants}
@@ -552,7 +571,7 @@ export default function FishTechCaseStudyPage() {
 
           <CaseSection
             id="state"
-            eyebrow="// section-06"
+            eyebrow="// section-07"
             title="The system sees fish, decides the dose, and is being industrialised."
             itemVariants={itemVariants}
             containerVariants={containerVariants}
@@ -577,7 +596,7 @@ export default function FishTechCaseStudyPage() {
 
           <CaseSection
             id="field"
-            eyebrow="// section-07"
+            eyebrow="// section-08"
             title="In the field."
             itemVariants={itemVariants}
             containerVariants={containerVariants}
@@ -611,7 +630,7 @@ export default function FishTechCaseStudyPage() {
 
           <CaseSection
             id="next"
-            eyebrow="// section-08"
+            eyebrow="// section-09"
             title="What's next"
             itemVariants={itemVariants}
             containerVariants={containerVariants}
