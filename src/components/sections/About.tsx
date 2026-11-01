@@ -25,6 +25,8 @@ type TimelineEntry =
       duration: string;
     };
 
+// The Presidential Innovation Awards and the Zimbabwe Agricultural Show
+// live in Achievements only (DECISIONS.md, 2026-11-01).
 const TIMELINE: TimelineEntry[] = [
   {
     kind: "simple",
@@ -58,35 +60,6 @@ const TIMELINE: TimelineEntry[] = [
   },
   {
     kind: "simple",
-    date: "Aug 2026",
-    title: "Zimbabwe Agricultural Show, Harare",
-    body: "Exhibited the FishTech Feeder. Met farmers, buyers and Ministry of Skills stakeholders at the stand.",
-    media: [
-      {
-        kind: "image",
-        src: "/images/zas/zas-01.jpg",
-        alt: "FishTech Feeder on the NUST stand at the Zimbabwe Agricultural Show 2026",
-      },
-      {
-        kind: "image",
-        src: "/images/zas/zas-02.jpg",
-        alt: "Visitors at the FishTech Feeder, ZAS 2026",
-      },
-      {
-        kind: "image",
-        src: "/images/zas/zas-03.jpg",
-        alt: "FishTech Feeder with a demo tank on the stand, ZAS 2026",
-      },
-    ],
-  },
-  {
-    kind: "simple",
-    date: "2026",
-    title: "Presidential Innovation Awards",
-    body: "Presented FishTech to the national innovation panel.",
-  },
-  {
-    kind: "simple",
     date: "2025 · BUILDING",
     title: "FishTech Precision Feeding System",
     body: "Closed-loop computer-vision instrument for smallholder pond aquaculture in Zimbabwe. Raspberry Pi 5 with Hailo NPU, custom-trained YOLO, automated auger feeder, integrated mast and enclosure. Pilot deployment in preparation.",
@@ -96,7 +69,7 @@ const TIMELINE: TimelineEntry[] = [
     kind: "simple",
     date: "2025",
     title: "Steadyhands Catering Platform",
-    body: "Recently shipped full-stack platform for Bata Club, Harare. Next.js, TypeScript, Node.js, Paynow gateway, WhatsApp Business funnel. Live at steadyhandscatering.com.",
+    body: "Recently shipped full-stack platform for Bata Club, Gweru. Next.js, TypeScript, Node.js, Paynow gateway, WhatsApp Business funnel. Live at steadyhandscatering.com.",
   },
   {
     kind: "zimdef",
