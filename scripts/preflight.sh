@@ -11,6 +11,8 @@
 #   3. Production build -> `npm run build`
 #   4. Search check    -> `node scripts/check-seo.mjs` (titles, canonical
 #                         links, structured data, sitemap, previews noindex)
+#   5. Filter check    -> `node scripts/check-filters.mjs` (starts the built
+#                         site, clicks every project chip in every order)
 #
 # Exits non-zero on the first step that fails so CI surfaces the
 # correct failing stage. set -euo pipefail makes the script fail
@@ -47,6 +49,7 @@ run_step "Lint"          npm run lint
 run_step "Type check"    npx tsc --noEmit
 run_step "Production build" npm run build
 run_step "Search check"  node scripts/check-seo.mjs
+run_step "Filter check"  node scripts/check-filters.mjs
 
 bold ""
 green "All preflight checks passed. Safe to deploy."
