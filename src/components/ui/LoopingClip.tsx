@@ -63,7 +63,12 @@ export function LoopingClip({
   }, [near]);
 
   return (
-    <div className="relative h-full w-full">
+    <div
+      className="relative h-full w-full bg-cover bg-center"
+      // The poster also sits behind the video, so the frame is never black
+      // while the clip loads or where a browser will not paint it.
+      style={near ? { backgroundImage: `url(${poster})`, backgroundPosition: objectPosition } : undefined}
+    >
       <video
         ref={videoRef}
         src={near ? src : undefined}

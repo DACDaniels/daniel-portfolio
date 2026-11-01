@@ -22,10 +22,12 @@ type NavLink = {
   short?: string;
   /** Left out of the bar below xl, where it duplicates the Contact Me button. */
   barFromXl?: boolean;
+  /** Hidden in the bar below 1024 px, where the search icon needs the room (the logo goes home). */
+  barFromLg?: boolean;
 };
 
 const LINKS: NavLink[] = [
-  { label: "Home", id: "home" },
+  { label: "Home", id: "home", barFromLg: true },
   { label: "Work", id: "projects" },
   { label: "Achievements", id: "achievements" },
   { label: "How I build", id: "how-i-build" },
@@ -165,7 +167,10 @@ export function Navbar() {
                 ? pathname === link.page
                 : onHomePage && activeId === link.id;
               return (
-                <li key={link.id} className={link.barFromXl ? "hidden xl:block" : undefined}>
+                <li
+                  key={link.id}
+                  className={link.barFromXl ? "hidden xl:block" : link.barFromLg ? "hidden lg:block" : undefined}
+                >
                   <MagneticButton
                     href={link.href}
                     strength={10}
