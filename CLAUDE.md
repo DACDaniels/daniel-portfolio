@@ -474,8 +474,9 @@ but visual noise.
   Retake them if the site changes a lot
 - public/images/health-longevity/: Health & Longevity, 2026-11-01
   (hl-*-desktop 2000 x 1250 from 1440 px, hl-*-phone 780 x 1688 from 390 px).
-  hl-home-*, hl-articles-phone, hl-membership-phone and hl-consult-phone
-  from the live site, read only; hl-aide-match-phone and hl-admin-today-*
+  hl-membership-phone and hl-consult-phone from the live site, read only;
+  hl-home-* and hl-articles-phone stay on the sample-content versions until
+  a real article is live (see Known issues); hl-aide-match-phone and hl-admin-today-*
   from the local preview with sample data, test banners hidden. Home is
   scrolled past the hero so the portrait is not the subject. No clip: no
   flow.webm exists. Retake the live ones when the site changes a lot
@@ -710,6 +711,11 @@ screenshot.mjs
 - In dev with prefers-reduced-motion on, React logs a hydration mismatch on
   every motion section (server renders the full-motion variant, client the
   reduced one). Not yet fixed; a separate task
+- Health & Longevity Home and Articles captures (hl-home-desktop.jpg,
+  hl-home-phone.jpg, hl-articles-phone.jpg) stay on the sample-content
+  versions until the live site shows a real published article; the only live
+  article is titled "Test Article". Retake those three from the live site,
+  read only, once a real article is published (DECISIONS.md, 2026-11-01)
 
 ## Commands
 

@@ -8,6 +8,7 @@ One line per decision, newest first. Date, what, why.
 - **Screens behind a request or sign-in come from the local preview on the same code (ruwende-platform a5bb301) with sample data,** because capturing them live would create real enquiries or show patients. The nurse-aide match screen was retaken from a fresh request flow, replacing the old step 6g.2 file. Admin Today (phone and laptop) shows one made-up consult.
 - **Platform test banners are hidden in portfolio captures** (injected CSS on the capture only). The SAMPLE tags on the aides stay.
 - **Sample phone numbers are masked as "+263 77 XXX XXXX"** in every FishTech Ops capture, so no invented number reads as a real one.
+- **Home and Articles captures stay on the sample-content versions until the live site shows a real published article,** because the only live article is titled Test Article. Retake those three (hl-home-desktop, hl-home-phone, hl-articles-phone) from the live site once a real article is published. Their alt text and the hero caption keep the sample wording; the Screens caption says Membership and consult booking are live captures and the rest come from a local copy.
 - **Alt text and captions follow the pictures:** Membership and Articles alts describe the live pages, and the case study now says which screens are live and which come from a local copy.
 
 ## 2026-10-31: Health & Longevity, FishTech Sales Agent & Ops, and truth fixes
