@@ -13,6 +13,12 @@ export type ShippedEntry = {
 
 export const SHIPPED: ShippedEntry[] = [
   {
+    // This repo, DECISIONS.md 2026-11-01 (phone first, project pages).
+    date: "2026-11-01",
+    text: "Portfolio: a page for every project, shorter cards and a phone-first pass.",
+    href: "/projects/this-portfolio",
+  },
+  {
     // This repo, DECISIONS.md 2026-11-01.
     date: "2026-11-01",
     text: "Portfolio: hiring page, Ctrl K search, live status lights and How I build.",
