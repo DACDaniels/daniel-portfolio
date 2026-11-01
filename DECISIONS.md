@@ -2,6 +2,14 @@
 
 One line per decision, newest first. Date, what, why.
 
+## 2026-11-01: Screenshot polish
+
+- **Health & Longevity public pages are captured from the live site, read only,** so the portfolio shows the real product: Home (desktop and phone, scrolled past the hero), Articles, Membership as a visitor sees it, and consult booking with a day and a time picked. Day and time are plain links, so nothing is submitted. Nothing was paid, booked, sent or signed in to, and /admin was never opened.
+- **Screens behind a request or sign-in come from the local preview on the same code (ruwende-platform a5bb301) with sample data,** because capturing them live would create real enquiries or show patients. The nurse-aide match screen was retaken from a fresh request flow, replacing the old step 6g.2 file. Admin Today (phone and laptop) shows one made-up consult.
+- **Platform test banners are hidden in portfolio captures** (injected CSS on the capture only). The SAMPLE tags on the aides stay.
+- **Sample phone numbers are masked as "+263 77 XXX XXXX"** in every FishTech Ops capture, so no invented number reads as a real one.
+- **Alt text and captions follow the pictures:** Membership and Articles alts describe the live pages, and the case study now says which screens are live and which come from a local copy.
+
 ## 2026-10-31: Health & Longevity, FishTech Sales Agent & Ops, and truth fixes
 
 - **Card order and titles:** 01 FishTech Precision Feeding System (flagship, unchanged), 02 Health & Longevity, 03 The Endoscopy Suite, 04 FishTech Sales Agent & Ops, 05 FishTech Consultancy, 06 FishTech Feeder, 07 Steadyhands Catering, 08 This Portfolio. Sides re-alternate starting left at 02. Daniel's decision.

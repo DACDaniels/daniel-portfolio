@@ -368,9 +368,14 @@ Separate deep-dive case study pages for each project.
    - Canonical source: github.com/DACDaniels/ruwende-platform (private).
      BIBLE.md there wins over its other docs
    - Card at position 02 (CLIENT SYSTEM). Case study /projects/health-and-longevity
-   - Screenshots come only from its local preview (npm run preview: sample
-     content, pretend Paynow). Never the real site's admin or real people.
-     Leave out frames whose main subject is Dr Ruwende's portrait
+   - Screenshots: public pages (Home, Articles, Membership, consult booking
+     with a day and time picked) from the live site, read only: never submit,
+     pay, book, send a request, sign in or open /admin. Screens behind a
+     request or sign-in (nurse-aide match, admin Today) from the local
+     preview on the same code (npm run preview: sample content, pretend
+     Paynow). Never real people. Leave out frames whose main subject is
+     Dr Ruwende's portrait (Home is captured scrolled past the hero).
+     Platform test banners are hidden in captures
    - NEVER CLAIM: patient records (not built), licences or regulators,
      user, member, payment or revenue figures, test counts. Paid text never
      appears in public files, so never quote it
@@ -393,7 +398,8 @@ Separate deep-dive case study pages for each project.
      (/projects/fishtech-sales-agent). Ops is password-protected and the
      bot number is never linked
    - Screenshots: the real ops.html rendered with invented data, amounts
-     masked, "Sample data" label on every image. Chat component
+     masked, phone numbers shown as "+263 77 XXX XXXX", "Sample data" label
+     on every image. Chat component
      SalesAgentChat.tsx is an invented conversation, "Sample conversation"
    - NEVER CLAIM: the model vendor (say "large language model agent with
      tool use"), the approval threshold or any dollar figure, message,
@@ -466,11 +472,17 @@ but visual noise.
   600 px wide from a 390 px capture; card strip ft-prices-phone,
   ft-calculator-phone, ft-quote-phone, 780 x 1688 from 390 px captures).
   Retake them if the site changes a lot
-- public/images/health-longevity/: Health & Longevity from its local preview
-  with sample content, 2026-11-01 (hl-*-desktop 2000 x 1250 from 1440 px,
-  hl-*-phone 780 x 1688 from 390 px). Home is scrolled past the hero so the
-  portrait is not the subject; hl-aide-match-phone is the platform's own
-  step 6g.2 sample capture. No clip: no flow.webm exists
+- public/images/health-longevity/: Health & Longevity, 2026-11-01
+  (hl-*-desktop 2000 x 1250 from 1440 px, hl-*-phone 780 x 1688 from 390 px).
+  hl-home-*, hl-articles-phone, hl-membership-phone and hl-consult-phone
+  from the live site, read only; hl-aide-match-phone and hl-admin-today-*
+  from the local preview with sample data, test banners hidden. Home is
+  scrolled past the hero so the portrait is not the subject. No clip: no
+  flow.webm exists. Retake the live ones when the site changes a lot
+- Screenshot rules for client and FishTech systems: public pages from the
+  live site, read only; anything behind a request or sign-in from a local
+  copy with sample data; platform test banners hidden; sample phone numbers
+  masked as "+263 77 XXX XXXX"; amounts in Ops masked
 - public/images/fishtech-sales-agent/: FishTech Ops (real ops.html, invented
   data, amounts masked) and quote-pdf.jpg (pdf_quote.py, invented customer,
   prices and business number masked), each with a "Sample data" label
