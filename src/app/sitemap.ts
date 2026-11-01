@@ -2,6 +2,17 @@ import type { MetadataRoute } from "next";
 
 const BASE = "https://dev.danielchadambuka.com";
 
+const PROJECT_PAGES = [
+  "fishtech",
+  "health-and-longevity",
+  "endoscopy-suite",
+  "fishtech-sales-agent",
+  "fishtech-consultancy",
+  "fishtech-feeder",
+  "steadyhands",
+  "this-portfolio",
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   return [
@@ -17,23 +28,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
-    {
-      url: `${BASE}/projects/fishtech`,
+    ...PROJECT_PAGES.map((slug) => ({
+      url: `${BASE}/projects/${slug}`,
       lastModified: now,
-      changeFrequency: "monthly",
+      changeFrequency: "monthly" as const,
       priority: 0.8,
-    },
-    {
-      url: `${BASE}/projects/health-and-longevity`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE}/projects/fishtech-sales-agent`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
+    })),
   ];
 }

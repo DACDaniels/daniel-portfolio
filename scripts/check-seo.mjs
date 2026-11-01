@@ -15,6 +15,11 @@ const pages = [
   { file: "projects/fishtech.html", canonical: `${SITE}/projects/fishtech`, caseStudy: "fishtech" },
   { file: "projects/health-and-longevity.html", canonical: `${SITE}/projects/health-and-longevity`, caseStudy: "health-and-longevity" },
   { file: "projects/fishtech-sales-agent.html", canonical: `${SITE}/projects/fishtech-sales-agent`, caseStudy: "fishtech-sales-agent" },
+  { file: "projects/endoscopy-suite.html", canonical: `${SITE}/projects/endoscopy-suite`, caseStudy: "endoscopy-suite" },
+  { file: "projects/fishtech-consultancy.html", canonical: `${SITE}/projects/fishtech-consultancy`, caseStudy: "fishtech-consultancy" },
+  { file: "projects/fishtech-feeder.html", canonical: `${SITE}/projects/fishtech-feeder`, caseStudy: "fishtech-feeder" },
+  { file: "projects/steadyhands.html", canonical: `${SITE}/projects/steadyhands`, caseStudy: "steadyhands" },
+  { file: "projects/this-portfolio.html", canonical: `${SITE}/projects/this-portfolio`, caseStudy: "this-portfolio" },
 ];
 
 // Project structured data (src/lib/projectSchema.ts): the home page lists

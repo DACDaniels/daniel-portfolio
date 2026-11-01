@@ -45,6 +45,7 @@ export const PROJECTS: ProjectEntry[] = [
     type: "WebSite",
     name: "The Endoscopy Suite",
     url: "https://www.endoscopysuite.co.zw",
+    caseStudy: "/projects/endoscopy-suite",
     description:
       "Website for a specialist endoscopy and surgery practice in Harare: services in plain words, preparation guides, an emergencies page with the phone number first, and appointment requests confirmed on WhatsApp.",
     keywords: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Cloudflare Pages"],
@@ -65,6 +66,7 @@ export const PROJECTS: ProjectEntry[] = [
     type: "WebSite",
     name: "FishTech Consultancy",
     url: "https://www.fishtech.co.zw",
+    caseStudy: "/projects/fishtech-consultancy",
     description:
       "Company site for a Zimbabwean fish-farming services business. Prices load from a single price list, and a pond calculator gives an instant cost that sends to WhatsApp for a written quote.",
     keywords: ["Astro", "TypeScript", "GSAP", "Vercel"],
@@ -73,7 +75,8 @@ export const PROJECTS: ProjectEntry[] = [
     slug: "fishtech-feeder",
     type: "CreativeWork",
     name: "FishTech Feeder",
-    url: `${SITE_URL}/#work-products-hardware`,
+    url: `${SITE_URL}/projects/fishtech-feeder`,
+    caseStudy: "/projects/fishtech-feeder",
     description:
       "Working prototype of a solar-powered automatic fish feeder in welded steel. An auger meters each dose and a spinning disc spreads it; the daily ration comes from fish size and water temperature with no internet. Exhibited at the Zimbabwe Agricultural Show 2026.",
     keywords: ["ESP32", "Embedded", "Solar", "IoT"],
@@ -83,18 +86,20 @@ export const PROJECTS: ProjectEntry[] = [
     type: "WebApplication",
     name: "Steadyhands Catering",
     url: "https://steadyhandscatering.com",
+    caseStudy: "/projects/steadyhands",
     applicationCategory: "ShoppingApplication",
     description:
-      "Catering platform for a Harare caterer with online ordering, Paynow payments (EcoCash, OneMoney, Visa, Mastercard) and a WhatsApp ordering funnel. Live and taking orders.",
+      "Website and ordering platform for SteadyHands at Bata Club, Gweru: online ordering with Paynow payments (EcoCash, OneMoney, Visa, Mastercard), WhatsApp orders, table and venue booking.",
     keywords: ["Next.js", "TypeScript", "Node.js", "Paynow", "Vercel"],
   },
   {
-    slug: "portfolio",
+    slug: "this-portfolio",
     type: "WebSite",
     name: "Daniel Chadambuka Portfolio",
     url: SITE_URL,
+    caseStudy: "/projects/this-portfolio",
     description:
-      "This portfolio: Next.js, TypeScript and Motion, built in a screenshot-driven loop, with live status checks of the systems it shows.",
+      "This portfolio: Next.js 16, TypeScript and Motion, with live status checks of the systems it shows, a project filter tested in every order and search checks on every build.",
     keywords: ["Next.js", "TypeScript", "Motion"],
   },
 ];
