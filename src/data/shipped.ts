@@ -13,6 +13,12 @@ export type ShippedEntry = {
 
 export const SHIPPED: ShippedEntry[] = [
   {
+    // This repo, DECISIONS.md 2026-11-01 (Iris simulation).
+    date: "2026-11-01",
+    text: "FishTech case study: try the Iris formulas, from fish length to feed dose.",
+    href: "/projects/fishtech#simulate",
+  },
+  {
     // This repo, DECISIONS.md 2026-11-01 (phone first, project pages).
     date: "2026-11-01",
     text: "Portfolio: a page for every project, shorter cards and a phone-first pass.",
