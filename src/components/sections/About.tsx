@@ -3,6 +3,7 @@
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import type { CSSProperties, ReactNode } from "react";
 import { MediaGallery, type MediaItem } from "@/components/ui/MediaGallery";
+import { ShippedStrip } from "@/components/ui/ShippedStrip";
 import { useScrollReveal } from "@/lib/useScrollReveal";
 
 type TimelineEntry =
@@ -229,6 +230,10 @@ export function About() {
           initial="hidden"
           animate={revealed ? "visible" : "hidden"}
         >
+          <motion.div variants={itemVariants}>
+            <ShippedStrip />
+          </motion.div>
+
           <motion.div
             variants={itemVariants}
             className="mb-5 flex items-center gap-3"
