@@ -1,42 +1,52 @@
 import type { Metadata, Viewport } from "next";
-import {
-  Geist,
-  DM_Sans,
-  JetBrains_Mono,
-  Instrument_Serif,
-} from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import ExtensionErrorSuppressor from "@/components/ExtensionErrorSuppressor";
 import { CommandPaletteLauncher } from "@/components/ui/CommandPaletteLauncher";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 
-const geist = Geist({
+// Self-hosted from @fontsource packages (latin subset only), so the build
+// never fetches from Google Fonts. Variable files cover the weights in use:
+// Geist 500 to 700, DM Sans 400 and 500, JetBrains Mono 400 and 500.
+const geist = localFont({
   variable: "--font-geist",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  src: "../../node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2",
+  weight: "500 700",
+  style: "normal",
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+const dmSans = localFont({
   variable: "--font-dm-sans",
-  subsets: ["latin"],
-  weight: ["400", "500"],
+  src: "../../node_modules/@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2",
+  weight: "400 500",
+  style: "normal",
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const jetbrainsMono = localFont({
   variable: "--font-jetbrains-mono",
-  subsets: ["latin"],
-  weight: ["400", "500"],
+  src: "../../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2",
+  weight: "400 500",
+  style: "normal",
   display: "swap",
 });
 
-const instrumentSerif = Instrument_Serif({
+const instrumentSerif = localFont({
   variable: "--font-instrument-serif",
-  subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
+  src: [
+    {
+      path: "../../node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2",
+      weight: "400",
+      style: "italic",
+    },
+  ],
   display: "swap",
 });
 
