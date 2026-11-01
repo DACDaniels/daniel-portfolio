@@ -64,7 +64,7 @@ export default function HirePage() {
         />
         <div className="relative mx-auto w-full max-w-[960px] px-5 pt-32 pb-20 sm:px-6 md:px-8 md:pt-40 md:pb-28">
           <header className="hire-rise" style={{ animationDelay: "0ms" }}>
-            <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.15em] text-accent">
+            <p aria-hidden className="mb-4 hidden font-mono text-[11px] uppercase tracking-[0.15em] text-accent md:block">
               {"// hire"}
             </p>
             <h1 className="font-heading text-[clamp(2.5rem,7vw,5rem)] font-bold leading-[1] tracking-[-0.035em] text-text-primary">

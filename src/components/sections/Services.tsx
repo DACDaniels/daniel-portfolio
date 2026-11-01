@@ -162,7 +162,8 @@ export function Services() {
         >
           <motion.div
             variants={itemVariants}
-            className="mb-6 font-mono text-[11px] uppercase text-accent"
+            aria-hidden
+            className="mb-6 hidden font-mono text-[11px] uppercase text-accent md:block"
             style={{ letterSpacing: "0.15em" }}
           >
             {"// services.tsx"}
@@ -406,7 +407,7 @@ function ServiceCard({ service }: ServiceCardProps) {
               {...(service.proof.external
                 ? { target: "_blank", rel: "noopener noreferrer" }
                 : {})}
-              className="group/proof inline-flex w-fit items-center gap-1.5 border-t border-white/[0.06] pt-3 text-text-tertiary transition-colors duration-200 hover:text-accent"
+              className="group/proof inline-flex min-h-11 w-fit items-center gap-1.5 border-t border-white/[0.06] pt-3 text-text-tertiary transition-colors duration-200 hover:text-accent"
               style={{
                 fontFamily: "var(--font-jetbrains-mono)",
                 fontSize: "10.5px",

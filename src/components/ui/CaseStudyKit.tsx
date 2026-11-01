@@ -42,7 +42,7 @@ export function BackToWork() {
     <div className="mx-auto w-full max-w-3xl px-6 md:px-8">
       <Link
         href="/#projects"
-        className="inline-flex min-h-11 items-center gap-1 text-white/60 transition-colors duration-200 hover:text-accent focus-visible:text-accent focus-visible:outline-none"
+        className="inline-flex min-h-11 items-center gap-1 text-text-secondary transition-colors duration-200 hover:text-accent focus-visible:text-accent focus-visible:outline-none"
         style={{ fontFamily: MONO, fontSize: "12px", lineHeight: 1.4 }}
       >
         ← Back to work
@@ -78,7 +78,8 @@ export function CaseHeader({ status = "live", eyebrow, statusNote, title, lead, 
       <motion.div variants={containerVariants} initial="hidden" animate="visible">
         <motion.div
           variants={itemVariants}
-          className="font-mono text-[11px] uppercase text-accent"
+          aria-hidden
+          className="hidden font-mono text-[11px] uppercase text-accent md:block"
           style={{ letterSpacing: "0.15em" }}
         >
           {eyebrow}
@@ -119,7 +120,7 @@ export function CaseHeader({ status = "live", eyebrow, statusNote, title, lead, 
 
         <motion.p
           variants={itemVariants}
-          className="mt-5 max-w-2xl text-white/60"
+          className="mt-5 max-w-2xl text-text-secondary"
           style={{ fontFamily: BODY, fontSize: "18px", lineHeight: 1.6 }}
         >
           {lead}
@@ -185,7 +186,8 @@ export function CaseSection({
     >
       <motion.div
         variants={itemVariants}
-        className="text-accent"
+        aria-hidden
+        className="hidden text-accent md:block"
         style={{ fontFamily: MONO, fontSize: "11px", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "12px" }}
       >
         {eyebrow}
@@ -224,7 +226,7 @@ export function CardGrid({ cards }: { cards: CaseCard[] }) {
           >
             {card.title}
           </div>
-          <p className="text-white/60" style={{ fontFamily: BODY, fontSize: "14px", lineHeight: 1.65 }}>
+          <p className="text-text-secondary" style={{ fontFamily: BODY, fontSize: "14px", lineHeight: 1.65 }}>
             {card.body}
           </p>
         </div>
@@ -259,7 +261,7 @@ export function StackGrid({ groups }: { groups: StackGroup[] }) {
           >
             {group.label}
           </div>
-          <ul className="space-y-1.5 text-white/65" style={{ fontFamily: BODY, fontSize: "13px", lineHeight: 1.55 }}>
+          <ul className="space-y-1.5 text-text-secondary" style={{ fontFamily: BODY, fontSize: "13px", lineHeight: 1.55 }}>
             {group.items.map((item) => (
               <li key={item}>{item}</li>
             ))}
@@ -295,7 +297,8 @@ export function ClosingCTA({ eyebrow, title, body }: { eyebrow: string; title: s
       <div className="relative flex flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-10">
         <div>
           <div
-            className="text-accent"
+            aria-hidden
+            className="hidden text-accent md:block"
             style={{ fontFamily: MONO, fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "10px" }}
           >
             {eyebrow}
@@ -306,7 +309,7 @@ export function ClosingCTA({ eyebrow, title, body }: { eyebrow: string; title: s
           >
             {title}
           </h3>
-          <p className="mt-3 max-w-[52ch] text-white/60" style={{ fontFamily: BODY, fontSize: "15px", lineHeight: 1.65 }}>
+          <p className="mt-3 max-w-[52ch] text-text-secondary" style={{ fontFamily: BODY, fontSize: "15px", lineHeight: 1.65 }}>
             {body}
           </p>
         </div>

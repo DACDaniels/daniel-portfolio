@@ -9,7 +9,7 @@ import {
 } from "motion/react";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
-import { CommandPaletteHint } from "@/components/ui/CommandPaletteLauncher";
+import { CommandPaletteHint, CommandPaletteIconButton } from "@/components/ui/CommandPaletteLauncher";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { cn } from "@/lib/cn";
 
@@ -131,7 +131,7 @@ export function Navbar() {
           <div className="flex items-baseline gap-3">
             <a
               href={onHomePage ? "#home" : "/"}
-              className="group relative font-heading text-2xl font-bold tracking-tight text-text-primary transition-colors duration-300 hover:text-accent"
+              className="group relative inline-flex min-h-11 items-center font-heading text-2xl font-bold tracking-tight text-text-primary transition-colors duration-300 hover:text-accent"
             >
               DAC<span className="text-accent">.</span>
             </a>
@@ -205,6 +205,8 @@ export function Navbar() {
             })}
           </ul>
 
+          <div className="flex items-center gap-2 md:gap-3">
+          <CommandPaletteIconButton className="lg:hidden" />
           <div className="hidden items-center gap-3 md:flex">
             <CommandPaletteHint className="hidden lg:inline-flex" />
             <MagneticButton
@@ -223,7 +225,7 @@ export function Navbar() {
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="relative z-50 flex h-10 w-10 items-center justify-center rounded-full border border-border md:hidden"
+            className="relative z-50 flex h-11 w-11 items-center justify-center rounded-full border border-border md:hidden"
           >
             <span
               className={cn(
@@ -238,6 +240,7 @@ export function Navbar() {
               )}
             />
           </button>
+          </div>
         </nav>
       </motion.header>
 

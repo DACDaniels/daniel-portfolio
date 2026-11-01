@@ -100,7 +100,8 @@ export function Footer() {
         >
           <motion.div
             variants={itemVariants}
-            className="font-mono text-[12px] uppercase tracking-[0.1em] text-accent"
+            aria-hidden
+            className="hidden font-mono text-[12px] uppercase tracking-[0.1em] text-accent md:block"
           >
             {"// footer.tsx"}
           </motion.div>
@@ -147,7 +148,7 @@ export function Footer() {
               <div className="font-heading text-[22px] font-bold leading-[1.15] tracking-[-0.02em] text-text-primary">
                 Software Engineer
               </div>
-              <div className="mt-1.5 font-body text-[14px] font-normal leading-[1.5] text-white/60">
+              <div className="mt-1.5 font-body text-[14px] font-normal leading-[1.5] text-text-secondary">
                 Harare, ZW · Available for remote work
               </div>
             </FooterColumn>
@@ -158,7 +159,7 @@ export function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="block font-body text-[14px] font-normal leading-[2] text-white/70 no-underline transition-colors duration-200 hover:text-accent"
+                      className="flex min-h-11 items-center font-body text-[14px] font-normal leading-[1.4] md:block md:min-h-0 md:leading-[2] text-white/70 no-underline transition-colors duration-200 hover:text-accent"
                     >
                       {link.label}
                     </a>
@@ -183,7 +184,7 @@ export function Footer() {
                             ? `${link.label} (opens in new tab)`
                             : link.label
                         }
-                        className="group inline-flex items-center gap-2 font-body text-[14px] font-normal leading-[2] text-white/70 no-underline transition-colors duration-200 hover:text-accent"
+                        className="group inline-flex min-h-11 items-center gap-2 font-body text-[14px] font-normal leading-[1.4] md:min-h-0 md:leading-[2] text-white/70 no-underline transition-colors duration-200 hover:text-accent"
                       >
                         <span>{link.label}</span>
                         <ArrowUpRight

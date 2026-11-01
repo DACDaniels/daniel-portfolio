@@ -1,5 +1,7 @@
 import { SHIPPED, SHIPPED_SHOWN } from "@/data/shipped";
 
+const SHIPPED_SHOWN_PHONE = 3;
+
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 function shortDate(iso: string) {
@@ -7,7 +9,7 @@ function shortDate(iso: string) {
   return `${d} ${MONTHS[m - 1]} ${y}`;
 }
 
-/** Newest five entries from src/data/shipped.ts, as a quiet changelog. */
+/** Newest entries from src/data/shipped.ts, as a quiet changelog: three on phones, five from 768 px. */
 export function ShippedStrip() {
   const entries = SHIPPED.slice(0, SHIPPED_SHOWN);
   return (
@@ -20,7 +22,7 @@ export function ShippedStrip() {
         Recently shipped
       </h2>
       <ol className="overflow-hidden rounded-[16px] border border-border bg-bg-surface shadow-[0_24px_60px_-36px_rgba(0,229,192,0.18)]">
-        {entries.map((e) => {
+        {entries.map((e, i) => {
           const external = e.href?.startsWith("http") ?? false;
           const body = (
             <>
@@ -46,7 +48,10 @@ export function ShippedStrip() {
           const rowClass =
             "flex flex-col gap-1 px-5 py-3.5 sm:flex-row sm:items-baseline sm:gap-5 md:px-6";
           return (
-            <li key={`${e.date}-${e.text}`} className="border-t border-border first:border-t-0">
+            <li
+              key={`${e.date}-${e.text}`}
+              className={`border-t border-border first:border-t-0 ${i >= SHIPPED_SHOWN_PHONE ? "max-md:hidden" : ""}`}
+            >
               {e.href ? (
                 <a
                   href={e.href}

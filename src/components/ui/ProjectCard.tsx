@@ -69,7 +69,7 @@ export function ProjectCard({
       </h3>
 
       <p
-        className="italic text-white/60"
+        className="italic text-text-secondary"
         style={{
           fontFamily: "var(--font-jetbrains-mono)",
           fontSize: "11px",
@@ -137,7 +137,7 @@ function StatusBadge({ status }: { status: ProjectCardProps["status"] }) {
     live: "text-accent border border-accent/30",
     building: "text-[#FFC04D] border border-[#FFC04D]/35",
     research: "text-white/85 border border-white/15",
-    meta: "text-white/60 border border-white/10",
+    meta: "text-text-secondary border border-white/10",
   };
 
   const showDot = status === "live" || status === "building";
