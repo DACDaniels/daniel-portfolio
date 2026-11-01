@@ -66,6 +66,7 @@ export function AlternatingProjectCard({
   return (
     <motion.article
       variants={variants}
+      data-project-card={title}
       className="group relative grid grid-cols-1 items-center gap-6 md:gap-10 lg:grid-cols-12 lg:gap-12"
     >
       <div

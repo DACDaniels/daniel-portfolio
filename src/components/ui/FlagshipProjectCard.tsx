@@ -56,6 +56,7 @@ export function FlagshipProjectCard({
     <motion.article
       data-cursor-interactive
       variants={variants}
+      data-project-card={title}
       className="group relative overflow-hidden rounded-[24px] border border-white/[0.06] bg-bg-surface transition-[border-color,transform] duration-300 hover:-translate-y-1 hover:border-accent/30"
       style={{
         boxShadow:
