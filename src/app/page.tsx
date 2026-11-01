@@ -7,6 +7,7 @@ import { HowIBuild } from "@/components/sections/HowIBuild";
 import { Navbar } from "@/components/sections/Navbar";
 import { Projects } from "@/components/sections/Projects";
 import { Services } from "@/components/sections/Services";
+import { ShippingGraph } from "@/components/sections/ShippingGraph";
 import { projectItemList } from "@/lib/projectSchema";
 
 const SITE_URL = "https://dev.danielchadambuka.com";
@@ -41,7 +42,7 @@ export default function Home() {
         <Services />
         <Projects />
         <Achievements />
-        <HowIBuild />
+        <HowIBuild graph={<ShippingGraph />} />
         <About />
         <Contact />
       </main>
