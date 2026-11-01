@@ -39,10 +39,10 @@ const LIVE: { name: string; what: string; href: string; status: StatusKey; exter
 ];
 
 const HABITS = [
-  ["Decisions in writing.", "Every choice is dated with its reason."],
-  ["Claimed versus true.", "No claim ships unless a file backs it."],
-  ["Tested before it ships.", "Every real failure becomes a test."],
-  ["Always a way back.", "Own branch for each change, rollback point before each deploy."],
+  ["Private by default.", "Personal and medical details are encrypted."],
+  ["AI with guardrails.", "Code sets every price and checks every reply."],
+  ["Built for real conditions.", "Works offline, on weak signal, and at the pond."],
+  ["Tested and reversible.", "Every change is tested; every release can be rolled back."],
 ] as const;
 
 const ACTIONS = [
@@ -134,7 +134,7 @@ export default function HirePage() {
                 ))}
               </ul>
               <Link href="/#how-i-build" className="hire-link mt-4 inline-block text-[14px]">
-                Each one with a real dated decision
+                See how I build
               </Link>
             </Row>
 
