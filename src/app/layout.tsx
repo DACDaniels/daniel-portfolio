@@ -7,6 +7,7 @@ import {
 } from "next/font/google";
 import "./globals.css";
 import ExtensionErrorSuppressor from "@/components/ExtensionErrorSuppressor";
+import { CommandPaletteLauncher } from "@/components/ui/CommandPaletteLauncher";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 
@@ -213,6 +214,7 @@ export default function RootLayout({
         </a>
         <ScrollProgress />
         <CustomCursor />
+        <CommandPaletteLauncher />
         {children}
       </body>
     </html>

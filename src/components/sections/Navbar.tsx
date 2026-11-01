@@ -9,10 +9,20 @@ import {
 } from "motion/react";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
+import { CommandPaletteHint } from "@/components/ui/CommandPaletteLauncher";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { cn } from "@/lib/cn";
 
-type NavLink = { label: string; id: string };
+type NavLink = {
+  label: string;
+  id: string;
+  /** A separate page rather than a section of the home page. */
+  page?: string;
+  /** Shorter label for the bar below 2xl, where seven links must fit. */
+  short?: string;
+  /** Left out of the bar below xl, where it duplicates the Contact Me button. */
+  barFromXl?: boolean;
+};
 
 const LINKS: NavLink[] = [
   { label: "Home", id: "home" },
@@ -20,7 +30,8 @@ const LINKS: NavLink[] = [
   { label: "Achievements", id: "achievements" },
   { label: "How I build", id: "how-i-build" },
   { label: "About", id: "about" },
-  { label: "Contact", id: "contact" },
+  { label: "Contact", id: "contact", barFromXl: true },
+  { label: "Hiring? Start here", short: "Hiring?", id: "hire", page: "/hire" },
 ];
 
 export function Navbar() {
@@ -44,7 +55,7 @@ export function Navbar() {
     () =>
       LINKS.map((link) => ({
         ...link,
-        href: onHomePage ? `#${link.id}` : `/#${link.id}`,
+        href: link.page ?? (onHomePage ? `#${link.id}` : `/#${link.id}`),
       })),
     [onHomePage],
   );
@@ -60,7 +71,7 @@ export function Navbar() {
     if (!onHomePage) return;
     if (typeof window === "undefined") return;
 
-    const ids = LINKS.map((l) => l.id);
+    const ids = LINKS.filter((l) => !l.page).map((l) => l.id);
     const observers: IntersectionObserver[] = [];
 
     const visibility: Record<string, number> = {};
@@ -150,9 +161,11 @@ export function Navbar() {
 
           <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-0.5 md:flex lg:gap-1">
             {linksWithHrefs.map((link) => {
-              const isActive = onHomePage && activeId === link.id;
+              const isActive = link.page
+                ? pathname === link.page
+                : onHomePage && activeId === link.id;
               return (
-                <li key={link.id}>
+                <li key={link.id} className={link.barFromXl ? "hidden xl:block" : undefined}>
                   <MagneticButton
                     href={link.href}
                     strength={10}
@@ -164,7 +177,14 @@ export function Navbar() {
                     )}
                   >
                     <span className="relative">
-                      {link.label}
+                      {link.short ? (
+                        <>
+                          <span className="2xl:hidden">{link.short}</span>
+                          <span className="hidden 2xl:inline">{link.label}</span>
+                        </>
+                      ) : (
+                        link.label
+                      )}
                       <span
                         className={cn(
                           "absolute -bottom-0.5 left-0 h-px w-full origin-left bg-accent transition-transform duration-300",
@@ -185,7 +205,8 @@ export function Navbar() {
             })}
           </ul>
 
-          <div className="hidden md:block">
+          <div className="hidden items-center gap-3 md:flex">
+            <CommandPaletteHint className="hidden lg:inline-flex" />
             <MagneticButton
               href={onHomePage ? "#contact" : "/#contact"}
               strength={14}
