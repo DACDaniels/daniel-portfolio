@@ -11,12 +11,54 @@ const pick = (html, re) => (html.match(re) || [])[1];
 
 const pages = [
   { file: "index.html", canonical: SITE },
-  { file: "projects/fishtech.html", canonical: `${SITE}/projects/fishtech` },
-  { file: "projects/health-and-longevity.html", canonical: `${SITE}/projects/health-and-longevity` },
-  { file: "projects/fishtech-sales-agent.html", canonical: `${SITE}/projects/fishtech-sales-agent` },
+  { file: "projects/fishtech.html", canonical: `${SITE}/projects/fishtech`, caseStudy: "fishtech" },
+  { file: "projects/health-and-longevity.html", canonical: `${SITE}/projects/health-and-longevity`, caseStudy: "health-and-longevity" },
+  { file: "projects/fishtech-sales-agent.html", canonical: `${SITE}/projects/fishtech-sales-agent`, caseStudy: "fishtech-sales-agent" },
 ];
 
-for (const { file, canonical } of pages) {
+// Project structured data (src/lib/projectSchema.ts): the home page lists
+// all eight projects; every case study carries its own entry. Each entry
+// names the project, links it and credits the Person. Never a phone,
+// address, award, price or rating.
+const PROJECT_COUNT = 8;
+const FORBIDDEN_KEYS = ["telephone", "address", "award", "awards", "offers", "price", "aggregateRating", "review"];
+
+function checkProjectEntry(where, item) {
+  for (const k of ["@type", "@id", "name", "url", "description"])
+    if (!item?.[k]) errors.push(`${where}: project entry has no ${k}`);
+  if (item?.author?.["@id"] !== `${SITE}/#person`)
+    errors.push(`${where}: project "${item?.name}" has no author pointing at the Person`);
+  for (const k of FORBIDDEN_KEYS)
+    if (item && k in item) errors.push(`${where}: project "${item.name}" carries "${k}"`);
+  const text = JSON.stringify(item ?? {});
+  if (/—/.test(text)) errors.push(`${where}: project "${item?.name}" has an em-dash`);
+  if (/\$\s?\d/.test(text)) errors.push(`${where}: project "${item?.name}" has a dollar figure`);
+  if (/blue acre/i.test(text)) errors.push(`${where}: project "${item?.name}" names Blue Acre`);
+}
+
+function checkProjectData(file, parsed, caseStudy) {
+  if (file === "index.html") {
+    const list = parsed.find((d) => d["@type"] === "ItemList");
+    if (!list) return errors.push(`${file}: no ItemList of projects`);
+    const items = list.itemListElement ?? [];
+    if (items.length !== PROJECT_COUNT || list.numberOfItems !== PROJECT_COUNT)
+      errors.push(`${file}: ItemList has ${items.length} projects, expected ${PROJECT_COUNT}`);
+    items.forEach((li, i) => {
+      if (li.position !== i + 1) errors.push(`${file}: ItemList position ${i + 1} is ${li.position}`);
+      checkProjectEntry(file, li.item);
+    });
+  }
+  if (caseStudy) {
+    const id = `${SITE}/#project-${caseStudy}`;
+    const own = parsed.find((d) => d["@id"] === id);
+    if (!own) return errors.push(`${file}: no project entry (${id})`);
+    checkProjectEntry(file, own);
+    if (own.mainEntityOfPage !== `${SITE}/projects/${caseStudy}`)
+      errors.push(`${file}: project entry mainEntityOfPage is ${own.mainEntityOfPage}`);
+  }
+}
+
+for (const { file, canonical, caseStudy } of pages) {
   const html = read(file);
   const title = pick(html, /<title>([^<]*)<\/title>/);
   if (!title) errors.push(`${file}: no <title>`);
@@ -35,13 +77,17 @@ for (const { file, canonical } of pages) {
 
   const blocks = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)];
   const types = [];
+  const parsed = [];
   for (const [, json] of blocks) {
     try {
-      types.push(JSON.parse(json)["@type"]);
+      const data = JSON.parse(json);
+      parsed.push(data);
+      types.push(data["@type"]);
     } catch (e) {
       errors.push(`${file}: structured data is not valid JSON (${e.message})`);
     }
   }
+  checkProjectData(file, parsed, caseStudy);
   if (!types.includes("Person")) errors.push(`${file}: no Person structured data`);
   if (file === "index.html" && !types.includes("ProfilePage"))
     errors.push(`${file}: no ProfilePage structured data`);
@@ -67,4 +113,4 @@ if (errors.length) {
   console.error("Search check failed:\n- " + errors.join("\n- "));
   process.exit(1);
 }
-console.log("Search check passed: titles, descriptions, canonical links, Open Graph, structured data, sitemap, robots.txt, previews.");
+console.log("Search check passed: titles, descriptions, canonical links, Open Graph, structured data, project entries, sitemap, robots.txt, previews.");
