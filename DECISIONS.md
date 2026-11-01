@@ -2,6 +2,24 @@
 
 One line per decision, newest first. Date, what, why.
 
+## 2026-10-31: Health & Longevity, FishTech Sales Agent & Ops, and truth fixes
+
+- **Card order and titles:** 01 FishTech Precision Feeding System (flagship, unchanged), 02 Health & Longevity, 03 The Endoscopy Suite, 04 FishTech Sales Agent & Ops, 05 FishTech Consultancy, 06 FishTech Feeder, 07 Steadyhands Catering, 08 This Portfolio. Sides re-alternate starting left at 02. Daniel's decision.
+- **Health & Longevity card (CLIENT SYSTEM):** meta "healthandlongevity.co.zw · Dr Misheck Ruwende", LIVE, View Live plus View Case Study. Tags Astro, React, TypeScript, Cloudflare Workers, D1, Paynow, Playwright, all read from the platform's package.json, README and BIBLE.md (github.com/DACDaniels/ruwende-platform, private, read only). Visual: browser frame plus phone on the site's own navy hero gradient (its tokens --color-hero to --color-hero-deep); strip of consult booking, nurse-aide match, admin Today.
+- **FishTech Sales Agent & Ops card (AUTOMATION):** meta "WhatsApp agent · ops.fishtech.co.zw", LIVE, case study link only. Tags Python, FastAPI (confirmed in whatsapp-bot/requirements.txt), LLM tool use, WhatsApp Cloud API, Render. Visual: Ops Overview in a browser frame with SalesAgentChat; strip of Inbox, Quotations, quotation PDF.
+- **No live bot link.** Ops is password-protected and the WhatsApp number is not linked anywhere on the site, including the quotation image (number masked).
+- **Two case studies:** /projects/health-and-longevity and /projects/fishtech-sales-agent, each with its own title, description, canonical link, Open Graph image in the FishTech style and a sitemap entry; check-seo covers both. Sections: the problem, what it does, how it works (inline SVG architecture diagram), engineering decisions, privacy and safety, stack, screens. Every point was checked against the source repositories; see the report on the pull request for what was dropped.
+- **Screenshot privacy rule:** sample data only. Health & Longevity screens come from its local preview (sample content, pretend Paynow, made-up bookings in the local database); never the real site, its admin or real people. Frames whose main subject is Dr Ruwende's portrait are left out (same rule as Dr Muguti, 2026-10-09), so Home is captured scrolled past the hero. FishTech Ops is the real ops.html rendered with invented clients, chats and quotations, amounts masked, and every Ops image carries a "Sample data" label. The quotation PDF was built by pdf_quote.py for an invented customer, prices and the business number masked. The chat on the card is invented and labelled "Sample conversation", with no dollar figures.
+- **No model vendor named.** Copy says "large language model agent with tool use". The Services AI pills ("OpenAI", "Claude API") became "LLM Agents", "Tool Use" for the same reason.
+- **Copy rule changed from "never use test counts" to "say what is tested, never how many".** Reason: real counts go stale.
+- **"Not an ERP" framing.** The sales agent and Ops are described as an agent and an operations console, never as an ERP.
+- **Hero stats:** 8 Projects, 2+ Years, 5 Live Systems (label was "Production Systems"), degree unchanged. The five are Steadyhands, The Endoscopy Suite, fishtech.co.zw, Health & Longevity, FishTech Sales Agent & Ops.
+- **Services proofs:** Full-Stack Development is "Shipped in Health & Longevity" (/projects/health-and-longevity); AI & Intelligent Systems is "Shipped in FishTech Sales Agent" (/projects/fishtech-sales-agent).
+- **FishTech Consultancy set to LIVE.** The site has been live since 2026-10-09 per blueacre-ops/CLAUDE.md. The Projects intro now reads "Five live systems running for clients and for FishTech, two edge devices in active build, and this portfolio itself."
+- **Flask removed from Services, About and Hero.** Services pills and the About marquee say FastAPI; the hero badge already did.
+- **No Health & Longevity clip.** docs/design/screenshots/step6g1/flow.webm does not exist (only flow.gif), so no video was added. public/videos/ stays at about 10.4 MB.
+- **MediaGallery items take an optional `wide` flag** so laptop screenshots keep 16:10 and span two grid columns in the case-study screens.
+
 ## 2026-10-09: FishTech Consultancy card refinements
 
 - **Category is "COMPANY SITE"**, because fishtech.co.zw is Daniel's own company site, not client work.
