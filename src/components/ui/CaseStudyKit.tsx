@@ -51,7 +51,17 @@ export function BackToWork() {
   );
 }
 
+export type CaseStatus = "live" | "building" | "meta";
+
+const STATUS_BADGE: Record<CaseStatus, { label: string; className: string; dot: string | null }> = {
+  live: { label: "LIVE", className: "border-accent/40 bg-accent/[0.08] text-accent", dot: "bg-accent" },
+  building: { label: "BUILDING", className: "border-[#FFC04D]/40 bg-[#FFC04D]/[0.08] text-[#FFC04D]", dot: "bg-[#FFC04D]" },
+  meta: { label: "META", className: "border-white/20 bg-white/[0.04] text-white/75", dot: null },
+};
+
 type CaseHeaderProps = {
+  /** Defaults to live. */
+  status?: CaseStatus;
   eyebrow: string;
   statusNote: string;
   title: string;
@@ -60,8 +70,9 @@ type CaseHeaderProps = {
   links?: { label: string; href: string }[];
 };
 
-export function CaseHeader({ eyebrow, statusNote, title, lead, facts, links }: CaseHeaderProps) {
+export function CaseHeader({ status = "live", eyebrow, statusNote, title, lead, facts, links }: CaseHeaderProps) {
   const { reduceMotion, containerVariants, itemVariants } = useCaseVariants();
+  const badge = STATUS_BADGE[status];
   return (
     <div className="mx-auto w-full max-w-4xl px-6 py-16 md:px-8 md:py-24">
       <motion.div variants={containerVariants} initial="hidden" animate="visible">
@@ -75,7 +86,7 @@ export function CaseHeader({ eyebrow, statusNote, title, lead, facts, links }: C
 
         <motion.div variants={itemVariants} className="mt-3 flex flex-wrap items-center gap-3">
           <span
-            className="inline-flex items-center gap-1.5 rounded-full border border-accent/40 bg-accent/[0.08] text-accent"
+            className={`inline-flex items-center gap-1.5 rounded-full border ${badge.className}`}
             style={{
               fontFamily: MONO,
               fontSize: "10px",
@@ -84,12 +95,14 @@ export function CaseHeader({ eyebrow, statusNote, title, lead, facts, links }: C
               lineHeight: 1.4,
             }}
           >
-            <span
-              aria-hidden
-              className="block h-[5px] w-[5px] rounded-full bg-accent"
-              style={{ animation: reduceMotion ? "none" : "live-pulse 2s ease-in-out infinite" }}
-            />
-            LIVE
+            {badge.dot ? (
+              <span
+                aria-hidden
+                className={`block h-[5px] w-[5px] rounded-full ${badge.dot}`}
+                style={{ animation: reduceMotion ? "none" : "live-pulse 2s ease-in-out infinite" }}
+              />
+            ) : null}
+            {badge.label}
           </span>
           <span className="text-white/50" style={{ fontFamily: MONO, fontSize: "11px", letterSpacing: "0.04em" }}>
             {statusNote}
