@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
+import { HAS_TESTIMONIALS } from "@/data/testimonials";
 import { CONTACT_LINKS } from "@/lib/contactLinks";
 import { useScrollReveal } from "@/lib/useScrollReveal";
 
@@ -13,6 +14,8 @@ const NAV_LINKS = [
   { label: "Achievements", href: "/#achievements" },
   { label: "How I build", href: "/#how-i-build" },
   { label: "About", href: "/#about" },
+  // Only when a testimonial with written permission exists (src/data/testimonials.ts).
+  ...(HAS_TESTIMONIALS ? [{ label: "Testimonials", href: "/#testimonials" }] : []),
   { label: "Contact", href: "/#contact" },
   { label: "Hiring? Start here", href: "/hire" },
 ] as const;

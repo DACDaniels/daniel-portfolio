@@ -8,6 +8,7 @@ import { Navbar } from "@/components/sections/Navbar";
 import { Projects } from "@/components/sections/Projects";
 import { Services } from "@/components/sections/Services";
 import { ShippingGraph } from "@/components/sections/ShippingGraph";
+import { Testimonials } from "@/components/sections/Testimonials";
 import { projectItemList } from "@/lib/projectSchema";
 
 const SITE_URL = "https://dev.danielchadambuka.com";
@@ -44,6 +45,7 @@ export default function Home() {
         <Achievements />
         <HowIBuild graph={<ShippingGraph />} />
         <About />
+        <Testimonials />
         <Contact />
       </main>
       <Footer />

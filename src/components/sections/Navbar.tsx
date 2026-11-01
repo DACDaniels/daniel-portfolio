@@ -12,6 +12,7 @@ import { useEffect, useMemo, useState } from "react";
 import { CommandPaletteHint, CommandPaletteIconButton } from "@/components/ui/CommandPaletteLauncher";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { cn } from "@/lib/cn";
+import { HAS_TESTIMONIALS } from "@/data/testimonials";
 
 type NavLink = {
   label: string;
@@ -24,6 +25,8 @@ type NavLink = {
   barFromXl?: boolean;
   /** Hidden in the bar below 1024 px, where the search icon needs the room (the logo goes home). */
   barFromLg?: boolean;
+  /** In the full-screen menu only, never the bar (the bar has no room). */
+  menuOnly?: boolean;
 };
 
 const LINKS: NavLink[] = [
@@ -32,6 +35,8 @@ const LINKS: NavLink[] = [
   { label: "Achievements", id: "achievements" },
   { label: "How I build", id: "how-i-build" },
   { label: "About", id: "about" },
+  // Only when a testimonial with written permission exists (src/data/testimonials.ts).
+  ...(HAS_TESTIMONIALS ? [{ label: "Testimonials", id: "testimonials", menuOnly: true }] : []),
   { label: "Contact", id: "contact", barFromXl: true },
   { label: "Hiring? Start here", short: "Hiring?", id: "hire", page: "/hire" },
 ];
@@ -162,7 +167,7 @@ export function Navbar() {
           </div>
 
           <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-0.5 md:flex lg:gap-1">
-            {linksWithHrefs.map((link) => {
+            {linksWithHrefs.filter((link) => !link.menuOnly).map((link) => {
               const isActive = link.page
                 ? pathname === link.page
                 : onHomePage && activeId === link.id;
