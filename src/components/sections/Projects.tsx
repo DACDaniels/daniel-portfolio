@@ -369,11 +369,24 @@ export function Projects() {
   const layoutTransition: Transition = reduceMotion
     ? { duration: 0 }
     : { type: "spring", stiffness: 260, damping: 32, mass: 0.9 };
-  const presence = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: reduceMotion ? 0 : 0.35 } },
+  // Each card's wrapper owns its whole reveal. The cards carry no variants
+  // of their own: a card that re-enters through AnimatePresence would
+  // otherwise stay at its hidden variant (opacity 0), because the label
+  // from the section container does not reach it after the first reveal.
+  const hiddenCard = reduceMotion ? { opacity: 0 } : { opacity: 0, y: 24 };
+  const cardMotion = (i: number) => ({
+    initial: hiddenCard,
+    animate: revealed
+      ? {
+          opacity: 1,
+          y: 0,
+          transition: reduceMotion
+            ? { duration: 0.2 }
+            : { duration: 0.6, ease: [0.2, 0.8, 0.2, 1] as const, delay: Math.min(i, 4) * 0.08 },
+        }
+      : hiddenCard,
     exit: { opacity: 0, transition: { duration: reduceMotion ? 0 : 0.2 } },
-  };
+  });
 
   return (
     <section
@@ -432,9 +445,9 @@ export function Projects() {
                   key="flagship"
                   layout={!reduceMotion}
                   transition={layoutTransition}
-                  {...presence}
+                  {...cardMotion(0)}
                 >
-                  <FlagshipProjectCard {...FLAGSHIP} variants={itemVariants} />
+                  <FlagshipProjectCard {...FLAGSHIP} />
                 </motion.div>
               ) : null}
             </AnimatePresence>
@@ -452,12 +465,11 @@ export function Projects() {
                     key={project.title}
                     layout={!reduceMotion}
                     transition={layoutTransition}
-                    {...presence}
+                    {...cardMotion(i + 1)}
                   >
                     <AlternatingProjectCard
                       {...project}
                       side={i % 2 === 0 ? "left" : "right"}
-                      variants={itemVariants}
                     />
                   </motion.div>
                 ))}
