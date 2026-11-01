@@ -10,14 +10,20 @@ export const revalidate = 300;
 
 const TIMEOUT_MS = 4000;
 
-async function check(url: string): Promise<"up" | "down"> {
+async function check(url: string, round: string): Promise<"up" | "down"> {
   try {
     const res = await fetch(url, {
       method: "GET",
       redirect: "follow",
-      cache: "no-store",
+      // The round's time is part of the request, so it is part of Next's
+      // fetch cache key: each regeneration of this route really checks
+      // again, and checkedAt never sits on an older result.
+      next: { revalidate: 300 },
       signal: AbortSignal.timeout(TIMEOUT_MS),
-      headers: { "user-agent": "dev.danielchadambuka.com status check" },
+      headers: {
+        "user-agent": "dev.danielchadambuka.com status check",
+        "x-status-round": round,
+      },
     });
     // Free the connection; only the status code matters.
     await res.body?.cancel().catch(() => undefined);
@@ -29,9 +35,12 @@ async function check(url: string): Promise<"up" | "down"> {
 
 export async function GET() {
   const keys = Object.keys(STATUS_TARGETS) as StatusKey[];
-  const results = await Promise.all(keys.map((k) => check(STATUS_TARGETS[k])));
+  const checkedAt = new Date().toISOString();
+  const results = await Promise.all(
+    keys.map((k) => check(STATUS_TARGETS[k], checkedAt)),
+  );
   const report: StatusReport = {
-    checkedAt: new Date().toISOString(),
+    checkedAt,
     sites: Object.fromEntries(keys.map((k, i) => [k, results[i]])) as StatusReport["sites"],
   };
   // Only up/down and the time go out: no URLs, codes or timings.
