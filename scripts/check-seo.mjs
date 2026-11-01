@@ -12,6 +12,8 @@ const pick = (html, re) => (html.match(re) || [])[1];
 const pages = [
   { file: "index.html", canonical: SITE },
   { file: "projects/fishtech.html", canonical: `${SITE}/projects/fishtech` },
+  { file: "projects/health-and-longevity.html", canonical: `${SITE}/projects/health-and-longevity` },
+  { file: "projects/fishtech-sales-agent.html", canonical: `${SITE}/projects/fishtech-sales-agent` },
 ];
 
 for (const { file, canonical } of pages) {
