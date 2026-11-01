@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/CaseStudyKit";
 import { FlowDiagram, type FlowColumn } from "@/components/ui/FlowDiagram";
 import { MediaGallery, type MediaItem } from "@/components/ui/MediaGallery";
-import { SalesAgentChat } from "@/components/ui/SalesAgentChat";
+import { SalesAgentChatReplay } from "@/components/ui/SalesAgentChatReplay";
 import { SalesAgentShowcase } from "@/components/ui/project-mocks/SalesAgentShowcase";
 
 const PROGRESS_ITEMS = [
@@ -213,7 +213,7 @@ export default function SalesAgentCaseStudyPage() {
           <CaseSection id="what" eyebrow="// what it does" title="It sells on WhatsApp. Ops shows everything behind it.">
             <div className="grid grid-cols-1 items-start gap-8 pt-2 md:grid-cols-[minmax(0,1fr)_260px]">
               <CardGrid cards={FEATURES} />
-              <SalesAgentChat className="mx-auto aspect-[9/17] w-full max-w-[300px]" />
+              <SalesAgentChatReplay className="mx-auto w-full max-w-[300px]" />
             </div>
             <p className="pt-4">
               The console at ops.fishtech.co.zw holds every chat, client and quotation, from the same code as the

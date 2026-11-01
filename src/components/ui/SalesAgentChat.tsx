@@ -7,11 +7,11 @@ import { FileText } from "lucide-react";
  * project card and in the larger case-study frame.
  */
 
-type Turn =
+export type Turn =
   | { from: "customer" | "agent"; text: string; time: string }
   | { from: "pdf"; name: string; time: string };
 
-const CONVERSATION: Turn[] = [
+export const CONVERSATION: Turn[] = [
   {
     from: "customer",
     text: "Mhoro! Ndoda kutanga kurima hove. Pond ye 20 by 10, ndinoisa fingerlings ngani?",
@@ -40,7 +40,24 @@ const CONVERSATION: Turn[] = [
   },
 ];
 
-export function SalesAgentChat({ className = "" }: { className?: string }) {
+/**
+ * `shown` limits the conversation to its first N turns and `typing` draws the
+ * typing dots on that side; both are for SalesAgentChatReplay. Left out, the
+ * whole conversation shows, as in the project card.
+ */
+export function SalesAgentChat({
+  className = "",
+  shown,
+  typing = null,
+  animateLast = false,
+}: {
+  className?: string;
+  shown?: number;
+  typing?: "customer" | "agent" | null;
+  animateLast?: boolean;
+}) {
+  const turns = shown === undefined ? CONVERSATION : CONVERSATION.slice(0, shown);
+  const enter = "motion-safe:animate-[chat-in_320ms_cubic-bezier(0.2,0.8,0.2,1)_both]";
   return (
     <div className={`@container ${className}`}>
       <div className="h-full rounded-[9cqw] border border-white/15 bg-[#050A14] p-[1.6cqw] shadow-[0_28px_56px_-12px_rgba(0,0,0,0.75),0_8px_24px_-8px_rgba(0,229,192,0.14)]">
@@ -68,10 +85,11 @@ export function SalesAgentChat({ className = "" }: { className?: string }) {
   
           {/* Messages */}
           <ol className="flex flex-1 flex-col gap-[2.6cqw] px-[4cqw] py-[4.5cqw]">
-            {CONVERSATION.map((turn, i) => {
+            {turns.map((turn, i) => {
+              const anim = animateLast && i === turns.length - 1 ? enter : "";
               if (turn.from === "pdf") {
                 return (
-                  <li key={i} className="flex justify-end">
+                  <li key={i} className={`flex justify-end ${anim}`}>
                     <div className="flex w-[78%] items-center gap-[3cqw] rounded-[4cqw] rounded-tr-[1cqw] border border-accent/20 bg-accent/[0.12] px-[3.4cqw] py-[3cqw]">
                       <span className="flex h-[9cqw] w-[9cqw] shrink-0 items-center justify-center rounded-[2cqw] bg-accent/20 text-accent">
                         <FileText aria-hidden className="h-[5cqw] w-[5cqw]" strokeWidth={1.8} />
@@ -90,7 +108,7 @@ export function SalesAgentChat({ className = "" }: { className?: string }) {
               }
               const mine = turn.from === "agent";
               return (
-                <li key={i} className={`flex ${mine ? "justify-end" : "justify-start"}`}>
+                <li key={i} className={`flex ${mine ? "justify-end" : "justify-start"} ${anim}`}>
                   <p
                     className={`max-w-[82%] rounded-[4cqw] px-[3.4cqw] py-[2.4cqw] text-[3.6cqw] leading-[1.45] ${
                       mine
@@ -106,6 +124,23 @@ export function SalesAgentChat({ className = "" }: { className?: string }) {
                 </li>
               );
             })}
+            {typing && (
+              <li className={`flex ${typing === "agent" ? "justify-end" : "justify-start"} ${enter}`}>
+                <span
+                  className={`flex items-center gap-[1.2cqw] rounded-[4cqw] px-[3.6cqw] py-[3cqw] ${
+                    typing === "agent" ? "rounded-tr-[1cqw] bg-accent/[0.12]" : "rounded-tl-[1cqw] bg-white/[0.07]"
+                  }`}
+                >
+                  {[0, 1, 2].map((d) => (
+                    <span
+                      key={d}
+                      className="h-[1.6cqw] w-[1.6cqw] rounded-full bg-white/70 motion-safe:animate-[chat-dot_1.1s_ease-in-out_infinite]"
+                      style={{ animationDelay: `${d * 160}ms` }}
+                    />
+                  ))}
+                </span>
+              </li>
+            )}
           </ol>
         </div>
       </div>
