@@ -7,6 +7,7 @@ import { HowIBuild } from "@/components/sections/HowIBuild";
 import { Navbar } from "@/components/sections/Navbar";
 import { Projects } from "@/components/sections/Projects";
 import { Services } from "@/components/sections/Services";
+import { projectItemList } from "@/lib/projectSchema";
 
 const SITE_URL = "https://dev.danielchadambuka.com";
 
@@ -29,6 +30,10 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectItemList()) }}
       />
       <Navbar />
       <main id="main">

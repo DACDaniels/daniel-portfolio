@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { caseStudySchema } from "@/lib/projectSchema";
 
 const TITLE = "FishTech Precision Feeding System";
 const DESCRIPTION =
@@ -40,5 +41,15 @@ export default function FishTechCaseStudyLayout({
 }: {
   children: ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(caseStudySchema("fishtech")),
+        }}
+      />
+      {children}
+    </>
+  );
 }
