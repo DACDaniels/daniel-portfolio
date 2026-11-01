@@ -25,7 +25,6 @@ import { PortfolioMock } from "@/components/ui/project-mocks/PortfolioMock";
 import { HealthLongevityShowcase } from "@/components/ui/project-mocks/HealthLongevityShowcase";
 import { SalesAgentShowcase } from "@/components/ui/project-mocks/SalesAgentShowcase";
 import { LoopingClip } from "@/components/ui/LoopingClip";
-import { MediaGallery, type MediaItem } from "@/components/ui/MediaGallery";
 import { useScrollReveal } from "@/lib/useScrollReveal";
 import {
   isFilterHash,
@@ -35,24 +34,15 @@ import {
   type ProjectGroup,
 } from "@/lib/projectFilters";
 
-const FLAGSHIP: Omit<FlagshipProjectProps, "variants"> = {
+const FLAGSHIP: FlagshipProjectProps = {
   number: "01",
   category: "EDGE AI · FLAGSHIP",
   title: "FishTech Precision Feeding System",
-  meta: "Working prototype · Pilot in preparation",
-  description:
-    "Closed-loop computer-vision instrument for smallholder pond aquaculture in Zimbabwe. An overhead camera and a Raspberry Pi 5 with a Hailo NPU detect fish, measure them against an auto-calibrated reference, estimate whole-pond biomass with honest confidence intervals, and drive an integrated auger feeder to dispense a precision dose. Runs entirely on the device. Being industrialised through FishTech Consultancy, pilot deployment in preparation.",
-  tags: [
-    "Computer Vision",
-    "IoT",
-    "Edge AI",
-    "YOLO",
-    "Raspberry Pi",
-    "Hailo NPU",
-    "FastAPI",
-  ],
+  sentence:
+    "Edge-AI camera that measures fish and works out how much to feed, on the device.",
+  tags: ["Computer Vision", "Raspberry Pi", "FastAPI"],
   status: "building",
-  caseStudyHref: "/projects/fishtech",
+  href: "/projects/fishtech",
   mockComponent: <FishTechFlagshipPhoto />,
 };
 
@@ -67,10 +57,10 @@ function FishTechFlagshipPhoto() {
         alt="FishTech Precision Feeding System at a pond at sunset, overhead camera on the boom and a calibration board on the water"
         fill
         priority
-        sizes="(max-width: 1024px) 100vw, 640px"
+        sizes="(max-width: 1024px) 100vw, 680px"
         className="object-cover object-[50%_40%]"
       />
-      {/* Darkens the top edge so the flagship label and status badge stay readable. */}
+      {/* Darkens the top edge so the status badge stays readable. */}
       <span
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/20 mix-blend-multiply"
@@ -79,135 +69,25 @@ function FishTechFlagshipPhoto() {
   );
 }
 
-const FEEDER_GALLERY: MediaItem[] = [
-  {
-    kind: "image",
-    src: "/images/feeder/feeder-mechanism.jpg",
-    alt: "FishTech Feeder with the door open, showing the auger and electronics",
-  },
-  {
-    kind: "image",
-    src: "/images/feeder/feeder-pond-sunset.jpg",
-    alt: "The FishTech Feeder beside a fish pond at dusk",
-  },
-  {
-    kind: "image",
-    src: "/images/feeder/feeder-pond-visitors.jpg",
-    alt: "Visitors at the FishTech Feeder beside the pond",
-  },
-];
-
-const ENDOSCOPY_GALLERY: MediaItem[] = [
-  {
-    kind: "image",
-    src: "/images/endoscopy-suite/es-services-phone.jpg",
-    focus: "top",
-    alt: "The Endoscopy Suite services page on a phone: every scope and operation, in plain words",
-  },
-  {
-    kind: "image",
-    src: "/images/endoscopy-suite/es-book-phone.jpg",
-    focus: "top",
-    alt: "The Endoscopy Suite booking page on a phone, choosing what to book",
-  },
-  {
-    kind: "image",
-    src: "/images/endoscopy-suite/es-emergencies-phone.jpg",
-    focus: "top",
-    alt: "The Endoscopy Suite emergencies page on a phone, with the call button first",
-  },
-];
-
-const FISHTECH_CONSULTANCY_GALLERY: MediaItem[] = [
-  {
-    kind: "image",
-    src: "/images/fishtech-consultancy/ft-prices-phone.jpg",
-    focus: "top",
-    alt: "FishTech live price panel on a phone, prices read from the published price list",
-  },
-  {
-    kind: "image",
-    src: "/images/fishtech-consultancy/ft-calculator-phone.jpg",
-    focus: "top",
-    alt: "FishTech pond calculator on a phone, with the pond drawn to scale",
-  },
-  {
-    kind: "image",
-    src: "/images/fishtech-consultancy/ft-quote-phone.jpg",
-    focus: "top",
-    alt: "FishTech pond calculator total on a phone, with the button to send it on WhatsApp",
-  },
-];
-
-const HEALTH_LONGEVITY_GALLERY: MediaItem[] = [
-  {
-    kind: "image",
-    src: "/images/health-longevity/hl-consult-phone.jpg",
-    focus: "top",
-    alt: "Health & Longevity video consult booking on a phone, with a day and a time picked (sample data)",
-  },
-  {
-    kind: "image",
-    src: "/images/health-longevity/hl-aide-match-phone.jpg",
-    focus: "top",
-    alt: "Health & Longevity nurse-aide match screen on a phone: three sample aides, nearest first",
-  },
-  {
-    kind: "image",
-    src: "/images/health-longevity/hl-admin-today-phone.jpg",
-    focus: "top",
-    alt: "Health & Longevity admin Today screen on a phone, with the next video consult (sample data)",
-  },
-];
-
-const SALES_AGENT_GALLERY: MediaItem[] = [
-  {
-    kind: "image",
-    src: "/images/fishtech-sales-agent/ops-inbox-phone.jpg",
-    focus: "top",
-    alt: "FishTech Ops inbox on a phone: a sample chat in English and Shona with the agent's replies",
-  },
-  {
-    kind: "image",
-    src: "/images/fishtech-sales-agent/ops-quotations-phone.jpg",
-    focus: "top",
-    alt: "FishTech Ops quotations on a phone, one waiting for approval (sample data, amounts hidden)",
-  },
-  {
-    kind: "image",
-    src: "/images/fishtech-sales-agent/quote-pdf.jpg",
-    focus: "top",
-    alt: "A FishTech quotation PDF made by the agent's code for an invented customer, prices hidden",
-  },
-];
-
-type AlternatingProject = Omit<AlternatingProjectProps, "variants" | "side"> & {
+type AlternatingProject = Omit<AlternatingProjectProps, "side"> & {
   groups: ProjectGroup[];
 };
 
 // Sides are not stored: they alternate over whatever is shown, starting
-// left, so a filtered list still reads left, right, left.
+// left, so a filtered list still reads left, right, left. Long copy and the
+// screen galleries live on each project's own page.
 const ALTERNATING: AlternatingProject[] = [
   {
     number: "02",
     category: "CLIENT SYSTEM",
     title: "Health & Longevity",
-    meta: "healthandlongevity.co.zw · Dr Misheck Ruwende",
-    description:
-      "Health platform for a Harare doctor and health educator. Members pay through Paynow, book video consultations and clinic visits, read paid articles and video lessons, and request nurse aides for care at home. Personal details are encrypted, it installs like an app and works offline, and the practice publishes everything from an admin area built for a phone.",
-    tags: ["Astro", "React", "TypeScript", "Cloudflare Workers", "D1", "Paynow", "Playwright"],
+    sentence:
+      "Health platform for a Harare doctor: Paynow memberships, video consults and nurse-aide matching.",
+    tags: ["Astro", "Cloudflare Workers", "Paynow"],
     status: "live",
-    primaryLink: {
-      label: "View Live",
-      href: "https://www.healthandlongevity.co.zw",
-      external: true,
-    },
-    secondaryLink: {
-      label: "View Case Study",
-      href: "/projects/health-and-longevity",
-    },
+    href: "/projects/health-and-longevity",
+    live: { label: "View Live", href: "https://www.healthandlongevity.co.zw" },
     mockComponent: <HealthLongevityShowcase />,
-    gallery: <MediaGallery layout="strip" items={HEALTH_LONGEVITY_GALLERY} />,
     groups: ["client-systems"],
     statusKey: "healthAndLongevity",
   },
@@ -215,18 +95,13 @@ const ALTERNATING: AlternatingProject[] = [
     number: "03",
     category: "CLIENT WORK",
     title: "The Endoscopy Suite",
-    meta: "endoscopysuite.co.zw · Dr Muguti",
-    description:
-      "Website for a specialist surgeon's endoscopy and surgery practice in Belvedere, Harare. All 42 services explained in plain words, preparation guides, an emergencies page that puts the phone number first, and appointment requests confirmed on WhatsApp. Built phone-first, because that is how most patients will find it.",
-    tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Cloudflare Pages"],
+    sentence:
+      "Website for a Harare endoscopy and surgery practice, with booking requests confirmed on WhatsApp.",
+    tags: ["Next.js", "TypeScript", "Cloudflare Pages"],
     status: "live",
-    primaryLink: {
-      label: "View Live",
-      href: "https://www.endoscopysuite.co.zw",
-      external: true,
-    },
+    href: "/projects/endoscopy-suite",
+    live: { label: "View Live", href: "https://www.endoscopysuite.co.zw" },
     mockComponent: <EndoscopySuiteShowcase />,
-    gallery: <MediaGallery layout="strip" items={ENDOSCOPY_GALLERY} />,
     groups: ["client-systems", "websites"],
     statusKey: "endoscopy",
   },
@@ -234,17 +109,11 @@ const ALTERNATING: AlternatingProject[] = [
     number: "04",
     category: "AUTOMATION",
     title: "FishTech Sales Agent & Ops",
-    meta: "WhatsApp agent · ops.fishtech.co.zw",
-    description:
-      "AI sales agent on FishTech's WhatsApp line, live with real customers. It answers fish-farming questions in English or Shona, prices ponds, nets, fingerlings and delivery from one price list, and sends quotations as a PDF. Code checks every reply before it goes out, and large quotations wait for approval. Behind it, an operations console holds every chat, client and quotation.",
-    tags: ["Python", "FastAPI", "LLM tool use", "WhatsApp Cloud API", "Render"],
+    sentence: "AI agent that answers and quotes on WhatsApp. Code checks every reply.",
+    tags: ["Python", "FastAPI", "WhatsApp Cloud API"],
     status: "live",
-    primaryLink: {
-      label: "View Case Study",
-      href: "/projects/fishtech-sales-agent",
-    },
+    href: "/projects/fishtech-sales-agent",
     mockComponent: <SalesAgentShowcase />,
-    gallery: <MediaGallery layout="strip" items={SALES_AGENT_GALLERY} />,
     groups: ["automation-ai"],
     statusKey: "ops",
   },
@@ -252,18 +121,13 @@ const ALTERNATING: AlternatingProject[] = [
     number: "05",
     category: "COMPANY SITE",
     title: "FishTech Consultancy",
-    meta: "fishtech.co.zw · Lead-gen platform",
-    description:
-      "Company site for a Zimbabwean fish-farming services business. Prices load from a single price list, and a pond calculator gives an instant cost that sends straight to WhatsApp for a written quote.",
-    tags: ["Astro", "TypeScript", "GSAP", "Vercel"],
+    sentence:
+      "Company site with live prices and a pond calculator that sends a quote request to WhatsApp.",
+    tags: ["Astro", "TypeScript", "GSAP"],
     status: "live",
-    primaryLink: {
-      label: "View Live",
-      href: "https://www.fishtech.co.zw",
-      external: true,
-    },
+    href: "/projects/fishtech-consultancy",
+    live: { label: "View Live", href: "https://www.fishtech.co.zw" },
     mockComponent: <FishTechConsultancyShowcase />,
-    gallery: <MediaGallery layout="strip" items={FISHTECH_CONSULTANCY_GALLERY} />,
     groups: ["websites"],
     statusKey: "fishtech",
   },
@@ -271,11 +135,11 @@ const ALTERNATING: AlternatingProject[] = [
     number: "06",
     category: "EMBEDDED · SOLAR",
     title: "FishTech Feeder",
-    meta: "Working prototype · Exhibited at ZAS 2026",
-    description:
-      "Solar-powered automatic fish feeder in welded steel. The first unit is built and dispensing feed. An auger turns a counted number of revolutions to measure each dose, and a spinning disc spreads it over the pond. It works out the daily ration from fish size and water temperature with no internet, and can take a feed instruction from the Precision Feeding System over Wi-Fi. Two sizes, 10 kg and 25 kg, matched to standard feed bags.",
-    tags: ["ESP32", "Embedded", "Solar", "IoT", "Firmware"],
+    sentence:
+      "Solar automatic fish feeder that meters each dose. Working prototype, exhibited at ZAS 2026.",
+    tags: ["ESP32", "Embedded", "Solar"],
     status: "building",
+    href: "/projects/fishtech-feeder",
     mockComponent: (
       <LoopingClip
         src="/videos/feeder-dispensing.mp4"
@@ -284,23 +148,18 @@ const ALTERNATING: AlternatingProject[] = [
         objectPosition="50% 50%"
       />
     ),
-    gallery: <MediaGallery layout="strip" items={FEEDER_GALLERY} />,
     groups: ["products-hardware"],
   },
   {
     number: "07",
     category: "PRODUCTION",
     title: "Steadyhands Catering",
-    meta: "steadyhandscatering.com · BATA Club",
-    description:
-      "Full-stack catering platform with Paynow payment integration, online ordering, and WhatsApp communication funnel. Live, transacting, and deployed on Vercel.",
-    tags: ["Next.js", "TypeScript", "Node.js", "Paynow", "Vercel"],
+    sentence:
+      "Catering platform for Bata Club with Paynow payments and online ordering.",
+    tags: ["Next.js", "Paynow", "Vercel"],
     status: "live",
-    primaryLink: {
-      label: "View Live",
-      href: "https://steadyhandscatering.com",
-      external: true,
-    },
+    href: "/projects/steadyhands",
+    live: { label: "View Live", href: "https://steadyhandscatering.com" },
     mockComponent: <SteadyhandsMock />,
     groups: ["client-systems"],
     statusKey: "steadyhands",
@@ -309,15 +168,14 @@ const ALTERNATING: AlternatingProject[] = [
     number: "08",
     category: "META",
     title: "This Portfolio",
-    meta: "You're looking at it",
-    description:
-      "Awwwards-ambition portfolio. Next.js 15, Geist, motion choreography, screenshot-driven build loop.",
-    tags: ["Next.js 15", "TypeScript", "Motion"],
+    sentence:
+      "The site you're on. Next.js, a live status check and a tested filter.",
+    tags: ["Next.js", "TypeScript", "Motion"],
     status: "meta",
-    primaryLink: {
+    href: "/projects/this-portfolio",
+    live: {
       label: "View on GitHub",
       href: "https://github.com/DACDaniels/daniel-portfolio",
-      external: true,
     },
     mockComponent: <PortfolioMock />,
     groups: ["websites"],
@@ -455,8 +313,8 @@ export function Projects() {
             <motion.div
               layout={!reduceMotion}
               transition={layoutTransition}
-              className={`flex flex-col gap-20 md:gap-28 ${
-                showFlagship ? "mt-16 md:mt-24" : ""
+              className={`flex flex-col gap-14 md:gap-24 ${
+                showFlagship ? "mt-14 md:mt-24" : ""
               }`}
             >
               <AnimatePresence mode="popLayout" initial={false}>

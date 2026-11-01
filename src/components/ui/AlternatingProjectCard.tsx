@@ -1,77 +1,55 @@
-"use client";
-
-import { motion, type Variants } from "motion/react";
 import type { ReactNode } from "react";
 import { BorderBeam } from "@/components/ui/BorderBeam";
-import { LiveCheck } from "@/components/ui/LiveCheck";
+import {
+  CardEyebrow,
+  CardLinks,
+  CardStatus,
+  CardTags,
+  type ProjectLiveLink,
+  type ProjectStatus,
+} from "@/components/ui/ProjectCardParts";
 import type { StatusKey } from "@/lib/siteStatus";
 
 export type AlternatingProjectProps = {
   number: string;
   category: string;
   title: string;
-  meta: string;
-  description: string;
+  /** One sentence, at most 20 words. */
+  sentence: string;
+  /** At most three. */
   tags: string[];
-  status: "live" | "building" | "research" | "meta";
-  primaryLink?: { label: string; href: string; external?: boolean };
-  secondaryLink?: { label: string; href: string; external?: boolean };
+  status: ProjectStatus;
+  /** The project's own page. The whole card links here. */
+  href: string;
+  /** View Live, or View on GitHub. Opens in a new tab. */
+  live?: ProjectLiveLink;
   mockComponent: ReactNode;
-  /** Optional media strip shown under the description. */
-  gallery?: ReactNode;
   side: "left" | "right";
   /** Which /api/status check backs this card's live line, if any. */
   statusKey?: StatusKey;
-  variants?: Variants;
 };
 
 export function AlternatingProjectCard({
   number,
   category,
   title,
-  meta,
-  description,
+  sentence,
   tags,
   status,
-  primaryLink,
-  secondaryLink,
+  href,
+  live,
   mockComponent,
-  gallery,
   side,
   statusKey,
-  variants,
 }: AlternatingProjectProps) {
-  const statusLabel =
-    status === "live"
-      ? "LIVE"
-      : status === "building"
-        ? "BUILDING"
-        : status === "research"
-          ? "RESEARCH"
-          : "META";
-
-  const statusStyles =
-    status === "live"
-      ? "text-accent border-accent/35"
-      : status === "building"
-        ? "text-[#FFC04D] border-[#FFC04D]/35"
-        : status === "research"
-          ? "text-white/85 border-white/15"
-          : "text-white/60 border-white/10";
-
-  // The teal dot means a fresh, passing check, so it lives on LiveCheck,
-  // not on the LIVE badge. BUILDING keeps its amber dot.
-  const showDot = status === "building";
-
   return (
-    <motion.article
-      variants={variants}
+    <article
       data-project-card={title}
-      className="group relative grid grid-cols-1 items-center gap-6 md:gap-10 lg:grid-cols-12 lg:gap-12"
+      className="group relative grid grid-cols-1 items-center gap-5 rounded-2xl md:gap-8 lg:grid-cols-12 lg:gap-12"
     >
       <div
         data-cursor-interactive
-        className={`relative overflow-hidden rounded-2xl border border-white/[0.06] bg-bg-surface transition-[border-color,transform] duration-300 group-hover:-translate-y-1 group-hover:border-accent/30 lg:col-span-7 ${
+        className={`relative overflow-hidden rounded-2xl border border-white/[0.06] bg-bg-surface transition-[border-color,transform] duration-300 group-hover:-translate-y-1 group-hover:border-accent/30 motion-reduce:group-hover:translate-y-0 lg:col-span-7 ${
           side === "right" ? "lg:order-2" : "lg:order-1"
         }`}
         style={{
@@ -83,54 +61,19 @@ export function AlternatingProjectCard({
           <BorderBeam duration={5} />
         </span>
         <div className="aspect-[16/10] overflow-hidden">
-          <div className="absolute right-3 top-3 z-10 flex items-center gap-1.5">
-          {status === "live" && statusKey ? (
-            <LiveCheck statusKey={statusKey} />
-          ) : null}
-          <div
-            className={`inline-flex items-center gap-1.5 rounded-full border bg-black/80 px-2 py-1 backdrop-blur-md ${statusStyles}`}
-            style={{
-              fontFamily: "var(--font-jetbrains-mono)",
-              fontSize: "10px",
-              letterSpacing: "0.05em",
-              lineHeight: 1,
-            }}
-          >
-            {showDot ? (
-              <span
-                aria-hidden
-                className="block h-[5px] w-[5px] rounded-full bg-[#FFC04D]"
-                style={{ animation: "live-pulse 2s ease-in-out infinite" }}
-              />
-            ) : null}
-            {statusLabel}
-          </div>
-          </div>
-
-          <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.03]">
+          <CardStatus status={status} statusKey={statusKey} />
+          <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.03] motion-reduce:group-hover:scale-100">
             {mockComponent}
           </div>
         </div>
       </div>
 
       <div
-        className={`flex flex-col gap-4 lg:col-span-5 ${
+        className={`flex flex-col gap-3 md:gap-4 lg:col-span-5 ${
           side === "right" ? "lg:order-1 lg:pr-2" : "lg:order-2 lg:pl-2"
         }`}
       >
-        <div
-          className="flex items-center gap-2 text-white/60"
-          style={{
-            fontFamily: "var(--font-jetbrains-mono)",
-            fontSize: "10px",
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-          }}
-        >
-          <span>{number}</span>
-          <span aria-hidden className="h-px w-6 bg-white/20" />
-          <span>{category}</span>
-        </div>
+        <CardEyebrow number={number} category={category} />
 
         <h3
           className="font-heading font-semibold text-white"
@@ -144,100 +87,16 @@ export function AlternatingProjectCard({
         </h3>
 
         <p
-          className="italic text-white/60"
-          style={{
-            fontFamily: "var(--font-jetbrains-mono)",
-            fontSize: "12px",
-            marginTop: "-4px",
-            letterSpacing: "0.02em",
-          }}
+          className="max-w-[44ch] text-text-secondary"
+          style={{ fontFamily: "var(--font-dm-sans)", fontSize: "15px", lineHeight: 1.65 }}
         >
-          {meta}
+          {sentence}
         </p>
 
-        <p
-          className="text-white/60"
-          style={{
-            fontFamily: "var(--font-dm-sans)",
-            fontSize: "15px",
-            lineHeight: 1.65,
-          }}
-        >
-          {description}
-        </p>
+        <CardTags tags={tags} />
 
-        {gallery ? <div className="max-w-md pt-1">{gallery}</div> : null}
-
-        <div className="flex flex-wrap gap-1.5">
-          {tags.map((tag) => (
-            <span
-              key={tag}
-              style={{
-                fontFamily: "var(--font-jetbrains-mono)",
-                fontSize: "10px",
-                color: "rgba(0, 229, 192, 0.9)",
-                background: "rgba(0, 229, 192, 0.08)",
-                border: "1px solid rgba(0, 229, 192, 0.15)",
-                padding: "4px 8px",
-                borderRadius: "100px",
-                lineHeight: 1.4,
-              }}
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        <div className="flex flex-wrap items-center gap-5 pt-1">
-          {primaryLink ? (
-            <ProjectLink {...primaryLink} variant="primary" />
-          ) : null}
-          {secondaryLink ? (
-            <ProjectLink {...secondaryLink} variant="secondary" />
-          ) : null}
-        </div>
+        <CardLinks title={title} href={href} live={live} />
       </div>
-    </motion.article>
-  );
-}
-
-function ProjectLink({
-  href,
-  label,
-  external,
-  variant,
-}: {
-  href: string;
-  label: string;
-  external?: boolean;
-  variant: "primary" | "secondary";
-}) {
-  const externalProps = external
-    ? { target: "_blank", rel: "noopener noreferrer" }
-    : {};
-
-  return (
-    <a
-      href={href}
-      {...externalProps}
-      className={`group/link inline-flex items-center gap-1.5 transition-colors duration-200 ${
-        variant === "primary"
-          ? "text-accent hover:text-white"
-          : "text-white/55 hover:text-white"
-      }`}
-      style={{
-        fontFamily: "var(--font-jetbrains-mono)",
-        fontSize: "12px",
-        letterSpacing: "0.02em",
-      }}
-    >
-      <span className="border-b border-current pb-0.5">{label}</span>
-      <span
-        aria-hidden
-        className="transition-transform duration-300 group-hover/link:translate-x-0.5"
-      >
-        →
-      </span>
-    </a>
+    </article>
   );
 }
