@@ -1,8 +1,7 @@
 import Image from "next/image";
 
 /**
- * Card visual for Health & Longevity: real screenshots from the platform's
- * local preview (sample content only). The desktop home page sits in a
+ * Card visual for Health & Longevity: real screenshots of the live site. The desktop home page sits in a
  * browser frame; the phone view rises from the bottom-right corner over it.
  * Background is the site's own navy hero gradient (--color-hero to
  * --color-hero-deep in its tokens).

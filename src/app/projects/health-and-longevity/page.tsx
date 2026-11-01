@@ -140,12 +140,12 @@ const STACK: StackGroup[] = [
 ];
 
 const SCREENS: MediaItem[] = [
-  { kind: "image", wide: true, src: "/images/health-longevity/hl-home-desktop.jpg", alt: "Health & Longevity home page on a laptop: the six service tiles and a sample featured article" },
-  { kind: "image", src: "/images/health-longevity/hl-membership-phone.jpg", focus: "top", alt: "Membership pay step on a phone, with EcoCash picked and the pretend Paynow test panel" },
+  { kind: "image", wide: true, src: "/images/health-longevity/hl-home-desktop.jpg", alt: "Health & Longevity home page on a laptop: the six service tiles and a featured members' article" },
+  { kind: "image", src: "/images/health-longevity/hl-membership-phone.jpg", focus: "top", alt: "Membership page on a phone: pay once and keep it, or buy one article, set or lesson" },
   { kind: "image", wide: true, src: "/images/health-longevity/hl-admin-today-desktop.jpg", alt: "Health & Longevity admin Today screen on a laptop, with the next video consult (sample data)" },
   { kind: "image", src: "/images/health-longevity/hl-consult-phone.jpg", focus: "top", alt: "Video consult booking on a phone, with a day and a time picked" },
   { kind: "image", src: "/images/health-longevity/hl-aide-match-phone.jpg", focus: "top", alt: "Nurse-aide match screen on a phone: three sample aides, nearest first" },
-  { kind: "image", src: "/images/health-longevity/hl-articles-phone.jpg", focus: "top", alt: "Articles page on a phone, with sample free and paid articles by topic" },
+  { kind: "image", src: "/images/health-longevity/hl-articles-phone.jpg", focus: "top", alt: "Articles page on a phone: search, topics and the newest members' article" },
   { kind: "image", src: "/images/health-longevity/hl-admin-today-phone.jpg", focus: "top", alt: "Admin Today screen on a phone, with the next video consult (sample data)" },
 ];
 
@@ -184,7 +184,7 @@ export default function HealthLongevityCaseStudyPage() {
             <HealthLongevityShowcase />
           </motion.div>
           <p className="mt-3 text-text-tertiary" style={{ fontFamily: "var(--font-jetbrains-mono)", fontSize: "11px" }}>
-            Screens from the local preview with sample content.
+            Screens from the live site.
           </p>
         </div>
 
@@ -232,7 +232,10 @@ export default function HealthLongevityCaseStudyPage() {
           </CaseSection>
 
           <CaseSection id="screens" eyebrow="// screens" title="Screens">
-            <p>Sample content only, captured from the local preview. Tap a screen to open it.</p>
+            <p>
+              Public pages are captured from the live site. Screens behind a request or sign-in come from a local copy
+              with sample data. Tap a screen to open it.
+            </p>
             <MediaGallery layout="grid" items={SCREENS} className="pt-2" />
           </CaseSection>
 
