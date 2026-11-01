@@ -13,6 +13,8 @@
 #                         links, structured data, sitemap, previews noindex)
 #   5. Filter check    -> `node scripts/check-filters.mjs` (starts the built
 #                         site, clicks every project chip in every order)
+#   6. Iris simulation check -> `node scripts/check-iris-sim.mjs` (the
+#                         TypeScript port against the Python fixtures)
 #
 # Exits non-zero on the first step that fails so CI surfaces the
 # correct failing stage. set -euo pipefail makes the script fail
@@ -50,6 +52,7 @@ run_step "Type check"    npx tsc --noEmit
 run_step "Production build" npm run build
 run_step "Search check"  node scripts/check-seo.mjs
 run_step "Filter check"  node scripts/check-filters.mjs
+run_step "Iris simulation check" node scripts/check-iris-sim.mjs
 
 bold ""
 green "All preflight checks passed. Safe to deploy."

@@ -1,0 +1,711 @@
+{
+  "source": "github.com/DACDaniels/fishtech-precision-feeding-system",
+  "commit": "e624125d31ec798014ef3803f81f97a2606f80b9",
+  "generated": "2026-11-01",
+  "note": "Outputs from the real Python functions (BiomassEngine, BiomassEstimator.estimate, BiomassHistory, PrecisionFeedingEngine). Regenerate only from that repo.",
+  "cases": [
+    {
+      "name": "tilapia-growout-midday",
+      "input": {
+        "species": "tilapia_nilotica",
+        "bboxes": [
+          [0, 0, 142, 47],
+          [10, 0, 161, 50],
+          [20, 0, 158, 46],
+          [30, 0, 190, 53],
+          [40, 0, 189, 50],
+          [50, 0, 205, 52],
+          [60, 0, 191, 44],
+          [70, 0, 214, 48],
+          [80, 0, 238, 53],
+          [90, 0, 253, 54],
+          [100, 0, 240, 47],
+          [110, 0, 260, 50]
+        ],
+        "stockingCount": 1000,
+        "daysSinceStocking": 60,
+        "loggedMortality": 0,
+        "hour": 11,
+        "waterTempC": 28.0,
+        "minutesSinceLastFeed": null,
+        "lastFeedResponse": "unknown"
+      },
+      "sample": {
+        "fish_count": 12,
+        "accepted_count": 12,
+        "average_length_cm": 14.84,
+        "average_weight_g": 57.96,
+        "total_biomass_g": 695.57,
+        "length_stddev_cm": 0.97,
+        "gate_drop_reasons": {}
+      },
+      "estimate": {
+        "estimated_population": 960,
+        "estimated_total_biomass_g": 55641.6,
+        "confidence_lower_g": 49468.2,
+        "confidence_upper_g": 61815.0,
+        "sample_quality": "medium"
+      },
+      "feed": {
+        "recommended_feed_g": 463.7,
+        "should_feed_now": true,
+        "reason": "precision feed calculation",
+        "base_rate": 0.025,
+        "temp_multiplier": 1.0,
+        "time_multiplier": 1.0,
+        "response_multiplier": 1.0,
+        "next_feed_window": null,
+        "feeds_per_day": 3
+      }
+    },
+    {
+      "name": "tilapia-fingerling-cool",
+      "input": {
+        "species": "tilapia_nilotica",
+        "bboxes": [
+          [0, 0, 45, 15],
+          [10, 0, 62, 17],
+          [20, 0, 78, 19],
+          [30, 0, 79, 16],
+          [40, 0, 95, 18],
+          [50, 0, 101, 17],
+          [60, 0, 107, 16],
+          [70, 0, 129, 20],
+          [80, 0, 133, 18]
+        ],
+        "stockingCount": 2000,
+        "daysSinceStocking": 10,
+        "loggedMortality": 0,
+        "hour": 8,
+        "waterTempC": 21.5,
+        "minutesSinceLastFeed": 240,
+        "lastFeedResponse": "consumed_fast"
+      },
+      "sample": {
+        "fish_count": 9,
+        "accepted_count": 9,
+        "average_length_cm": 5.21,
+        "average_weight_g": 2.59,
+        "total_biomass_g": 23.29,
+        "length_stddev_cm": 0.473,
+        "gate_drop_reasons": {}
+      },
+      "estimate": {
+        "estimated_population": 1986,
+        "estimated_total_biomass_g": 5143.7,
+        "confidence_lower_g": 4228.5,
+        "confidence_upper_g": 6059.0,
+        "sample_quality": "medium"
+      },
+      "feed": {
+        "recommended_feed_g": 34.3,
+        "should_feed_now": true,
+        "reason": "precision feed calculation",
+        "base_rate": 0.06,
+        "temp_multiplier": 0.60625,
+        "time_multiplier": 0.5,
+        "response_multiplier": 1.1,
+        "next_feed_window": null,
+        "feeds_per_day": 3
+      }
+    },
+    {
+      "name": "tilapia-juvenile-leftover",
+      "input": {
+        "species": "tilapia_nilotica",
+        "bboxes": [
+          [0, 0, 81, 27],
+          [10, 0, 104, 31],
+          [20, 0, 122, 34],
+          [30, 0, 107, 26],
+          [40, 0, 151, 37],
+          [50, 0, 140, 30],
+          [60, 0, 148, 29],
+          [70, 0, 175, 35],
+          [80, 0, 179, 33],
+          [90, 0, 182, 31],
+          [100, 0, 183, 28],
+          [110, 0, 210, 33],
+          [120, 0, 216, 32],
+          [130, 0, 219, 30],
+          [140, 0, 248, 36],
+          [150, 0, 241, 30],
+          [160, 0, 257, 32],
+          [170, 0, 256, 29],
+          [180, 0, 281, 34],
+          [190, 0, 283, 31],
+          [200, 0, 295, 32],
+          [210, 0, 297, 29]
+        ],
+        "stockingCount": 1500,
+        "daysSinceStocking": 90,
+        "loggedMortality": 0,
+        "hour": 10,
+        "waterTempC": 27.0,
+        "minutesSinceLastFeed": 300,
+        "lastFeedResponse": "leftover"
+      },
+      "sample": {
+        "fish_count": 22,
+        "accepted_count": 22,
+        "average_length_cm": 9.39,
+        "average_weight_g": 14.98,
+        "total_biomass_g": 329.58,
+        "length_stddev_cm": 0.866,
+        "gate_drop_reasons": {}
+      },
+      "estimate": {
+        "estimated_population": 1410,
+        "estimated_total_biomass_g": 21121.8,
+        "confidence_lower_g": 18679.8,
+        "confidence_upper_g": 23563.8,
+        "sample_quality": "high"
+      },
+      "feed": {
+        "recommended_feed_g": 211.2,
+        "should_feed_now": true,
+        "reason": "precision feed calculation",
+        "base_rate": 0.04,
+        "temp_multiplier": 1.0,
+        "time_multiplier": 1.0,
+        "response_multiplier": 0.75,
+        "next_feed_window": null,
+        "feeds_per_day": 3
+      }
+    },
+    {
+      "name": "tilapia-market-hot",
+      "input": {
+        "species": "tilapia_nilotica",
+        "bboxes": [
+          [0, 0, 220, 73],
+          [10, 0, 255, 82],
+          [20, 0, 233, 71],
+          [30, 0, 268, 79],
+          [40, 0, 291, 84]
+        ],
+        "stockingCount": 800,
+        "daysSinceStocking": 200,
+        "loggedMortality": 0,
+        "hour": 15,
+        "waterTempC": 31.5,
+        "minutesSinceLastFeed": null,
+        "lastFeedResponse": "consumed_slow"
+      },
+      "sample": {
+        "fish_count": 5,
+        "accepted_count": 5,
+        "average_length_cm": 23.34,
+        "average_weight_g": 223.38,
+        "total_biomass_g": 1116.92,
+        "length_stddev_cm": 1.629,
+        "gate_drop_reasons": {}
+      },
+      "estimate": {
+        "estimated_population": 704,
+        "estimated_total_biomass_g": 157259.5,
+        "confidence_lower_g": 128397.3,
+        "confidence_upper_g": 186121.7,
+        "sample_quality": "low"
+      },
+      "feed": {
+        "recommended_feed_g": 460.0,
+        "should_feed_now": true,
+        "reason": "precision feed calculation",
+        "base_rate": 0.015,
+        "temp_multiplier": 0.65,
+        "time_multiplier": 1.0,
+        "response_multiplier": 0.9,
+        "next_feed_window": null,
+        "feeds_per_day": 3
+      }
+    },
+    {
+      "name": "tilapia-logged-mortality",
+      "input": {
+        "species": "tilapia_nilotica",
+        "bboxes": [
+          [0, 0, 125, 42],
+          [10, 0, 140, 43],
+          [20, 0, 141, 40],
+          [30, 0, 166, 45]
+        ],
+        "stockingCount": 1200,
+        "daysSinceStocking": 45,
+        "loggedMortality": 87,
+        "hour": 9,
+        "waterTempC": null,
+        "minutesSinceLastFeed": null,
+        "lastFeedResponse": "consumed_normal"
+      },
+      "sample": {
+        "fish_count": 4,
+        "accepted_count": 4,
+        "average_length_cm": 12.8,
+        "average_weight_g": 37.08,
+        "total_biomass_g": 148.31,
+        "length_stddev_cm": 0.648,
+        "gate_drop_reasons": {}
+      },
+      "estimate": {
+        "estimated_population": 1113,
+        "estimated_total_biomass_g": 41270.0,
+        "confidence_lower_g": 35127.5,
+        "confidence_upper_g": 47412.6,
+        "sample_quality": "low"
+      },
+      "feed": {
+        "recommended_feed_g": 343.9,
+        "should_feed_now": true,
+        "reason": "precision feed calculation",
+        "base_rate": 0.025,
+        "temp_multiplier": 1.0,
+        "time_multiplier": 1.0,
+        "response_multiplier": 1.0,
+        "next_feed_window": null,
+        "feeds_per_day": 3
+      }
+    },
+    {
+      "name": "tilapia-very-low-two-fish",
+      "input": {
+        "species": "tilapia_nilotica",
+        "bboxes": [
+          [0, 0, 182, 61],
+          [10, 0, 205, 65]
+        ],
+        "stockingCount": 500,
+        "daysSinceStocking": 120,
+        "loggedMortality": 0,
+        "hour": 12,
+        "waterTempC": 29.0,
+        "minutesSinceLastFeed": null,
+        "lastFeedResponse": "unknown"
+      },
+      "sample": {
+        "fish_count": 2,
+        "accepted_count": 2,
+        "average_length_cm": 18.85,
+        "average_weight_g": 117.25,
+        "total_biomass_g": 234.5,
+        "length_stddev_cm": 0.919,
+        "gate_drop_reasons": {}
+      },
+      "estimate": {
+        "estimated_population": 460,
+        "estimated_total_biomass_g": 53935.0,
+        "confidence_lower_g": 37535.6,
+        "confidence_upper_g": 70334.4,
+        "sample_quality": "very_low"
+      },
+      "feed": {
+        "recommended_feed_g": 449.5,
+        "should_feed_now": true,
+        "reason": "precision feed calculation",
+        "base_rate": 0.025,
+        "temp_multiplier": 1.0,
+        "time_multiplier": 1.0,
+        "response_multiplier": 1.0,
+        "next_feed_window": null,
+        "feeds_per_day": 3
+      }
+    },
+    {
+      "name": "tilapia-single-fish",
+      "input": {
+        "species": "tilapia_nilotica",
+        "bboxes": [
+          [0, 0, 164, 55]
+        ],
+        "stockingCount": 500,
+        "daysSinceStocking": 120,
+        "loggedMortality": 0,
+        "hour": 13,
+        "waterTempC": 26.0,
+        "minutesSinceLastFeed": null,
+        "lastFeedResponse": "unknown"
+      },
+      "sample": {
+        "fish_count": 1,
+        "accepted_count": 1,
+        "average_length_cm": 16.4,
+        "average_weight_g": 77.16,
+        "total_biomass_g": 77.16,
+        "length_stddev_cm": 0.0,
+        "gate_drop_reasons": {}
+      },
+      "estimate": {
+        "estimated_population": 460,
+        "estimated_total_biomass_g": 35493.6,
+        "confidence_lower_g": 19521.5,
+        "confidence_upper_g": 51465.7,
+        "sample_quality": "very_low"
+      },
+      "feed": {
+        "recommended_feed_g": 295.8,
+        "should_feed_now": true,
+        "reason": "precision feed calculation",
+        "base_rate": 0.025,
+        "temp_multiplier": 1.0,
+        "time_multiplier": 1.0,
+        "response_multiplier": 1.0,
+        "next_feed_window": null,
+        "feeds_per_day": 3
+      }
+    },
+    {
+      "name": "tilapia-gate-rejects",
+      "input": {
+        "species": "tilapia_nilotica",
+        "bboxes": [
+          [0, 0, 32, 11],
+          [10, 0, 150, 47],
+          [20, 0, 490, 157],
+          [30, 0, 182, 51],
+          [40, 0, 174, 45],
+          [50, 0, 79, 10],
+          [60, 0, 208, 49]
+        ],
+        "stockingCount": 1000,
+        "daysSinceStocking": 30,
+        "loggedMortality": 0,
+        "hour": 14,
+        "waterTempC": 27.5,
+        "minutesSinceLastFeed": null,
+        "lastFeedResponse": "unknown"
+      },
+      "sample": {
+        "fish_count": 7,
+        "accepted_count": 4,
+        "average_length_cm": 14.35,
+        "average_weight_g": 52.19,
+        "total_biomass_g": 208.77,
+        "length_stddev_cm": 0.806,
+        "gate_drop_reasons": {
+          "length_below_min": 2,
+          "length_above_max": 1
+        }
+      },
+      "estimate": {
+        "estimated_population": 980,
+        "estimated_total_biomass_g": 51146.2,
+        "confidence_lower_g": 44761.7,
+        "confidence_upper_g": 57530.7,
+        "sample_quality": "low"
+      },
+      "feed": {
+        "recommended_feed_g": 426.2,
+        "should_feed_now": true,
+        "reason": "precision feed calculation",
+        "base_rate": 0.025,
+        "temp_multiplier": 1.0,
+        "time_multiplier": 1.0,
+        "response_multiplier": 1.0,
+        "next_feed_window": null,
+        "feeds_per_day": 3
+      }
+    },
+    {
+      "name": "tilapia-too-cold",
+      "input": {
+        "species": "tilapia_nilotica",
+        "bboxes": [
+          [0, 0, 140, 47],
+          [10, 0, 160, 50],
+          [20, 0, 180, 53]
+        ],
+        "stockingCount": 1000,
+        "daysSinceStocking": 60,
+        "loggedMortality": 0,
+        "hour": 11,
+        "waterTempC": 16.0,
+        "minutesSinceLastFeed": null,
+        "lastFeedResponse": "unknown"
+      },
+      "sample": {
+        "fish_count": 3,
+        "accepted_count": 3,
+        "average_length_cm": 15.0,
+        "average_weight_g": 59.66,
+        "total_biomass_g": 178.99,
+        "length_stddev_cm": 1.0,
+        "gate_drop_reasons": {}
+      },
+      "estimate": {
+        "estimated_population": 960,
+        "estimated_total_biomass_g": 57273.6,
+        "confidence_lower_g": 44311.4,
+        "confidence_upper_g": 70235.8,
+        "sample_quality": "low"
+      },
+      "feed": {
+        "recommended_feed_g": 0.0,
+        "should_feed_now": false,
+        "reason": "water temp 16.0°C outside feeding range [18.0-33.0°C]",
+        "base_rate": 0.025,
+        "temp_multiplier": 0.0,
+        "time_multiplier": 1.0,
+        "response_multiplier": 1.0,
+        "next_feed_window": null,
+        "feeds_per_day": 3
+      }
+    },
+    {
+      "name": "tilapia-outside-hours",
+      "input": {
+        "species": "tilapia_nilotica",
+        "bboxes": [
+          [0, 0, 140, 47],
+          [10, 0, 160, 50],
+          [20, 0, 180, 53]
+        ],
+        "stockingCount": 1000,
+        "daysSinceStocking": 60,
+        "loggedMortality": 0,
+        "hour": 20,
+        "waterTempC": 28.0,
+        "minutesSinceLastFeed": null,
+        "lastFeedResponse": "unknown"
+      },
+      "sample": {
+        "fish_count": 3,
+        "accepted_count": 3,
+        "average_length_cm": 15.0,
+        "average_weight_g": 59.66,
+        "total_biomass_g": 178.99,
+        "length_stddev_cm": 1.0,
+        "gate_drop_reasons": {}
+      },
+      "estimate": {
+        "estimated_population": 960,
+        "estimated_total_biomass_g": 57273.6,
+        "confidence_lower_g": 44311.4,
+        "confidence_upper_g": 70235.8,
+        "sample_quality": "low"
+      },
+      "feed": {
+        "recommended_feed_g": 0.0,
+        "should_feed_now": false,
+        "reason": "outside feeding hours (07:00-18:00)",
+        "base_rate": 0.025,
+        "temp_multiplier": 1.0,
+        "time_multiplier": 0.0,
+        "response_multiplier": 1.0,
+        "next_feed_window": "tomorrow 09:00",
+        "feeds_per_day": 3
+      }
+    },
+    {
+      "name": "tilapia-interval-guard",
+      "input": {
+        "species": "tilapia_nilotica",
+        "bboxes": [
+          [0, 0, 140, 47],
+          [10, 0, 160, 50],
+          [20, 0, 180, 53]
+        ],
+        "stockingCount": 1000,
+        "daysSinceStocking": 60,
+        "loggedMortality": 0,
+        "hour": 11,
+        "waterTempC": 28.0,
+        "minutesSinceLastFeed": 90,
+        "lastFeedResponse": "unknown"
+      },
+      "sample": {
+        "fish_count": 3,
+        "accepted_count": 3,
+        "average_length_cm": 15.0,
+        "average_weight_g": 59.66,
+        "total_biomass_g": 178.99,
+        "length_stddev_cm": 1.0,
+        "gate_drop_reasons": {}
+      },
+      "estimate": {
+        "estimated_population": 960,
+        "estimated_total_biomass_g": 57273.6,
+        "confidence_lower_g": 44311.4,
+        "confidence_upper_g": 70235.8,
+        "sample_quality": "low"
+      },
+      "feed": {
+        "recommended_feed_g": 0.0,
+        "should_feed_now": false,
+        "reason": "only 90 min since last feed; minimum interval is 3.0h",
+        "base_rate": 0.025,
+        "temp_multiplier": 1.0,
+        "time_multiplier": 1.0,
+        "response_multiplier": 1.0,
+        "next_feed_window": "12:00-13:00",
+        "feeds_per_day": 3
+      }
+    },
+    {
+      "name": "catfish-evening",
+      "input": {
+        "species": "clarias_gariepinus",
+        "bboxes": [
+          [0, 0, 250, 83],
+          [10, 0, 294, 95],
+          [20, 0, 321, 100],
+          [30, 0, 297, 89],
+          [40, 0, 333, 98],
+          [50, 0, 325, 92],
+          [60, 0, 370, 103],
+          [70, 0, 318, 83],
+          [80, 0, 360, 93],
+          [90, 0, 351, 87]
+        ],
+        "stockingCount": 1500,
+        "daysSinceStocking": 100,
+        "loggedMortality": 0,
+        "hour": 19,
+        "waterTempC": 29.5,
+        "minutesSinceLastFeed": null,
+        "lastFeedResponse": "consumed_fast"
+      },
+      "sample": {
+        "fish_count": 10,
+        "accepted_count": 10,
+        "average_length_cm": 27.69,
+        "average_weight_g": 135.07,
+        "total_biomass_g": 1350.75,
+        "length_stddev_cm": 2.084,
+        "gate_drop_reasons": {}
+      },
+      "estimate": {
+        "estimated_population": 1400,
+        "estimated_total_biomass_g": 189098.0,
+        "confidence_lower_g": 162635.0,
+        "confidence_upper_g": 215561.0,
+        "sample_quality": "medium"
+      },
+      "feed": {
+        "recommended_feed_g": 2080.1,
+        "should_feed_now": true,
+        "reason": "precision feed calculation",
+        "base_rate": 0.02,
+        "temp_multiplier": 1.0,
+        "time_multiplier": 1.0,
+        "response_multiplier": 1.1,
+        "next_feed_window": null,
+        "feeds_per_day": 2
+      }
+    },
+    {
+      "name": "catfish-shoulder-warm",
+      "input": {
+        "species": "clarias_gariepinus",
+        "bboxes": [
+          [0, 0, 102, 34],
+          [10, 0, 125, 38],
+          [20, 0, 118, 33],
+          [30, 0, 154, 41],
+          [40, 0, 150, 37],
+          [50, 0, 157, 36],
+          [60, 0, 179, 40],
+          [70, 0, 198, 43]
+        ],
+        "stockingCount": 3000,
+        "daysSinceStocking": 40,
+        "loggedMortality": 0,
+        "hour": 16,
+        "waterTempC": 33.5,
+        "minutesSinceLastFeed": 200,
+        "lastFeedResponse": "consumed_normal"
+      },
+      "sample": {
+        "fish_count": 8,
+        "accepted_count": 8,
+        "average_length_cm": 11.29,
+        "average_weight_g": 8.28,
+        "total_biomass_g": 66.26,
+        "length_stddev_cm": 1.053,
+        "gate_drop_reasons": {}
+      },
+      "estimate": {
+        "estimated_population": 2920,
+        "estimated_total_biomass_g": 24177.6,
+        "confidence_lower_g": 19489.7,
+        "confidence_upper_g": 28865.5,
+        "sample_quality": "medium"
+      },
+      "feed": {
+        "recommended_feed_g": 196.4,
+        "should_feed_now": true,
+        "reason": "precision feed calculation",
+        "base_rate": 0.05,
+        "temp_multiplier": 0.65,
+        "time_multiplier": 0.5,
+        "response_multiplier": 1.0,
+        "next_feed_window": null,
+        "feeds_per_day": 2
+      }
+    },
+    {
+      "name": "catfish-past-cycle",
+      "input": {
+        "species": "clarias_gariepinus",
+        "bboxes": [
+          [0, 0, 350, 117],
+          [10, 0, 392, 127],
+          [20, 0, 425, 135],
+          [30, 0, 396, 122],
+          [40, 0, 439, 133],
+          [50, 0, 462, 137],
+          [60, 0, 434, 125],
+          [70, 0, 490, 140],
+          [80, 0, 468, 129],
+          [90, 0, 451, 120],
+          [100, 0, 500, 133],
+          [110, 0, 501, 130],
+          [120, 0, 497, 126],
+          [130, 0, 515, 128],
+          [140, 0, 558, 139],
+          [150, 0, 519, 123],
+          [160, 0, 554, 131],
+          [170, 0, 577, 136],
+          [180, 0, 560, 127],
+          [190, 0, 562, 124],
+          [200, 0, 625, 142],
+          [210, 0, 606, 132],
+          [220, 0, 622, 134]
+        ],
+        "stockingCount": 1000,
+        "daysSinceStocking": 250,
+        "loggedMortality": 0,
+        "hour": 21,
+        "waterTempC": 30.0,
+        "minutesSinceLastFeed": null,
+        "lastFeedResponse": "unknown"
+      },
+      "sample": {
+        "fish_count": 23,
+        "accepted_count": 23,
+        "average_length_cm": 39.01,
+        "average_weight_g": 390.27,
+        "total_biomass_g": 8976.26,
+        "length_stddev_cm": 1.987,
+        "gate_drop_reasons": {}
+      },
+      "estimate": {
+        "estimated_population": 880,
+        "estimated_total_biomass_g": 343437.6,
+        "confidence_lower_g": 321989.8,
+        "confidence_upper_g": 364885.4,
+        "sample_quality": "high"
+      },
+      "feed": {
+        "recommended_feed_g": 3434.4,
+        "should_feed_now": true,
+        "reason": "precision feed calculation",
+        "base_rate": 0.02,
+        "temp_multiplier": 1.0,
+        "time_multiplier": 1.0,
+        "response_multiplier": 1.0,
+        "next_feed_window": null,
+        "feeds_per_day": 2
+      }
+    }
+  ]
+}
