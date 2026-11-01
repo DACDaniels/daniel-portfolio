@@ -2,6 +2,10 @@
 
 One line per decision, newest first. Date, what, why.
 
+## 2026-11-01: Hire page, command palette, recently shipped, activity graph, footer menu, résumé
+
+- **Ticket Kulture removed from the résumé because the company no longer operates.** Résumé titles confirmed: Lead Engineer, FishTech Consultancy; "business systems" instead of ERP. The Iris card keeps "Working prototype · Pilot in preparation". Rebuilt with npm run resume; still two A4 pages, page two ends after Skills with room to spare.
+
 ## 2026-11-01: Status lights, filters, How I build, project search data, résumé source
 
 - **Live status lights on the Projects cards.** /api/status (src/app/api/status/route.ts) checks steadyhandscatering.com, www.endoscopysuite.co.zw, www.fishtech.co.zw, www.healthandlongevity.co.zw and ops.fishtech.co.zw/ping with a GET and a 4 s timeout; only 2xx counts as up. The route is cached for 5 minutes, so the sites are checked at most once every 5 minutes whatever the traffic, and it returns only up or down per system plus the time of the check. Cards fetch /api/status; visitors' browsers never call client sites. Why: a working link proves delivery better than a badge, without putting load on client sites or exposing their response details.
