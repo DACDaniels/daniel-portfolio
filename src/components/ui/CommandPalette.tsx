@@ -13,6 +13,7 @@ import {
 } from "react";
 import { CONTACT_LINKS, EMAIL } from "@/lib/contactLinks";
 import { PROJECTS, SITE_URL } from "@/lib/projectSchema";
+import { HAS_TESTIMONIALS } from "@/data/testimonials";
 
 type Group = "Sections" | "Projects" | "Pages" | "Actions";
 
@@ -34,6 +35,8 @@ const SECTIONS: [string, string][] = [
   ["Achievements", "achievements"],
   ["How I build", "how-i-build"],
   ["About", "about"],
+  // Only while a quote with written permission is published (testimonials.ts).
+  ...(HAS_TESTIMONIALS ? ([["Testimonials", "testimonials"]] as [string, string][]) : []),
   ["Contact", "contact"],
 ];
 

@@ -206,6 +206,10 @@ export default function RootLayout({
             __html: JSON.stringify(websiteSchema),
           }}
         />
+        {/* JavaScript off: case-study sections skip their scroll reveal and show. */}
+        <noscript>
+          <style>{"[data-case-reveal]{opacity:1!important;transform:none!important;filter:none!important}"}</style>
+        </noscript>
       </head>
       <body suppressHydrationWarning>
         <ExtensionErrorSuppressor />
