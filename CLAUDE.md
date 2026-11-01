@@ -26,7 +26,9 @@ Every pixel, every animation, every interaction must be intentional.
 - Magic UI — text animations, shimmer, number counters, marquee
 - 21st.dev — buttons, inputs, interactive components
 - GSAP (for complex scroll-driven sequences if needed)
-- Google Fonts: Geist (headings) + DM Sans (body)
+- Fonts, self-hosted with next/font/local from @fontsource packages (no Google
+  Fonts at build time): Geist (headings) + DM Sans (body), plus JetBrains Mono
+  and Instrument Serif
 - Puppeteer (for automated screenshot workflow)
 - Deployed on Vercel
 
