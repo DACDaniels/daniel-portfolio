@@ -11,6 +11,7 @@ const pick = (html, re) => (html.match(re) || [])[1];
 
 const pages = [
   { file: "index.html", canonical: SITE },
+  { file: "hire.html", canonical: `${SITE}/hire` },
   { file: "projects/fishtech.html", canonical: `${SITE}/projects/fishtech`, caseStudy: "fishtech" },
   { file: "projects/health-and-longevity.html", canonical: `${SITE}/projects/health-and-longevity`, caseStudy: "health-and-longevity" },
   { file: "projects/fishtech-sales-agent.html", canonical: `${SITE}/projects/fishtech-sales-agent`, caseStudy: "fishtech-sales-agent" },
@@ -95,6 +96,9 @@ for (const { file, canonical, caseStudy } of pages) {
 
 const sitemap = read("sitemap.xml.body");
 if (/\/previews\//.test(sitemap)) errors.push("sitemap.xml lists a /previews/ page");
+for (const { canonical } of pages)
+  if (!sitemap.includes(`<loc>${canonical === SITE ? `${SITE}/` : canonical}</loc>`))
+    errors.push(`sitemap.xml does not list ${canonical}`);
 const robots = read("robots.txt.body");
 if (!robots.includes(`Sitemap: ${SITE}/sitemap.xml`)) errors.push("robots.txt has no sitemap line");
 if (/Disallow:\s*\/\s*$/m.test(robots)) errors.push("robots.txt blocks the whole site");

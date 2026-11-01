@@ -5,6 +5,7 @@ import Image from "next/image";
 import { AnimatedText } from "@/components/ui/AnimatedText";
 import { DotGrid } from "@/components/ui/DotGrid";
 import { FloatingBadge } from "@/components/ui/FloatingBadge";
+import Link from "next/link";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { NumberTicker } from "@/components/ui/NumberTicker";
 
@@ -193,6 +194,15 @@ export function Hero() {
               >
                 Let&apos;s Talk
               </MagneticButton>
+
+              <Link
+                href="/hire"
+                className="group inline-flex min-h-[48px] items-center gap-1.5 rounded-full px-3 text-sm font-medium text-text-secondary transition-colors duration-300 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary active:opacity-80"
+              >
+                <span className="border-b border-current pb-0.5">
+                  Hiring? Start here
+                </span>
+              </Link>
             </motion.div>
           </div>
 

@@ -15,9 +15,21 @@ type Props = {
   footNote: string;
   panelBackground: string;
   panel: ReactNode;
+  /** Mono label top left. Defaults to the case-study label. */
+  eyebrow?: string;
+  /** Pill beside the label. Defaults to "Live". */
+  badge?: string;
 };
 
-export function caseStudyOgImage({ titleLines, blurb, footNote, panelBackground, panel }: Props) {
+export function caseStudyOgImage({
+  titleLines,
+  blurb,
+  footNote,
+  panelBackground,
+  panel,
+  eyebrow = "// case study",
+  badge = "Live",
+}: Props) {
   return new ImageResponse(
     (
       <div
@@ -67,7 +79,7 @@ export function caseStudyOgImage({ titleLines, blurb, footNote, panelBackground,
                 color: "#00E5C0",
               }}
             >
-              <span style={{ display: "flex" }}>{"// case study"}</span>
+              <span style={{ display: "flex" }}>{eyebrow}</span>
               <span
                 style={{
                   display: "flex",
@@ -82,7 +94,7 @@ export function caseStudyOgImage({ titleLines, blurb, footNote, panelBackground,
                 }}
               >
                 <span style={{ width: "7px", height: "7px", borderRadius: "999px", background: "#00E5C0", display: "flex" }} />
-                Live
+                {badge}
               </span>
             </div>
             <div
