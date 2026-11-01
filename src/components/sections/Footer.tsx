@@ -2,27 +2,27 @@
 
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
+import { CONTACT_LINKS } from "@/lib/contactLinks";
 import { useScrollReveal } from "@/lib/useScrollReveal";
 
+// Same order as the navbar. Root-relative, so the links work from /hire
+// and the case studies as well as the home page.
 const NAV_LINKS = [
-  { label: "Home", href: "#home" },
-  { label: "Work", href: "#projects" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/#home" },
+  { label: "Work", href: "/#projects" },
+  { label: "Achievements", href: "/#achievements" },
+  { label: "How I build", href: "/#how-i-build" },
+  { label: "About", href: "/#about" },
+  { label: "Contact", href: "/#contact" },
+  { label: "Hiring? Start here", href: "/hire" },
 ] as const;
 
 const CONNECT_LINKS = [
-  { label: "GitHub", href: "https://github.com/DACDaniels" },
-  {
-    label: "LinkedIn",
-    href: "https://linkedin.com/in/daniel-chadambuka-792b74277",
-  },
-  {
-    label: "WhatsApp",
-    href: "https://wa.me/263780802880?text=Hi%20Daniel%2C%20I%20saw%20your%20portfolio%20and",
-  },
-  { label: "Email", href: "mailto:chadambukadaniel@gmail.com" },
-  { label: "Resume · PDF", href: "/resume.pdf" },
+  { label: "GitHub", href: CONTACT_LINKS.github },
+  { label: "LinkedIn", href: CONTACT_LINKS.linkedin },
+  { label: "WhatsApp", href: CONTACT_LINKS.whatsapp },
+  { label: "Email", href: CONTACT_LINKS.email },
+  { label: "Resume · PDF", href: CONTACT_LINKS.resume },
 ] as const;
 
 const COLOPHON_LINES = ["Next.js 15", "Vercel", "Geist · DM Sans", "v.2026.10"];
