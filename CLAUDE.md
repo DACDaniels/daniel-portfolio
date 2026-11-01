@@ -335,11 +335,20 @@ entry, projectSchema.ts entry and check-seo coverage.
     Zimbabwe Agricultural Show entries: those live in Achievements only)
 - Subtle background texture
 
-### 8. Testimonials
+### 8. Testimonials (built, hidden until there is one)
 
-- Horizontal scroll or card carousel
-- Each card: quote, name, role, company
-- Skip if no real testimonials available
+- RULE: a testimonial goes in only word for word, with written permission
+  recorded in the entry with its date (permission true, permissionDate).
+  Never invent, shorten or tidy a quote
+- Data: src/data/testimonials.ts (quote, name, role, organisation, project
+  page link, permission, permissionDate). Seeded empty
+- Section src/components/sections/Testimonials.tsx sits after About, before
+  Contact. It renders only entries with permission true and a date. With
+  none it renders nothing and stays out of the navbar and the footer
+- With one or more: "In their words.", one card per quote (quote, name,
+  role and organisation, "Read the case study" link); two columns from
+  768 px when there are two or more. Linked from the footer and the
+  full-screen menu only (menuOnly), never the crowded navbar bar
 
 ### 9. Contact
 
