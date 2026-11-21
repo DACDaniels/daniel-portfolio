@@ -9,7 +9,6 @@ import {
   type Variants,
 } from "motion/react";
 import { useEffect } from "react";
-import Image from "next/image";
 import {
   FlagshipProjectCard,
   type FlagshipProjectProps,
@@ -20,6 +19,7 @@ import {
 } from "@/components/ui/AlternatingProjectCard";
 import { SteadyhandsMock } from "@/components/ui/project-mocks/SteadyhandsMock";
 import { FishTechConsultancyShowcase } from "@/components/ui/project-mocks/FishTechConsultancyShowcase";
+import { IrisShowcase } from "@/components/ui/project-mocks/IrisShowcase";
 import { EndoscopySuiteShowcase } from "@/components/ui/project-mocks/EndoscopySuiteShowcase";
 import { PortfolioMock } from "@/components/ui/project-mocks/PortfolioMock";
 import { HealthLongevityShowcase } from "@/components/ui/project-mocks/HealthLongevityShowcase";
@@ -43,31 +43,11 @@ const FLAGSHIP: FlagshipProjectProps = {
   tags: ["Computer Vision", "Raspberry Pi", "FastAPI"],
   status: "building",
   href: "/projects/fishtech",
-  mockComponent: <FishTechFlagshipPhoto />,
+  mockComponent: <IrisShowcase />,
 };
 
 // The Precision Feeding System (Iris) is both hardware and computer vision.
 const FLAGSHIP_GROUPS: ProjectGroup[] = ["products-hardware", "automation-ai"];
-
-function FishTechFlagshipPhoto() {
-  return (
-    <div className="relative h-full w-full">
-      <Image
-        src="/images/iris/iris-hero.jpg"
-        alt="FishTech Precision Feeding System at a pond at sunset, overhead camera on the boom and a calibration board on the water"
-        fill
-        priority
-        sizes="(max-width: 1024px) 100vw, 680px"
-        className="object-cover object-[50%_40%]"
-      />
-      {/* Darkens the top edge so the status badge stays readable. */}
-      <span
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/20 mix-blend-multiply"
-      />
-    </div>
-  );
-}
 
 type AlternatingProject = Omit<AlternatingProjectProps, "side"> & {
   groups: ProjectGroup[];

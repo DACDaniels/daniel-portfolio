@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 import { Navbar } from "@/components/sections/Navbar";
 import { CaseSectionProgress } from "@/components/ui/CaseSectionProgress";
 import { FishTechApparatus } from "@/components/ui/FishTechApparatus";
+import Image from "next/image";
 import { MediaGallery, type MediaItem } from "@/components/ui/MediaGallery";
 import { FishTechArchitecture } from "@/components/ui/FishTechArchitecture";
 import { FishTechSmartFeedMock } from "@/components/ui/project-mocks/FishTechSmartFeedMock";
@@ -20,6 +21,7 @@ const PROGRESS_ITEMS = [
   { id: "innovations", label: "Innovations" },
   { id: "stack", label: "Stack" },
   { id: "state", label: "Current state" },
+  { id: "dashboard", label: "The dashboard" },
   { id: "field", label: "In the field" },
   { id: "next", label: "What's next" },
 ];
@@ -592,6 +594,68 @@ export default function FishTechCaseStudyPage() {
               auger, and field enclosure are in active build, with
               pilot deployment in preparation.
             </p>
+          </CaseSection>
+
+          <CaseSection
+            id="dashboard"
+            eyebrow="// dashboard"
+            title="The dashboard."
+            itemVariants={itemVariants}
+            containerVariants={containerVariants}
+          >
+            <p>
+              The Raspberry Pi serves the dashboard over its own Wi-Fi, so a
+              phone or laptop on the farm opens it with no internet. These are
+              real screenshots from the demo tank. Biomass accuracy has not yet
+              been validated against weighed fish.
+            </p>
+            <motion.figure variants={itemVariants} className="mt-6">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-border bg-bg-surface shadow-[0_20px_50px_-28px_rgba(0,229,192,0.18)]">
+                <Image
+                  src="/images/iris/iris-dash-laptop-light.jpg"
+                  alt="Iris dashboard on a laptop in light mode: next feed, live camera and fish numbers"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 768px"
+                  className="object-cover object-top"
+                />
+              </div>
+              <figcaption className="mt-3 text-sm leading-relaxed text-text-secondary">
+                Dark and light mode from one design.
+              </figcaption>
+            </motion.figure>
+            <motion.div
+              variants={itemVariants}
+              className="mt-8 grid grid-cols-2 gap-4 sm:gap-6"
+            >
+              <figure>
+                <div className="relative mx-auto aspect-[390/844] w-full max-w-[260px] overflow-hidden rounded-[22px] border border-white/15 bg-[#050A14] shadow-[0_20px_50px_-28px_rgba(0,229,192,0.18)]">
+                  <Image
+                    src="/images/iris/iris-dash-phone-light.jpg"
+                    alt="Iris dashboard on a phone in light mode: next feed with an I fed button, live camera and fish numbers"
+                    fill
+                    sizes="(max-width: 640px) 45vw, 260px"
+                    className="object-cover object-top"
+                  />
+                </div>
+                <figcaption className="mx-auto mt-3 max-w-[260px] text-sm leading-relaxed text-text-secondary">
+                  The farmer&apos;s view on a phone.
+                </figcaption>
+              </figure>
+              <figure>
+                <div className="relative mx-auto aspect-[390/844] w-full max-w-[260px] overflow-hidden rounded-[22px] border border-white/15 bg-[#050A14] shadow-[0_20px_50px_-28px_rgba(0,229,192,0.18)]">
+                  <Image
+                    src="/images/iris/iris-dash-phone-science-dark.jpg"
+                    alt="Iris dashboard on a phone in dark mode: the How Iris worked this out view, showing the measurements and formula behind each number"
+                    fill
+                    sizes="(max-width: 640px) 45vw, 260px"
+                    className="object-cover object-top"
+                  />
+                </div>
+                <figcaption className="mx-auto mt-3 max-w-[260px] text-sm leading-relaxed text-text-secondary">
+                  How Iris worked this out: the measurements and formula behind every number, for judges.
+                </figcaption>
+              </figure>
+            </motion.div>
           </CaseSection>
 
           <CaseSection
